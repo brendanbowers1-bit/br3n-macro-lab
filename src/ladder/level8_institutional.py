@@ -131,7 +131,7 @@ def _hedge_oos_summary(root: Path) -> pd.DataFrame:
     return pd.read_csv(path)
 
 
-def _white_rc_pvalue(root: Path) -> float | None:
+def _trading_white_rc_pvalue(root: Path) -> float | None:
     path = root / "reports" / "research_ladder" / "level6_white_reality_check.csv"
     if not path.exists():
         return None
@@ -143,13 +143,42 @@ def _white_rc_pvalue(root: Path) -> float | None:
     return float(val) if val is not None and not pd.isna(val) else None
 
 
+def _hedge_white_rc_pvalue(root: Path, cost_layer: str = "forward_full") -> float | None:
+    path = root / "reports" / "research_ladder" / "level8_hedge_white_rc.csv"
+    if not path.exists():
+        return None
+    df = pd.read_csv(path)
+    if df.empty:
+        return None
+    panel = df[
+        (df.get("test", "") == "panel_oos_metric_bootstrap")
+        & (df.get("cost_layer", "") == cost_layer)
+        & (df.get("policy_name", df.get("strategy", "")) == "_SUMMARY")
+    ]
+    if panel.empty and "strategy" in df.columns:
+        panel = df[
+            (df.get("test", "") == "flagship_daily_sharpe")
+            & (df.get("cost_layer", "") == cost_layer)
+            & (df["strategy"] == "_SUMMARY")
+        ]
+    if panel.empty:
+        summaries = df[df.get("policy_name", pd.Series()) == "_SUMMARY"] if "policy_name" in df.columns else df[df["strategy"] == "_SUMMARY"]
+        layer_sum = summaries[summaries.get("cost_layer", "") == cost_layer] if "cost_layer" in summaries.columns else summaries
+        if layer_sum.empty:
+            return None
+        panel = layer_sum.iloc[[0]]
+    val = panel.iloc[0].get("white_rc_pvalue")
+    return float(val) if val is not None and not pd.isna(val) else None
+
+
 def _assess_status(req_id: str, root: Path, cfg: dict) -> tuple[str, str]:
     """Return (evidence_status, current_state) for one requirement."""
     multipair = _count_multipair(root)
     hedge_pairs = _hedge_oos_pair_count(root)
     exposures = _hedge_oos_exposure_count(root)
     oos_summary = _hedge_oos_summary(root)
-    wrc_p = _white_rc_pvalue(root)
+    wrc_p = _trading_white_rc_pvalue(root)
+    hedge_wrc_p = _hedge_white_rc_pvalue(root, "forward_full")
     prefer_tier1 = bool(cfg.get("data", {}).get("prefer_tier1_spot", False))
     history_years = int(cfg.get("data", {}).get("history_years", 20))
     min_pairs = int(cfg.get("hedge_oos", {}).get("min_pairs", 10))
@@ -174,7 +203,16 @@ def _assess_status(req_id: str, root: Path, cfg: dict) -> tuple[str, str]:
             return "Partial", "FRED H.10 for USD/MXN; prototype fallback still possible"
 
     if req_id == "forward_costs":
-        return "Not met", "No forward curve or bid/ask history in hedge scorecards"
+        summary_path = root / "reports" / "research_ladder" / "level8_hedge_oos_summary.csv"
+        if summary_path.exists():
+            s = pd.read_csv(summary_path)
+            ff = s[s["cost_layer"] == "forward_full"] if "cost_layer" in s.columns else s
+            if not ff.empty and bool(ff.iloc[0].get("h8d_pass", False)):
+                return "Partial", "Forward roll + carry layer run; H8d pass on OOS panel"
+            if not ff.empty:
+                h8d = ff.iloc[0].get("h8d_pass", False)
+                return "Partial", f"Forward roll + carry layer run; H8d {'pass' if h8d else 'fail'}"
+        return "Not met", "No forward cost layer in hedge OOS results"
 
     if req_id == "static_vs_dynamic":
         if hedge_pairs >= min_pairs:
@@ -188,14 +226,22 @@ def _assess_status(req_id: str, root: Path, cfg: dict) -> tuple[str, str]:
 
     if req_id == "oos":
         if not oos_summary.empty:
-            s = oos_summary.iloc[0]
+            ff = oos_summary[oos_summary["cost_layer"] == "forward_full"] if "cost_layer" in oos_summary.columns else pd.DataFrame()
+            s = ff.iloc[0] if not ff.empty else oos_summary.iloc[0]
             pairs = int(s.get("pairs_tested", 0))
             h8a = bool(s.get("h8a_pass", False))
+            h8d = bool(s.get("h8d_pass", False))
+            layer = s.get("cost_layer", "base")
+            if pairs >= min_pairs and h8a and h8d:
+                return "Met", f"Hedge OOS ({layer}) on {pairs} pairs; H8a+H8d pass"
             if pairs >= min_pairs and h8a:
-                return "Met", f"Hedge OOS on {pairs} pairs; H8a pass ({s.get('pct_pairs_h8a')}%)"
+                return "Partial", (
+                    f"Hedge OOS ({layer}) on {pairs} pairs; H8a pass ({s.get('pct_pairs_h8a')}%) "
+                    f"but H8d {'pass' if h8d else 'fail'}"
+                )
             if pairs >= min_pairs:
                 return "Partial", (
-                    f"Hedge OOS on {pairs} pairs; H8a "
+                    f"Hedge OOS ({layer}) on {pairs} pairs; H8a "
                     f"{'pass' if h8a else 'fail'} ({s.get('pct_pairs_h8a')}%)"
                 )
             if pairs >= 1:
@@ -203,10 +249,14 @@ def _assess_status(req_id: str, root: Path, cfg: dict) -> tuple[str, str]:
         return "Not met", "Hedge policies not yet run multi-pair OOS"
 
     if req_id == "snooping":
+        if hedge_wrc_p is not None and hedge_wrc_p < 0.05:
+            return "Partial", f"Hedge policy White RC p = {hedge_wrc_p:.4f} (forward_full)"
+        if hedge_wrc_p is not None:
+            return "Not met", f"Hedge policy White RC p = {hedge_wrc_p:.4f} — does not reject snooping"
         if wrc_p is not None and wrc_p < 0.05:
-            return "Met", f"White RC p = {wrc_p:.4f}"
+            return "Partial", f"Trading White RC p = {wrc_p:.4f} only (not hedge policy set)"
         if wrc_p is not None:
-            return "Not met", f"White RC p = {wrc_p:.4f} — does not reject data-mining at 5%"
+            return "Not met", f"Trading White RC p = {wrc_p:.4f}; hedge policy RC not run"
         return "Not met", "White Reality Check not run or missing"
 
     if req_id == "exposures":

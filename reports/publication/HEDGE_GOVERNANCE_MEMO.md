@@ -166,9 +166,8 @@ Full matrix: [Research Ladder — Level 8](ladder.html#level-8-institutional-pro
 
 - Run hedge scorecards on **≥ 10 pairs** with Tier-1 spot only
 - Walk-forward OOS for `no_change_in_range` vs `regime_based` vs static 50% / 75%
-- Add **forward points** and roll to cost model
-- Test **≥ 3 exposure types** per pair where data allows
-- White Reality Check on the **pre-registered policy set**
+- **Forward cost layer results (2026-05-30):** Under `forward_full` (spread + roll + carry), H8a/H8b still pass (84% / 74% turnover red) but **H8d fails** — static `mostly_hedged` beats `no_change_in_range` on OOS cost-adj risk reduction on a majority of pairs. Hedge policy White RC p ≈ **0.66** (panel) — does not reject snooping.
+- White Reality Check on the **pre-registered policy set** — see `level8_hedge_white_rc.csv`
 - Rerun on **FRED / Fed H.10** consistently (no prototype fallback in published results)
 - Test **one new corridor** — preferably US_PH or US_IN
 - Evaluate **R2-only vol-scaled** trading model (pre-registered) — separate from hedge governance claims

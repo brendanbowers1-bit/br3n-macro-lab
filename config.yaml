@@ -170,6 +170,9 @@ hedge_oos:
   min_years_history: 15
   include_walk_forward: true
   include_fixed_splits: true
+  cost_layers:
+    - base
+    - forward_full
   policies:
     - half_hedged
     - mostly_hedged

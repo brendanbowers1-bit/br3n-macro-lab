@@ -14,6 +14,7 @@ import numpy as np
 import pandas as pd
 
 from .regimes import R1, R2, R3, R4
+from .hedge_costs import apply_hedge_costs
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -108,19 +109,16 @@ def run_hedge_governance_backtest(
     exposure_type: str = "receiver_currency_exposure",
     config: Optional[dict] = None,
     corridor_id: Optional[str] = None,
+    cost_layer: str = "base",
 ) -> pd.DataFrame:
     """Compute hedged vs unhedged paths for one governance policy."""
     config = config or {}
-    hg_cfg = config.get("hedge_governance", {})
-    cost_bps = float(
-        hg_cfg.get("hedge_transaction_cost_bps")
-        or config.get("research", {}).get("hedge_transaction_cost_bps", 2.0)
-    )
+    ticker = corridor_id or config.get("data", {}).get("ticker", "USDMXN=X")
     out = df.copy()
     out["unhedged_exposure_return"] = _exposure_return(out["daily_return"], exposure_type)
     out["hedge_ratio"] = get_policy_hedge_ratio(out, policy_name)
     out["hedge_turnover"] = out["hedge_ratio"].diff().abs().fillna(out["hedge_ratio"].abs())
-    out["hedge_cost"] = out["hedge_turnover"] * (cost_bps / 10_000.0)
+    out = apply_hedge_costs(out, ticker, config, cost_layer=cost_layer)
     out["hedged_return"] = (
         out["unhedged_exposure_return"] * (1.0 - out["hedge_ratio"]) - out["hedge_cost"]
     )
@@ -140,6 +138,9 @@ def governance_metrics(detail: pd.DataFrame) -> dict:
     vol_h = float(hed.std() * ann * 100)
     vol_red = vol_u - vol_h
     total_cost_pct = float(detail["hedge_cost"].sum()) * 100
+    trade_cost_pct = float(detail.get("hedge_trade_cost", detail["hedge_cost"]).sum()) * 100
+    roll_cost_pct = float(detail.get("forward_roll_cost", pd.Series(0.0)).sum()) * 100
+    carry_cost_pct = float(detail.get("forward_carry_cost", pd.Series(0.0)).sum()) * 100
     cost_adj = vol_red - total_cost_pct
 
     # Perfect hedge = zero FX exposure daily return
@@ -161,6 +162,10 @@ def governance_metrics(detail: pd.DataFrame) -> dict:
         "max_drawdown_hedged": round(_max_drawdown(hed), 3),
         "hedge_turnover": round(float(detail["hedge_turnover"].sum()), 3),
         "total_hedge_cost": round(total_cost_pct, 4),
+        "hedge_trade_cost_pct": round(trade_cost_pct, 4),
+        "forward_roll_cost_pct": round(roll_cost_pct, 4),
+        "forward_carry_cost_pct": round(carry_cost_pct, 4),
+        "cost_layer": detail["cost_layer"].iloc[0] if "cost_layer" in detail.columns else "base",
         "average_hedge_ratio": round(float(detail["hedge_ratio"].mean()), 3),
         "number_of_hedge_changes": changes,
         "cost_adjusted_risk_reduction": round(cost_adj, 3),
