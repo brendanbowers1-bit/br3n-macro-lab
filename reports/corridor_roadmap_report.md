@@ -22,7 +22,7 @@ The corridor roadmap expands BR3N Macro Labs from USD/MXN into major remittance 
 
 | corridor_id | model_pair | official_pair_label | status | error_message | observations | start_date | end_date | data_source | data_tier |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| US_MX | USDMXN=X | USD/MXN | success | nan | 5773 | 2004-03-19 | 2026-05-22 | cache_resanitized | prototype |
+| US_MX | USDMXN=X | USD/MXN | success | nan | 6183 | 2001-09-14 | 2026-05-15 | cache_resanitized | prototype |
 | US_IN | USDINR=X | USD/INR | success | nan | 5749 | 2004-03-19 | 2026-05-22 | cache_resanitized | prototype |
 | US_PH | USDPHP=X | USD/PHP | success | nan | 5745 | 2004-03-22 | 2026-05-22 | cache_resanitized | prototype |
 | US_CO | USDCOP=X | USD/COP | success | nan | 5757 | 2004-03-23 | 2026-05-22 | cache_resanitized | prototype |
@@ -38,16 +38,16 @@ The corridor roadmap expands BR3N Macro Labs from USD/MXN into major remittance 
 | US_BR | r2_only | 0.333 | r2_only | -21.62 |
 | US_CO | flat_range | 0.121 | r2_only | -33.53 |
 | US_IN | legacy | 0.261 | flat_range | -24.2 |
-| US_MX | r2_only | 0.15 | r2_only | -25.06 |
+| US_MX | r2_only | 0.268 | r2_only | -33.12 |
 | US_PH | flat_range | 0.127 | r2_only | -20.38 |
 
 Full scorecard (selected columns):
 | corridor_id | mode | sharpe | max_drawdown | total_return | number_of_trades |
 | --- | --- | --- | --- | --- | --- |
-| US_MX | buy_and_hold | 0.224 | -35.61 | 58.08 | 1 |
-| US_MX | legacy | 0.112 | -39.43 | 15.36 | 114 |
-| US_MX | flat_range | 0.13 | -32.61 | 20.99 | 213 |
-| US_MX | r2_only | 0.15 | -25.06 | 18.31 | 292 |
+| US_MX | buy_and_hold | 0.273 | -35.04 | 82.87 | 1 |
+| US_MX | legacy | 0.162 | -39.88 | 34.01 | 118 |
+| US_MX | flat_range | 0.124 | -44.27 | 20.36 | 231 |
+| US_MX | r2_only | 0.268 | -33.12 | 39.69 | 327 |
 | US_MX | random_walk | 0.0 | 0.0 | 0.0 | 0 |
 | US_IN | buy_and_hold | 0.479 | -16.66 | 113.25 | 1 |
 | US_IN | legacy | 0.261 | -25.09 | 46.87 | 120 |
@@ -74,10 +74,10 @@ Full scorecard (selected columns):
 
 | corridor_id | regime | random_walk_validity_label | annualized_volatility | autocorrelation_1d | interpretation |
 | --- | --- | --- | --- | --- | --- |
-| US_MX | R1_trend_high_vol | Potential structure | 16.489 | -0.0515 | Some trend or autocorrelation — conditional models may warrant testing OOS. |
-| US_MX | R2_trend_low_vol | Potential structure | 8.921 | -0.0521 | Some trend or autocorrelation — conditional models may warrant testing OOS. |
-| US_MX | R3_range_high_vol | Potential structure | 13.329 | -0.1848 | Some trend or autocorrelation — conditional models may warrant testing OOS. |
-| US_MX | R4_range_low_vol | High-risk noise | 8.016 | -0.028 | Elevated vol with weak direction — avoid over-adjusting hedge ratios. |
+| US_MX | R1_trend_high_vol | High-risk noise | 15.221 | 0.0025 | Elevated vol with weak direction — avoid over-adjusting hedge ratios. |
+| US_MX | R2_trend_low_vol | Random-walk-like | 8.275 | -0.0087 | Directional metrics near random-walk benchmarks; static hedge may dominate. |
+| US_MX | R3_range_high_vol | Potential structure | 12.98 | 0.056 | Some trend or autocorrelation — conditional models may warrant testing OOS. |
+| US_MX | R4_range_low_vol | Potential structure | 7.3 | 0.0755 | Some trend or autocorrelation — conditional models may warrant testing OOS. |
 | US_IN | R1_trend_high_vol | Potential structure | 10.122 | -0.1838 | Some trend or autocorrelation — conditional models may warrant testing OOS. |
 | US_IN | R2_trend_low_vol | Potential structure | 5.588 | -0.0828 | Some trend or autocorrelation — conditional models may warrant testing OOS. |
 | US_IN | R3_range_high_vol | Potential structure | 9.436 | -0.1587 | Some trend or autocorrelation — conditional models may warrant testing OOS. |
@@ -101,7 +101,7 @@ _Exploratory only — calendar proxies are not causal payment-flow data._
 
 | corridor_id | observations_flow_window | observations_normal | volatility_flow_window | volatility_normal | p_value_return_difference | interpretation |
 | --- | --- | --- | --- | --- | --- | --- |
-| US_MX | 4123 | 1650 | 11.9679 | 13.0896 | 0.1616 | Flow windows show volatility differences but weak return evidence. |
+| US_MX | 4458 | 1725 | 10.9398 | 12.473 | 0.1397 | Flow windows show volatility differences but weak return evidence. |
 | US_IN | 4251 | 1498 | 7.535 | 7.4924 | 0.0809 | No strong evidence from public flow proxies. |
 | US_PH | 5146 | 599 | 8.1516 | 7.2989 | 0.8379 | No strong evidence from public flow proxies. |
 | US_CO | 3963 | 1794 | 18.5999 | 18.4713 | 0.1327 | No strong evidence from public flow proxies. |
@@ -118,7 +118,7 @@ Best policy by cost-adjusted risk reduction:
 | US_BR | fully_hedged | 18.274 | 1.0 | 0.02 | 1.0 |
 | US_CO | fully_hedged | 18.538 | 1.0 | 0.02 | 1.0 |
 | US_IN | fully_hedged | 7.501 | 1.0 | 0.02 | 1.0 |
-| US_MX | fully_hedged | 12.276 | 1.0 | 0.02 | 1.0 |
+| US_MX | fully_hedged | 11.365 | 1.0 | 0.02 | 1.0 |
 | US_PH | fully_hedged | 8.042 | 1.0 | 0.02 | 1.0 |
 
 ## 8. Strongest corridors for further research

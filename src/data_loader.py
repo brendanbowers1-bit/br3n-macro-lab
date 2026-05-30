@@ -236,6 +236,19 @@ def load_or_fetch(cfg: dict, force_refresh: bool = False) -> Tuple[pd.DataFrame,
     safe = ticker.replace("=", "_")
     proc_path = proc_dir / f"{safe}.csv"
 
+    prefer_t1 = cfg.get("data", {}).get("prefer_tier1_spot", False)
+    if prefer_t1 and ticker.upper() == "USDMXN=X":
+        try:
+            from .official_loaders import load_or_fetch_official_usdmxn
+
+            df_t1, t1_path = load_or_fetch_official_usdmxn(years=years, force_refresh=force_refresh)
+            df_t1, _ = sanitize_fx_prices(df_t1, ticker)
+            _save_cache_with_metadata(df_t1, proc_path)
+            print(f"Tier 1 official spot: {len(df_t1)} rows -> {proc_path}")
+            return df_t1[["price"]], proc_path
+        except Exception as exc:
+            print(f"  Tier 1 spot unavailable ({exc}); falling back to prototype sources")
+
     if proc_path.exists() and not force_refresh:
         return _read_cache(proc_path), proc_path
 

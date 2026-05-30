@@ -81,9 +81,7 @@ REGIME_INFO = {
 }
 
 PAGES = [
-    "Lab Portfolio",
     "Executive Overview",
-    "FX Desk Command Center",
     "Random-Walk Lab",
     "Regime Intelligence",
     "Corridor Roadmap",
@@ -91,9 +89,11 @@ PAGES = [
     "Flow Pressure",
     "Academic Tests",
     "Data Quality",
-    "Research Questions",
+    "FX Desk Command Center",
     "Publication Memo",
 ]
+
+FX_LAB_TAGLINE = "Testing When Currency Markets Become Less Random"
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
 LUXURY_CSS = f"""
@@ -114,11 +114,29 @@ section[data-testid="stSidebar"] .stRadio label {{
     color: {C["text2"]} !important;
 }}
 .hero-title {{
-    font-size: 2rem;
+    font-size: 2.1rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     color: {C["gold"]};
     margin-bottom: 0.25rem;
+}}
+.tier-pill {{
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-right: 0.35rem;
+}}
+.tier-1 {{ background: rgba(34,197,94,0.15); color: {C["green"]}; border: 1px solid rgba(34,197,94,0.35); }}
+.tier-2 {{ background: rgba(56,189,248,0.12); color: {C["cyan"]}; border: 1px solid rgba(56,189,248,0.3); }}
+.tier-3 {{ background: rgba(212,175,55,0.12); color: {C["gold"]}; border: 1px solid rgba(212,175,55,0.3); }}
+.tier-4 {{ background: rgba(245,158,11,0.12); color: {C["amber"]}; border: 1px solid rgba(245,158,11,0.3); }}
+.section-divider {{
+    border: none;
+    border-top: 1px solid {C["border"]};
+    margin: 2rem 0 1.5rem;
 }}
 .hero-subtitle {{
     font-size: 1.15rem;
@@ -612,154 +630,12 @@ def corridor_heatmap(
 
 
 # ── Page renderers ────────────────────────────────────────────────────────────
-def page_lab_portfolio() -> None:
-    """Umbrella lab portfolio — three verticals under BR3N Macro Labs."""
-    st.markdown(
-        '<div class="hero-title">BR3N MACRO LABS</div>'
-        '<div class="hero-subtitle">Markets. Images. Materials. Systems.</div>'
-        '<div class="hero-tagline">BR3N Macro Labs explores markets, images, and materials through '
-        "AI-assisted experimentation, evidence, and design.</div>",
-        unsafe_allow_html=True,
-    )
-
-    portfolio_md = safe_read_markdown(REPORTS / "LAB_PORTFOLIO.md")
-    cover_md = safe_read_markdown(REPORTS / "publication" / "LAB_COVER_PAGE.md")
-
-    public_base = "https://brendanbowers1-bit.github.io/br3n-macro-lab"
-
-    verticals = [
-        {
-            "title": "FX Lab",
-            "subtitle": "Conditional forecastability, payment-corridor risk, and hedge governance.",
-            "description": (
-                "The FX Lab studies when currency markets become less random by testing regime models "
-                "against random-walk benchmarks, trading-cost realities, and hedge-governance scorecards."
-            ),
-            "outputs": [
-                "FX regime dashboard",
-                "random-walk tests",
-                "corridor roadmap",
-                "hedge governance scorecards",
-                "FX desk command center",
-                "data quality reports",
-            ],
-            "status": "Active prototype",
-            "color": C["cyan"],
-            "public_url": f"{public_base}/fx-lab.html",
-        },
-        {
-            "title": "BR3N Photography",
-            "subtitle": "Fine-art photography, visual systems, and luxury print research.",
-            "description": (
-                "BR3N Photography develops black-and-white fine-art photography, urban abstraction, "
-                "AI-assisted concept work, and gallery-ready visual systems for prints and creative collections."
-            ),
-            "outputs": [
-                "print collections",
-                "black-and-white architectural series",
-                "gallery-ready edits",
-                "product mockups",
-                "artist statements",
-                "visual identity system",
-            ],
-            "status": "Creative studio vertical",
-            "color": C["gold"],
-            "public_url": f"{public_base}/photography.html",
-        },
-        {
-            "title": "Metastable Hydride Superconductor Initiative",
-            "subtitle": "Speculative materials research into metastable hydrides and ambient-pressure superconductivity pathways.",
-            "description": (
-                "A computational and experimental-roadmap project exploring whether hydrogen-deficient hydrides "
-                "can be used as parent phases for hypothetical hydrogen-inserted metastable derivatives."
-            ),
-            "flagship": "Mg₂IrH₅ → Mg₂IrH₆",
-            "outputs": [
-                "technical brief",
-                "literature map",
-                "computational workflow",
-                "experimental roadmap",
-                "safety and replication plan",
-                "outreach templates",
-                "fundraising brief",
-            ],
-            "status": "Speculative research planning. No verified experimental result.",
-            "color": C["purple"],
-            "public_url": f"{public_base}/mhsi.html",
-            "disclaimer": (
-                "This initiative does not claim discovery of a superconductor or verified synthesis of Mg₂IrH₆. "
-                "All candidate phases require computational validation, experimental safety review, "
-                "and independent replication."
-            ),
-        },
-    ]
-
-    st.markdown(
-        '<div class="callout">Locally, all three verticals live under this dashboard. '
-        f'Publicly, each vertical has its own page at <a href="{public_base}/">{public_base}/</a>.</div>',
-        unsafe_allow_html=True,
-    )
-
-    section_header("Lab Verticals", "Three disciplines under one umbrella")
-    for v in verticals:
-        outs = ", ".join(v["outputs"])
-        flagship_html = ""
-        if v.get("flagship"):
-            flagship_html = f'<p><strong>Flagship system:</strong> {v["flagship"]}</p>'
-        public_html = ""
-        if v.get("public_url"):
-            public_html = f'<p><strong>Public page:</strong> <a href="{v["public_url"]}">{v["public_url"]}</a></p>'
-        disclaimer_html = ""
-        if v.get("disclaimer"):
-            disclaimer_html = (
-                f'<p style="font-size:0.85rem;opacity:0.85;margin-top:0.5rem"><em>{v["disclaimer"]}</em></p>'
-            )
-        st.markdown(
-            f'<div class="info-card" style="border-left:3px solid {v["color"]}">'
-            f'<h4>{v["title"]}</h4>'
-            f'<p><em>{v["subtitle"]}</em></p>'
-            f'<p>{v["description"]}</p>'
-            f'{flagship_html}'
-            f'{public_html}'
-            f'<p><strong>Outputs:</strong> {outs}</p>'
-            f'<p>{status_badge(v["status"], "info")}</p>'
-            f'{disclaimer_html}'
-            f"</div>",
-            unsafe_allow_html=True,
-        )
-
-    st.markdown(
-        '<div class="callout"><strong>Shared theme:</strong> BR3N Macro Labs studies complex systems and '
-        "turns them into structured research, visual intelligence, and experimental roadmaps.</div>",
-        unsafe_allow_html=True,
-    )
-
-    if portfolio_md:
-        with st.expander("Full lab portfolio"):
-            st.markdown(portfolio_md)
-    if cover_md:
-        with st.expander("Public cover page"):
-            st.markdown(cover_md)
-
-    st.markdown(
-        '<div class="warning-box">'
-        "BR3N Macro Labs is an independent research and creative project — not affiliated with any "
-        "employer, university, financial institution, payment company, data vendor, laboratory, or "
-        "research institution unless explicitly stated.<br><br>"
-        "FX Lab: education and risk-framing only — not investment advice.<br>"
-        "Metastable Hydride Initiative: speculative planning — not verified experimental results.<br>"
-        "BR3N Photography: creative works and visual research."
-        "</div>",
-        unsafe_allow_html=True,
-    )
-
-
 def page_executive_overview() -> None:
     st.markdown(
         '<div class="hero-title">BR3N MACRO LABS</div>'
-        '<div class="hero-subtitle">FX Lab — Regime Intelligence for Conditional Forecastability and Hedge Governance</div>'
-        '<div class="hero-tagline">An AI-assisted research lab testing when currency markets become less random — '
-        "and when regime logic is useful for trading, hedging, and treasury decision-making.</div>",
+        '<div class="hero-subtitle">FX LAB</div>'
+        f'<div class="hero-tagline">{FX_LAB_TAGLINE}<br>'
+        "Conditional forecastability · Regime intelligence · Hedge governance · Corridor research</div>",
         unsafe_allow_html=True,
     )
 
@@ -1331,62 +1207,92 @@ def page_academic_tests() -> None:
 
 
 def page_data_quality() -> None:
-    section_header("Data Quality", "Prototype vs academic-grade vs trading-grade data")
+    section_header("Data Quality Layer", "Explicit source tiers · manifest · publication standards")
 
+    manifest = safe_read_csv(OUT / "data_quality_manifest.csv")
     dq = safe_read_csv(OUT / "data_quality_report.csv")
     reg = safe_read_csv(OUT / "data_source_registry.csv")
     dl = safe_read_csv(OUT / "corridor_download_log.csv")
+    layer_md = safe_read_markdown(REPORTS / "DATA_QUALITY_LAYER.md")
+
+    st.markdown(
+        '<div class="callout">Every FX claim in this lab must record <strong>source</strong>, '
+        "<strong>tier (1–4)</strong>, and <strong>quality flag</strong>. "
+        "Tier 1 = FRED / Fed H.10 / BIS. Tier 4 = yfinance prototype.</div>",
+        unsafe_allow_html=True,
+    )
 
     tier_badges = [
-        ("Prototype", "Tier 4 — yfinance/Stooq", "warning"),
-        ("Academic-grade", "Tier 1 — FRED/H.10/BIS", "success"),
-        ("Trading-grade", "Tier 2 — Bloomberg/LSEG", "info"),
-        ("Proprietary edge", "Tier 3 — payment flows", "gold"),
+        ("Tier 1", "Official / academic", "success", "tier-1"),
+        ("Tier 2", "Professional vendor", "info", "tier-2"),
+        ("Tier 3", "Proprietary internal", "gold", "tier-3"),
+        ("Tier 4", "Prototype (yfinance)", "warning", "tier-4"),
     ]
     cols = st.columns(4)
-    for col, (label, desc, kind) in zip(cols, tier_badges):
+    for col, (label, desc, kind, css) in zip(cols, tier_badges):
         with col:
             st.markdown(
-                f'<div class="info-card">{status_badge(label, kind)}<p style="margin-top:0.5rem">{desc}</p></div>',
+                f'<div class="info-card">'
+                f'<span class="tier-pill {css}">{label}</span>'
+                f'{status_badge(desc, kind)}'
+                f"</div>",
                 unsafe_allow_html=True,
             )
 
-    if dq is not None:
+    if manifest is not None:
+        section_header("Quality Manifest", "All series in the research stack")
+        ok = int((manifest["data_quality_flag"] == "OK").sum()) if "data_quality_flag" in manifest.columns else 0
+        warn = int((manifest["data_quality_flag"] == "WARNING").sum()) if "data_quality_flag" in manifest.columns else 0
+        fail = int((manifest["data_quality_flag"].isin(["FAIL", "MISSING"])).sum()) if "data_quality_flag" in manifest.columns else 0
+        c1, c2, c3, c4 = st.columns(4)
+        for col, (t, v) in zip([c1, c2, c3, c4], [("OK", ok), ("Warning", warn), ("Fail/Missing", fail), ("Series", len(manifest))]):
+            with col:
+                st.markdown(metric_card(t, str(v)), unsafe_allow_html=True)
+        show_cols = [c for c in [
+            "role", "label", "source_name", "tier_label", "data_quality_flag",
+            "observation_count", "start_date", "end_date", "missing_price_pct",
+        ] if c in manifest.columns]
+        st.dataframe(manifest[show_cols], width="stretch", hide_index=True)
+    elif dq is not None:
+        section_header("Primary Series")
         row = dq.iloc[0]
         c1, c2, c3, c4 = st.columns(4)
         cards = [
+            ("Source", str(row.get("source_name", "—"))),
+            ("Tier", str(row.get("tier_label", row.get("data_tier", "—")))),
             ("Observations", str(row.get("observation_count", "—"))),
-            ("Date Range", f"{row.get('start_date', '—')} → {row.get('end_date', '—')}"),
-            ("Missing Prices", str(row.get("missing_price_count", "—"))),
-            ("Quality Flag", str(row.get("data_quality_flag", "—"))),
+            ("Flag", str(row.get("data_quality_flag", "—"))),
         ]
         for col, (t, v) in zip([c1, c2, c3, c4], cards):
             with col:
                 st.markdown(metric_card(t, v), unsafe_allow_html=True)
         st.dataframe(dq, width="stretch")
     else:
-        missing_section("python scripts/run_data_quality.py")
+        missing_section("python scripts/run_data_quality_layer.py")
+
+    if layer_md:
+        with st.expander("Data quality layer summary"):
+            st.markdown(layer_md)
 
     if reg is not None:
-        section_header("Data Source Registry")
-        st.dataframe(reg, width="stretch")
-    else:
-        missing_section("python scripts/export_data_sources.py")
+        section_header("Source Registry", f"{len(reg)} registered sources")
+        tier_col = "tier_number" if "tier_number" in reg.columns else None
+        if tier_col:
+            st.dataframe(
+                reg[["key", "name", "tier_number", "tier_label", "official_status", "cost_tier"]].head(20),
+                width="stretch",
+                hide_index=True,
+            )
+        else:
+            st.dataframe(reg.head(20), width="stretch")
 
     if dl is not None:
-        section_header("Corridor Download Status")
-        st.dataframe(dl, width="stretch")
+        section_header("Corridor Download Log")
+        st.dataframe(dl, width="stretch", hide_index=True)
 
     st.markdown(
-        '<div class="info-card"><h4>Recommended Next Upgrade</h4>'
-        "<p><strong>Current (yfinance):</strong> FRED / Fed H.10 / BIS / central bank data.<br>"
-        "<strong>Hedge claims:</strong> forwards, forward points, bid/ask spreads, transaction costs.<br>"
-        "<strong>Corridor-flow claims:</strong> official remittance data or legally usable payment-flow data.</p></div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        '<div class="warning-box">A model that works on prototype data is not publication-grade or '
-        "trading-grade until retested on official or professional market data.</div>",
+        '<div class="warning-box">Prototype data (Tier 4) supports development. '
+        "Publication-grade claims require Tier 1 reruns on FRED H.10 / BIS / official macro.</div>",
         unsafe_allow_html=True,
     )
 
@@ -1424,14 +1330,16 @@ def page_publication_memo() -> None:
     )
 
     docs = [
-        ("One-Pager", REPORTS / "publication" / "ONE_PAGER.md"),
-        ("Corridor Roadmap Report", REPORTS / "corridor_roadmap_report.md"),
+        ("FX Lab Cover Page", REPORTS / "publication" / "FX_LAB_COVER_PAGE.md"),
+        ("FX Lab One-Pager", REPORTS / "publication" / "FX_LAB_ONE_PAGER.md"),
+        ("USD/MXN Flagship Memo", REPORTS / "USDMXN_FLAGSHIP_MEMO.md"),
         ("USD/MXN Regime Report", REPORTS / "usdmxn_regime_report.md"),
-        ("Data Strategy", REPORTS / "DATA_STRATEGY.md"),
+        ("Corridor Roadmap Report", REPORTS / "corridor_roadmap_report.md"),
+        ("Data Quality Layer", REPORTS / "DATA_QUALITY_LAYER.md"),
     ]
     for label, path in docs:
         content = safe_read_markdown(path)
-        with st.expander(label, expanded=(label == "One-Pager")):
+        with st.expander(label, expanded=(label == "FX Lab One-Pager")):
             if content:
                 st.markdown(content)
             else:
@@ -1505,7 +1413,7 @@ def ensure_dashboard_data() -> bool:
 
 def main() -> None:
     st.set_page_config(
-        page_title="BR3N Macro Labs — FX Regime Intelligence",
+        page_title="BR3N Macro Labs — FX Lab",
         page_icon="📊",
         layout="wide",
         initial_sidebar_state="expanded",
@@ -1517,22 +1425,27 @@ def main() -> None:
 
     with st.sidebar:
         st.markdown('<div class="sidebar-brand">BR3N MACRO LABS</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-tag">FX LAB</div>', unsafe_allow_html=True)
         st.markdown(
-            '<div class="sidebar-tag">Markets. Images. Materials. Systems.</div>',
+            f'<div style="color:{C["muted"]};font-size:0.78rem;margin-bottom:1rem;line-height:1.4">'
+            f"{FX_LAB_TAGLINE}</div>",
             unsafe_allow_html=True,
         )
         page = st.radio("Navigation", PAGES, label_visibility="collapsed")
         st.markdown("---")
         st.markdown(
             f'<span class="pill pill-neutral">Research Only</span> '
-            f'<span class="pill pill-gold">No Live Trading</span>',
+            f'<span class="pill pill-gold">Not Investment Advice</span>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            f'<p style="font-size:0.72rem;color:{C["muted"]};margin-top:0.75rem">'
+            "Risk-framing only. Does not place trades.</p>",
             unsafe_allow_html=True,
         )
 
     renderers = {
-        "Lab Portfolio": page_lab_portfolio,
         "Executive Overview": page_executive_overview,
-        "FX Desk Command Center": page_fx_desk_command_center,
         "Random-Walk Lab": page_random_walk_lab,
         "Regime Intelligence": page_regime_intelligence,
         "Corridor Roadmap": page_corridor_roadmap,
@@ -1540,7 +1453,7 @@ def main() -> None:
         "Flow Pressure": page_flow_pressure,
         "Academic Tests": page_academic_tests,
         "Data Quality": page_data_quality,
-        "Research Questions": page_research_questions,
+        "FX Desk Command Center": page_fx_desk_command_center,
         "Publication Memo": page_publication_memo,
     }
 

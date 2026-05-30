@@ -3,9 +3,9 @@ data:
   history_years: 25
   interval: "1d"
   # Data tier: 1=official, 2=professional, 3=proprietary, 4=prototype (default)
-  spot_tier: 4
+  spot_tier: 1
   official_spot_series: "DEXMXUS"  # FRED H.10 USD/MXN
-  prefer_tier1_spot: false         # set true + run fetch_tier1_official.py for academic reruns
+  prefer_tier1_spot: true          # Tier 1 FRED H.10 for USD/MXN; yfinance fallback
 
 # Tier 2 — Bloomberg (requires licensed Terminal or B-PIPE; see docs/BLOOMBERG_SETUP.md)
 bloomberg:
@@ -17,12 +17,17 @@ bloomberg:
 # Macro context: DXY, VIX, US–MX rate spread (FRED + Yahoo)
 macro:
   enabled: true
+  prefer_fred: true
   yahoo:
     dxy: "DX-Y.NYB"
     vix: "^VIX"
   fred:
     us_rate: "DFF"
     mx_rate: "INTGSBMXM193N"
+    dxy_broad: "DTWEXBGS"   # Trade-weighted broad USD index (FRED)
+  bis:
+    enabled: true
+    country: "MX"
   dxy_trend_window: 20
   vix_percentile_window: 252
   vix_stress_percentile: 0.75

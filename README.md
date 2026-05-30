@@ -1,26 +1,14 @@
-# BR3N Macro Labs
+# BR3N Macro Labs — FX Lab
 
-**Markets. Images. Materials. Systems.**
+**Testing When Currency Markets Become Less Random**
 
-BR3N Macro Labs is an independent research and creative systems lab exploring markets, images, and materials through AI-assisted experimentation, evidence, and design.
+FX Lab is the flagship research program of BR3N Macro Labs — an independent AI-assisted research lab studying **when currency markets become conditionally forecastable** by regime.
 
-An independent AI-assisted research and creative lab studying when complex systems become structured, expressive, or transformable.
+**Not investment advice.** No live trading. No broker API.
 
-The lab currently operates across three verticals:
+FX Lab research is for education, analysis, and risk-framing only.
 
-1. **FX Lab** — currency regime intelligence, payment-corridor risk, hedge governance
-2. **BR3N Photography** — fine-art photography, visual systems, luxury print research
-3. **Metastable Hydride Superconductor Initiative** — speculative materials-science and computational screening
-
-The initiative explores speculative pathways toward metastable hydride superconductors, with Mg₂IrH₅ → Mg₂IrH₆ as an initial proof-of-platform concept. The project emphasizes computational screening, safety review, expert collaboration, and replication standards. It does not claim a verified superconducting phase or experimental result.
-
-See `projects/metastable_hydride_superconductor_initiative/` for the full planning package.
-
-The common thread is disciplined experimentation: using AI, data, visual systems, and research methods to explore when complex systems become structured, expressive, or transformable.
-
-BR3N Macro Labs is an independent research and creative project. It is not affiliated with, endorsed by, or sponsored by any employer, university, financial institution, payment company, data vendor, laboratory, or research institution unless explicitly stated.
-
-See `reports/LAB_PORTFOLIO.md` for the full lab portfolio.
+BR3N Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, university, financial institution, payment company, data vendor, or research institution unless explicitly stated.
 
 ---
 
@@ -73,9 +61,7 @@ streamlit run src/luxury_dashboard.py
 
 The dashboard includes:
 
-- Lab Portfolio (umbrella — three verticals)
-- Executive Overview (FX Lab)
-- FX Desk Command Center (cross-border payments and treasury)
+- Executive Overview
 - Random-Walk Lab
 - Regime Intelligence
 - Corridor Roadmap
@@ -83,7 +69,7 @@ The dashboard includes:
 - Flow Pressure
 - Academic Tests
 - Data Quality
-- Research Questions
+- FX Desk Command Center
 - Publication Memo
 
 Design purpose:

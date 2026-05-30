@@ -6,10 +6,10 @@
 
 ## Market State
 
-- **Latest regime:** R1_trend_high_vol
-- **Market summary:** Regime: R1_trend_high_vol · Volatility: High volatility
-- **Crisis risk level:** Elevated
-- **Overall desk risk:** High
+- **Latest regime:** R2_trend_low_vol
+- **Market summary:** Regime: R2_trend_low_vol · Volatility: Low volatility
+- **Crisis risk level:** Low
+- **Overall desk risk:** Elevated
 - **Data quality:** Data quality flag: OK. Prototype data — upgrade for publication.
 
 ## Key Desk Questions
@@ -18,28 +18,28 @@
 What exposure needs to be confirmed by currency, value date, entity, and counterparty?
 
 ### 2. Hedge Timing
-High-volatility trend. Avoid one-shot hedge decisions. Consider tranches, options, or escalation.
+Orderly trend. Consider gradual hedge adjustment within policy limits.
 
 ### 3. Pricing
-**Customer pricing posture:** Defensive — elevated volatility surcharge review recommended.
+**Customer pricing posture:** Elevated review — flow-pressure window; monitor competitive spread vs liquidity.
 
 ### 4. Liquidity and Prefunding
-**Liquidity:** Elevated — review executable rates and payout liquidity.
+**Liquidity:** Elevated — flow window may increase payout demand.
 
-**Prefunding:** Review buffers — volatile trend may require higher prefunding headroom.
+**Prefunding:** Flow-pressure window active. Review payout liquidity and prefunding buffers.
 
 ### 5. Settlement
-Standard settlement calendar review.
+Review value-date alignment — flow windows may compress settlement timing.
 
 ### 6. Crisis / Escalation
-Crisis risk level: **Elevated**. Escalate if liquidity, spreads, or payout obligations deteriorate beyond policy.
+Crisis risk level: **Low**. Escalate if liquidity, spreads, or payout obligations deteriorate beyond policy.
 
 ### 7. Speculation Control
 All hedge actions must map to documented exposure and policy limits. Model signals are not directional trading instructions.
 
 ## Summary
 
-Overall desk risk level is High. Hedge timing posture: High-volatility trend. Forecast evidence is weak, but regime information may still be useful for hedge governance and risk framing. High-volatility trend: treat as stress framing, not blind trend-following.
+Overall desk risk level is Elevated. Hedge timing posture: Orderly trend. Forecast evidence is weak, but regime information may still be useful for hedge governance and risk framing.
 
 ## Disclaimer
 

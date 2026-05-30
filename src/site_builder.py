@@ -18,33 +18,7 @@ VERTICALS_DIR = PUB_DIR / "verticals"
 
 PUBLIC_SITE_BASE = "https://brendanbowers1-bit.github.io/br3n-macro-lab"
 
-VERTICALS = [
-    {
-        "key": "fx",
-        "slug": "fx-lab.html",
-        "title": "FX Lab",
-        "tag": "Markets",
-        "subtitle": "Currency regime intelligence, corridor risk, and hedge governance.",
-        "accent": "#3d8bfd",
-    },
-    {
-        "key": "photo",
-        "slug": "photography.html",
-        "title": "BR3N Photography",
-        "tag": "Images",
-        "subtitle": "Fine-art photography, visual systems, and luxury print research.",
-        "accent": "#d4a574",
-    },
-    {
-        "key": "mhsi",
-        "slug": "mhsi.html",
-        "title": "Metastable Hydride Superconductor Initiative",
-        "short": "MHSI",
-        "tag": "Materials",
-        "subtitle": "Speculative metastable hydride screening and computational roadmapping.",
-        "accent": "#a78bfa",
-    },
-]
+FX_LAB_TAGLINE = "Testing When Currency Markets Become Less Random"
 
 
 def _css() -> str:
@@ -405,22 +379,9 @@ def _inline(s: str) -> str:
     return s
 
 
-def _nav_umbrella(active: str = "home") -> str:
-    links = [("index.html", "BR3N Macro Labs", "home")]
-    for v in VERTICALS:
-        label = v.get("short") or v["title"]
-        links.append((v["slug"], label, v["key"]))
-    parts = ['<nav class="top">']
-    for href, label, key in links:
-        cls = ' class="primary"' if key == active else ""
-        parts.append(f'  <a href="{href}"{cls}>{html.escape(label)}</a>')
-    parts.append("</nav>")
-    return "\n".join(parts)
-
-
-def _nav_fx(active: str = "fx") -> str:
+def _nav_fx(active: str = "home") -> str:
     links = [
-        ("index.html", "Umbrella", "home"),
+        ("index.html", "Home", "home"),
         ("fx-lab.html", "FX Lab", "fx"),
         ("research.html", "Research", "research"),
         ("corridor.html", "Corridor", "corridor"),
@@ -437,24 +398,7 @@ def _nav_fx(active: str = "fx") -> str:
 
 
 def _nav(active: str = "") -> str:
-    return _nav_umbrella(active)
-
-
-def _vertical_cards_html() -> str:
-    cards = ['<div class="vertical-grid">']
-    for v in VERTICALS:
-        label = v.get("short") or v["title"]
-        cards.append(
-            f'<div class="vertical-card" style="border-top:3px solid {v["accent"]}">'
-            f'<div class="tag">{html.escape(v["tag"])}</div>'
-            f'<h3>{html.escape(v["title"])}</h3>'
-            f'<p>{html.escape(v["subtitle"])}</p>'
-            f'<a class="btn" style="background:{v["accent"]}" href="{html.escape(v["slug"])}">'
-            f'Open {html.escape(label)} →</a>'
-            f"</div>"
-        )
-    cards.append("</div>")
-    return "\n".join(cards)
+    return _nav_fx(active)
 
 
 def _read_md(path: Path) -> str:
@@ -511,14 +455,15 @@ def _cover_shell(body: str) -> str:
 <header class="hero-cover">
   <div class="header-inner">
     <h1 class="lab-title">{html.escape(LAB_NAME_DISPLAY)}</h1>
-    <p class="tagline">Markets. Images. Materials. Systems.</p>
-    <p class="author">An independent AI-assisted research and creative lab · Prepared by Brendan Bowers</p>
+    <p class="tagline">FX LAB</p>
+    <p class="author">{html.escape(FX_LAB_TAGLINE)} · Prepared by Brendan Bowers</p>
     <div class="cta-row">
-      <a href="fx-lab.html" class="primary">FX Lab</a>
-      <a href="photography.html" class="secondary">Photography</a>
-      <a href="mhsi.html" class="secondary">MHSI</a>
+      <a href="fx-lab.html" class="primary">FX Lab Overview</a>
+      <a href="research.html" class="secondary">USD/MXN Research</a>
+      <a href="corridor.html" class="secondary">Corridor Roadmap</a>
+      <a href="fx_desk.html" class="secondary">FX Desk Framework</a>
     </div>
-    {_nav_umbrella("home")}
+    {_nav_fx("home")}
   </div>
 </header>"""
     return f"""<!DOCTYPE html>
@@ -526,8 +471,8 @@ def _cover_shell(body: str) -> str:
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="{html.escape(LAB_NAME)} — independent research across markets, images, and materials"/>
-  <title>{html.escape(LAB_NAME_DISPLAY)} — Markets · Images · Materials · Systems</title>
+  <meta name="description" content="{html.escape(LAB_NAME)} FX Lab — conditional forecastability research"/>
+  <title>{html.escape(LAB_NAME_DISPLAY)} — FX Lab</title>
   <style>{_css()}</style>
 </head>
 <body class="cover-page">
@@ -536,8 +481,8 @@ def _cover_shell(body: str) -> str:
     {body}
   </main>
   <footer>
-    <p>{html.escape(LAB_NAME)} · Prepared by Brendan Bowers · {datetime.now():%Y-%m-%d}</p>
-    <div class="disclaimer">Independent research and creative work. FX Lab: education and risk-framing only — not investment advice. MHSI: speculative planning — not verified experimental results.</div>
+    <p>{html.escape(LAB_NAME)} · FX Lab · Prepared by Brendan Bowers · {datetime.now():%Y-%m-%d}</p>
+    <div class="disclaimer">Research and risk-framing only. Not investment advice. No live trading.</div>
   </footer>
 </body>
 </html>"""
@@ -596,12 +541,12 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     memo = (out_dir / "FX_REGIME_RESEARCH_NOTE.md").read_text(encoding="utf-8") if (out_dir / "FX_REGIME_RESEARCH_NOTE.md").exists() else ""
     cover_md = (out_dir / "LAB_COVER.md").read_text(encoding="utf-8") if (out_dir / "LAB_COVER.md").exists() else ""
 
-    # Cover page (home) — umbrella with three public vertical links
-    cover_path = out_dir / "index.html"
-    cover_body = _vertical_cards_html() + _cover_body_from_md(cover_md)
-    cover_path.write_text(_cover_shell(cover_body), encoding="utf-8")
+    fx_cover = _read_md(out_dir / "FX_LAB_COVER_PAGE.md") or cover_md
 
-    # Vertical landing pages (three separate public links)
+    # Home — FX Lab only (no links to other verticals)
+    cover_path = out_dir / "index.html"
+    cover_path.write_text(_cover_shell(_cover_body_from_md(fx_cover)), encoding="utf-8")
+
     fx_lab_path = out_dir / "fx-lab.html"
     fx_lab_md = _read_md(VERTICALS_DIR / "FX_LAB_LANDING.md")
     fx_lab_path.write_text(
@@ -611,40 +556,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
             wide=True,
             nav_active="fx",
             nav_html=_nav_fx("fx"),
-            subtitle="Markets · Regime intelligence · Research only · Not investment advice",
-        ),
-        encoding="utf-8",
-    )
-
-    photo_path = out_dir / "photography.html"
-    photo_md = _read_md(VERTICALS_DIR / "PHOTOGRAPHY_LANDING.md")
-    photo_path.write_text(
-        _shell(
-            "BR3N Photography",
-            _md_to_html(photo_md),
-            wide=True,
-            nav_active="photo",
-            nav_html=_nav_umbrella("photo"),
-            subtitle="Images · Fine-art and visual systems · Creative research",
-            disclaimer="BR3N Photography materials are creative works and visual research.",
-        ),
-        encoding="utf-8",
-    )
-
-    mhsi_path = out_dir / "mhsi.html"
-    mhsi_md = _read_md(VERTICALS_DIR / "MHSI_LANDING.md")
-    mhsi_path.write_text(
-        _shell(
-            "Metastable Hydride Superconductor Initiative",
-            _md_to_html(mhsi_md),
-            wide=True,
-            nav_active="mhsi",
-            nav_html=_nav_umbrella("mhsi"),
-            subtitle="Materials · Speculative hydride research · No verified experimental results",
-            disclaimer=(
-                "MHSI is speculative research planning. It does not claim discovery of a superconductor "
-                "or verified synthesis of Mg₂IrH₆. Independent validation required."
-            ),
+            subtitle="Regime intelligence · Corridor research · Research only · Not investment advice",
         ),
         encoding="utf-8",
     )
@@ -660,8 +572,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations</li>
     <li><a href="corridor.html"><strong>Corridor roadmap</strong></a> — remittance corridor expansion</li>
     <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — six-level checklist</li>
-    <li><a href="fx-lab.html"><strong>FX Lab home</strong></a> — FX vertical overview</li>
-    <li><a href="index.html"><strong>BR3N Macro Labs</strong></a> — umbrella home</li>
+    <li><a href="index.html"><strong>FX Lab home</strong></a></li>
   </ul>
 </div>
 {_md_to_html(one_pager)}
@@ -728,34 +639,12 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
-    portfolio_md = _read_md(ROOT / "reports" / "publication" / "LAB_COVER_PAGE.md")
-    portfolio_body = _md_to_html(portfolio_md)
-    lab_portfolio = ROOT / "reports" / "LAB_PORTFOLIO.md"
-    if lab_portfolio.exists():
-        portfolio_body += _md_to_html(lab_portfolio.read_text(encoding="utf-8"))
-    portfolio_path = out_dir / "portfolio.html"
-    portfolio_path.write_text(
-        _shell(
-            "BR3N Macro Labs Portfolio",
-            portfolio_body,
-            wide=True,
-            nav_active="home",
-            nav_html=_nav_umbrella("home"),
-            subtitle="Full umbrella portfolio · Markets · Images · Materials · Systems",
-            disclaimer="Independent research and creative work. See each vertical page for specific disclaimers.",
-        ),
-        encoding="utf-8",
-    )
-
     return {
         "index": cover_path,
         "fx_lab": fx_lab_path,
-        "photography": photo_path,
-        "mhsi": mhsi_path,
         "research": research_path,
         "memo": memo_path,
         "ladder": ladder_path,
         "corridor": corridor_path,
         "fx_desk": fx_desk_path,
-        "portfolio": portfolio_path,
     }

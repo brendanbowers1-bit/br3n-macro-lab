@@ -65,20 +65,40 @@ def load_macro_panel(cfg: dict, force_refresh: bool = False) -> pd.DataFrame:
 
     years = int(cfg["data"].get("history_years", 20))
     rows: Dict[str, pd.Series] = {}
-
-    yahoo = macro_cfg.get("yahoo", {})
-    for name, ticker in yahoo.items():
-        try:
-            rows[name] = fetch_yahoo_series(ticker, years)
-        except Exception as exc:
-            print(f"  Macro Yahoo {name} ({ticker}): {exc}")
+    prefer_fred = macro_cfg.get("prefer_fred", False)
 
     fred = macro_cfg.get("fred", {})
     for name, series_id in fred.items():
         try:
             rows[name] = fetch_fred_series(series_id)
+            print(f"  Macro FRED {name} ({series_id}): OK")
         except Exception as exc:
             print(f"  Macro FRED {name} ({series_id}): {exc}")
+
+    yahoo = macro_cfg.get("yahoo", {})
+    for name, ticker in yahoo.items():
+        if prefer_fred and name == "dxy" and "dxy_broad" in rows:
+            rows["dxy"] = rows["dxy_broad"]
+            continue
+        try:
+            rows[name] = fetch_yahoo_series(ticker, years)
+        except Exception as exc:
+            print(f"  Macro Yahoo {name} ({ticker}): {exc}")
+
+    bis_cfg = macro_cfg.get("bis", {})
+    if bis_cfg.get("enabled", False):
+        try:
+            from .bis_loader import load_or_fetch_bis_mexico_eer
+
+            bis_df = load_or_fetch_bis_mexico_eer(years=years, force_refresh=force_refresh)
+            rows["bis_mx_eer"] = bis_df["price"]
+            print("  Macro BIS Mexico EER: OK")
+        except Exception as exc:
+            print(f"  Macro BIS EER: {exc}")
+
+    # Remove duplicate fred-only helper key from panel
+    if "dxy_broad" in rows and "dxy" in rows and prefer_fred:
+        pass  # dxy already mapped from dxy_broad
 
     if not rows:
         return pd.DataFrame()

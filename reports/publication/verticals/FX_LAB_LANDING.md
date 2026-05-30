@@ -2,7 +2,7 @@
 
 **Markets · Currency regime intelligence**
 
-Part of [BR3N Macro Labs](../index.html) · Prepared by Brendan Bowers
+Part of **BR3N Macro Labs · FX Lab** · Prepared by Brendan Bowers
 
 ---
 

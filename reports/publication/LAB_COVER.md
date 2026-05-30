@@ -1,33 +1,30 @@
-# BR3N MACRO LABS
+# BR3N MACRO LABS — FX LAB
 
-**Markets. Images. Materials. Systems.**
+## Testing When Currency Markets Become Less Random
 
-*Prepared by Brendan Bowers*
+FX Lab is the flagship research program of BR3N Macro Labs.
 
----
+It studies conditional forecastability in currency markets by testing whether observable regimes of trend, volatility, carry, liquidity stress, and payment-flow pressure can identify when FX behavior becomes more structured than random walk.
 
-## Umbrella Lab
+The lab separates forecast accuracy, trading P&L, and hedge-governance usefulness.
 
-BR3N Macro Labs is an independent AI-assisted research and creative lab studying when complex systems become structured, expressive, or transformable.
-
-Each vertical has its own public page. Locally, all three are integrated under the BR3N Macro Labs dashboard and lab portfolio.
+A model may fail to beat random walk as a price forecast but still improve hedge discipline by reducing unnecessary hedge turnover, over-adjustment, and cost-adjusted exposure risk.
 
 ---
 
-## Core Philosophy
+## Explore FX Lab Research
 
-BR3N Macro Labs uses AI as a research accelerator, not as an oracle.
-
-The lab studies complex systems by building structured workflows, testing hypotheses, designing visual interfaces, and separating speculation from evidence.
+- **[FX Lab Overview](fx-lab.html)** — mission, modules, and research outputs
+- **[USD/MXN Regime Research](research.html)** — 2-minute summary and key stats
+- **[Corridor Roadmap](corridor.html)** — multi-corridor payment research
+- **[FX Desk Framework](fx_desk.html)** — cross-border payments and treasury decisions
+- **[Full Research Note](memo.html)** — methods, tables, limitations
+- **[Evidence Ladder](ladder.html)** — six-level evidence framework
 
 ---
 
 ## Disclaimer
 
-BR3N Macro Labs is an independent research and creative project. It is not affiliated with any employer, university, financial institution, payment company, data vendor, laboratory, or research institution unless explicitly stated.
+Research and risk-framing only. Not investment advice. No live trading.
 
-FX Lab: education and risk-framing only — not investment advice.
-
-MHSI: speculative planning — not verified experimental results.
-
-BR3N Photography: creative works and visual research.
+BR3N Macro Labs is an independent research project — not affiliated with any employer, bank, or payment company unless explicitly stated.

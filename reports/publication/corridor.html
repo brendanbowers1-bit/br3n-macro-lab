@@ -277,7 +277,7 @@ body.cover-page header.hero-cover {
       <h1 class="title">Remittance Corridor Roadmap</h1>
       <p class="subtitle">Multi-corridor FX research · Exploratory · Not investment advice</p>
       <nav class="top">
-  <a href="index.html">Umbrella</a>
+  <a href="index.html">Home</a>
   <a href="fx-lab.html">FX Lab</a>
   <a href="research.html">Research</a>
   <a href="corridor.html" class="primary">Corridor</a>
@@ -308,7 +308,7 @@ body.cover-page header.hero-cover {
 <table>
 <thead><tr><th>corridor_id</th><th>model_pair</th><th>official_pair_label</th><th>status</th><th>error_message</th><th>observations</th><th>start_date</th><th>end_date</th><th>data_source</th><th>data_tier</th></tr></thead>
 <tbody>
-<tr><td>US_MX</td><td>USDMXN=X</td><td>USD/MXN</td><td>success</td><td>nan</td><td>5773</td><td>2004-03-19</td><td>2026-05-22</td><td>cache_resanitized</td><td>prototype</td></tr>
+<tr><td>US_MX</td><td>USDMXN=X</td><td>USD/MXN</td><td>success</td><td>nan</td><td>6183</td><td>2001-09-14</td><td>2026-05-15</td><td>cache_resanitized</td><td>prototype</td></tr>
 <tr><td>US_IN</td><td>USDINR=X</td><td>USD/INR</td><td>success</td><td>nan</td><td>5749</td><td>2004-03-19</td><td>2026-05-22</td><td>cache_resanitized</td><td>prototype</td></tr>
 <tr><td>US_PH</td><td>USDPHP=X</td><td>USD/PHP</td><td>success</td><td>nan</td><td>5745</td><td>2004-03-22</td><td>2026-05-22</td><td>cache_resanitized</td><td>prototype</td></tr>
 <tr><td>US_CO</td><td>USDCOP=X</td><td>USD/COP</td><td>success</td><td>nan</td><td>5757</td><td>2004-03-23</td><td>2026-05-22</td><td>cache_resanitized</td><td>prototype</td></tr>
@@ -322,17 +322,17 @@ body.cover-page header.hero-cover {
 <tr><td>US_BR</td><td>r2_only</td><td>0.333</td><td>r2_only</td><td>-21.62</td></tr>
 <tr><td>US_CO</td><td>flat_range</td><td>0.121</td><td>r2_only</td><td>-33.53</td></tr>
 <tr><td>US_IN</td><td>legacy</td><td>0.261</td><td>flat_range</td><td>-24.2</td></tr>
-<tr><td>US_MX</td><td>r2_only</td><td>0.15</td><td>r2_only</td><td>-25.06</td></tr>
+<tr><td>US_MX</td><td>r2_only</td><td>0.268</td><td>r2_only</td><td>-33.12</td></tr>
 <tr><td>US_PH</td><td>flat_range</td><td>0.127</td><td>r2_only</td><td>-20.38</td></tr>
 </tbody></table>
 <p>Full scorecard (selected columns):</p>
 <table>
 <thead><tr><th>corridor_id</th><th>mode</th><th>sharpe</th><th>max_drawdown</th><th>total_return</th><th>number_of_trades</th></tr></thead>
 <tbody>
-<tr><td>US_MX</td><td>buy_and_hold</td><td>0.224</td><td>-35.61</td><td>58.08</td><td>1</td></tr>
-<tr><td>US_MX</td><td>legacy</td><td>0.112</td><td>-39.43</td><td>15.36</td><td>114</td></tr>
-<tr><td>US_MX</td><td>flat_range</td><td>0.13</td><td>-32.61</td><td>20.99</td><td>213</td></tr>
-<tr><td>US_MX</td><td>r2_only</td><td>0.15</td><td>-25.06</td><td>18.31</td><td>292</td></tr>
+<tr><td>US_MX</td><td>buy_and_hold</td><td>0.273</td><td>-35.04</td><td>82.87</td><td>1</td></tr>
+<tr><td>US_MX</td><td>legacy</td><td>0.162</td><td>-39.88</td><td>34.01</td><td>118</td></tr>
+<tr><td>US_MX</td><td>flat_range</td><td>0.124</td><td>-44.27</td><td>20.36</td><td>231</td></tr>
+<tr><td>US_MX</td><td>r2_only</td><td>0.268</td><td>-33.12</td><td>39.69</td><td>327</td></tr>
 <tr><td>US_MX</td><td>random_walk</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0</td></tr>
 <tr><td>US_IN</td><td>buy_and_hold</td><td>0.479</td><td>-16.66</td><td>113.25</td><td>1</td></tr>
 <tr><td>US_IN</td><td>legacy</td><td>0.261</td><td>-25.09</td><td>46.87</td><td>120</td></tr>
@@ -359,10 +359,10 @@ body.cover-page header.hero-cover {
 <table>
 <thead><tr><th>corridor_id</th><th>regime</th><th>random_walk_validity_label</th><th>annualized_volatility</th><th>autocorrelation_1d</th><th>interpretation</th></tr></thead>
 <tbody>
-<tr><td>US_MX</td><td>R1_trend_high_vol</td><td>Potential structure</td><td>16.489</td><td>-0.0515</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
-<tr><td>US_MX</td><td>R2_trend_low_vol</td><td>Potential structure</td><td>8.921</td><td>-0.0521</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
-<tr><td>US_MX</td><td>R3_range_high_vol</td><td>Potential structure</td><td>13.329</td><td>-0.1848</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
-<tr><td>US_MX</td><td>R4_range_low_vol</td><td>High-risk noise</td><td>8.016</td><td>-0.028</td><td>Elevated vol with weak direction — avoid over-adjusting hedge ratios.</td></tr>
+<tr><td>US_MX</td><td>R1_trend_high_vol</td><td>High-risk noise</td><td>15.221</td><td>0.0025</td><td>Elevated vol with weak direction — avoid over-adjusting hedge ratios.</td></tr>
+<tr><td>US_MX</td><td>R2_trend_low_vol</td><td>Random-walk-like</td><td>8.275</td><td>-0.0087</td><td>Directional metrics near random-walk benchmarks; static hedge may dominate.</td></tr>
+<tr><td>US_MX</td><td>R3_range_high_vol</td><td>Potential structure</td><td>12.98</td><td>0.056</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
+<tr><td>US_MX</td><td>R4_range_low_vol</td><td>Potential structure</td><td>7.3</td><td>0.0755</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
 <tr><td>US_IN</td><td>R1_trend_high_vol</td><td>Potential structure</td><td>10.122</td><td>-0.1838</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
 <tr><td>US_IN</td><td>R2_trend_low_vol</td><td>Potential structure</td><td>5.588</td><td>-0.0828</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
 <tr><td>US_IN</td><td>R3_range_high_vol</td><td>Potential structure</td><td>9.436</td><td>-0.1587</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
@@ -385,7 +385,7 @@ body.cover-page header.hero-cover {
 <table>
 <thead><tr><th>corridor_id</th><th>observations_flow_window</th><th>observations_normal</th><th>volatility_flow_window</th><th>volatility_normal</th><th>p_value_return_difference</th><th>interpretation</th></tr></thead>
 <tbody>
-<tr><td>US_MX</td><td>4123</td><td>1650</td><td>11.9679</td><td>13.0896</td><td>0.1616</td><td>Flow windows show volatility differences but weak return evidence.</td></tr>
+<tr><td>US_MX</td><td>4458</td><td>1725</td><td>10.9398</td><td>12.473</td><td>0.1397</td><td>Flow windows show volatility differences but weak return evidence.</td></tr>
 <tr><td>US_IN</td><td>4251</td><td>1498</td><td>7.535</td><td>7.4924</td><td>0.0809</td><td>No strong evidence from public flow proxies.</td></tr>
 <tr><td>US_PH</td><td>5146</td><td>599</td><td>8.1516</td><td>7.2989</td><td>0.8379</td><td>No strong evidence from public flow proxies.</td></tr>
 <tr><td>US_CO</td><td>3963</td><td>1794</td><td>18.5999</td><td>18.4713</td><td>0.1327</td><td>No strong evidence from public flow proxies.</td></tr>
@@ -400,7 +400,7 @@ body.cover-page header.hero-cover {
 <tr><td>US_BR</td><td>fully_hedged</td><td>18.274</td><td>1.0</td><td>0.02</td><td>1.0</td></tr>
 <tr><td>US_CO</td><td>fully_hedged</td><td>18.538</td><td>1.0</td><td>0.02</td><td>1.0</td></tr>
 <tr><td>US_IN</td><td>fully_hedged</td><td>7.501</td><td>1.0</td><td>0.02</td><td>1.0</td></tr>
-<tr><td>US_MX</td><td>fully_hedged</td><td>12.276</td><td>1.0</td><td>0.02</td><td>1.0</td></tr>
+<tr><td>US_MX</td><td>fully_hedged</td><td>11.365</td><td>1.0</td><td>0.02</td><td>1.0</td></tr>
 <tr><td>US_PH</td><td>fully_hedged</td><td>8.042</td><td>1.0</td><td>0.02</td><td>1.0</td></tr>
 </tbody></table>
 <h2>8. Strongest corridors for further research</h2>

@@ -87,7 +87,7 @@ def fetch_official_usdmxn(
             ("FRED API", lambda: _fetch_fred_api_csv(series_id, api_key, timeout=30))
         )
     sources.append(
-        ("FRED graph CSV", lambda: fetch_fred_series(series_id, timeout=25, retries=2))
+        ("FRED graph CSV", lambda: fetch_fred_series(series_id, timeout=60, retries=4))
     )
 
     for name, fn in sources:
