@@ -67,8 +67,8 @@ Good if you want **live charts**, not just the write-up.
 
 1. Push repo to GitHub (same as Option A, steps 2–3)
 2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect the repo, set main file: `src/dashboard.py`
-4. Deploy
+3. Connect the repo, set main file: `streamlit_app.py` (luxury terminal) or `src/dashboard.py` (classic)
+4. Deploy — first load builds research data from yfinance (~1–2 min)
 
 Readers use the **Research Note** page in the sidebar for the memo.
 

@@ -1184,6 +1184,70 @@ def page_publication_memo() -> None:
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
+def _key_outputs_present() -> bool:
+    required = [
+        OUT / "strategy_scorecard.csv",
+        OUT / "hedge_governance_scorecard.csv",
+        PROC / "usdmxn_features_regimes.csv",
+    ]
+    return all(p.exists() for p in required)
+
+
+@st.cache_resource(show_spinner="First load: fetching FX data and building research outputs…")
+def ensure_dashboard_data() -> bool:
+    """
+    Streamlit Cloud has no local CSV cache — bootstrap pipelines when outputs are missing.
+    """
+    if _key_outputs_present():
+        return True
+    try:
+        from src.data_loader import load_config, load_or_fetch
+        from src.features import build_features
+        from src.regimes import classify_regimes
+        from src.backtest import scorecard, walk_forward_scorecard
+        from src.flow_proxies import add_calendar_flow_proxies
+        from src.flow_pressure_tests import run_flow_pressure_tests, save_flow_pressure_results
+        from src.hedge_governance import run_all_hedge_governance, save_governance_outputs
+        from src.random_walk_validity import build_random_walk_validity_map, save_validity_map
+        from src.corridor_runner import run_corridor_roadmap
+
+        cfg = load_config()
+        OUT.mkdir(parents=True, exist_ok=True)
+        PROC.mkdir(parents=True, exist_ok=True)
+
+        prices, _ = load_or_fetch(cfg)
+        feat = classify_regimes(build_features(prices, cfg), cfg)
+        feat.to_csv(PROC / "usdmxn_features_regimes.csv")
+        scorecard(feat, cfg).to_csv(OUT / "strategy_scorecard.csv", index=False)
+        wf_is, wf_oos = walk_forward_scorecard(feat, cfg)
+        wf_oos.to_csv(OUT / "walkforward_oos.csv", index=False)
+
+        flow = add_calendar_flow_proxies(feat, corridor="USD_MXN")
+        flow.to_csv(PROC / "usdmxn_features_regimes_flow.csv", index=False)
+        save_flow_pressure_results(run_flow_pressure_tests(flow))
+        hg_sc, hg_det = run_all_hedge_governance(
+            flow, cfg, exposures=["us_entity_long_mxn", "mx_entity_usd_liabilities"]
+        )
+        save_governance_outputs(hg_sc, hg_det)
+        save_validity_map(build_random_walk_validity_map(flow))
+
+        try:
+            from src.research_runner import run_full_research_pipeline
+            run_full_research_pipeline(cfg)
+        except Exception:
+            pass
+
+        try:
+            run_corridor_roadmap(cfg)
+        except Exception:
+            pass
+
+        return True
+    except Exception as exc:
+        st.error(f"Could not build research data: {exc}")
+        return False
+
+
 def main() -> None:
     st.set_page_config(
         page_title="BR3N Macro Labs — FX Regime Intelligence",
@@ -1192,6 +1256,9 @@ def main() -> None:
         initial_sidebar_state="expanded",
     )
     st.markdown(LUXURY_CSS, unsafe_allow_html=True)
+
+    if not _key_outputs_present():
+        ensure_dashboard_data()
 
     with st.sidebar:
         st.markdown('<div class="sidebar-brand">BR3N MACRO LABS</div>', unsafe_allow_html=True)
