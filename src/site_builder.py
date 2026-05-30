@@ -466,7 +466,10 @@ def _md_to_html(text: str) -> str:
 
 
 def _inline(s: str) -> str:
-    s = html.escape(s)
+    def _link(m: re.Match[str]) -> str:
+        return f'<a href="{html.escape(m.group(2), quote=True)}">{html.escape(m.group(1))}</a>'
+
+    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", _link, s)
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"`(.+?)`", r"<code>\1</code>", s)
     s = re.sub(r"\*(.+?)\*", r"<em>\1</em>", s)
