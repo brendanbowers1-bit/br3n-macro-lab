@@ -173,6 +173,7 @@ model_zoo:
     - ma_crossover_model
     - regime_trend_model
     - r2_only_model
+    - r2_only_vol_scaled_model
     - r1_risk_off_model
     - volatility_breakout_model
     - mean_reversion_range_model
@@ -186,6 +187,8 @@ model_zoo:
   mean_reversion_z_threshold: 1.0
   ensemble_min_votes: 2
   walk_forward_enabled: true
+  r2_vol_scaled_target_vol: 0.10
+  r2_vol_scaled_max_position: 1.0
 
 random_walk_validity:
   enabled: true

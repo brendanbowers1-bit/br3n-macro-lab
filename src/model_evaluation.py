@@ -69,7 +69,11 @@ def evaluate_trading_model(
     ann = int(cfg["backtest"]["annualization_days"])
     eq0 = float(cfg["backtest"]["starting_equity"])
 
-    position = _lag(model_output["signal"].astype(float), lag).clip(-max_pos, max_pos)
+    position_raw = model_output["position"] if "position" in model_output.columns else None
+    if position_raw is not None:
+        position = _lag(position_raw.astype(float), lag).clip(-max_pos, max_pos)
+    else:
+        position = _lag(model_output["signal"].astype(float), lag).clip(-max_pos, max_pos)
     gross = position * df["daily_return"]
     turnover = position.diff().abs().fillna(position.abs())
     cost = turnover * (cost_bps / 10_000.0)

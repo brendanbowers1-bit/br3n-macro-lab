@@ -65,18 +65,30 @@ def _build_output(
 
     dates = pd.to_datetime(df["date"]) if "date" in df.columns else pd.to_datetime(df.index)
 
-    return pd.DataFrame(
-        {
-            "model_name": model_name,
-            "date": dates,
-            "signal": sig,
-            "forecast_return": forecast_return.astype(float),
-            "forecast_price": forecast_price.astype(float),
-            "hedge_ratio": hedge_ratio.astype(float),
-            "model_type": model_type,
-        },
-        index=df.index,
-    )
+    out = {
+        "model_name": model_name,
+        "date": dates,
+        "signal": sig,
+        "forecast_return": forecast_return.astype(float),
+        "forecast_price": forecast_price.astype(float),
+        "hedge_ratio": hedge_ratio.astype(float),
+        "model_type": model_type,
+    }
+    return pd.DataFrame(out, index=df.index)
+
+
+def _build_output_with_position(
+    df: pd.DataFrame,
+    model_name: str,
+    model_type: str,
+    signal: pd.Series,
+    position: pd.Series,
+    forecast_return: Optional[pd.Series] = None,
+) -> pd.DataFrame:
+    """Model output with explicit fractional position (vol-scaled trading)."""
+    frame = _build_output(df, model_name, model_type, signal, forecast_return)
+    frame["position"] = position.astype(float)
+    return frame
 
 
 # ── Individual models ─────────────────────────────────────────────────────────
@@ -132,6 +144,29 @@ def r2_only_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
     mag = df["daily_return"].rolling(60, min_periods=20).mean().shift(1).fillna(0.0)
     fc_ret = sig.astype(float) * mag
     return _build_output(df, "r2_only_model", "hybrid", sig, fc_ret)
+
+
+def r2_only_vol_scaled_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
+    """R2-only trend with volatility-scaled position sizing."""
+    mz = cfg.get("model_zoo", {})
+    target_vol = float(mz.get("r2_vol_scaled_target_vol", 0.10))
+    max_pos = float(mz.get("r2_vol_scaled_max_position", 1.0))
+
+    direction = _zero_series(df)
+    in_r2 = df["regime"] == R2
+    direction.loc[in_r2 & (df["ma20"] > df["ma60"])] = 1.0
+    direction.loc[in_r2 & (df["ma20"] < df["ma60"])] = -1.0
+
+    ann_vol = df["realized_vol_20d"].replace(0, np.nan).shift(1).fillna(target_vol)
+    size = (target_vol / ann_vol).clip(0.0, max_pos)
+    position = (direction * size).fillna(0.0)
+
+    sig = normalize_signal(direction)
+    mag = df["daily_return"].rolling(60, min_periods=20).mean().shift(1).fillna(0.0)
+    fc_ret = direction * size * mag
+    return _build_output_with_position(
+        df, "r2_only_vol_scaled_model", "hybrid", sig, position, fc_ret
+    )
 
 
 def r1_risk_off_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
@@ -345,6 +380,10 @@ MODEL_REGISTRY: Dict[str, Dict[str, Any]] = {
     "r2_only_model": {
         "func": r2_only_model,
         "required_columns": ["regime", "ma20", "ma60", "daily_return"],
+    },
+    "r2_only_vol_scaled_model": {
+        "func": r2_only_vol_scaled_model,
+        "required_columns": ["regime", "ma20", "ma60", "daily_return", "realized_vol_20d"],
     },
     "r1_risk_off_model": {
         "func": r1_risk_off_model,

@@ -19,7 +19,9 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 - **[Corridor Roadmap](corridor.html)** — multi-corridor payment research
 - **[FX Desk Framework](fx_desk.html)** — cross-border payments and treasury decisions
 - **[Full Research Note](memo.html)** — methods, tables, limitations
-- **[Evidence Ladder](ladder.html)** — six-level evidence framework
+- **[Evidence Ladder](ladder.html)** — seven-level evidence framework
+- **[Hedge Governance Memo](hedge-governance.html)** — forecast failure, hedge usefulness
+- **[Model Zoo](model-zoo.html)** — conditional forecastability tests
 
 ---
 

@@ -482,6 +482,7 @@ def _nav_fx(active: str = "home") -> str:
         ("fx_desk.html", "FX Desk", "fx_desk"),
         ("memo.html", "Memo", "memo"),
         ("ladder.html", "Ladder", "ladder"),
+        ("hedge-governance.html", "Hedge Gov", "hedge"),
         ("model-zoo.html", "Model Zoo", "model_zoo"),
     ]
     parts = ['<nav class="top">']
@@ -720,6 +721,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations</li>
     <li><a href="corridor.html"><strong>Corridor roadmap</strong></a> — remittance corridor expansion</li>
     <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — seven-level checklist</li>
+    <li><a href="hedge-governance.html"><strong>Hedge governance memo</strong></a> — forecast failure, hedge usefulness</li>
     <li><a href="model-zoo.html"><strong>Model zoo</strong></a> — conditional forecastability tests</li>
     <li><a href="index.html"><strong>FX Lab home</strong></a></li>
   </ul>
@@ -754,6 +756,38 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
             nav_active="ladder",
             nav_html=_nav_fx("ladder"),
             subtitle="Seven-level evidence framework · Research only",
+        ),
+        encoding="utf-8",
+    )
+
+    hedge_md = _read_md(out_dir / "HEDGE_GOVERNANCE_MEMO.md") or _read_md(ROOT / "reports/publication/HEDGE_GOVERNANCE_MEMO.md")
+    pre_reg = _read_md(ROOT / "reports/research_log/PRE_REGISTRATION_LOG.md")
+    snap_dirs = sorted((ROOT / "research_snapshots").glob("*/SNAPSHOT_SUMMARY.md"), reverse=True) if (ROOT / "research_snapshots").exists() else []
+    snap_note = ""
+    if snap_dirs:
+        latest = snap_dirs[0].parent.name
+        snap_note = f"<p><strong>Latest research snapshot:</strong> <code>research_snapshots/{latest}/</code></p>"
+
+    hedge_body = f"""
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="principle-box"><p><strong>Flagship thesis:</strong> A model may fail as a price forecast but still be useful for hedge governance. This tests conditional forecastability and hedge discipline — not FX prediction.</p></div>
+{_model_zoo_stats()}
+{snap_note}
+{_md_to_html(hedge_md) if hedge_md else "<p><em>Hedge governance memo pending.</em></p>"}
+<hr/>
+<h2>Pre-registration log</h2>
+{_md_to_html(pre_reg) if pre_reg else "<p><em>See reports/research_log/PRE_REGISTRATION_LOG.md</em></p>"}
+<p>Related: <a href="ladder.html">Research Ladder</a> · <a href="model-zoo.html">Model Zoo</a> · <a href="memo.html">Full Memo</a></p>
+"""
+    hedge_path = out_dir / "hedge-governance.html"
+    hedge_path.write_text(
+        _shell(
+            "Forecast Failure and Hedge Usefulness",
+            hedge_body,
+            wide=True,
+            nav_active="hedge",
+            nav_html=_nav_fx("hedge"),
+            subtitle="Regime-based hedge governance · Research only",
         ),
         encoding="utf-8",
     )
@@ -821,6 +855,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         "research": research_path,
         "memo": memo_path,
         "ladder": ladder_path,
+        "hedge_governance": hedge_path,
         "corridor": corridor_path,
         "fx_desk": fx_desk_path,
         "model_zoo": model_zoo_path,

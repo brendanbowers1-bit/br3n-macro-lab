@@ -1,6 +1,6 @@
 # BR3N Macro Labs — Model Zoo Report
 
-**Generated:** 2026-05-30 15:15
+**Generated:** 2026-05-30 15:26
 
 > Research and education only. Not investment advice. No guaranteed returns. No live trading.
 
@@ -18,8 +18,8 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 
 ## 2. Models tested
 
-- **Attempted:** 15
-- **Successful:** 15
+- **Attempted:** 16
+- **Successful:** 16
 - **Skipped:** 0
 
 - random_walk_model
@@ -28,6 +28,7 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 - ma_crossover_model
 - regime_trend_model
 - r2_only_model
+- r2_only_vol_scaled_model
 - r1_risk_off_model
 - volatility_breakout_model
 - mean_reversion_range_model
@@ -48,6 +49,7 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 | ma_crossover_model | success | nan | nan |
 | regime_trend_model | success | nan | nan |
 | r2_only_model | success | nan | nan |
+| r2_only_vol_scaled_model | success | nan | nan |
 | r1_risk_off_model | success | nan | nan |
 | volatility_breakout_model | success | nan | nan |
 | mean_reversion_range_model | success | nan | nan |
@@ -70,6 +72,7 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 | ma_crossover_model | 0.007222 | 0.007175 | 0.005021 | 0.004964 | False | False | 49.64 |
 | regime_trend_model | 0.007218 | 0.007175 | 0.005019 | 0.004964 | False | False | 43.07 |
 | r2_only_model | 0.007188 | 0.007175 | 0.004992 | 0.004964 | False | False | 24.35 |
+| r2_only_vol_scaled_model | 0.007186 | 0.007175 | 0.004989 | 0.004964 | False | False | 24.35 |
 | r1_risk_off_model | 0.007188 | 0.007175 | 0.004992 | 0.004964 | False | False | 24.35 |
 | volatility_breakout_model | 0.007231 | 0.007175 | 0.005042 | 0.004964 | False | False | 5.13 |
 | mean_reversion_range_model | 0.007185 | 0.007175 | 0.004975 | 0.004964 | False | False | 4.06 |
@@ -90,6 +93,7 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 | ma_crossover_model | 34.01 | 0.162 | -39.88 | 118 | 4.7 | 100.0 |
 | regime_trend_model | 6.22 | 0.077 | -45.71 | 239 | 4.78 | 87.2 |
 | r2_only_model | -16.14 | -0.08 | -46.81 | 395 | 7.9 | 50.3 |
+| r2_only_vol_scaled_model | -17.06 | -0.094 | -45.99 | 1036 | 7.8364 | 50.3 |
 | r1_risk_off_model | -16.14 | -0.08 | -46.81 | 395 | 7.9 | 50.3 |
 | volatility_breakout_model | -21.24 | -0.252 | -33.13 | 1041 | 20.84 | 16.1 |
 | mean_reversion_range_model | -30.02 | -0.534 | -32.33 | 335 | 6.76 | 8.3 |
@@ -125,6 +129,7 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 | no_change_in_range_model | hedge_governance | nan | nan | nan | 0.0072 | 0.0072 | 0.0053 | 0.0053 | 7.2397 | 20 |
 | r1_risk_off_model | hybrid | -1.253 | -0.218 | -6.899 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | r2_only_model | hybrid | -1.253 | -0.218 | -6.899 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
+| r2_only_vol_scaled_model | hybrid | -1.348 | -0.2382 | -6.5705 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | random_walk_model | forecast | 0.0 | 0.0 | 0.0 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | regime_trend_model | hybrid | 0.235 | -0.099 | -11.518 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | volatility_breakout_model | hybrid | -1.784 | -0.511 | -4.2055 | 0.0073 | 0.0072 | 0.0054 | 0.0053 | nan | 20 |
