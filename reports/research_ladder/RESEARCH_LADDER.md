@@ -1,8 +1,8 @@
-# BR3N Macro Lab — Research Ladder
+# BR3N Macro Labs — Research Ladder
 
-**Generated:** 2026-05-30 11:28  
+**Generated:** 2026-05-30 12:40  
 **Primary pair:** USDMXN=X  
-**Period:** 2006-09-15 → 2026-05-22 (5125 bars)  
+**Period:** 2004-03-19 → 2026-05-22 (5773 bars)  
 **Primary strategy:** flat_range
 
 > Research only. Not investment advice.
@@ -29,19 +29,19 @@
 ### Spot returns by regime
 | regime | pct_time | days | avg_bps_day_spot | sharpe_spot | max_dd_pct_spot |
 | --- | --- | --- | --- | --- | --- |
-| R1_trend_high_vol | 36.18 | 1854 | 3.06 | 0.446 | -20.09 |
-| R2_trend_low_vol | 51.14 | 2621 | -0.42 | -0.116 | -22.69 |
-| R3_range_high_vol | 2.26 | 116 | 17.27 | 2.958 | -4.92 |
-| R4_range_low_vol | 10.42 | 534 | -0.69 | -0.205 | -13.87 |
+| R1_trend_high_vol | 36.81 | 2125 | 3.28 | 0.501 | -20.09 |
+| R2_trend_low_vol | 49.14 | 2837 | -0.6 | -0.169 | -23.06 |
+| R3_range_high_vol | 2.67 | 154 | 9.14 | 1.728 | -6.34 |
+| R4_range_low_vol | 11.38 | 657 | -0.57 | -0.179 | -13.87 |
 
 
 ### Strategy (flat_range) by regime
 | regime | avg_bps_day_flat_range | sharpe_flat_range | max_dd_pct_flat_range |
 | --- | --- | --- | --- |
-| R1_trend_high_vol | 0.03 | 0.005 | -37.23 |
-| R2_trend_low_vol | 1.59 | 0.443 | -19.54 |
-| R3_range_high_vol | -0.57 | -9.966 | -0.66 |
-| R4_range_low_vol | -0.22 | -5.643 | -1.19 |
+| R1_trend_high_vol | 0.17 | 0.026 | -37.23 |
+| R2_trend_low_vol | 1.17 | 0.334 | -21.94 |
+| R3_range_high_vol | -0.51 | -9.214 | -0.76 |
+| R4_range_low_vol | -0.2 | -5.345 | -1.33 |
 
 
 ---
@@ -76,15 +76,25 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 
 | strategy | total_return_pct | ann_return_pct | ann_vol_pct | sharpe | max_drawdown_pct | win_rate_pct | trades | pct_flat | total_cost_pct | ticker | bars | start | end | primary_beats_rw |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| flat_range | 28.9 | 1.26 | 12.17 | 0.163 | -32.61 | 43.5 | 187 | 14.5 | 3.74 | USDMXN=X | 5125 | 2006-09-15 | 2026-05-22 | True |
-| flat_range | 62.95 | 2.44 | 17.23 | 0.226 | -41.34 | 45.0 | 191 | 11.5 | 3.82 | USDBRL=X | 5097 | 2006-09-18 | 2026-05-25 | True |
-| flat_range | 22.63 | 1.01 | 17.99 | 0.146 | -41.89 | 44.2 | 189 | 10.2 | 3.78 | USDCOP=X | 5113 | 2006-09-15 | 2026-05-22 | True |
-| flat_range | 59.0 | 2.32 | 10.02 | 0.279 | -21.68 | 42.3 | 181 | 15.5 | 3.62 | USDJPY=X | 5104 | 2006-09-18 | 2026-05-25 | True |
-| flat_range | 21.83 | 0.98 | 9.13 | 0.153 | -24.12 | 42.0 | 188 | 16.2 | 3.78 | EURUSD=X | 5104 | 2006-09-15 | 2026-05-22 | True |
-| flat_range | 17.62 | 0.8 | 7.01 | 0.149 | -24.2 | 36.9 | 197 | 25.1 | 3.94 | USDINR=X | 5102 | 2006-09-15 | 2026-05-22 | True |
-| flat_range | 3.16 | 0.15 | 7.63 | 0.059 | -35.86 | 39.1 | 185 | 20.5 | 3.7 | USDPHP=X | 5100 | 2006-09-15 | 2026-05-22 | True |
-| flat_range | -19.3 | -1.05 | 17.02 | 0.023 | -40.4 | 43.5 | 215 | 11.2 | 4.3 | USDZAR=X | 5118 | 2006-09-18 | 2026-05-25 | True |
-| flat_range | 1107.91 | 13.05 | 16.0 | 0.847 | -36.72 | 50.6 | 142 | 9.7 | 2.86 | USDTRY=X | 5118 | 2006-09-15 | 2026-05-22 | True |
+| flat_range | 20.99 | 0.84 | 11.68 | 0.13 | -32.61 | 42.5 | 213 | 15.9 | 4.26 | USDMXN=X | 5773 | 2004-03-19 | 2026-05-22 | True |
+| flat_range | 100.32 | 3.34 | 17.88 | 0.272 | -41.34 | 45.1 | 201 | 11.5 | 4.02 | USDBRL=X | 5335 | 2004-03-19 | 2026-05-25 | True |
+| flat_range | 14.22 | 0.58 | 17.65 | 0.121 | -41.89 | 43.7 | 213 | 10.9 | 4.26 | USDCOP=X | 5757 | 2004-03-23 | 2026-05-22 | True |
+| flat_range | 44.22 | 1.45 | 9.67 | 0.197 | -24.47 | 42.5 | 235 | 15.5 | 4.7 | USDJPY=X | 6406 | 2001-09-18 | 2026-05-25 | True |
+| flat_range | 21.2 | 0.85 | 9.04 | 0.138 | -26.51 | 41.9 | 218 | 16.1 | 4.38 | EURUSD=X | 5752 | 2004-03-19 | 2026-05-22 | True |
+| flat_range | 31.61 | 1.21 | 6.76 | 0.212 | -24.2 | 36.9 | 211 | 25.4 | 4.22 | USDINR=X | 5749 | 2004-03-19 | 2026-05-22 | True |
+| flat_range | 16.3 | 0.66 | 7.35 | 0.127 | -35.86 | 37.6 | 203 | 22.1 | 4.06 | USDPHP=X | 5745 | 2004-03-22 | 2026-05-22 | True |
+| flat_range | -40.17 | -2.22 | 16.92 | -0.048 | -52.07 | 43.6 | 245 | 10.7 | 4.9 | USDZAR=X | 5767 | 2004-03-19 | 2026-05-25 | False |
+| flat_range | 1029.49 | 11.79 | 15.79 | 0.785 | -36.72 | 49.8 | 158 | 10.1 | 3.18 | USDTRY=X | 5481 | 2005-04-22 | 2026-05-22 | True |
+| flat_range | -8.82 | -0.4 | 16.49 | 0.058 | -42.72 | 41.9 | 231 | 13.8 | 4.62 | USDCLP=X | 5746 | 2004-03-22 | 2026-05-22 | True |
+| flat_range | 76.36 | 2.52 | 13.06 | 0.256 | -36.33 | 44.8 | 199 | 11.2 | 3.98 | USDPLN=X | 5751 | 2004-03-19 | 2026-05-22 | True |
+| flat_range | -7.31 | -0.33 | 12.86 | 0.038 | -35.71 | 42.0 | 216 | 16.9 | 4.36 | USDKRW=X | 5750 | 2004-03-19 | 2026-05-22 | True |
+| flat_range | 75.25 | 2.49 | 9.4 | 0.309 | -18.77 | 42.7 | 193 | 16.8 | 3.86 | USDTHB=X | 5751 | 2004-03-19 | 2026-05-22 | True |
+| flat_range | 29.59 | 1.14 | 8.24 | 0.179 | -23.22 | 38.4 | 182 | 24.6 | 3.64 | USDMYR=X | 5772 | 2004-03-19 | 2026-05-22 | True |
+| flat_range | 7.35 | 0.29 | 11.91 | 0.084 | -40.26 | 40.9 | 213 | 19.3 | 4.26 | USDIDR=X | 6206 | 2001-10-23 | 2026-05-22 | True |
+| flat_range | -57.07 | -3.26 | 16.4 | -0.12 | -62.17 | 36.5 | 251 | 24.9 | 5.02 | USDPEN=X | 6427 | 2001-09-19 | 2026-05-22 | False |
+| flat_range | 2.89 | 0.12 | 8.49 | 0.057 | -29.33 | 42.8 | 227 | 14.8 | 4.54 | GBPUSD=X | 5764 | 2004-03-19 | 2026-05-22 | True |
+| flat_range | -24.92 | -1.4 | 11.86 | -0.059 | -39.12 | 43.0 | 201 | 13.0 | 4.02 | AUDUSD=X | 5129 | 2006-09-04 | 2026-05-25 | False |
+| flat_range | -30.05 | -1.54 | 9.48 | -0.116 | -51.87 | 41.5 | 241 | 17.1 | 4.82 | USDCHF=X | 5819 | 2004-01-06 | 2026-05-25 | False |
 
 
 ### Per-pair OOS (`flat_range` vs random walk)
@@ -117,18 +127,58 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 | split_1 | 1.097 | 101.52 | 0.0 | True | USDTRY=X |
 | split_2 | 3.212 | 154.86 | 0.0 | True | USDTRY=X |
 | split_3 | 5.127 | 29.2 | 0.0 | True | USDTRY=X |
+| split_1 | 0.214 | 6.38 | 0.0 | True | USDCLP=X |
+| split_2 | 0.105 | 0.65 | 0.0 | True | USDCLP=X |
+| split_3 | -0.373 | -8.28 | 0.0 | False | USDCLP=X |
+| split_1 | -0.027 | -1.92 | 0.0 | False | USDPLN=X |
+| split_2 | -0.233 | -9.36 | 0.0 | False | USDPLN=X |
+| split_3 | 0.07 | 0.33 | 0.0 | True | USDPLN=X |
+| split_1 | 0.544 | 11.06 | 0.0 | True | USDKRW=X |
+| split_2 | 0.256 | 6.36 | 0.0 | True | USDKRW=X |
+| split_3 | -0.152 | -2.71 | 0.0 | False | USDKRW=X |
+| split_1 | 0.817 | 12.28 | 0.0 | True | USDTHB=X |
+| split_2 | 0.362 | 8.14 | 0.0 | True | USDTHB=X |
+| split_3 | -0.894 | -9.47 | 0.0 | False | USDTHB=X |
+| split_1 | 0.197 | 2.03 | 0.0 | True | USDMYR=X |
+| split_2 | 0.613 | 10.3 | 0.0 | True | USDMYR=X |
+| split_3 | -0.036 | -0.45 | 0.0 | False | USDMYR=X |
+| split_1 | 0.118 | 2.19 | 0.0 | True | USDIDR=X |
+| split_2 | 0.222 | 4.87 | 0.0 | True | USDIDR=X |
+| split_3 | 0.48 | 6.47 | 0.0 | True | USDIDR=X |
+| split_1 | -0.216 | -13.73 | 0.0 | False | USDPEN=X |
+| split_2 | -0.414 | -26.44 | 0.0 | False | USDPEN=X |
+| split_3 | -0.032 | -4.15 | 0.0 | False | USDPEN=X |
+| split_1 | 0.441 | 10.73 | 0.0 | True | GBPUSD=X |
+| split_2 | 0.391 | 9.85 | 0.0 | True | GBPUSD=X |
+| split_3 | 0.03 | -0.05 | 0.0 | True | GBPUSD=X |
+| split_1 | -0.049 | -2.63 | 0.0 | False | AUDUSD=X |
+| split_2 | -0.433 | -14.16 | 0.0 | False | AUDUSD=X |
+| split_3 | -1.095 | -12.83 | 0.0 | False | AUDUSD=X |
+| split_1 | -0.631 | -10.91 | 0.0 | False | USDCHF=X |
+| split_2 | 0.352 | 7.59 | 0.0 | True | USDCHF=X |
+| split_3 | 0.501 | 5.52 | 0.0 | True | USDCHF=X |
 
 
 ### OOS summary by pair
 | ticker | splits_beating_rw | splits_total | all_splits_beat_rw |
 | --- | --- | --- | --- |
+| AUDUSD=X | 0 | 3 | False |
 | EURUSD=X | 2 | 3 | False |
+| GBPUSD=X | 3 | 3 | True |
 | USDBRL=X | 1 | 3 | False |
+| USDCHF=X | 2 | 3 | False |
+| USDCLP=X | 2 | 3 | False |
 | USDCOP=X | 1 | 3 | False |
+| USDIDR=X | 3 | 3 | True |
 | USDINR=X | 2 | 3 | False |
 | USDJPY=X | 1 | 3 | False |
+| USDKRW=X | 2 | 3 | False |
 | USDMXN=X | 3 | 3 | True |
+| USDMYR=X | 2 | 3 | False |
+| USDPEN=X | 0 | 3 | False |
 | USDPHP=X | 2 | 3 | False |
+| USDPLN=X | 1 | 3 | False |
+| USDTHB=X | 2 | 3 | False |
 | USDTRY=X | 3 | 3 | True |
 | USDZAR=X | 1 | 3 | False |
 
@@ -136,7 +186,7 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 ### OOS aggregate
 | cells | beats_rw_cells | pct_beats_rw | pairs_tested |
 | --- | --- | --- | --- |
-| 27.0 | 16.0 | 59.3 | 9.0 |
+| 57.0 | 33.0 | 57.9 | 19.0 |
 
 
 ---
@@ -158,10 +208,10 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 
 **Question:** Money/risk after spreads, roll, carry?
 
-| strategy | total_return_pct | ann_return_pct | ann_vol_pct | sharpe | max_drawdown_pct | win_rate_pct | cost_layer | total_cost_pct |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| flat_range | 28.9 | 1.26 | 12.17 | 0.163 | -32.61 | 43.5 | base_costs_only | 3.74 |
-| flat_range | 2.43 | 0.12 | 12.18 | 0.071 | -41.0 | 43.0 | full_economic | 21.649 |
+| strategy | total_return_pct | ann_return_pct | ann_vol_pct | sharpe | max_drawdown_pct | win_rate_pct | cost_layer | ticker | total_cost_pct |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| flat_range | 20.99 | 0.84 | 11.68 | 0.13 | -32.61 | 42.5 | base_costs_only | USDMXN=X | 4.26 |
+| flat_range | -6.77 | -0.31 | 11.68 | 0.032 | -41.0 | 42.0 | full_economic | USDMXN=X | 24.337 |
 
 
 ---
@@ -186,19 +236,19 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 
 
 ### Bootstrap Sharpe check (flat_range, full sample)
-- observed_sharpe: 0.163
-- boot_pvalue_approx: 0.22
+- observed_sharpe: 0.13
+- boot_pvalue_approx: 0.268
 
 ### White Reality Check (legacy / flat_range / r2_only)
 | strategy | observed_sharpe | is_best | bars | best_strategy | observed_max_sharpe | white_rc_pvalue | n_boot | block_len | rejects_data_mining_5pct |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| flat_range | 0.1634 | False | 5125.0 | nan | nan | nan | nan | nan | nan |
-| legacy | 0.1346 | False | 5125.0 | nan | nan | nan | nan | nan | nan |
-| r2_only | 0.2306 | True | 5125.0 | nan | nan | nan | nan | nan | nan |
-| _SUMMARY | nan | nan | nan | r2_only | 0.2306 | 0.628 | 2000.0 | 10.0 | False |
+| flat_range | 0.1296 | False | 5773.0 | nan | nan | nan | nan | nan | nan |
+| legacy | 0.1121 | False | 5773.0 | nan | nan | nan | nan | nan | nan |
+| r2_only | 0.1503 | True | 5773.0 | nan | nan | nan | nan | nan | nan |
+| _SUMMARY | nan | nan | nan | r2_only | 0.1503 | 0.6355 | 2000.0 | 10.0 | False |
 
 - best_strategy: r2_only
-- white_rc_pvalue: 0.628
+- white_rc_pvalue: 0.6355
 - rejects_data_mining_5pct: False
 
 ### Holdout discipline

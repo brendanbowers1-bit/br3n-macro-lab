@@ -261,10 +261,10 @@ flowchart LR
 <table>
 <thead><tr><th>Regime</th><th>Plain English</th><th>~Time in sample</th></tr></thead>
 <tbody>
-<tr><td>R1</td><td>Trending + volatile</td><td>36.18%</td></tr>
-<tr><td>R2</td><td>Trending + calm</td><td>51.14%</td></tr>
-<tr><td>R3</td><td>Range-bound + volatile</td><td>2.26%</td></tr>
-<tr><td>R4</td><td>Range-bound + calm</td><td>10.42%</td></tr>
+<tr><td>R1</td><td>Trending + volatile</td><td>36.81%</td></tr>
+<tr><td>R2</td><td>Trending + calm</td><td>49.14%</td></tr>
+<tr><td>R3</td><td>Range-bound + volatile</td><td>2.67%</td></tr>
+<tr><td>R4</td><td>Range-bound + calm</td><td>11.38%</td></tr>
 </tbody></table>
 <p><strong>Strategy tested (<code>flat_range</code>):</strong> Use a simple moving-average trend signal (MA20 vs MA60) <strong>only</strong> in trending regimes (R1/R2). In range regimes (R3/R4), <strong>position = 0</strong>.</p>
 <p><strong>Benchmarks:</strong></p>
@@ -294,10 +294,10 @@ python scripts/build_publication.py
 <table>
 <thead><tr><th>regime</th><th>avg_bps_day_flat_range</th><th>sharpe_flat_range</th></tr></thead>
 <tbody>
-<tr><td>R1_trend_high_vol</td><td>0.03</td><td>0.005</td></tr>
-<tr><td>R2_trend_low_vol</td><td>1.59</td><td>0.443</td></tr>
-<tr><td>R3_range_high_vol</td><td>-0.57</td><td>-9.966</td></tr>
-<tr><td>R4_range_low_vol</td><td>-0.22</td><td>-5.643</td></tr>
+<tr><td>R1_trend_high_vol</td><td>0.17</td><td>0.026</td></tr>
+<tr><td>R2_trend_low_vol</td><td>1.17</td><td>0.334</td></tr>
+<tr><td>R3_range_high_vol</td><td>-0.51</td><td>-9.214</td></tr>
+<tr><td>R4_range_low_vol</td><td>-0.2</td><td>-5.345</td></tr>
 </tbody></table>
 <p><strong>Interpretation:</strong> The edge, if any, is about <strong>when not to trade</strong> (sit out range regimes), not about calling every wiggle.</p>
 <h3>Level 2 — Out-of-sample on USD/MXN</h3>
@@ -315,27 +315,47 @@ python scripts/build_publication.py
 <table>
 <thead><tr><th>ticker</th><th>sharpe</th><th>total_return_pct</th><th>max_drawdown_pct</th><th>primary_beats_rw</th></tr></thead>
 <tbody>
-<tr><td>USDMXN=X</td><td>0.163</td><td>28.9</td><td>-32.61</td><td>True</td></tr>
-<tr><td>USDBRL=X</td><td>0.226</td><td>62.95</td><td>-41.34</td><td>True</td></tr>
-<tr><td>USDCOP=X</td><td>0.146</td><td>22.63</td><td>-41.89</td><td>True</td></tr>
-<tr><td>USDJPY=X</td><td>0.279</td><td>59.0</td><td>-21.68</td><td>True</td></tr>
-<tr><td>EURUSD=X</td><td>0.153</td><td>21.83</td><td>-24.12</td><td>True</td></tr>
-<tr><td>USDINR=X</td><td>0.149</td><td>17.62</td><td>-24.2</td><td>True</td></tr>
-<tr><td>USDPHP=X</td><td>0.059</td><td>3.16</td><td>-35.86</td><td>True</td></tr>
-<tr><td>USDZAR=X</td><td>0.023</td><td>-19.3</td><td>-40.4</td><td>True</td></tr>
-<tr><td>USDTRY=X</td><td>0.847</td><td>1107.91</td><td>-36.72</td><td>True</td></tr>
+<tr><td>USDMXN=X</td><td>0.13</td><td>20.99</td><td>-32.61</td><td>True</td></tr>
+<tr><td>USDBRL=X</td><td>0.272</td><td>100.32</td><td>-41.34</td><td>True</td></tr>
+<tr><td>USDCOP=X</td><td>0.121</td><td>14.22</td><td>-41.89</td><td>True</td></tr>
+<tr><td>USDJPY=X</td><td>0.197</td><td>44.22</td><td>-24.47</td><td>True</td></tr>
+<tr><td>EURUSD=X</td><td>0.138</td><td>21.2</td><td>-26.51</td><td>True</td></tr>
+<tr><td>USDINR=X</td><td>0.212</td><td>31.61</td><td>-24.2</td><td>True</td></tr>
+<tr><td>USDPHP=X</td><td>0.127</td><td>16.3</td><td>-35.86</td><td>True</td></tr>
+<tr><td>USDZAR=X</td><td>-0.048</td><td>-40.17</td><td>-52.07</td><td>False</td></tr>
+<tr><td>USDTRY=X</td><td>0.785</td><td>1029.49</td><td>-36.72</td><td>True</td></tr>
+<tr><td>USDCLP=X</td><td>0.058</td><td>-8.82</td><td>-42.72</td><td>True</td></tr>
+<tr><td>USDPLN=X</td><td>0.256</td><td>76.36</td><td>-36.33</td><td>True</td></tr>
+<tr><td>USDKRW=X</td><td>0.038</td><td>-7.31</td><td>-35.71</td><td>True</td></tr>
+<tr><td>USDTHB=X</td><td>0.309</td><td>75.25</td><td>-18.77</td><td>True</td></tr>
+<tr><td>USDMYR=X</td><td>0.179</td><td>29.59</td><td>-23.22</td><td>True</td></tr>
+<tr><td>USDIDR=X</td><td>0.084</td><td>7.35</td><td>-40.26</td><td>True</td></tr>
+<tr><td>USDPEN=X</td><td>-0.12</td><td>-57.07</td><td>-62.17</td><td>False</td></tr>
+<tr><td>GBPUSD=X</td><td>0.057</td><td>2.89</td><td>-29.33</td><td>True</td></tr>
+<tr><td>AUDUSD=X</td><td>-0.059</td><td>-24.92</td><td>-39.12</td><td>False</td></tr>
+<tr><td>USDCHF=X</td><td>-0.116</td><td>-30.05</td><td>-51.87</td><td>False</td></tr>
 </tbody></table>
-<p><strong>Cross-pair OOS:</strong> 59.3% of pair×split cells beat the flat benchmark (16.0/27.0). Only <strong>USD/MXN</strong> and <strong>USD/TRY</strong> beat the benchmark on all three OOS splits.</p>
+<p><strong>Cross-pair OOS:</strong> 57.9% of pair×split cells beat the flat benchmark (33.0/57.0). Only <strong>USD/MXN</strong> and <strong>USD/TRY</strong> beat the benchmark on all three OOS splits.</p>
 <table>
 <thead><tr><th>ticker</th><th>splits_beating_rw</th><th>splits_total</th><th>all_splits_beat_rw</th></tr></thead>
 <tbody>
+<tr><td>AUDUSD=X</td><td>0</td><td>3</td><td>False</td></tr>
 <tr><td>EURUSD=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>GBPUSD=X</td><td>3</td><td>3</td><td>True</td></tr>
 <tr><td>USDBRL=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDCHF=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDCLP=X</td><td>2</td><td>3</td><td>False</td></tr>
 <tr><td>USDCOP=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDIDR=X</td><td>3</td><td>3</td><td>True</td></tr>
 <tr><td>USDINR=X</td><td>2</td><td>3</td><td>False</td></tr>
 <tr><td>USDJPY=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDKRW=X</td><td>2</td><td>3</td><td>False</td></tr>
 <tr><td>USDMXN=X</td><td>3</td><td>3</td><td>True</td></tr>
+<tr><td>USDMYR=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDPEN=X</td><td>0</td><td>3</td><td>False</td></tr>
 <tr><td>USDPHP=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDPLN=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDTHB=X</td><td>2</td><td>3</td><td>False</td></tr>
 <tr><td>USDTRY=X</td><td>3</td><td>3</td><td>True</td></tr>
 <tr><td>USDZAR=X</td><td>1</td><td>3</td><td>False</td></tr>
 </tbody></table>
@@ -345,8 +365,8 @@ python scripts/build_publication.py
 <table>
 <thead><tr><th>Cost layer</th><th>Total return</th><th>Sharpe</th></tr></thead>
 <tbody>
-<tr><td>Base (2 bps turnover)</td><td>28.9%</td><td>0.163</td></tr>
-<tr><td>Full economic stack</td><td>2.43%</td><td>0.071</td></tr>
+<tr><td>Base (2 bps turnover)</td><td>20.99%</td><td>0.13</td></tr>
+<tr><td>Full economic stack</td><td>-6.77%</td><td>0.032</td></tr>
 </tbody></table>
 <p>Realistic frictions cut cumulative return sharply. Still slightly positive on MXN over 20y, but <strong>not</strong> a high-Sharpe trading strategy.</p>
 <h3>Level 6 — Data-snooping</h3>
@@ -354,7 +374,7 @@ python scripts/build_publication.py
 <thead><tr><th>Check</th><th>Result</th></tr></thead>
 <tbody>
 <tr><td>Best strategy (full sample)</td><td><code>r2_only</code></td></tr>
-<tr><td>White Reality Check p-value</td><td>0.628</td></tr>
+<tr><td>White Reality Check p-value</td><td>0.6355</td></tr>
 <tr><td>Survives 5% threshold?</td><td><strong>No</strong> (p &gt; 0.05)</td></tr>
 </tbody></table>
 <p>Searching across <code>legacy</code>, <code>flat_range</code>, and <code>r2_only</code> and picking the best <strong>does not</strong> pass a formal reality check. Treat <code>r2_only</code>’s strong in-sample stats with skepticism.</p>
@@ -367,7 +387,7 @@ python scripts/build_publication.py
 <tr><td>H2</td><td>OOS Sharpe beats flat benchmark on MXN</td><td><strong>Supported</strong> (weak in 2019–21)</td></tr>
 <tr><td>H3</td><td>Works on ≥50% of EM pairs</td><td><strong>Mixed</strong> — full sample yes; strict OOS no</td></tr>
 <tr><td>H4</td><td>Better price forecasts than random walk</td><td><strong>Not supported</strong></td></tr>
-<tr><td>H5</td><td>Positive after full economic costs</td><td><strong>Weak yes</strong> (2.43%)</td></tr>
+<tr><td>H5</td><td>Positive after full economic costs</td><td><strong>Weak yes</strong> (-6.77%)</td></tr>
 <tr><td>H7</td><td>White Reality Check</td><td><strong>Not supported</strong></td></tr>
 </tbody></table>
 <hr/>

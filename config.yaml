@@ -1,7 +1,22 @@
 data:
   ticker: "USDMXN=X"
-  history_years: 20
+  history_years: 25
   interval: "1d"
+
+# Macro context: DXY, VIX, US–MX rate spread (FRED + Yahoo)
+macro:
+  enabled: true
+  yahoo:
+    dxy: "DX-Y.NYB"
+    vix: "^VIX"
+  fred:
+    us_rate: "DFF"
+    mx_rate: "INTGSBMXM193N"
+  dxy_trend_window: 20
+  vix_percentile_window: 252
+  vix_stress_percentile: 0.75
+  dxy_stress_percentile: 0.70
+  carry_high_percentile: 0.60
 
 features:
   ma_short: 20
@@ -29,13 +44,33 @@ risk:
   max_position: 1.0
   allow_short: true
 
-# Level 5 — economic frictions (research assumptions)
+# Level 5 — defaults + per-pair frictions (bps unless noted)
 economic:
   spread_bps: 3.0
   slippage_bps: 1.0
   roll_bps_monthly: 5.0
-  carry_annual_bps: 350  # USDMXN long USD leg approx
-  max_drawdown_stop: null  # e.g. 0.15 to simulate risk limit
+  carry_annual_bps: 350
+  max_drawdown_stop: null
+  per_pair:
+    USDMXN=X: { spread_bps: 3.0, carry_annual_bps: 350, roll_bps_monthly: 5.0 }
+    USDBRL=X: { spread_bps: 4.0, carry_annual_bps: 800, roll_bps_monthly: 6.0 }
+    USDCOP=X: { spread_bps: 5.0, carry_annual_bps: 600, roll_bps_monthly: 6.0 }
+    USDJPY=X: { spread_bps: 1.0, carry_annual_bps: -450, roll_bps_monthly: 3.0 }
+    EURUSD=X: { spread_bps: 1.0, carry_annual_bps: 0, roll_bps_monthly: 2.0 }
+    USDINR=X: { spread_bps: 2.0, carry_annual_bps: 250, roll_bps_monthly: 4.0 }
+    USDPHP=X: { spread_bps: 3.0, carry_annual_bps: 150, roll_bps_monthly: 4.0 }
+    USDZAR=X: { spread_bps: 5.0, carry_annual_bps: 400, roll_bps_monthly: 6.0 }
+    USDTRY=X: { spread_bps: 8.0, carry_annual_bps: 1200, roll_bps_monthly: 8.0 }
+    USDCLP=X: { spread_bps: 4.0, carry_annual_bps: 200, roll_bps_monthly: 5.0 }
+    USDPLN=X: { spread_bps: 2.0, carry_annual_bps: 100, roll_bps_monthly: 3.0 }
+    USDKRW=X: { spread_bps: 2.0, carry_annual_bps: -150, roll_bps_monthly: 3.0 }
+    USDTHB=X: { spread_bps: 3.0, carry_annual_bps: 100, roll_bps_monthly: 4.0 }
+    USDMYR=X: { spread_bps: 3.0, carry_annual_bps: 50, roll_bps_monthly: 4.0 }
+    USDIDR=X: { spread_bps: 4.0, carry_annual_bps: 200, roll_bps_monthly: 5.0 }
+    USDPEN=X: { spread_bps: 4.0, carry_annual_bps: 150, roll_bps_monthly: 5.0 }
+    GBPUSD=X: { spread_bps: 1.0, carry_annual_bps: 0, roll_bps_monthly: 2.0 }
+    AUDUSD=X: { spread_bps: 1.5, carry_annual_bps: 50, roll_bps_monthly: 2.5 }
+    USDCHF=X: { spread_bps: 1.5, carry_annual_bps: -300, roll_bps_monthly: 3.0 }
 
 reporting:
   output_dir: "data/outputs"
@@ -43,7 +78,6 @@ reporting:
   report_dir: "reports"
   ladder_dir: "reports/research_ladder"
 
-# Level 2 — fixed OOS splits (pre-registered style)
 research_ladder:
   level2_splits:
     - name: split_1
@@ -62,7 +96,6 @@ research_ladder:
       test_start: "2025-01-01"
       test_end: "2026-12-31"
 
-  # Level 3 — multi-pair panel
   pairs:
     - USDMXN=X
     - USDBRL=X
@@ -73,13 +106,22 @@ research_ladder:
     - USDPHP=X
     - USDZAR=X
     - USDTRY=X
+    - USDCLP=X
+    - USDPLN=X
+    - USDKRW=X
+    - USDTHB=X
+    - USDMYR=X
+    - USDIDR=X
+    - USDPEN=X
+    - GBPUSD=X
+    - AUDUSD=X
+    - USDCHF=X
 
   strategies:
     - legacy
     - flat_range
     - r2_only
 
-  # Level 6 — holdout (never tune on this until final sign-off)
   holdout:
     start: "2025-01-01"
     end: "2026-12-31"

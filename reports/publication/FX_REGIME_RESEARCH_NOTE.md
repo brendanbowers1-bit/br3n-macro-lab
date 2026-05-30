@@ -36,10 +36,10 @@ flowchart LR
 
 | Regime | Plain English | ~Time in sample |
 |--------|---------------|-----------------|
-| R1 | Trending + volatile | 36.18% |
-| R2 | Trending + calm | 51.14% |
-| R3 | Range-bound + volatile | 2.26% |
-| R4 | Range-bound + calm | 10.42% |
+| R1 | Trending + volatile | 36.81% |
+| R2 | Trending + calm | 49.14% |
+| R3 | Range-bound + volatile | 2.67% |
+| R4 | Range-bound + calm | 11.38% |
 
 **Strategy tested (`flat_range`):** Use a simple moving-average trend signal (MA20 vs MA60) **only** in trending regimes (R1/R2). In range regimes (R3/R4), **position = 0**.
 
@@ -79,10 +79,10 @@ Spot USD/MXN returns are **not** the same in every regime. Strategy P&L concentr
 
 | regime | avg_bps_day_flat_range | sharpe_flat_range |
 | --- | --- | --- |
-| R1_trend_high_vol | 0.03 | 0.005 |
-| R2_trend_low_vol | 1.59 | 0.443 |
-| R3_range_high_vol | -0.57 | -9.966 |
-| R4_range_low_vol | -0.22 | -5.643 |
+| R1_trend_high_vol | 0.17 | 0.026 |
+| R2_trend_low_vol | 1.17 | 0.334 |
+| R3_range_high_vol | -0.51 | -9.214 |
+| R4_range_low_vol | -0.2 | -5.345 |
 
 
 **Interpretation:** The edge, if any, is about **when not to trade** (sit out range regimes), not about calling every wiggle.
@@ -106,28 +106,48 @@ Full-sample Sharpe (`flat_range`):
 
 | ticker | sharpe | total_return_pct | max_drawdown_pct | primary_beats_rw |
 | --- | --- | --- | --- | --- |
-| USDMXN=X | 0.163 | 28.9 | -32.61 | True |
-| USDBRL=X | 0.226 | 62.95 | -41.34 | True |
-| USDCOP=X | 0.146 | 22.63 | -41.89 | True |
-| USDJPY=X | 0.279 | 59.0 | -21.68 | True |
-| EURUSD=X | 0.153 | 21.83 | -24.12 | True |
-| USDINR=X | 0.149 | 17.62 | -24.2 | True |
-| USDPHP=X | 0.059 | 3.16 | -35.86 | True |
-| USDZAR=X | 0.023 | -19.3 | -40.4 | True |
-| USDTRY=X | 0.847 | 1107.91 | -36.72 | True |
+| USDMXN=X | 0.13 | 20.99 | -32.61 | True |
+| USDBRL=X | 0.272 | 100.32 | -41.34 | True |
+| USDCOP=X | 0.121 | 14.22 | -41.89 | True |
+| USDJPY=X | 0.197 | 44.22 | -24.47 | True |
+| EURUSD=X | 0.138 | 21.2 | -26.51 | True |
+| USDINR=X | 0.212 | 31.61 | -24.2 | True |
+| USDPHP=X | 0.127 | 16.3 | -35.86 | True |
+| USDZAR=X | -0.048 | -40.17 | -52.07 | False |
+| USDTRY=X | 0.785 | 1029.49 | -36.72 | True |
+| USDCLP=X | 0.058 | -8.82 | -42.72 | True |
+| USDPLN=X | 0.256 | 76.36 | -36.33 | True |
+| USDKRW=X | 0.038 | -7.31 | -35.71 | True |
+| USDTHB=X | 0.309 | 75.25 | -18.77 | True |
+| USDMYR=X | 0.179 | 29.59 | -23.22 | True |
+| USDIDR=X | 0.084 | 7.35 | -40.26 | True |
+| USDPEN=X | -0.12 | -57.07 | -62.17 | False |
+| GBPUSD=X | 0.057 | 2.89 | -29.33 | True |
+| AUDUSD=X | -0.059 | -24.92 | -39.12 | False |
+| USDCHF=X | -0.116 | -30.05 | -51.87 | False |
 
 
-**Cross-pair OOS:** 59.3% of pair×split cells beat the flat benchmark (16.0/27.0). Only **USD/MXN** and **USD/TRY** beat the benchmark on all three OOS splits.
+**Cross-pair OOS:** 57.9% of pair×split cells beat the flat benchmark (33.0/57.0). Only **USD/MXN** and **USD/TRY** beat the benchmark on all three OOS splits.
 
 | ticker | splits_beating_rw | splits_total | all_splits_beat_rw |
 | --- | --- | --- | --- |
+| AUDUSD=X | 0 | 3 | False |
 | EURUSD=X | 2 | 3 | False |
+| GBPUSD=X | 3 | 3 | True |
 | USDBRL=X | 1 | 3 | False |
+| USDCHF=X | 2 | 3 | False |
+| USDCLP=X | 2 | 3 | False |
 | USDCOP=X | 1 | 3 | False |
+| USDIDR=X | 3 | 3 | True |
 | USDINR=X | 2 | 3 | False |
 | USDJPY=X | 1 | 3 | False |
+| USDKRW=X | 2 | 3 | False |
 | USDMXN=X | 3 | 3 | True |
+| USDMYR=X | 2 | 3 | False |
+| USDPEN=X | 0 | 3 | False |
 | USDPHP=X | 2 | 3 | False |
+| USDPLN=X | 1 | 3 | False |
+| USDTHB=X | 2 | 3 | False |
 | USDTRY=X | 3 | 3 | True |
 | USDZAR=X | 1 | 3 | False |
 
@@ -140,8 +160,8 @@ Forecast errors were **not** better than a random-walk (zero) forecast. Diebold�
 
 | Cost layer | Total return | Sharpe |
 |------------|--------------|--------|
-| Base (2 bps turnover) | 28.9% | 0.163 |
-| Full economic stack | 2.43% | 0.071 |
+| Base (2 bps turnover) | 20.99% | 0.13 |
+| Full economic stack | -6.77% | 0.032 |
 
 Realistic frictions cut cumulative return sharply. Still slightly positive on MXN over 20y, but **not** a high-Sharpe trading strategy.
 
@@ -150,7 +170,7 @@ Realistic frictions cut cumulative return sharply. Still slightly positive on MX
 | Check | Result |
 |-------|--------|
 | Best strategy (full sample) | `r2_only` |
-| White Reality Check p-value | 0.628 |
+| White Reality Check p-value | 0.6355 |
 | Survives 5% threshold? | **No** (p > 0.05) |
 
 Searching across `legacy`, `flat_range`, and `r2_only` and picking the best **does not** pass a formal reality check. Treat `r2_only`’s strong in-sample stats with skepticism.
@@ -165,7 +185,7 @@ Searching across `legacy`, `flat_range`, and `r2_only` and picking the best **do
 | H2 | OOS Sharpe beats flat benchmark on MXN | **Supported** (weak in 2019–21) |
 | H3 | Works on ≥50% of EM pairs | **Mixed** — full sample yes; strict OOS no |
 | H4 | Better price forecasts than random walk | **Not supported** |
-| H5 | Positive after full economic costs | **Weak yes** (2.43%) |
+| H5 | Positive after full economic costs | **Weak yes** (-6.77%) |
 | H7 | White Reality Check | **Not supported** |
 
 ---

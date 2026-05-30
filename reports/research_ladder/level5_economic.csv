@@ -1,3 +1,3 @@
-strategy,total_return_pct,ann_return_pct,ann_vol_pct,sharpe,max_drawdown_pct,win_rate_pct,cost_layer,total_cost_pct
-flat_range,28.9,1.26,12.17,0.163,-32.61,43.5,base_costs_only,3.74
-flat_range,2.43,0.12,12.18,0.071,-41.0,43.0,full_economic,21.649
+strategy,total_return_pct,ann_return_pct,ann_vol_pct,sharpe,max_drawdown_pct,win_rate_pct,cost_layer,ticker,total_cost_pct
+flat_range,20.99,0.84,11.68,0.13,-32.61,42.5,base_costs_only,USDMXN=X,4.26
+flat_range,-6.77,-0.31,11.68,0.032,-41.0,42.0,full_economic,USDMXN=X,24.337
