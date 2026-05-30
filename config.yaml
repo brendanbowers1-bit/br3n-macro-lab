@@ -162,6 +162,30 @@ flow_proxies:
 hedge_governance:
   enabled: true
   hedge_transaction_cost_bps: 2.0
+  max_daily_hedge_adjustment: 0.10
+
+model_zoo:
+  enabled: true
+  models:
+    - random_walk_model
+    - buy_and_hold_model
+    - always_flat_model
+    - ma_crossover_model
+    - regime_trend_model
+    - r2_only_model
+    - r1_risk_off_model
+    - volatility_breakout_model
+    - mean_reversion_range_model
+    - carry_proxy_model
+    - dollar_stress_model
+    - flow_pressure_model
+    - ensemble_vote_model
+    - conservative_hedge_model
+    - no_change_in_range_model
+  breakout_window: 20
+  mean_reversion_z_threshold: 1.0
+  ensemble_min_votes: 2
+  walk_forward_enabled: true
 
 random_walk_validity:
   enabled: true

@@ -1,5 +1,5 @@
 regime,pct_time,days,avg_bps_day_spot,sharpe_spot,max_dd_pct_spot
-R1_trend_high_vol,36.81,2125,3.28,0.501,-20.09
-R2_trend_low_vol,49.14,2837,-0.6,-0.169,-23.06
-R3_range_high_vol,2.67,154,9.14,1.728,-6.34
-R4_range_low_vol,11.38,657,-0.57,-0.179,-13.87
+R1_trend_high_vol,36.99,2287,4.1,0.678,-18.87
+R2_trend_low_vol,50.27,3108,-0.74,-0.227,-37.25
+R3_range_high_vol,2.35,145,9.43,1.83,-8.24
+R4_range_low_vol,10.4,643,-1.2,-0.414,-16.17

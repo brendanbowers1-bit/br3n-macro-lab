@@ -119,6 +119,33 @@ th, td {
   text-align: left;
 }
 th { background: #1a2230; color: var(--muted); font-weight: 600; }
+table.data-table th.num,
+table.data-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table { margin: 0; }
+.conclusion-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.claim-discipline {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text);
+}
 code, pre {
   font-family: var(--mono);
   font-size: 0.85rem;
@@ -302,6 +329,7 @@ body.cover-page header.hero-cover {
   <a href="fx_desk.html">FX Desk</a>
   <a href="memo.html">Memo</a>
   <a href="ladder.html">Ladder</a>
+  <a href="model-zoo.html">Model Zoo</a>
 </nav>
     </div>
   </header>
@@ -312,7 +340,7 @@ body.cover-page header.hero-cover {
 <div class="stat-grid">
   <div class="stat"><div class="label">MXN OOS splits</div><div class="value good">3/3</div><div class="label">beat flat benchmark</div></div>
   <div class="stat"><div class="label">Cross-pair OOS</div><div class="value">58%</div><div class="label">cells beat benchmark</div></div>
-  <div class="stat"><div class="label">White RC p-value</div><div class="value warn">0.6355</div><div class="label">data-snooping check</div></div>
+  <div class="stat"><div class="label">White RC p-value</div><div class="value warn">0.6075</div><div class="label">data-snooping check</div></div>
 </div>
 
 <div class="card">
@@ -321,7 +349,8 @@ body.cover-page header.hero-cover {
     <li><strong>This page</strong> — 2-minute USD/MXN summary</li>
     <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations</li>
     <li><a href="corridor.html"><strong>Corridor roadmap</strong></a> — remittance corridor expansion</li>
-    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — six-level checklist</li>
+    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — seven-level checklist</li>
+    <li><a href="model-zoo.html"><strong>Model zoo</strong></a> — conditional forecastability tests</li>
     <li><a href="index.html"><strong>FX Lab home</strong></a></li>
   </ul>
 </div>
@@ -333,11 +362,11 @@ body.cover-page header.hero-cover {
 <ol><li>Label each day: <strong>trend vs range</strong> × <strong>high vs low vol</strong> (4 regimes).</li><li>Strategy: trend-follow (MA20/60) in trending regimes; <strong>flat in range</strong>.</li><li>Test with a 6-level ladder: descriptive → OOS → 9 pairs → forecasts → costs → overfitting checks.</li></ol>
 <h2>Three findings</h2>
 <p><strong>1. Regimes matter.</strong>  </p>
-<p>Spot returns and strategy P&amp;L differ by regime. Most <code>flat_range</code> P&amp;L sits in <strong>R2 (trend + low vol)</strong> (~1.17 bps/day in sample).</p>
+<p>Spot returns and strategy P&amp;L differ by regime. Most <code>flat_range</code> P&amp;L sits in <strong>R2 (trend + low vol)</strong> (~1.11 bps/day in sample).</p>
 <p><strong>2. MXN passes OOS — mostly.</strong>  </p>
 <p><code>flat_range</code> beat “always flat” on all three test windows (2019–21, 2022–24, 2025–26). The first window was weak (+0.4%).</p>
 <p><strong>3. It’s not a crystal ball.</strong>  </p>
-<ul><li>No forecast accuracy vs random walk  </li><li>Full frictions cut 20y return from ~20.99% to ~-6.77%  </li><li>White Reality Check p = 0.6355 → <strong>does not</strong> confirm data-mined alpha</li></ul>
+<ul><li>No forecast accuracy vs random walk  </li><li>Full frictions cut 20y return from ~20.36% to ~-6.47%  </li><li>White Reality Check p = 0.6075 → <strong>does not</strong> confirm data-mined alpha</li></ul>
 <h2>Cross-pair</h2>
 <p>9 pairs tested. <strong>57.9%</strong> of OOS cells beat flat benchmark. Only <strong>MXN + TRY</strong> win all 3 splits.</p>
 <h2>Hedging sentence you can use</h2>

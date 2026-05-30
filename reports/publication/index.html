@@ -119,6 +119,33 @@ th, td {
   text-align: left;
 }
 th { background: #1a2230; color: var(--muted); font-weight: 600; }
+table.data-table th.num,
+table.data-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table { margin: 0; }
+.conclusion-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.claim-discipline {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text);
+}
 code, pre {
   font-family: var(--mono);
   font-size: 0.85rem;
@@ -307,6 +334,7 @@ body.cover-page header.hero-cover {
   <a href="fx_desk.html">FX Desk</a>
   <a href="memo.html">Memo</a>
   <a href="ladder.html">Ladder</a>
+  <a href="model-zoo.html">Model Zoo</a>
 </nav>
   </div>
 </header>

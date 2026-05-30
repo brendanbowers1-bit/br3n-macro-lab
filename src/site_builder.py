@@ -137,6 +137,33 @@ th, td {
   text-align: left;
 }
 th { background: #1a2230; color: var(--muted); font-weight: 600; }
+table.data-table th.num,
+table.data-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table { margin: 0; }
+.conclusion-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.claim-discipline {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text);
+}
 code, pre {
   font-family: var(--mono);
   font-size: 0.85rem;
@@ -306,6 +333,30 @@ body.cover-page header.hero-cover {
 """
 
 
+def _looks_numeric(s: str) -> bool:
+    s = s.strip().replace(",", "")
+    if s in ("—", "True", "False", "None", "", "nan"):
+        return False
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+def _numeric_col_flags(headers: list[str], rows: list[list[str]]) -> list[bool]:
+    text_cols = {"strategy", "regime", "ticker", "sample", "split", "question", "level", "policy_name", "exposure_type"}
+    flags: list[bool] = []
+    for j, header in enumerate(headers):
+        if header.lower().replace(" ", "_") in text_cols or header in text_cols:
+            flags.append(False)
+            continue
+        vals = [r[j] for r in rows if j < len(r)]
+        nums = sum(1 for v in vals if _looks_numeric(v))
+        flags.append(bool(vals) and nums >= max(1, int(len(vals) * 0.55)))
+    return flags
+
+
 def _md_to_html(text: str) -> str:
     """Minimal markdown → HTML (headings, lists, tables, bold, code, blockquote)."""
     lines = text.splitlines()
@@ -338,16 +389,41 @@ def _md_to_html(text: str) -> str:
                 rows.append([c.strip() for c in lines[i].strip("|").split("|")])
                 i += 1
             if len(rows) >= 2:
-                out.append("<table>")
-                out.append("<thead><tr>" + "".join(f"<th>{_inline(c)}</th>" for c in rows[0]) + "</tr></thead>")
+                num_flags = _numeric_col_flags(rows[0], rows[2:])
+                def _th(c: str, j: int) -> str:
+                    cls = ' class="num"' if num_flags[j] else ""
+                    return f"<th{cls}>{_inline(c)}</th>"
+
+                def _td(c: str, j: int) -> str:
+                    cls = ' class="num"' if num_flags[j] else ""
+                    return f"<td{cls}>{_inline(c)}</td>"
+
+                out.append('<div class="table-wrap"><table class="data-table">')
+                out.append("<thead><tr>" + "".join(_th(c, j) for j, c in enumerate(rows[0])) + "</tr></thead>")
                 out.append("<tbody>")
                 for row in rows[2:]:
-                    out.append("<tr>" + "".join(f"<td>{_inline(c)}</td>" for c in row) + "</tr>")
-                out.append("</tbody></table>")
+                    out.append("<tr>" + "".join(_td(c, j) for j, c in enumerate(row)) + "</tr>")
+                out.append("</tbody></table></div>")
             continue
 
         if line.startswith("# "):
             out.append(f"<h1>{_inline(line[2:])}</h1>")
+        elif line.startswith("## Claim discipline"):
+            out.append(f"<h2>{_inline(line[3:])}</h2>")
+            i += 1
+            while i < len(lines) and not lines[i].strip():
+                i += 1
+            para_lines = []
+            while i < len(lines) and lines[i].strip() and not lines[i].startswith("#") and not lines[i].startswith("|"):
+                para_lines.append(lines[i].strip())
+                i += 1
+            inner = " ".join(_inline(p) for p in para_lines)
+            out.append(f'<div class="claim-discipline"><p>{inner}</p></div>')
+            continue
+        elif line.startswith("## Main conclusion"):
+            out.append(f"<h2>{_inline(line[3:])}</h2>")
+            i += 1
+            continue
         elif line.startswith("## "):
             out.append(f"<h2>{_inline(line[3:])}</h2>")
         elif line.startswith("### "):
@@ -406,6 +482,7 @@ def _nav_fx(active: str = "home") -> str:
         ("fx_desk.html", "FX Desk", "fx_desk"),
         ("memo.html", "Memo", "memo"),
         ("ladder.html", "Ladder", "ladder"),
+        ("model-zoo.html", "Model Zoo", "model_zoo"),
     ]
     parts = ['<nav class="top">']
     for href, label, key in links:
@@ -551,6 +628,59 @@ def _landing_stats() -> str:
 """
 
 
+def _model_zoo_stats() -> str:
+    """Summary cards from model zoo scorecards when available."""
+    fc_path = ROOT / "data/outputs/model_zoo_forecast_scorecard.csv"
+    tr_path = ROOT / "data/outputs/model_zoo_trading_scorecard.csv"
+    hg_path = ROOT / "data/outputs/model_zoo_hedge_scorecard.csv"
+    log_path = ROOT / "data/outputs/model_zoo_run_log.csv"
+
+    attempted = success = skipped = "—"
+    best_fc = best_tr = best_hg = "—"
+    beats_rmse = "—"
+
+    if log_path.exists():
+        import pandas as pd
+
+        log = pd.read_csv(log_path)
+        attempted = str(len(log))
+        success = str(int((log["status"] == "success").sum()))
+        skipped = str(int((log["status"] == "skipped").sum()))
+
+    if fc_path.exists():
+        import pandas as pd
+
+        fc = pd.read_csv(fc_path)
+        if not fc.empty:
+            best_fc = str(fc.sort_values("rmse_model").iloc[0]["model_name"])
+            beats_rmse = str(int(fc["model_beats_rw_rmse"].sum()))
+
+    if tr_path.exists():
+        import pandas as pd
+
+        tr = pd.read_csv(tr_path)
+        if not tr.empty and "sharpe_net" in tr.columns:
+            best_tr = str(tr.sort_values("sharpe_net", ascending=False).iloc[0]["model_name"])
+
+    if hg_path.exists():
+        import pandas as pd
+
+        hg = pd.read_csv(hg_path)
+        if not hg.empty:
+            best_hg = str(
+                hg.sort_values("cost_adjusted_risk_reduction", ascending=False).iloc[0]["model_name"]
+            )
+
+    return f"""
+<div class="stat-grid">
+  <div class="stat"><div class="label">Models run</div><div class="value">{success}/{attempted}</div><div class="label">successful</div></div>
+  <div class="stat"><div class="label">Beat RW (RMSE)</div><div class="value warn">{beats_rmse}</div><div class="label">forecast models</div></div>
+  <div class="stat"><div class="label">Best trading</div><div class="value">{best_tr}</div><div class="label">by net Sharpe</div></div>
+  <div class="stat"><div class="label">Best hedge</div><div class="value good">{best_hg}</div><div class="label">cost-adj risk reduction</div></div>
+</div>
+"""
+
+
 def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     out_dir = out_dir or PUB_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -589,7 +719,8 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     <li><strong>This page</strong> — 2-minute USD/MXN summary</li>
     <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations</li>
     <li><a href="corridor.html"><strong>Corridor roadmap</strong></a> — remittance corridor expansion</li>
-    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — six-level checklist</li>
+    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — seven-level checklist</li>
+    <li><a href="model-zoo.html"><strong>Model zoo</strong></a> — conditional forecastability tests</li>
     <li><a href="index.html"><strong>FX Lab home</strong></a></li>
   </ul>
 </div>
@@ -622,7 +753,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
             wide=True,
             nav_active="ladder",
             nav_html=_nav_fx("ladder"),
-            subtitle="Six-level evidence framework · Research only",
+            subtitle="Seven-level evidence framework · Research only",
         ),
         encoding="utf-8",
     )
@@ -657,6 +788,33 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
+    zoo_summary = _read_md(out_dir / "MODEL_ZOO_SUMMARY.md") or _read_md(ROOT / "reports/publication/MODEL_ZOO_SUMMARY.md")
+    zoo_report = _read_md(ROOT / "reports/model_zoo_report.md")
+    zoo_body = f"""
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+{_model_zoo_stats()}
+<div class="principle-box">
+  <p><strong>Research discipline:</strong> The model zoo tests conditional forecastability — not FX prediction.
+  A model that performs well in-sample but fails walk-forward or cost-adjusted tests should not be treated as evidence of forecastability.</p>
+</div>
+{_md_to_html(zoo_summary)}
+<hr/>
+<h2>Full model zoo report</h2>
+{_md_to_html(zoo_report) if zoo_report else "<p><em>Run <code>python scripts/run_model_zoo.py</code> then <code>python scripts/generate_model_zoo_report.py</code>.</em></p>"}
+"""
+    model_zoo_path = out_dir / "model-zoo.html"
+    model_zoo_path.write_text(
+        _shell(
+            "Model Zoo",
+            zoo_body,
+            wide=True,
+            nav_active="model_zoo",
+            nav_html=_nav_fx("model_zoo"),
+            subtitle="Conditional forecastability · Research only · Not investment advice",
+        ),
+        encoding="utf-8",
+    )
+
     return {
         "index": cover_path,
         "fx_lab": fx_lab_path,
@@ -665,4 +823,5 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         "ladder": ladder_path,
         "corridor": corridor_path,
         "fx_desk": fx_desk_path,
+        "model_zoo": model_zoo_path,
     }

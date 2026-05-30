@@ -36,10 +36,10 @@ flowchart LR
 
 | Regime | Plain English | ~Time in sample |
 |--------|---------------|-----------------|
-| R1 | Trending + volatile | 36.81% |
-| R2 | Trending + calm | 49.14% |
-| R3 | Range-bound + volatile | 2.67% |
-| R4 | Range-bound + calm | 11.38% |
+| R1 | Trending + volatile | 36.99% |
+| R2 | Trending + calm | 50.27% |
+| R3 | Range-bound + volatile | 2.35% |
+| R4 | Range-bound + calm | 10.4% |
 
 **Strategy tested (`flat_range`):** Use a simple moving-average trend signal (MA20 vs MA60) **only** in trending regimes (R1/R2). In range regimes (R3/R4), **position = 0**.
 
@@ -79,10 +79,10 @@ Spot USD/MXN returns are **not** the same in every regime. Strategy P&L concentr
 
 | regime | avg_bps_day_flat_range | sharpe_flat_range |
 | --- | --- | --- |
-| R1_trend_high_vol | 0.17 | 0.026 |
-| R2_trend_low_vol | 1.17 | 0.334 |
-| R3_range_high_vol | -0.51 | -9.214 |
-| R4_range_low_vol | -0.2 | -5.345 |
+| R1_trend_high_vol | 0.03 | 0.005 |
+| R2_trend_low_vol | 1.11 | 0.344 |
+| R3_range_high_vol | -0.59 | -10.271 |
+| R4_range_low_vol | -0.22 | -5.633 |
 
 
 **Interpretation:** The edge, if any, is about **when not to trade** (sit out range regimes), not about calling every wiggle.
@@ -93,9 +93,9 @@ Spot USD/MXN returns are **not** the same in every regime. Strategy P&L concentr
 
 | test_window | flat_range_return_% | flat_range_sharpe | random_walk_sharpe | beats_flat_benchmark |
 | --- | --- | --- | --- | --- |
-| 2019-01-01..2021-12-31 | 0.42 | 0.075 | 0.0 | True |
-| 2022-01-01..2024-12-31 | 10.92 | 0.363 | 0.0 | True |
-| 2025-01-01..2026-12-31 | 3.82 | 0.317 | 0.0 | True |
+| 2019-01-01..2021-12-31 | -2.58 | -0.002 | 0.0 | False |
+| 2022-01-01..2024-12-31 | 8.91 | 0.316 | 0.0 | True |
+| 2025-01-01..2026-12-31 | 6.01 | 0.522 | 0.0 | True |
 
 
 2019–2021 was economically weak (+0.4%, Sharpe 0.08). Stronger periods: 2022–2024 (+10.9%, Sharpe 0.36).
@@ -160,8 +160,8 @@ Forecast errors were **not** better than a random-walk (zero) forecast. Diebold�
 
 | Cost layer | Total return | Sharpe |
 |------------|--------------|--------|
-| Base (2 bps turnover) | 20.99% | 0.13 |
-| Full economic stack | -6.77% | 0.032 |
+| Base (2 bps turnover) | 20.36% | 0.124 |
+| Full economic stack | -6.47% | 0.029 |
 
 Realistic frictions cut cumulative return sharply. Still slightly positive on MXN over 20y, but **not** a high-Sharpe trading strategy.
 
@@ -170,7 +170,7 @@ Realistic frictions cut cumulative return sharply. Still slightly positive on MX
 | Check | Result |
 |-------|--------|
 | Best strategy (full sample) | `r2_only` |
-| White Reality Check p-value | 0.6355 |
+| White Reality Check p-value | 0.6075 |
 | Survives 5% threshold? | **No** (p > 0.05) |
 
 Searching across `legacy`, `flat_range`, and `r2_only` and picking the best **does not** pass a formal reality check. Treat `r2_only`’s strong in-sample stats with skepticism.
@@ -185,7 +185,7 @@ Searching across `legacy`, `flat_range`, and `r2_only` and picking the best **do
 | H2 | OOS Sharpe beats flat benchmark on MXN | **Supported** (weak in 2019–21) |
 | H3 | Works on ≥50% of EM pairs | **Mixed** — full sample yes; strict OOS no |
 | H4 | Better price forecasts than random walk | **Not supported** |
-| H5 | Positive after full economic costs | **Weak yes** (-6.77%) |
+| H5 | Positive after full economic costs | **Weak yes** (-6.47%) |
 | H7 | White Reality Check | **Not supported** |
 
 ---

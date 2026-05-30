@@ -85,6 +85,7 @@ PAGES = [
     "Executive Overview",
     "Random-Walk Lab",
     "Regime Intelligence",
+    "Model Zoo",
     "Corridor Roadmap",
     "Hedge Governance",
     "Flow Pressure",
@@ -924,6 +925,122 @@ def page_regime_intelligence() -> None:
         st.dataframe(sc, width="stretch")
 
 
+def page_model_zoo() -> None:
+    section_header(
+        "Model Zoo",
+        "Tests conditional forecastability — not FX prediction",
+    )
+
+    run_log = safe_read_csv(OUT / "model_zoo_run_log.csv")
+    fc = safe_read_csv(OUT / "model_zoo_forecast_scorecard.csv")
+    tr = safe_read_csv(OUT / "model_zoo_trading_scorecard.csv")
+    hg = safe_read_csv(OUT / "model_zoo_hedge_scorecard.csv")
+    wf = safe_read_csv(OUT / "model_zoo_walk_forward_scorecard.csv")
+
+    if run_log is None:
+        missing_section("python scripts/run_model_zoo.py", "Model zoo scorecards")
+        return
+
+    attempted = len(run_log)
+    success = int((run_log["status"] == "success").sum())
+    skipped = int((run_log["status"] == "skipped").sum())
+
+    section_header("Model Zoo Overview")
+    c1, c2, c3, c4, c5 = st.columns(5)
+    with c1:
+        st.markdown(metric_card("Attempted", str(attempted)), unsafe_allow_html=True)
+    with c2:
+        st.markdown(metric_card("Successful", str(success)), unsafe_allow_html=True)
+    with c3:
+        st.markdown(metric_card("Skipped", str(skipped)), unsafe_allow_html=True)
+    with c4:
+        best_fc = fc.sort_values("rmse_model").iloc[0]["model_name"] if fc is not None and not fc.empty else "—"
+        st.markdown(metric_card("Best forecast (lowest RMSE)", str(best_fc)), unsafe_allow_html=True)
+    with c5:
+        best_tr = tr.sort_values("sharpe_net", ascending=False).iloc[0]["model_name"] if tr is not None and not tr.empty else "—"
+        st.markdown(metric_card("Best trading (Sharpe net)", str(best_tr)), unsafe_allow_html=True)
+
+    if hg is not None and not hg.empty:
+        best_hg = hg.sort_values("cost_adjusted_risk_reduction", ascending=False).iloc[0]
+        st.markdown(
+            metric_card(
+                "Best hedge (cost-adj risk reduction)",
+                f"{best_hg['model_name']} ({best_hg['cost_adjusted_risk_reduction']})",
+            ),
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        '<div class="warn-card"><strong>Research discipline:</strong> A model that performs well '
+        "in-sample but fails walk-forward, random-walk tests, or cost-adjusted testing should "
+        "<strong>not</strong> be treated as evidence of forecastability.</div>",
+        unsafe_allow_html=True,
+    )
+
+    section_header("Forecast Model Scorecard")
+    if fc is not None and not fc.empty:
+        fc_cols = [
+            c for c in [
+                "model_name", "rmse_model", "rmse_random_walk", "mae_model", "mae_random_walk",
+                "model_beats_rw_rmse", "model_beats_rw_mae", "directional_accuracy",
+            ] if c in fc.columns
+        ]
+        st.dataframe(fc[fc_cols], width="stretch")
+    else:
+        st.info("No forecast scorecard.")
+
+    section_header("Trading Model Scorecard")
+    if tr is not None and not tr.empty:
+        tr_cols = [
+            c for c in [
+                "model_name", "total_return_net", "sharpe_net", "max_drawdown_net",
+                "number_of_trades", "total_transaction_cost", "percent_time_in_market",
+            ] if c in tr.columns
+        ]
+        st.dataframe(tr[tr_cols], width="stretch")
+    else:
+        st.info("No trading scorecard.")
+
+    section_header("Hedge Model Scorecard")
+    if hg is not None and not hg.empty:
+        hg_cols = [
+            c for c in [
+                "model_name", "volatility_reduction", "hedge_turnover", "total_hedge_cost",
+                "cost_adjusted_risk_reduction", "average_hedge_ratio",
+            ] if c in hg.columns
+        ]
+        st.dataframe(hg[hg_cols], width="stretch")
+    else:
+        st.info("No hedge scorecard.")
+
+    section_header("Walk-Forward Scorecard")
+    if wf is not None and not wf.empty:
+        st.dataframe(wf, width="stretch")
+    else:
+        st.info("Walk-forward scorecard not available. Enable model_zoo.walk_forward_enabled in config.")
+
+    section_header("Model Interpretation Cards")
+    families = [
+        ("Trend models", "MA crossover, regime trend, R2 only — test directional rules in trend regimes."),
+        ("Risk-off models", "R1 risk-off, dollar stress — reduce exposure when volatility or USD stress is elevated."),
+        ("Range models", "Mean reversion in range regimes — opposite logic to trend models."),
+        ("Flow models", "Payment-flow proxy model — exploratory calendar windows, not causal flow data."),
+        ("Hedge models", "Conservative hedge, no-change-in-range — governance when forecasts fail."),
+    ]
+    cols = st.columns(2)
+    for i, (title, desc) in enumerate(families):
+        with cols[i % 2]:
+            st.markdown(
+                f'<div class="info-card"><h4>{title}</h4><p>{desc}</p></div>',
+                unsafe_allow_html=True,
+            )
+
+    if skipped > 0:
+        section_header("Skipped Models")
+        skip_df = run_log[run_log["status"] == "skipped"][["model_name", "reason", "required_columns_missing"]]
+        st.dataframe(skip_df, width="stretch")
+
+
 def page_corridor_roadmap() -> None:
     section_header("Corridor Roadmap", "Expansion from USD/MXN into major remittance corridors")
 
@@ -1457,6 +1574,7 @@ def main() -> None:
         "Executive Overview": page_executive_overview,
         "Random-Walk Lab": page_random_walk_lab,
         "Regime Intelligence": page_regime_intelligence,
+        "Model Zoo": page_model_zoo,
         "Corridor Roadmap": page_corridor_roadmap,
         "Hedge Governance": page_hedge_governance,
         "Flow Pressure": page_flow_pressure,

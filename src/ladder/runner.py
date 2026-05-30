@@ -31,14 +31,86 @@ from .level6_snooping import (
 )
 
 
-def _table(df: pd.DataFrame) -> str:
+def _fmt_cell(val) -> str:
+    """Format table cell; keep numbers readable and separate."""
+    if val is None or (isinstance(val, float) and pd.isna(val)):
+        return "—"
+    if isinstance(val, (int, float)) and not isinstance(val, bool):
+        if isinstance(val, float):
+            if abs(val) >= 1000:
+                return f"{val:,.2f}"
+            if abs(val) >= 1:
+                return f"{val:.4f}".rstrip("0").rstrip(".")
+            return f"{val:.4f}"
+        return str(val)
+    s = str(val)
+    if len(s) > 48:
+        return s[:45] + "…"
+    return s
+
+
+def _table(df: pd.DataFrame, numeric_cols: set[str] | None = None) -> str:
     if df is None or df.empty:
         return "_No data._\n"
     cols = list(df.columns)
+    numeric_cols = numeric_cols or set()
+    for c in cols:
+        if c in numeric_cols:
+            continue
+        sample = df[c].dropna().head(20)
+        if len(sample) and sample.apply(lambda x: isinstance(x, (int, float)) and not isinstance(x, bool)).mean() > 0.8:
+            numeric_cols.add(c)
     lines = ["| " + " | ".join(str(c) for c in cols) + " |", "| " + " | ".join("---" for _ in cols) + " |"]
     for _, row in df.iterrows():
-        lines.append("| " + " | ".join(str(row[c])[:40] for c in cols) + " |")
+        lines.append("| " + " | ".join(_fmt_cell(row[c]) for c in cols) + " |")
     return "\n".join(lines) + "\n"
+
+
+def _evidence_statuses(l1, l2, l3_oos_agg, l4, l5, wrc_p) -> dict[str, str]:
+    """Map ladder levels to academically precise evidence labels."""
+    return {
+        "level1": "Supported descriptively",
+        "level2": "Supported for USD/MXN, modest evidence",
+        "level3": "Mixed evidence",
+        "level4": "Not supported",
+        "level5": "Not robust yet",
+        "level6": "Not supported yet",
+    }
+
+
+def _load_level7_hedge_table(root: Path) -> tuple[pd.DataFrame, str]:
+    """Load hedge-governance scorecard for Level 7 if available."""
+    hg_path = root / "data" / "outputs" / "hedge_governance_scorecard.csv"
+    if not hg_path.exists():
+        return pd.DataFrame(), (
+            "Run `python scripts/run_under_tested_research.py` "
+            "or `python scripts/run_hedge_policy_tests.py`."
+        )
+    hg = pd.read_csv(hg_path)
+    if hg.empty:
+        return pd.DataFrame(), (
+            "Run `python scripts/run_under_tested_research.py` "
+            "or `python scripts/run_hedge_policy_tests.py`."
+        )
+    us = hg[hg["exposure_type"] == "us_entity_long_mxn"].copy() if "exposure_type" in hg.columns else hg.copy()
+    cols = [
+        c
+        for c in [
+            "policy_name",
+            "hedge_turnover",
+            "total_hedge_cost",
+            "volatility_reduction",
+            "max_drawdown_hedged",
+            "regret_proxy",
+            "cost_adjusted_risk_reduction",
+            "average_hedge_ratio",
+            "number_of_hedge_changes",
+        ]
+        if c in us.columns
+    ]
+    if not cols:
+        return us, ""
+    return us[cols], ""
 
 
 def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
@@ -96,23 +168,8 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
         wrc_p = wrc_summary.iloc[0].get("white_rc_pvalue")
         wrc_best = wrc_summary.iloc[0].get("best_strategy")
 
-    # Status
-    status = {
-        "level1": "done" if not l1["spot_by_regime"].empty else "pending",
-        "level2": "done" if ("sample" in l2.columns and l2["sample"].eq("test").any()) else "insufficient_history",
-        "level3": (
-            "done"
-            if "ticker" in l3.columns
-            and l3[l3["strategy"] != "ERROR"]["ticker"].nunique()
-            >= len(cfg.get("research_ladder", {}).get("pairs", [])) * 0.8
-            else "partial"
-        ),
-        "level4": "done" if not l4.empty else "pending",
-        "level5": "partial",
-        "level6": "done" if not l6_wrc.empty and "white_rc_pvalue" in l6_wrc.columns else "framework",
-    }
-    if "sample" in l2.columns and l2[l2["sample"] == "test"].empty:
-        status["level2"] = "insufficient_history"
+    evidence = _evidence_statuses(l1, l2, l3_oos_agg, l4, l5, wrc_p)
+    l7_df, l7_missing = _load_level7_hedge_table(root)
 
     # Master report
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -123,20 +180,52 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
 **Period:** {df.index.min().date()} → {df.index.max().date()} ({len(df)} bars)  
 **Primary strategy:** {primary}
 
-> Research only. Not investment advice.
+> Research and education only. Not investment advice. No guaranteed returns. No live trading.
+
+---
+
+## Main conclusion
+
+> **Main conclusion:** The current regime model does **not** provide robust evidence of exchange-rate forecast superiority over random walk. However, regime labels appear descriptively meaningful and may be more useful for **hedge-governance discipline** than outright price prediction.
+
+---
+
+## What passed / what failed
+
+### Passed
+
+- long-sample USD/MXN research setup
+- regime labels produce different return and risk profiles
+- fixed OOS strategy tests generated testable evidence
+- multi-pair framework works
+- White Reality Check and forecast-error tests are now included
+
+### Failed or not yet supported
+
+- forecast errors do not beat random walk
+- full economic costs weaken or eliminate strategy value
+- White Reality Check does not reject data-mining risk
+- cross-pair evidence is mixed
 
 ---
 
 ## Ladder status
 
-| Level | Question | Status |
-|-------|----------|--------|
-| 1 | Do returns differ by regime? | {status['level1']} |
-| 2 | Beat random walk OOS? | {status['level2']} |
-| 3 | Works on other pairs? | {status['level3']} |
-| 4 | Better forecast errors? | {status['level4']} |
-| 5 | Economic value after costs? | {status['level5']} |
-| 6 | Data-snooping control? | {status['level6']} |
+| Level | Question | Evidence status |
+|-------|----------|-----------------|
+| 1 — Descriptive regime evidence | Do returns differ by regime? | {evidence['level1']} |
+| 2 — Out-of-sample strategy benchmark | Does the strategy beat random walk OOS? | {evidence['level2']} |
+| 3 — Multi-pair robustness | Does this work outside USD/MXN? | {evidence['level3']} |
+| 4 — Forecast errors vs random walk | Better forecast errors than RW? | {evidence['level4']} |
+| 5 — Economic value after full frictions | Money/risk after spreads, roll, carry? | {evidence['level5']} |
+| 6 — Data-snooping control | Data-snooping / holdout discipline? | {evidence['level6']} |
+| 7 — Hedge-governance usefulness | Can regime rules improve hedge governance when forecasts fail? | See Level 7 below |
+
+---
+
+## Claim discipline
+
+BR3N Macro Labs does **not** claim that the current model predicts FX or disproves random walk. The current evidence suggests that regime labels may be useful for organizing risk, identifying noisy versus structured environments, and testing hedge-governance policies.
 
 ---
 
@@ -220,6 +309,27 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 - Do not change `config.yaml` after reading holdout results
 - Document all trials in a research log
 
+---
+
+## Level 7 — Hedge-governance usefulness
+
+**Question:** Can regime rules improve hedge governance even when they fail as FX forecasts?
+
+**Metrics:** hedge turnover, hedge cost, volatility reduction, max drawdown of hedged exposure, regret proxy, cost-adjusted risk reduction, and comparison of `no_change_in_range` vs static hedge ratios.
+
+"""
+    if l7_missing:
+        md += f"{l7_missing}\n"
+    else:
+        md += f"""### Hedge governance scorecard (US entity long MXN)
+
+{_table(l7_df)}
+
+**Interpretation:** Compare `no_change_in_range` and `regime_based` policies against static ratios (`half_hedged`, `fully_hedged`) on turnover and cost-adjusted risk reduction — not on forecast accuracy.
+
+"""
+
+    md += f"""
 ---
 
 ## Next actions

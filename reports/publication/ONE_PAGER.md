@@ -13,15 +13,15 @@ Should hedge timing depend on market regime — specifically, should you **go fl
 ## Three findings
 
 **1. Regimes matter.**  
-Spot returns and strategy P&L differ by regime. Most `flat_range` P&L sits in **R2 (trend + low vol)** (~1.17 bps/day in sample).
+Spot returns and strategy P&L differ by regime. Most `flat_range` P&L sits in **R2 (trend + low vol)** (~1.11 bps/day in sample).
 
 **2. MXN passes OOS — mostly.**  
 `flat_range` beat “always flat” on all three test windows (2019–21, 2022–24, 2025–26). The first window was weak (+0.4%).
 
 **3. It’s not a crystal ball.**  
 - No forecast accuracy vs random walk  
-- Full frictions cut 20y return from ~20.99% to ~-6.77%  
-- White Reality Check p = 0.6355 → **does not** confirm data-mined alpha
+- Full frictions cut 20y return from ~20.36% to ~-6.47%  
+- White Reality Check p = 0.6075 → **does not** confirm data-mined alpha
 
 ## Cross-pair
 9 pairs tested. **57.9%** of OOS cells beat flat benchmark. Only **MXN + TRY** win all 3 splits.
