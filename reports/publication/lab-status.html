@@ -449,7 +449,7 @@ body.cover-page header.hero-cover {
   provenance, and layer health — not trading readiness or publication claims.</p>
 </div>
 <h1>FX Lab Status</h1>
-<p>_Generated: 2026-05-30 22:52 UTC_</p>
+<p>_Generated: 2026-05-30 23:49 UTC_</p>
 <p><strong>Overall health:</strong> <code>needs_work</code></p>
 <div class="principle-box"><p>Research-only. Not investment advice. No live trading.</p></div>
 <h2 id="dimension-scores">Dimension scores</h2>
@@ -459,12 +459,12 @@ body.cover-page header.hero-cover {
 <tr><td>data_quality</td><td>strong</td><td>Tier 1, flag OK, source fred_h10</td></tr>
 <tr><td>data_provenance</td><td>strong</td><td>source=fred_h10, tier=official, provenance_cols=True</td></tr>
 <tr><td>forecast_vs_random_walk</td><td>weak</td><td>RMSE beats RW: False; MAE beats RW: False; DM p-value: 0.4834</td></tr>
-<tr><td>model_zoo_forecast</td><td>strong</td><td>1/19 models beat RW by RMSE; scorecard source=fred_h10</td></tr>
+<tr><td>model_zoo_forecast</td><td>weak</td><td>1/19 models beat RW by RMSE; scorecard source=fred_h10</td></tr>
 <tr><td>ml_direction</td><td>weak</td><td>Best directional accuracy: 50.22% (threshold 53%)</td></tr>
 <tr><td>trading_oos</td><td>weak</td><td>flat_range positive Sharpe OOS folds: 9/20</td></tr>
 <tr><td>hedge_governance</td><td>strong</td><td>Best policy: fully_hedged (11.365); no_change_in_range turnover win vs regime_based: True</td></tr>
 <tr><td>news_layer</td><td>strong</td><td>high-news vol=15.0658%, normal=10.1613% (stress discriminates: True)</td></tr>
-<tr><td>carry_layer</td><td>insufficient_data</td><td>Carry placeholders only — add FRED rate series</td></tr>
+<tr><td>carry_layer</td><td>strong</td><td>carry proxy loaded; high-carry vol=13.4121%, low-carry=9.3822%</td></tr>
 <tr><td>carry_hedge_governance</td><td>weak</td><td>carry_adjusted=-64.377 vs regime_only=-59.152</td></tr>
 <tr><td>data_snooping_control</td><td>weak</td><td>White Reality Check p-value: 0.5980 (need < 0.05 to reject data mining)</td></tr>
 </tbody></table></div>

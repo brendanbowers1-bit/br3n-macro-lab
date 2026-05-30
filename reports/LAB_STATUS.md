@@ -1,6 +1,6 @@
 # FX Lab Status
 
-_Generated: 2026-05-30 22:52 UTC_
+_Generated: 2026-05-30 23:49 UTC_
 
 **Overall health:** `needs_work`
 
@@ -13,12 +13,12 @@ _Generated: 2026-05-30 22:52 UTC_
 | data_quality | strong | Tier 1, flag OK, source fred_h10 |
 | data_provenance | strong | source=fred_h10, tier=official, provenance_cols=True |
 | forecast_vs_random_walk | weak | RMSE beats RW: False; MAE beats RW: False; DM p-value: 0.4834 |
-| model_zoo_forecast | strong | 1/19 models beat RW by RMSE; scorecard source=fred_h10 |
+| model_zoo_forecast | weak | 1/19 models beat RW by RMSE; scorecard source=fred_h10 |
 | ml_direction | weak | Best directional accuracy: 50.22% (threshold 53%) |
 | trading_oos | weak | flat_range positive Sharpe OOS folds: 9/20 |
 | hedge_governance | strong | Best policy: fully_hedged (11.365); no_change_in_range turnover win vs regime_based: True |
 | news_layer | strong | high-news vol=15.0658%, normal=10.1613% (stress discriminates: True) |
-| carry_layer | insufficient_data | Carry placeholders only — add FRED rate series |
+| carry_layer | strong | carry proxy loaded; high-carry vol=13.4121%, low-carry=9.3822% |
 | carry_hedge_governance | weak | carry_adjusted=-64.377 vs regime_only=-59.152 |
 | data_snooping_control | weak | White Reality Check p-value: 0.5980 (need < 0.05 to reject data mining) |
 
