@@ -1,10 +1,36 @@
-# BR3N Macro Lab
+# BR3N Macro Labs
+
+**Markets. Images. Materials. Systems.**
+
+BR3N Macro Labs is an independent research and creative systems lab exploring markets, images, and materials through AI-assisted experimentation, evidence, and design.
+
+An independent AI-assisted research and creative lab studying when complex systems become structured, expressive, or transformable.
+
+The lab currently operates across three verticals:
+
+1. **FX Lab** — currency regime intelligence, payment-corridor risk, hedge governance
+2. **BR3N Photography** — fine-art photography, visual systems, luxury print research
+3. **Metastable Hydride Superconductor Initiative** — speculative materials-science and computational screening
+
+The initiative explores speculative pathways toward metastable hydride superconductors, with Mg₂IrH₅ → Mg₂IrH₆ as an initial proof-of-platform concept. The project emphasizes computational screening, safety review, expert collaboration, and replication standards. It does not claim a verified superconducting phase or experimental result.
+
+See `projects/metastable_hydride_superconductor_initiative/` for the full planning package.
+
+The common thread is disciplined experimentation: using AI, data, visual systems, and research methods to explore when complex systems become structured, expressive, or transformable.
+
+BR3N Macro Labs is an independent research and creative project. It is not affiliated with, endorsed by, or sponsored by any employer, university, financial institution, payment company, data vendor, laboratory, or research institution unless explicitly stated.
+
+See `reports/LAB_PORTFOLIO.md` for the full lab portfolio.
+
+---
+
+## FX Lab
 
 Research-only system to study **when FX pairs are more forecastable** by market regime.
 
 **Not investment advice.** No live trading. No broker API.
 
-BR3N Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, financial institution, payment company, trading platform, or data vendor. This research is for education, analysis, and risk-framing only.
+FX Lab research is for education, analysis, and risk-framing only.
 
 ## Install
 
@@ -47,7 +73,8 @@ streamlit run src/luxury_dashboard.py
 
 The dashboard includes:
 
-- Executive Overview
+- Lab Portfolio (umbrella — three verticals)
+- Executive Overview (FX Lab)
 - FX Desk Command Center (cross-border payments and treasury)
 - Random-Walk Lab
 - Regime Intelligence

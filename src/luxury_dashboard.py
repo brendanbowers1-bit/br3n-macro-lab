@@ -81,6 +81,7 @@ REGIME_INFO = {
 }
 
 PAGES = [
+    "Lab Portfolio",
     "Executive Overview",
     "FX Desk Command Center",
     "Random-Walk Lab",
@@ -611,10 +612,152 @@ def corridor_heatmap(
 
 
 # ── Page renderers ────────────────────────────────────────────────────────────
+def page_lab_portfolio() -> None:
+    """Umbrella lab portfolio — three verticals under BR3N Macro Labs."""
+    st.markdown(
+        '<div class="hero-title">BR3N MACRO LABS</div>'
+        '<div class="hero-subtitle">Markets. Images. Materials. Systems.</div>'
+        '<div class="hero-tagline">BR3N Macro Labs explores markets, images, and materials through '
+        "AI-assisted experimentation, evidence, and design.</div>",
+        unsafe_allow_html=True,
+    )
+
+    portfolio_md = safe_read_markdown(REPORTS / "LAB_PORTFOLIO.md")
+    cover_md = safe_read_markdown(REPORTS / "publication" / "LAB_COVER_PAGE.md")
+
+    public_base = "https://brendanbowers1-bit.github.io/br3n-macro-lab"
+
+    verticals = [
+        {
+            "title": "FX Lab",
+            "subtitle": "Conditional forecastability, payment-corridor risk, and hedge governance.",
+            "description": (
+                "The FX Lab studies when currency markets become less random by testing regime models "
+                "against random-walk benchmarks, trading-cost realities, and hedge-governance scorecards."
+            ),
+            "outputs": [
+                "FX regime dashboard",
+                "random-walk tests",
+                "corridor roadmap",
+                "hedge governance scorecards",
+                "FX desk command center",
+                "data quality reports",
+            ],
+            "status": "Active prototype",
+            "color": C["cyan"],
+            "public_url": f"{public_base}/fx-lab.html",
+        },
+        {
+            "title": "BR3N Photography",
+            "subtitle": "Fine-art photography, visual systems, and luxury print research.",
+            "description": (
+                "BR3N Photography develops black-and-white fine-art photography, urban abstraction, "
+                "AI-assisted concept work, and gallery-ready visual systems for prints and creative collections."
+            ),
+            "outputs": [
+                "print collections",
+                "black-and-white architectural series",
+                "gallery-ready edits",
+                "product mockups",
+                "artist statements",
+                "visual identity system",
+            ],
+            "status": "Creative studio vertical",
+            "color": C["gold"],
+            "public_url": f"{public_base}/photography.html",
+        },
+        {
+            "title": "Metastable Hydride Superconductor Initiative",
+            "subtitle": "Speculative materials research into metastable hydrides and ambient-pressure superconductivity pathways.",
+            "description": (
+                "A computational and experimental-roadmap project exploring whether hydrogen-deficient hydrides "
+                "can be used as parent phases for hypothetical hydrogen-inserted metastable derivatives."
+            ),
+            "flagship": "Mg₂IrH₅ → Mg₂IrH₆",
+            "outputs": [
+                "technical brief",
+                "literature map",
+                "computational workflow",
+                "experimental roadmap",
+                "safety and replication plan",
+                "outreach templates",
+                "fundraising brief",
+            ],
+            "status": "Speculative research planning. No verified experimental result.",
+            "color": C["purple"],
+            "public_url": f"{public_base}/mhsi.html",
+            "disclaimer": (
+                "This initiative does not claim discovery of a superconductor or verified synthesis of Mg₂IrH₆. "
+                "All candidate phases require computational validation, experimental safety review, "
+                "and independent replication."
+            ),
+        },
+    ]
+
+    st.markdown(
+        '<div class="callout">Locally, all three verticals live under this dashboard. '
+        f'Publicly, each vertical has its own page at <a href="{public_base}/">{public_base}/</a>.</div>',
+        unsafe_allow_html=True,
+    )
+
+    section_header("Lab Verticals", "Three disciplines under one umbrella")
+    for v in verticals:
+        outs = ", ".join(v["outputs"])
+        flagship_html = ""
+        if v.get("flagship"):
+            flagship_html = f'<p><strong>Flagship system:</strong> {v["flagship"]}</p>'
+        public_html = ""
+        if v.get("public_url"):
+            public_html = f'<p><strong>Public page:</strong> <a href="{v["public_url"]}">{v["public_url"]}</a></p>'
+        disclaimer_html = ""
+        if v.get("disclaimer"):
+            disclaimer_html = (
+                f'<p style="font-size:0.85rem;opacity:0.85;margin-top:0.5rem"><em>{v["disclaimer"]}</em></p>'
+            )
+        st.markdown(
+            f'<div class="info-card" style="border-left:3px solid {v["color"]}">'
+            f'<h4>{v["title"]}</h4>'
+            f'<p><em>{v["subtitle"]}</em></p>'
+            f'<p>{v["description"]}</p>'
+            f'{flagship_html}'
+            f'{public_html}'
+            f'<p><strong>Outputs:</strong> {outs}</p>'
+            f'<p>{status_badge(v["status"], "info")}</p>'
+            f'{disclaimer_html}'
+            f"</div>",
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        '<div class="callout"><strong>Shared theme:</strong> BR3N Macro Labs studies complex systems and '
+        "turns them into structured research, visual intelligence, and experimental roadmaps.</div>",
+        unsafe_allow_html=True,
+    )
+
+    if portfolio_md:
+        with st.expander("Full lab portfolio"):
+            st.markdown(portfolio_md)
+    if cover_md:
+        with st.expander("Public cover page"):
+            st.markdown(cover_md)
+
+    st.markdown(
+        '<div class="warning-box">'
+        "BR3N Macro Labs is an independent research and creative project — not affiliated with any "
+        "employer, university, financial institution, payment company, data vendor, laboratory, or "
+        "research institution unless explicitly stated.<br><br>"
+        "FX Lab: education and risk-framing only — not investment advice.<br>"
+        "Metastable Hydride Initiative: speculative planning — not verified experimental results.<br>"
+        "BR3N Photography: creative works and visual research."
+        "</div>",
+        unsafe_allow_html=True,
+    )
+
+
 def page_executive_overview() -> None:
     st.markdown(
         '<div class="hero-title">BR3N MACRO LABS</div>'
-        '<div class="hero-subtitle">FX Regime Intelligence for Conditional Forecastability and Hedge Governance</div>'
+        '<div class="hero-subtitle">FX Lab — Regime Intelligence for Conditional Forecastability and Hedge Governance</div>'
         '<div class="hero-tagline">An AI-assisted research lab testing when currency markets become less random — '
         "and when regime logic is useful for trading, hedging, and treasury decision-making.</div>",
         unsafe_allow_html=True,
@@ -1375,7 +1518,7 @@ def main() -> None:
     with st.sidebar:
         st.markdown('<div class="sidebar-brand">BR3N MACRO LABS</div>', unsafe_allow_html=True)
         st.markdown(
-            '<div class="sidebar-tag">Testing When Currency Markets Become Less Random</div>',
+            '<div class="sidebar-tag">Markets. Images. Materials. Systems.</div>',
             unsafe_allow_html=True,
         )
         page = st.radio("Navigation", PAGES, label_visibility="collapsed")
@@ -1387,6 +1530,7 @@ def main() -> None:
         )
 
     renderers = {
+        "Lab Portfolio": page_lab_portfolio,
         "Executive Overview": page_executive_overview,
         "FX Desk Command Center": page_fx_desk_command_center,
         "Random-Walk Lab": page_random_walk_lab,
