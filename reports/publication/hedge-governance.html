@@ -355,7 +355,7 @@ body.cover-page header.hero-cover {
 <hr/>
 <h2>1. Executive Summary</h2>
 <p>BR3N Macro Labs does <strong>not</strong> currently find robust evidence that the tested FX models forecast exchange rates better than random walk. However, the evidence suggests a more useful research direction: <strong>regime labels may improve hedge governance</strong> by reducing unnecessary hedge turnover, avoiding over-adjustment in noisy regimes, and supporting more disciplined hedge-ratio decisions.</p>
-<p>This memo separates <strong>forecast accuracy</strong>, <strong>trading P&amp;L</strong>, and <strong>hedge-governance usefulness</strong>. A model may fail as a price forecast but still be useful for hedge discipline.</p>
+<p>This memo separates <strong>forecast accuracy</strong>, <strong>trading P&L</strong>, and <strong>hedge-governance usefulness</strong>. A model may fail as a price forecast but still be useful for hedge discipline.</p>
 <hr/>
 <h2>2. Core Question</h2>
 <p><strong>Can regime classification improve hedge decisions even when price forecasts fail to beat random walk?</strong></p>
@@ -418,7 +418,7 @@ body.cover-page header.hero-cover {
 <p>BR3N Macro Labs does not claim that the current model predicts FX or disproves random walk.</p>
 <hr/>
 <h2>Related artifacts</h2>
-<ul><li>[Research Ladder](ladder.html)</li><li>[Model Zoo](model-zoo.html)</li><li>[Pre-Registration Log](../research_log/PRE_REGISTRATION_LOG.md)</li><li>Latest snapshot: <code>research_snapshots/</code> (dated folders)</li></ul>
+<ul><li><a href="ladder.html">Research Ladder</a></li><li><a href="model-zoo.html">Model Zoo</a></li><li><a href="../research_log/PRE_REGISTRATION_LOG.md">Pre-Registration Log</a></li><li>Latest snapshot: <code>research_snapshots/</code> (dated folders)</li></ul>
 <hr/>
 <h2>Pre-registration log</h2>
 <h1>Pre-Registration Log</h1>
@@ -439,7 +439,7 @@ body.cover-page header.hero-cover {
 <h2>Holdout Window</h2>
 <p>2025-01-01 → 2026-12-31 (per <code>research_ladder.holdout</code>) — <strong>do not tune on this window</strong>.</p>
 <h2>Model Rules</h2>
-<ul><li>Trade only in <code>R2_trend_low_vol</code></li><li>Direction: +1 if MA20 &gt; MA60, −1 if MA20 &lt; MA60, else 0</li><li>Position size: <code>target_vol / realized_vol_20d</code>, clipped to <code>[0, max_position]</code></li><li>Final position: <code>signal × position_size</code></li><li>Flat outside R2</li></ul>
+<ul><li>Trade only in <code>R2_trend_low_vol</code></li><li>Direction: +1 if MA20 > MA60, −1 if MA20 < MA60, else 0</li><li>Position size: <code>target_vol / realized_vol_20d</code>, clipped to <code>[0, max_position]</code></li><li>Final position: <code>signal × position_size</code></li><li>Flat outside R2</li></ul>
 <h2>Parameters Fixed Before Test</h2>
 <ul><li><code>model_zoo.r2_vol_scaled_target_vol: 0.10</code></li><li><code>model_zoo.r2_vol_scaled_max_position: 1.0</code></li><li><code>backtest.transaction_cost_bps: 2.0</code></li><li><code>backtest.execution_lag_days: 1</code></li></ul>
 <h2>Primary Metric</h2>

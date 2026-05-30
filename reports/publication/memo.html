@@ -344,7 +344,7 @@ body.cover-page header.hero-cover {
 <p>I built a small research lab to answer one practical question for treasury and risk teams:</p>
 <div class="principle-box"><p><strong>Should you adjust your USD/MXN hedge based on market regime — or is it better to stay flat when the market is “range-bound”?</strong></p></div>
 <p>Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: <strong>follow the trend in trending regimes; go flat in ranging regimes.</strong> I stress-tested that idea with a six-level “research ladder” — from descriptive stats to out-of-sample tests, nine currency pairs, forecast errors, trading costs, and data-snooping controls.</p>
-<p><strong>Bottom line:</strong> The regime story is real for USD/MXN — returns and strategy P&amp;L behave differently across regimes — and the “stay flat in range” rule beats doing nothing out-of-sample on MXN. But it is <strong>not</strong> a price-forecasting model, it <strong>does not</strong> cleanly generalize to every EM pair in every period, and it <strong>does not</strong> survive strict multiple-testing correction after searching across strategies.</p>
+<p><strong>Bottom line:</strong> The regime story is real for USD/MXN — returns and strategy P&L behave differently across regimes — and the “stay flat in range” rule beats doing nothing out-of-sample on MXN. But it is <strong>not</strong> a price-forecasting model, it <strong>does not</strong> cleanly generalize to every EM pair in every period, and it <strong>does not</strong> survive strict multiple-testing correction after searching across strategies.</p>
 <hr/>
 <h2>1. The idea in one minute</h2>
 <p>Most FX hedging programs use a fixed hedge ratio (e.g. 80% of exposure). This project asks whether <strong>when</strong> you hedge matters as much as <strong>how much</strong>.</p>
@@ -390,7 +390,7 @@ python scripts/build_publication.py
 <hr/>
 <h2>3. What I found</h2>
 <h3>Level 1 — Returns differ by regime (USD/MXN)</h3>
-<p>Spot USD/MXN returns are <strong>not</strong> the same in every regime. Strategy P&amp;L concentrates in <strong>R2 (trend + low vol)</strong>:</p>
+<p>Spot USD/MXN returns are <strong>not</strong> the same in every regime. Strategy P&L concentrates in <strong>R2 (trend + low vol)</strong>:</p>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>regime</th><th class="num">avg_bps_day_flat_range</th><th class="num">sharpe_flat_range</th></tr></thead>
 <tbody>
@@ -475,7 +475,7 @@ python scripts/build_publication.py
 <tbody>
 <tr><td>Best strategy (full sample)</td><td class="num"><code>r2_only</code></td></tr>
 <tr><td>White Reality Check p-value</td><td class="num">0.6075</td></tr>
-<tr><td>Survives 5% threshold?</td><td class="num"><strong>No</strong> (p &gt; 0.05)</td></tr>
+<tr><td>Survives 5% threshold?</td><td class="num"><strong>No</strong> (p > 0.05)</td></tr>
 </tbody></table></div>
 <p>Searching across <code>legacy</code>, <code>flat_range</code>, and <code>r2_only</code> and picking the best <strong>does not</strong> pass a formal reality check. Treat <code>r2_only</code>’s strong in-sample stats with skepticism.</p>
 <hr/>
