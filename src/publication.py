@@ -141,7 +141,7 @@ I built a small research lab to answer one practical question for treasury and r
 
 > **Should you adjust your USD/MXN hedge based on market regime — or is it better to stay flat when the market is “range-bound”?**
 
-Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: **follow the trend in trending regimes; go flat in ranging regimes.** I stress-tested that idea with a six-level “research ladder” — from descriptive stats to out-of-sample tests, nine currency pairs, forecast errors, trading costs, and data-snooping controls.
+Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: **follow the trend in trending regimes; go flat in ranging regimes.** I stress-tested that idea with an eight-level “research ladder” — from descriptive stats to out-of-sample tests, multi-pair robustness, forecast errors, trading costs, data-snooping controls, hedge governance, and institutional proof requirements.
 
 **Bottom line:** The regime story is real for USD/MXN — returns and strategy P&L behave differently across regimes — and the “stay flat in range” rule beats doing nothing out-of-sample on MXN. But it is **not** a price-forecasting model, it **does not** cleanly generalize to every EM pair in every period, and it **does not** survive strict multiple-testing correction after searching across strategies.
 

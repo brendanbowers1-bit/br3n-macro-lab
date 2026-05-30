@@ -127,28 +127,50 @@ The most promising use case for the current FX Lab is **not price prediction**. 
 
 Regime labels appear **descriptively meaningful** (Level 1 supported). They may be more useful for **organizing risk and hedge governance** than for beating random walk on exchange-rate forecasts.
 
+**Level 8 reminder:** The headline hedge result (`no_change_in_range` vs `regime_based` on USD/MXN) is **not** institutional proof. It is a disciplined hypothesis that must pass the nine-requirement bar before claim upgrade.
+
 ---
 
-## 9. Limitations
+## 9. Limitations and Level 8 proof bar
 
-- Prototype / Tier 4 data when FRED H.10 unavailable
-- Simplified hedge cost assumptions (bps on turnover)
-- No full forward curve yet
-- No bid/ask spread history yet
-- No real corporate exposure schedule yet
+Level 7 results are **prototype evidence only**. Before hedge-governance claims can be treated as institutionally valid, FX Lab requires **Level 8 — institutional proof** across:
+
+| Requirement | Pass threshold | Current status |
+|-------------|----------------|----------------|
+| Many currency pairs | ≥ 10 pairs with hedge scorecards | **Not met** — hedge: 1 pair; trading ladder: ~19 pairs |
+| Multiple decades | ≥ 20 years per pair | **Partial** — ~20–25y on USD/MXN only |
+| Official data | Tier-1 spot for all pairs in results | **Partial** — FRED H.10 when available; fallback possible |
+| Real / realistic forward costs | Forward points + roll in comparisons | **Not met** |
+| Static vs dynamic hedge policies | Same exposure + cost model | **Partial** — USD/MXN, mostly full sample |
+| Transaction costs | All metrics net of explicit costs | **Partial** — simplified bps on turnover |
+| Out-of-sample tests | Walk-forward OOS for hedge policies | **Not met** — trading OOS only |
+| Data-snooping controls | Pre-registered; White RC p < 0.05 | **Not met** — White RC p ≈ 0.61 |
+| Multiple corporate exposure types | ≥ 3 types published | **Partial** — mostly `us_entity_long_mxn` |
+
+**Upgrade gate:** Do **not** upgrade claims from prototype to institutional until **all nine** requirements are **Met** (not Partial).
+
+Additional limitations:
+
 - No accounting hedge-effectiveness testing (ASC 815 / IFRS 9)
 - No proprietary payment-flow data
-- Results require official / academic-grade data validation
+- No real corporate exposure schedule yet
+- No bid/ask spread history yet
+
+Full matrix: [Research Ladder — Level 8](ladder.html#level-8-institutional-proof-requirements)
 
 ---
 
 ## 10. Next Tests
 
-- Rerun on **FRED / Fed H.10** Tier 1 spot consistently
-- Add **forward points** and static hedge-policy benchmark charts
+**Priority — Level 8 (pre-registered):** Multi-pair walk-forward OOS hedge policy test — see [Pre-Registration Log](../research_log/PRE_REGISTRATION_LOG.md).
+
+- Run hedge scorecards on **≥ 10 pairs** with Tier-1 spot only
+- Walk-forward OOS for `no_change_in_range` vs `regime_based` vs static 50% / 75%
+- Add **forward points** and roll to cost model
+- Test **≥ 3 exposure types** per pair where data allows
+- White Reality Check on the **pre-registered policy set**
+- Rerun on **FRED / Fed H.10** consistently (no prototype fallback in published results)
 - Test **one new corridor** — preferably US_PH or US_IN
-- **Pre-register** next hypothesis before changing parameters (`reports/research_log/PRE_REGISTRATION_LOG.md`)
-- Compare `no_change_in_range` against static **50%**, static **75%**, and `regime_based` on turnover and cost-adjusted risk reduction
 - Evaluate **R2-only vol-scaled** trading model (pre-registered) — separate from hedge governance claims
 
 ---

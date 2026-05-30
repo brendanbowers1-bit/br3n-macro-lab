@@ -382,7 +382,7 @@ body.cover-page header.hero-cover {
 
 <div class="stat-grid">
   <div class="stat"><div class="label">MXN OOS splits</div><div class="value good">3/3</div><div class="label">beat flat benchmark</div></div>
-  <div class="stat"><div class="label">Cross-pair OOS</div><div class="value">58%</div><div class="label">cells beat benchmark</div></div>
+  <div class="stat"><div class="label">Cross-pair OOS</div><div class="value">56%</div><div class="label">cells beat benchmark</div></div>
   <div class="stat"><div class="label">White RC p-value</div><div class="value warn">0.6075</div><div class="label">data-snooping check</div></div>
 </div>
 
@@ -392,7 +392,7 @@ body.cover-page header.hero-cover {
     <li><strong>This page</strong> — 2-minute USD/MXN summary</li>
     <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations</li>
     <li><a href="corridor.html"><strong>Corridor roadmap</strong></a> — remittance corridor expansion</li>
-    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — seven-level checklist</li>
+    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — eight-level checklist</li>
     <li><a href="hedge-governance.html"><strong>Hedge governance memo</strong></a> — forecast failure, hedge usefulness</li>
     <li><a href="model-zoo.html"><strong>Model zoo</strong></a> — conditional forecastability tests</li>
     <li><a href="index.html"><strong>FX Lab home</strong></a></li>
@@ -400,22 +400,22 @@ body.cover-page header.hero-cover {
 </div>
 <h1>USD/MXN Regime Research — One Page</h1>
 <p><strong>2026-05-30</strong> · Research only · Not investment advice</p>
-<h2>Question</h2>
+<h2 id="question">Question</h2>
 <p>Should hedge timing depend on market regime — specifically, should you <strong>go flat when USD/MXN is range-bound</strong>?</p>
-<h2>Method (30 seconds)</h2>
+<h2 id="method-30-seconds">Method (30 seconds)</h2>
 <ol><li>Label each day: <strong>trend vs range</strong> × <strong>high vs low vol</strong> (4 regimes).</li><li>Strategy: trend-follow (MA20/60) in trending regimes; <strong>flat in range</strong>.</li><li>Test with a 6-level ladder: descriptive → OOS → 9 pairs → forecasts → costs → overfitting checks.</li></ol>
-<h2>Three findings</h2>
+<h2 id="three-findings">Three findings</h2>
 <p><strong>1. Regimes matter.</strong>  </p>
 <p>Spot returns and strategy P&L differ by regime. Most <code>flat_range</code> P&L sits in <strong>R2 (trend + low vol)</strong> (~1.11 bps/day in sample).</p>
 <p><strong>2. MXN passes OOS — mostly.</strong>  </p>
 <p><code>flat_range</code> beat “always flat” on all three test windows (2019–21, 2022–24, 2025–26). The first window was weak (+0.4%).</p>
 <p><strong>3. It’s not a crystal ball.</strong>  </p>
 <ul><li>No forecast accuracy vs random walk  </li><li>Full frictions cut 20y return from ~20.36% to ~-6.47%  </li><li>White Reality Check p = 0.6075 → <strong>does not</strong> confirm data-mined alpha</li></ul>
-<h2>Cross-pair</h2>
-<p>9 pairs tested. <strong>57.9%</strong> of OOS cells beat flat benchmark. Only <strong>MXN + TRY</strong> win all 3 splits.</p>
-<h2>Hedging sentence you can use</h2>
+<h2 id="cross-pair">Cross-pair</h2>
+<p>9 pairs tested. <strong>56.1%</strong> of OOS cells beat flat benchmark. Only <strong>MXN + TRY</strong> win all 3 splits.</p>
+<h2 id="hedging-sentence-you-can-use">Hedging sentence you can use</h2>
 <div class="principle-box"><p>“We use regime labels to decide when <strong>not</strong> to adjust the hedge — not to predict the exchange rate.”</p></div>
-<h2>Reproduce</h2>
+<h2 id="reproduce">Reproduce</h2>
 <pre><code class="bash">
 cd ~/fx_regime_lab
 python scripts/run_research_ladder.py --refresh

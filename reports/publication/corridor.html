@@ -379,9 +379,9 @@ body.cover-page header.hero-cover {
   <main class="wide">
     <p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p><h1>Remittance Corridor Roadmap Report</h1>
 <p><em>BR3N Macro Labs — research only, not investment advice.</em></p>
-<h2>1. Purpose</h2>
+<h2 id="1-purpose">1. Purpose</h2>
 <p>The corridor roadmap expands BR3N Macro Labs from USD/MXN into major remittance and payment corridors. This is exploratory research that separates <strong>forecast accuracy</strong>, <strong>trading P&L</strong>, and <strong>hedge-governance usefulness</strong>. Public calendar proxies are <strong>not</strong> actual order-flow or payment-flow data.</p>
-<h2>2. Corridor roadmap</h2>
+<h2 id="2-corridor-roadmap">2. Corridor roadmap</h2>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>corridor_id</th><th>sender_country</th><th>receiver_country</th><th>model_pair</th><th>official_pair_label</th><th class="num">priority</th><th>corridor_theme</th><th>data_warning</th></tr></thead>
 <tbody>
@@ -393,7 +393,7 @@ body.cover-page header.hero-cover {
 <tr><td>US_GT</td><td>United States</td><td>Guatemala</td><td>USDGTQ=X</td><td>USD/GTQ</td><td class="num">2</td><td>central_america_remittance_heavy</td><td>Yahoo data may be limited or unreliable. Official or bank data may be needed.</td></tr>
 <tr><td>GULF_IN_PROXY</td><td>UAE/Saudi Arabia proxy</td><td>India</td><td>USDINR=X</td><td>USD/INR proxy for Gulf pegs</td><td class="num">2</td><td>gulf_to_india_proxy</td><td>AED and SAR are USD-pegged, so USD/INR is a proxy, not a direct corridor pair.</td></tr>
 </tbody></table></div>
-<h2>3. Data availability summary</h2>
+<h2 id="3-data-availability-summary">3. Data availability summary</h2>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>corridor_id</th><th>model_pair</th><th>official_pair_label</th><th>status</th><th>error_message</th><th class="num">observations</th><th>start_date</th><th>end_date</th><th>data_source</th><th>data_tier</th></tr></thead>
 <tbody>
@@ -404,7 +404,7 @@ body.cover-page header.hero-cover {
 <tr><td>US_BR</td><td>USDBRL=X</td><td>USD/BRL</td><td>success</td><td>nan</td><td class="num">5335</td><td>2004-03-19</td><td>2026-05-25</td><td>cache_resanitized</td><td>prototype</td></tr>
 </tbody></table></div>
 <ul><li><strong>Succeeded:</strong> US_MX, US_IN, US_PH, US_CO, US_BR</li><li><strong>Failed:</strong> none</li></ul>
-<h2>4. Strategy comparison by corridor</h2>
+<h2 id="4-strategy-comparison-by-corridor">4. Strategy comparison by corridor</h2>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>corridor_id</th><th>best_sharpe_mode</th><th class="num">best_sharpe</th><th>best_drawdown_mode</th><th class="num">max_drawdown</th></tr></thead>
 <tbody>
@@ -444,7 +444,7 @@ body.cover-page header.hero-cover {
 <tr><td>US_BR</td><td>r2_only</td><td class="num">0.333</td><td class="num">-21.62</td><td class="num">78.02</td><td class="num">300</td></tr>
 <tr><td>US_BR</td><td>random_walk</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0</td></tr>
 </tbody></table></div>
-<h2>5. Random-walk validity by corridor</h2>
+<h2 id="5-random-walk-validity-by-corridor">5. Random-walk validity by corridor</h2>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>corridor_id</th><th>regime</th><th>random_walk_validity_label</th><th class="num">annualized_volatility</th><th class="num">autocorrelation_1d</th><th>interpretation</th></tr></thead>
 <tbody>
@@ -469,7 +469,7 @@ body.cover-page header.hero-cover {
 <tr><td>US_BR</td><td>R3_range_high_vol</td><td>Potential structure</td><td class="num">20.32</td><td class="num">-0.1986</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
 <tr><td>US_BR</td><td>R4_range_low_vol</td><td>Potential structure</td><td class="num">10.278</td><td class="num">-0.0275</td><td>Some trend or autocorrelation — conditional models may warrant testing OOS.</td></tr>
 </tbody></table></div>
-<h2>6. Flow-pressure window results</h2>
+<h2 id="6-flow-pressure-window-results">6. Flow-pressure window results</h2>
 <p>_Exploratory only — calendar proxies are not causal payment-flow data._</p>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>corridor_id</th><th class="num">observations_flow_window</th><th class="num">observations_normal</th><th class="num">volatility_flow_window</th><th class="num">volatility_normal</th><th class="num">p_value_return_difference</th><th>interpretation</th></tr></thead>
@@ -480,7 +480,7 @@ body.cover-page header.hero-cover {
 <tr><td>US_CO</td><td class="num">3963</td><td class="num">1794</td><td class="num">18.5999</td><td class="num">18.4713</td><td class="num">0.1327</td><td>No strong evidence from public flow proxies.</td></tr>
 <tr><td>US_BR</td><td class="num">3657</td><td class="num">1678</td><td class="num">17.3841</td><td class="num">20.1473</td><td class="num">0.3611</td><td>Flow windows show volatility differences but weak return evidence.</td></tr>
 </tbody></table></div>
-<h2>7. Hedge-governance results</h2>
+<h2 id="7-hedge-governance-results">7. Hedge-governance results</h2>
 <p>_Simplified hedge-governance research — not ASC 815 / IFRS 9 hedge accounting._</p>
 <p>Best policy by cost-adjusted risk reduction:</p>
 <div class="table-wrap"><table class="data-table">
@@ -492,11 +492,11 @@ body.cover-page header.hero-cover {
 <tr><td>US_MX</td><td>fully_hedged</td><td class="num">11.365</td><td class="num">1.0</td><td class="num">0.02</td><td class="num">1.0</td></tr>
 <tr><td>US_PH</td><td>fully_hedged</td><td class="num">8.042</td><td class="num">1.0</td><td class="num">0.02</td><td class="num">1.0</td></tr>
 </tbody></table></div>
-<h2>8. Strongest corridors for further research</h2>
+<h2 id="8-strongest-corridors-for-further-research">8. Strongest corridors for further research</h2>
 <ul><li><strong>US_MX</strong> (USD/MXN): remittance_heavy</li><li><strong>US_IN</strong> (USD/INR): remittance_heavy_policy_sensitive</li><li><strong>US_PH</strong> (USD/PHP): remittance_heavy</li><li><strong>US_CO</strong> (USD/COP): latam_remittance_oil_risk</li><li><strong>US_BR</strong> (USD/BRL): latam_macro_risk</li></ul>
-<h2>9. Weakest / unreliable data corridors</h2>
+<h2 id="9-weakest-unreliable-data-corridors">9. Weakest / unreliable data corridors</h2>
 <ul><li>US_IN — INR may require NDF/official data validation for serious research.</li><li>US_PH — Validate against BSP or official data for publication.</li><li>US_CO — COP can be volatile and oil/risk sensitive.</li><li>US_BR — BRL can be volatile and sensitive to global risk/commodities.</li></ul>
-<h2>10. Next data upgrades</h2>
+<h2 id="10-next-data-upgrades">10. Next data upgrades</h2>
 <ul><li>Federal Reserve H.10 / FRED spot series where available (USD/MXN, USD/INR, etc.)</li><li>BIS effective exchange rates for cross-checks</li><li>World Bank remittance inflows by corridor</li><li>Central bank remittance and spot data (Banxico, RBI, BSP, Banrep, BCB)</li><li>Professional forward/FX data (Bloomberg, LSEG, FactSet) for bid/ask and forward points</li><li>Legally usable proprietary payment-flow data only with proper authorization</li></ul>
 <hr/>
 <p><strong>Disclaimer:</strong> This is exploratory research. Public calendar proxies are not actual order-flow or payment-flow data. Results should be treated as hypotheses until validated with academic-grade data and, where legally available, proprietary payment-flow data.</p>

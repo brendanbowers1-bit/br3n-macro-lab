@@ -390,25 +390,25 @@ body.cover-page header.hero-cover {
 
 <p><strong>Latest research snapshot:</strong> <code>research_snapshots/2026-05-30/</code></p>
 <h1>Forecast Failure and Hedge Usefulness</h1>
-<h2>Regime-Based FX Hedge Governance Under Random-Walk Benchmarks</h2>
+<h2 id="regime-based-fx-hedge-governance-under-random-walk-benchmarks">Regime-Based FX Hedge Governance Under Random-Walk Benchmarks</h2>
 <p><strong>BR3N Macro Labs — FX Lab</strong>  </p>
 <p><strong>Generated:</strong> 2026-05-30</p>
 <div class="principle-box"><p>Research and risk-framing only. Not investment advice. No live trading.</p></div>
 <hr/>
-<h2>1. Executive Summary</h2>
+<h2 id="1-executive-summary">1. Executive Summary</h2>
 <p>BR3N Macro Labs does <strong>not</strong> currently find robust evidence that the tested FX models forecast exchange rates better than random walk. However, the evidence suggests a more useful research direction: <strong>regime labels may improve hedge governance</strong> by reducing unnecessary hedge turnover, avoiding over-adjustment in noisy regimes, and supporting more disciplined hedge-ratio decisions.</p>
 <p>This memo separates <strong>forecast accuracy</strong>, <strong>trading P&L</strong>, and <strong>hedge-governance usefulness</strong>. A model may fail as a price forecast but still be useful for hedge discipline.</p>
 <hr/>
-<h2>2. Core Question</h2>
+<h2 id="2-core-question">2. Core Question</h2>
 <p><strong>Can regime classification improve hedge decisions even when price forecasts fail to beat random walk?</strong></p>
 <hr/>
-<h2>3. Why This Matters</h2>
+<h2 id="3-why-this-matters">3. Why This Matters</h2>
 <p>A <strong>trading model</strong> asks: Can this signal generate risk-adjusted returns after costs?</p>
 <p>A <strong>forecasting model</strong> asks: Can this reduce RMSE or MAE versus random walk?</p>
 <p>A <strong>hedge-governance model</strong> asks: Can this reduce unwanted exposure, turnover, cost, and decision noise?</p>
 <p>These are different questions. FX Lab tests them separately so results are not over-interpreted.</p>
 <hr/>
-<h2>4. Current Evidence</h2>
+<h2 id="4-current-evidence">4. Current Evidence</h2>
 <h3>Forecast accuracy</h3>
 <ul><li><strong>13 of 14</strong> model-zoo forecast tests <strong>do not</strong> beat random walk by RMSE on USD/MXN full sample.</li><li><strong>0</strong> models beat random walk by MAE.</li><li>One model (<code>flow_pressure_model</code>) shows a <strong>marginal</strong> RMSE improvement (~0.000001) — not economically meaningful.</li><li><strong>Conclusion:</strong> Conditional forecastability is <strong>not supported</strong> on standard forecast-error tests.</li></ul>
 <h3>Trading / strategy</h3>
@@ -432,70 +432,122 @@ body.cover-page header.hero-cover {
 <ul><li>Turnover: <strong>26.9 vs 98.4</strong> (~73% lower)</li><li>Hedge cost: <strong>0.54% vs 1.97%</strong></li><li>Cost-adjusted risk reduction: <strong>6.63 vs 5.25</strong> (better on cost-adjusted basis)</li></ul>
 <p><strong>Conclusion:</strong> Reactive regime hedging can <strong>over-trade</strong>. Freezing adjustments in range regimes (<code>no_change_in_range</code>) may improve <strong>hedge discipline</strong> without claiming FX prediction.</p>
 <hr/>
-<h2>5. Hedge Governance Hypothesis</h2>
+<h2 id="5-hedge-governance-hypothesis">5. Hedge Governance Hypothesis</h2>
 <p><strong>Range-bound regimes (R3/R4):</strong> Frequent hedge-ratio changes may create more transaction cost and decision noise than risk reduction. <em>Hypothesis: hold hedge ratio steady in range regimes.</em></p>
 <p><strong>Orderly trend regimes (R2):</strong> Gradual hedge-ratio adjustment toward a target may be more useful than daily reactive changes.</p>
 <p><strong>High-volatility trend regimes (R1):</strong> The correct response may be <strong>risk escalation</strong>, tranching, or option-style protection rather than blind directional hedging or constant ratio churn.</p>
 <hr/>
-<h2>6. Policies Tested</h2>
+<h2 id="6-policies-tested">6. Policies Tested</h2>
 <ul><li><code>never_hedged</code></li><li><code>half_hedged</code></li><li><code>mostly_hedged</code></li><li><code>fully_hedged</code></li><li><code>regime_based</code></li><li><code>r2_active_policy</code></li><li><code>no_change_in_range</code></li><li><code>volatility_triggered</code></li></ul>
 <hr/>
-<h2>7. Metrics</h2>
+<h2 id="7-metrics">7. Metrics</h2>
 <p>Each policy is evaluated on:</p>
 <ul><li>hedge turnover</li><li>total hedge cost</li><li>average hedge ratio</li><li>unhedged volatility</li><li>hedged volatility</li><li>volatility reduction</li><li>max drawdown unhedged</li><li>max drawdown hedged</li><li>cost-adjusted risk reduction</li><li>regret proxy</li></ul>
 <p>Source: <code>data/outputs/hedge_governance_scorecard.csv</code>, <code>data/outputs/model_zoo_hedge_scorecard.csv</code></p>
 <hr/>
-<h2>8. Main Interpretation</h2>
+<h2 id="8-main-interpretation">8. Main Interpretation</h2>
 <p>The most promising use case for the current FX Lab is <strong>not price prediction</strong>. It is <strong>hedge discipline</strong>: identifying when to avoid unnecessary hedge changes, when to adjust gradually, and when market regimes justify escalation.</p>
 <p>Regime labels appear <strong>descriptively meaningful</strong> (Level 1 supported). They may be more useful for <strong>organizing risk and hedge governance</strong> than for beating random walk on exchange-rate forecasts.</p>
+<p><strong>Level 8 reminder:</strong> The headline hedge result (<code>no_change_in_range</code> vs <code>regime_based</code> on USD/MXN) is <strong>not</strong> institutional proof. It is a disciplined hypothesis that must pass the nine-requirement bar before claim upgrade.</p>
 <hr/>
-<h2>9. Limitations</h2>
-<ul><li>Prototype / Tier 4 data when FRED H.10 unavailable</li><li>Simplified hedge cost assumptions (bps on turnover)</li><li>No full forward curve yet</li><li>No bid/ask spread history yet</li><li>No real corporate exposure schedule yet</li><li>No accounting hedge-effectiveness testing (ASC 815 / IFRS 9)</li><li>No proprietary payment-flow data</li><li>Results require official / academic-grade data validation</li></ul>
+<h2 id="9-limitations-and-level-8-proof-bar">9. Limitations and Level 8 proof bar</h2>
+<p>Level 7 results are <strong>prototype evidence only</strong>. Before hedge-governance claims can be treated as institutionally valid, FX Lab requires <strong>Level 8 — institutional proof</strong> across:</p>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>Requirement</th><th>Pass threshold</th><th>Current status</th></tr></thead>
+<tbody>
+<tr><td>Many currency pairs</td><td>≥ 10 pairs with hedge scorecards</td><td><strong>Not met</strong> — hedge: 1 pair; trading ladder: ~19 pairs</td></tr>
+<tr><td>Multiple decades</td><td>≥ 20 years per pair</td><td><strong>Partial</strong> — ~20–25y on USD/MXN only</td></tr>
+<tr><td>Official data</td><td>Tier-1 spot for all pairs in results</td><td><strong>Partial</strong> — FRED H.10 when available; fallback possible</td></tr>
+<tr><td>Real / realistic forward costs</td><td>Forward points + roll in comparisons</td><td><strong>Not met</strong></td></tr>
+<tr><td>Static vs dynamic hedge policies</td><td>Same exposure + cost model</td><td><strong>Partial</strong> — USD/MXN, mostly full sample</td></tr>
+<tr><td>Transaction costs</td><td>All metrics net of explicit costs</td><td><strong>Partial</strong> — simplified bps on turnover</td></tr>
+<tr><td>Out-of-sample tests</td><td>Walk-forward OOS for hedge policies</td><td><strong>Not met</strong> — trading OOS only</td></tr>
+<tr><td>Data-snooping controls</td><td>Pre-registered; White RC p < 0.05</td><td><strong>Not met</strong> — White RC p ≈ 0.61</td></tr>
+<tr><td>Multiple corporate exposure types</td><td>≥ 3 types published</td><td><strong>Partial</strong> — mostly <code>us_entity_long_mxn</code></td></tr>
+</tbody></table></div>
+<p><strong>Upgrade gate:</strong> Do <strong>not</strong> upgrade claims from prototype to institutional until <strong>all nine</strong> requirements are <strong>Met</strong> (not Partial).</p>
+<p>Additional limitations:</p>
+<ul><li>No accounting hedge-effectiveness testing (ASC 815 / IFRS 9)</li><li>No proprietary payment-flow data</li><li>No real corporate exposure schedule yet</li><li>No bid/ask spread history yet</li></ul>
+<p>Full matrix: <a href="ladder.html#level-8-institutional-proof-requirements">Research Ladder — Level 8</a></p>
 <hr/>
-<h2>10. Next Tests</h2>
-<ul><li>Rerun on <strong>FRED / Fed H.10</strong> Tier 1 spot consistently</li><li>Add <strong>forward points</strong> and static hedge-policy benchmark charts</li><li>Test <strong>one new corridor</strong> — preferably US_PH or US_IN</li><li><strong>Pre-register</strong> next hypothesis before changing parameters (<code>reports/research_log/PRE_REGISTRATION_LOG.md</code>)</li><li>Compare <code>no_change_in_range</code> against static <strong>50%</strong>, static <strong>75%</strong>, and <code>regime_based</code> on turnover and cost-adjusted risk reduction</li><li>Evaluate <strong>R2-only vol-scaled</strong> trading model (pre-registered) — separate from hedge governance claims</li></ul>
+<h2 id="10-next-tests">10. Next Tests</h2>
+<p><strong>Priority — Level 8 (pre-registered):</strong> Multi-pair walk-forward OOS hedge policy test — see <a href="../research_log/PRE_REGISTRATION_LOG.md">Pre-Registration Log</a>.</p>
+<ul><li>Run hedge scorecards on <strong>≥ 10 pairs</strong> with Tier-1 spot only</li><li>Walk-forward OOS for <code>no_change_in_range</code> vs <code>regime_based</code> vs static 50% / 75%</li><li>Add <strong>forward points</strong> and roll to cost model</li><li>Test <strong>≥ 3 exposure types</strong> per pair where data allows</li><li>White Reality Check on the <strong>pre-registered policy set</strong></li><li>Rerun on <strong>FRED / Fed H.10</strong> consistently (no prototype fallback in published results)</li><li>Test <strong>one new corridor</strong> — preferably US_PH or US_IN</li><li>Evaluate <strong>R2-only vol-scaled</strong> trading model (pre-registered) — separate from hedge governance claims</li></ul>
 <hr/>
-<h2>11. Disclaimer</h2>
+<h2 id="11-disclaimer">11. Disclaimer</h2>
 <p>Research and risk-framing only. Not investment advice. No guaranteed returns. No live trading.</p>
 <p>BR3N Macro Labs does not claim that the current model predicts FX or disproves random walk.</p>
 <hr/>
-<h2>Related artifacts</h2>
+<h2 id="related-artifacts">Related artifacts</h2>
 <ul><li><a href="ladder.html">Research Ladder</a></li><li><a href="model-zoo.html">Model Zoo</a></li><li><a href="../research_log/PRE_REGISTRATION_LOG.md">Pre-Registration Log</a></li><li>Latest snapshot: <code>research_snapshots/</code> (dated folders)</li></ul>
 <hr/>
 <h2>Pre-registration log</h2>
 <h1>Pre-Registration Log</h1>
 <p>BR3N Macro Labs — FX Lab. Register hypotheses <strong>before</strong> tuning parameters or reading holdout results.</p>
 <hr/>
-<h2>Test Name</h2>
+<h2 id="test-name">Test Name</h2>
 <p>R2-Only Vol-Scaled USD/MXN Test</p>
-<h2>Date Registered</h2>
+<h2 id="date-registered">Date Registered</h2>
 <p>2026-05-30</p>
-<h2>Hypothesis</h2>
+<h2 id="hypothesis">Hypothesis</h2>
 <p>An R2-only trend model with volatility-scaled position sizing improves drawdown-adjusted trading performance versus the unscaled R2-only model, but may still fail to beat random walk on forecast accuracy.</p>
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 <p>USD/MXN daily features + regimes (<code>data/processed/usdmxn_features_regimes_flow.csv</code> preferred).</p>
-<h2>Training Window</h2>
+<h2 id="training-window">Training Window</h2>
 <p>Walk-forward train windows per <code>config.yaml</code> (<code>train_years: 5</code>); fixed MA/regime rules — no parameter search on test.</p>
-<h2>Test Window</h2>
+<h2 id="test-window">Test Window</h2>
 <p>Walk-forward test windows (<code>test_years: 1</code>); fixed OOS ladder splits in <code>research_ladder.level2_splits</code>.</p>
-<h2>Holdout Window</h2>
+<h2 id="holdout-window">Holdout Window</h2>
 <p>2025-01-01 → 2026-12-31 (per <code>research_ladder.holdout</code>) — <strong>do not tune on this window</strong>.</p>
-<h2>Model Rules</h2>
+<h2 id="model-rules">Model Rules</h2>
 <ul><li>Trade only in <code>R2_trend_low_vol</code></li><li>Direction: +1 if MA20 > MA60, −1 if MA20 < MA60, else 0</li><li>Position size: <code>target_vol / realized_vol_20d</code>, clipped to <code>[0, max_position]</code></li><li>Final position: <code>signal × position_size</code></li><li>Flat outside R2</li></ul>
-<h2>Parameters Fixed Before Test</h2>
+<h2 id="parameters-fixed-before-test">Parameters Fixed Before Test</h2>
 <ul><li><code>model_zoo.r2_vol_scaled_target_vol: 0.10</code></li><li><code>model_zoo.r2_vol_scaled_max_position: 1.0</code></li><li><code>backtest.transaction_cost_bps: 2.0</code></li><li><code>backtest.execution_lag_days: 1</code></li></ul>
-<h2>Primary Metric</h2>
+<h2 id="primary-metric">Primary Metric</h2>
 <p>Out-of-sample Sharpe net of transaction costs (walk-forward aggregate).</p>
-<h2>Secondary Metrics</h2>
+<h2 id="secondary-metrics">Secondary Metrics</h2>
 <p>Max drawdown net, total transaction cost, percent time in market, RMSE vs random walk, MAE vs random walk.</p>
-<h2>What Would Count as Support?</h2>
+<h2 id="what-would-count-as-support">What Would Count as Support?</h2>
 <ul><li>Vol-scaled R2-only beats unscaled <code>r2_only_model</code> on OOS Sharpe net <strong>and</strong> max drawdown net</li><li>Improvement survives walk-forward (not only full sample)</li><li>Forecast-error tests still reported honestly even if trading improves</li></ul>
-<h2>What Would Count as Failure?</h2>
+<h2 id="what-would-count-as-failure">What Would Count as Failure?</h2>
 <ul><li>No improvement vs unscaled R2-only on OOS Sharpe or drawdown</li><li>Higher turnover/costs without risk benefit</li><li>Any claim of forecast superiority without RMSE/MAE beating random walk</li></ul>
-<h2>Notes</h2>
+<h2 id="notes">Notes</h2>
 <p><strong>Claim discipline:</strong> Even if trading metrics improve, this does <strong>not</strong> prove FX forecastability unless forecast-error tests also improve versus random walk.</p>
 <hr/>
-<h2>Template (copy for next test)</h2>
+<h2 id="test-name">Test Name</h2>
+<p>Multi-Pair Hedge Governance OOS Test</p>
+<h2 id="date-registered">Date Registered</h2>
+<p>2026-05-30</p>
+<h2 id="hypothesis">Hypothesis</h2>
+<p><code>no_change_in_range</code> improves hedge discipline versus <code>regime_based</code> on a multi-pair panel: lower turnover and equal or better cost-adjusted risk reduction, <strong>out of sample</strong>, net of realistic hedge costs including forward roll where available.</p>
+<h2 id="dataset">Dataset</h2>
+<p>Daily spot + regime labels for ≥ 10 FX pairs from Tier-1 sources (FRED H.10 or licensed feeds). Pairs: start with <code>research_ladder.multipair</code> list; minimum 10 with ≥ 15 years history.</p>
+<h2 id="training-window">Training Window</h2>
+<p>Walk-forward train per pair: <code>train_years: 5</code> from <code>config.yaml</code>. Regime rules fixed — no parameter search on test windows.</p>
+<h2 id="test-window">Test Window</h2>
+<p>Walk-forward test: <code>test_years: 1</code>, rolled across sample. Fixed ladder splits (2019–2021, 2022–2024, 2025–2026) reported separately.</p>
+<h2 id="holdout-window">Holdout Window</h2>
+<p>2025-01-01 → 2026-12-31 (per <code>research_ladder.holdout</code>) — <strong>do not tune on this window</strong>.</p>
+<h2 id="model-rules">Model Rules</h2>
+<p><strong>Policies compared (fixed set):</strong></p>
+<ul><li><code>half_hedged</code> (static 50%)</li><li><code>mostly_hedged</code> (static 75%)</li><li><code>regime_based</code></li><li><code>no_change_in_range</code></li><li><code>volatility_triggered</code></li></ul>
+<p><strong>Exposure types (minimum 3):</strong></p>
+<ul><li><code>us_entity_long_mxn</code> (or pair-equivalent receiver exposure)</li><li><code>receiver_currency_exposure</code></li><li><code>usd_liability_exposure</code> / pair-equivalent USD-liability stress</li></ul>
+<h2 id="parameters-fixed-before-test">Parameters Fixed Before Test</h2>
+<ul><li>Regime classification: existing R1–R4 rules from <code>config.yaml</code> (no retuning)</li><li><code>backtest.transaction_cost_bps: 2.0</code></li><li>Hedge turnover cost: existing bps model; forward roll added when data available</li><li><code>MAX_DAILY_HEDGE_STEP: 0.10</code> (from <code>hedge_governance.py</code>)</li></ul>
+<h2 id="primary-metric">Primary Metric</h2>
+<p>Median <strong>cost-adjusted risk reduction</strong> of <code>no_change_in_range</code> vs <code>regime_based</code> across pairs, <strong>OOS walk-forward aggregate</strong>.</p>
+<h2 id="secondary-metrics">Secondary Metrics</h2>
+<ul><li>Median turnover reduction (<code>no_change_in_range</code> vs <code>regime_based</code>)</li><li>Max drawdown hedged (OOS)</li><li>Volatility reduction net of costs</li><li>% of pairs where <code>no_change_in_range</code> beats static 50% on cost-adjusted risk reduction</li><li>Regret proxy</li></ul>
+<h2 id="what-would-count-as-support">What Would Count as Support?</h2>
+<ul><li>H8a: <code>no_change_in_range</code> beats <code>regime_based</code> on cost-adjusted risk reduction OOS on <strong>≥ 50%</strong> of pairs</li><li>H8b: Median turnover reduction <strong>≥ 40%</strong> without worse max drawdown hedged</li><li>H8c: Results hold on <strong>Tier-1 spot only</strong> (no prototype fallback in published scorecards)</li><li>H8d: Forward-point-adjusted costs do <strong>not</strong> reverse ranking vs static 50% / 75%</li><li>H8e: Best policy survives <strong>White Reality Check</strong> on pre-registered policy set (p < 0.05)</li><li>H8f: <strong>≥ 3 exposure types</strong> show consistent turnover discipline</li></ul>
+<h2 id="what-would-count-as-failure">What Would Count as Failure?</h2>
+<ul><li>OOS cost-adjusted risk reduction does not favor <code>no_change_in_range</code> on a majority of pairs</li><li>Turnover savings disappear after forward roll / realistic execution costs</li><li>Results driven by one pair or one exposure type only</li><li>White RC fails to reject data-mining on the policy set</li><li>Any upgrade of claim language before all nine Level 8 requirements are <strong>Met</strong></li></ul>
+<h2 id="notes">Notes</h2>
+<p><strong>Claim discipline:</strong> This test is for <strong>hedge governance</strong>, not FX forecastability. Forecast-error tests (Level 4) must still be reported honestly even if hedge discipline improves.</p>
+<p><strong>Level 8 gate:</strong> Partial pass on any requirement keeps claims at <strong>prototype</strong> tier only.</p>
+<hr/>
+<h2 id="template-copy-for-next-test">Template (copy for next test)</h2>
 <h3>Test Name</h3>
 <h3>Date Registered</h3>
 <h3>Hypothesis</h3>

@@ -27,7 +27,7 @@ HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
     ("research.html", "USD/MXN Regime Research", "2-minute summary and key stats", "Research"),
     ("hedge-governance.html", "Hedge Governance Memo", "Forecast failure, hedge usefulness", "Flagship"),
     ("model-zoo.html", "Model Zoo", "Conditional forecastability tests", "Models"),
-    ("ladder.html", "Evidence Ladder", "Seven-level evidence framework", "Methods"),
+    ("ladder.html", "Evidence Ladder", "Eight-level evidence framework", "Methods"),
     ("memo.html", "Full Research Note", "Methods, tables, limitations", "Deep dive"),
     ("corridor.html", "Corridor Roadmap", "Multi-corridor payment research", "Corridors"),
     ("fx_desk.html", "FX Desk Framework", "Cross-border payments and treasury decisions", "Desk"),
@@ -518,7 +518,7 @@ def _md_to_html(text: str, *, research_links: list[tuple[str, str, str, str]] | 
             i = _skip_research_link_bullets(lines, i)
             continue
         elif line.startswith("## "):
-            out.append(f"<h2>{_inline(line[3:])}</h2>")
+            out.append(_h2(line[3:]))
         elif line.startswith("### "):
             out.append(f"<h3>{_inline(line[4:])}</h3>")
         elif line.startswith(">") or line.startswith("> "):
@@ -556,6 +556,18 @@ def _md_to_html(text: str, *, research_links: list[tuple[str, str, str, str]] | 
         i += 1
 
     return "\n".join(out)
+
+
+def _heading_id(title: str) -> str:
+    slug = re.sub(r"[^\w\s-]", "", title.lower())
+    return re.sub(r"\s+", "-", slug.strip())
+
+
+def _h2(title: str, *, with_id: bool = True) -> str:
+    inner = _inline(title)
+    if with_id:
+        return f'<h2 id="{html.escape(_heading_id(title), quote=True)}">{inner}</h2>'
+    return f"<h2>{inner}</h2>"
 
 
 def _inline(s: str) -> str:
@@ -816,7 +828,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     <li><strong>This page</strong> — 2-minute USD/MXN summary</li>
     <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations</li>
     <li><a href="corridor.html"><strong>Corridor roadmap</strong></a> — remittance corridor expansion</li>
-    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — seven-level checklist</li>
+    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — eight-level checklist</li>
     <li><a href="hedge-governance.html"><strong>Hedge governance memo</strong></a> — forecast failure, hedge usefulness</li>
     <li><a href="model-zoo.html"><strong>Model zoo</strong></a> — conditional forecastability tests</li>
     <li><a href="index.html"><strong>FX Lab home</strong></a></li>
@@ -851,7 +863,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
             wide=True,
             nav_active="ladder",
             nav_html=_nav_fx("ladder"),
-            subtitle="Seven-level evidence framework · Research only",
+            subtitle="Eight-level evidence framework · Research only",
         ),
         encoding="utf-8",
     )

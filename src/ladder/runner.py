@@ -29,6 +29,12 @@ from .level6_snooping import (
     preregistered_hypotheses,
     run_white_reality_check,
 )
+from .level8_institutional import (
+    institutional_proof_matrix,
+    level8_overall_status,
+    level8_preregistered_hypotheses,
+    level8_upgrade_gate,
+)
 
 
 def _fmt_cell(val) -> str:
@@ -170,6 +176,9 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
 
     evidence = _evidence_statuses(l1, l2, l3_oos_agg, l4, l5, wrc_p)
     l7_df, l7_missing = _load_level7_hedge_table(root)
+    l8 = institutional_proof_matrix(root, cfg)
+    l8.to_csv(out_dir / "level8_institutional_proof.csv", index=False)
+    l8_status = level8_overall_status(l8)
 
     # Master report
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -220,6 +229,7 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
 | 5 — Economic value after full frictions | Money/risk after spreads, roll, carry? | {evidence['level5']} |
 | 6 — Data-snooping control | Data-snooping / holdout discipline? | {evidence['level6']} |
 | 7 — Hedge-governance usefulness | Can regime rules improve hedge governance when forecasts fail? | See Level 7 below |
+| 8 — Institutional proof | External validity for hedge-governance claims? | {l8_status} |
 
 ---
 
@@ -332,11 +342,39 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
     md += f"""
 ---
 
+## Level 8 — Institutional proof requirements
+
+**Question:** What must be demonstrated before hedge-governance claims are treated as institutionally valid?
+
+{level8_upgrade_gate()}
+
+### Pass / fail matrix
+
+{_table(l8)}
+
+### Pre-registered hypotheses (Level 8 upgrade path)
+"""
+    for h in level8_preregistered_hypotheses():
+        md += f"- {h}\n"
+
+    md += """
+### First planned test
+
+Multi-pair walk-forward OOS hedge policy comparison — see `reports/research_log/PRE_REGISTRATION_LOG.md` (Multi-Pair Hedge OOS).
+
+**Claim discipline:** Level 7 prototype results (USD/MXN, one exposure type, full sample) do **not** satisfy Level 8. They justify continued research, not desk adoption.
+
+"""
+
+    md += f"""
+---
+
 ## Next actions
 
 1. Refresh all pairs: `python scripts/run_research_ladder.py --refresh` (Terminal.app)
-2. USDCOP and other EM feeds are auto-sanitized (`src/data_cleaning.py`)
-3. Do not change `config.yaml` thresholds after reading holdout results.
+2. Pre-register and run multi-pair hedge OOS: see `reports/research_log/PRE_REGISTRATION_LOG.md`
+3. USDCOP and other EM feeds are auto-sanitized (`src/data_cleaning.py`)
+4. Do not change `config.yaml` thresholds after reading holdout results.
 
 ---
 """

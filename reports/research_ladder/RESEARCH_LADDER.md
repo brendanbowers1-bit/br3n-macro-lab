@@ -1,6 +1,6 @@
 # BR3N Macro Labs — Research Ladder
 
-**Generated:** 2026-05-30 15:08  
+**Generated:** 2026-05-30 15:55  
 **Primary pair:** USDMXN=X  
 **Period:** 2001-09-14 → 2026-05-15 (6183 bars)  
 **Primary strategy:** flat_range
@@ -45,6 +45,7 @@
 | 5 — Economic value after full frictions | Money/risk after spreads, roll, carry? | Not robust yet |
 | 6 — Data-snooping control | Data-snooping / holdout discipline? | Not supported yet |
 | 7 — Hedge-governance usefulness | Can regime rules improve hedge governance when forecasts fail? | See Level 7 below |
+| 8 — Institutional proof | External validity for hedge-governance claims? | Not met — 0 met, 5 partial, 4 failed |
 
 ---
 
@@ -108,8 +109,8 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 
 | strategy | total_return_pct | ann_return_pct | ann_vol_pct | sharpe | max_drawdown_pct | win_rate_pct | trades | pct_flat | total_cost_pct | ticker | bars | start | end | primary_beats_rw |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| flat_range | 20.99 | 0.8400 | 11.68 | 0.1300 | -32.61 | 42.5 | 213 | 15.9 | 4.26 | USDMXN=X | 5773 | 2004-03-19 | 2026-05-22 | True |
-| flat_range | 100.32 | 3.34 | 17.88 | 0.2720 | -41.34 | 45.1 | 201 | 11.5 | 4.02 | USDBRL=X | 5335 | 2004-03-19 | 2026-05-25 | True |
+| flat_range | 20.36 | 0.7600 | 10.87 | 0.1240 | -44.27 | 43.7 | 231 | 14.7 | 4.62 | USDMXN=X | 6183 | 2001-09-14 | 2026-05-15 | True |
+| flat_range | 103.28 | 3.41 | 17.69 | 0.2780 | -41.34 | 45.1 | 201 | 11.5 | 4.02 | USDBRL=X | 5335 | 2004-03-19 | 2026-05-25 | True |
 | flat_range | 14.22 | 0.5800 | 17.65 | 0.1210 | -41.89 | 43.7 | 213 | 10.9 | 4.26 | USDCOP=X | 5757 | 2004-03-23 | 2026-05-22 | True |
 | flat_range | 44.22 | 1.45 | 9.67 | 0.1970 | -24.47 | 42.5 | 235 | 15.5 | 4.7 | USDJPY=X | 6406 | 2001-09-18 | 2026-05-25 | True |
 | flat_range | 21.2 | 0.8500 | 9.04 | 0.1380 | -26.51 | 41.9 | 218 | 16.1 | 4.38 | EURUSD=X | 5752 | 2004-03-19 | 2026-05-22 | True |
@@ -132,9 +133,9 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 ### Per-pair OOS (`flat_range` vs random walk)
 | split | primary_sharpe | primary_return_pct | rw_sharpe | beats_rw | ticker |
 | --- | --- | --- | --- | --- | --- |
-| split_1 | 0.0750 | 0.4200 | 0.0000 | True | USDMXN=X |
-| split_2 | 0.3630 | 10.92 | 0.0000 | True | USDMXN=X |
-| split_3 | 0.3170 | 3.82 | 0.0000 | True | USDMXN=X |
+| split_1 | -0.0020 | -2.58 | 0.0000 | False | USDMXN=X |
+| split_2 | 0.3160 | 8.91 | 0.0000 | True | USDMXN=X |
+| split_3 | 0.5220 | 6.01 | 0.0000 | True | USDMXN=X |
 | split_1 | -0.2010 | -14.38 | 0.0000 | False | USDBRL=X |
 | split_2 | 0.0480 | -0.7800 | 0.0000 | True | USDBRL=X |
 | split_3 | -0.7090 | -12.34 | 0.0000 | False | USDBRL=X |
@@ -205,7 +206,7 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 | USDINR=X | 2 | 3 | False |
 | USDJPY=X | 1 | 3 | False |
 | USDKRW=X | 2 | 3 | False |
-| USDMXN=X | 3 | 3 | True |
+| USDMXN=X | 2 | 3 | False |
 | USDMYR=X | 2 | 3 | False |
 | USDPEN=X | 0 | 3 | False |
 | USDPHP=X | 2 | 3 | False |
@@ -218,7 +219,7 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 ### OOS aggregate
 | cells | beats_rw_cells | pct_beats_rw | pairs_tested |
 | --- | --- | --- | --- |
-| 57 | 33 | 57.9 | 19 |
+| 57 | 32 | 56.1 | 19 |
 
 
 ---
@@ -314,10 +315,49 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
 
 ---
 
+## Level 8 — Institutional proof requirements
+
+**Question:** What must be demonstrated before hedge-governance claims are treated as institutionally valid?
+
+Do **not** upgrade hedge-governance claims from prototype to institutional until **all nine** Level 8 requirements are **Met** (not Partial). Partial results may inform the research agenda only.
+
+### Pass / fail matrix
+
+| requirement | pass_threshold | evidence_status | current_state | design_notes |
+| --- | --- | --- | --- | --- |
+| Many currency pairs | >= 10 pairs with hedge scorecards published | Not met | Hedge: 1 pair(s); trading ladder: ~19 pairs | Trading ladder covers ~19 pairs; hedge govern… |
+| Multiple decades | >= 20 years per pair without survivorship gaps | Partial | ~25 years on flagship pair only | USD/MXN ~20–25y; not validated across full pa… |
+| Official data | Tier-1 spot (FRED H.10 or licensed feed) for … | Partial | FRED H.10 for USD/MXN; prototype fallback sti… | FRED H.10 for USD/MXN when available; Yahoo f… |
+| Real or realistic forward costs | Forward points + roll in static vs dynamic he… | Not met | No forward curve or bid/ask history in hedge … | Turnover bps + spread/slippage/roll/carry ass… |
+| Static vs dynamic hedge policies | Static benchmarks vs dynamic policies on same… | Partial | Static vs dynamic tested on 1 pair(s), mostly… | Tested on USD/MXN: never/half/mostly/fully vs… |
+| Transaction costs | All hedge and trading metrics net of explicit… | Partial | Costs included but simplified (bps on hedge t… | 2 bps turnover + Level 5 frictions for tradin… |
+| Out-of-sample tests | Walk-forward OOS for hedge policies, not only… | Not met | Hedge policies not yet walk-forward OOS; trad… | Trading OOS (3 splits) exists; hedge headline… |
+| Data-snooping controls | Pre-registered hypotheses; White RC / SPA on … | Not met | White RC p = 0.6075 — does not reject data-mi… | White RC p ≈ 0.61 on trading strategies — doe… |
+| Multiple corporate exposure types | >= 3 exposure types with published scorecards | Partial | 2 exposure type(s) published; need >= 3 | Code supports receiver / US-long-MXN / USD-li… |
+
+
+### Pre-registered hypotheses (Level 8 upgrade path)
+- H8a: `no_change_in_range` beats `regime_based` on cost-adjusted risk reduction OOS on >= 50% of pairs tested.
+- H8b: Turnover reduction (no_change vs regime_based) >= 40% median across pairs without worse max drawdown hedged.
+- H8c: Results replicate on Tier-1 spot only (no prototype fallback in published scorecards).
+- H8d: Forward-point-adjusted hedge costs do not reverse the ranking of no_change vs static 50% / 75%.
+- H8e: Best hedge policy survives White Reality Check on the pre-registered policy set (p < 0.05).
+- H8f: At least three exposure types show consistent turnover discipline vs reactive regime hedging.
+
+### First planned test
+
+Multi-pair walk-forward OOS hedge policy comparison — see `reports/research_log/PRE_REGISTRATION_LOG.md` (Multi-Pair Hedge OOS).
+
+**Claim discipline:** Level 7 prototype results (USD/MXN, one exposure type, full sample) do **not** satisfy Level 8. They justify continued research, not desk adoption.
+
+
+---
+
 ## Next actions
 
 1. Refresh all pairs: `python scripts/run_research_ladder.py --refresh` (Terminal.app)
-2. USDCOP and other EM feeds are auto-sanitized (`src/data_cleaning.py`)
-3. Do not change `config.yaml` thresholds after reading holdout results.
+2. Pre-register and run multi-pair hedge OOS: see `reports/research_log/PRE_REGISTRATION_LOG.md`
+3. USDCOP and other EM feeds are auto-sanitized (`src/data_cleaning.py`)
+4. Do not change `config.yaml` thresholds after reading holdout results.
 
 ---

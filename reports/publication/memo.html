@@ -382,13 +382,13 @@ body.cover-page header.hero-cover {
 <p><strong>Date:</strong> 2026-05-30  </p>
 <p><strong>Type:</strong> Research note (not investment advice)</p>
 <hr/>
-<h2>Abstract</h2>
+<h2 id="abstract">Abstract</h2>
 <p>I built a small research lab to answer one practical question for treasury and risk teams:</p>
 <div class="principle-box"><p><strong>Should you adjust your USD/MXN hedge based on market regime — or is it better to stay flat when the market is “range-bound”?</strong></p></div>
-<p>Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: <strong>follow the trend in trending regimes; go flat in ranging regimes.</strong> I stress-tested that idea with a six-level “research ladder” — from descriptive stats to out-of-sample tests, nine currency pairs, forecast errors, trading costs, and data-snooping controls.</p>
+<p>Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: <strong>follow the trend in trending regimes; go flat in ranging regimes.</strong> I stress-tested that idea with an eight-level “research ladder” — from descriptive stats to out-of-sample tests, multi-pair robustness, forecast errors, trading costs, data-snooping controls, hedge governance, and institutional proof requirements.</p>
 <p><strong>Bottom line:</strong> The regime story is real for USD/MXN — returns and strategy P&L behave differently across regimes — and the “stay flat in range” rule beats doing nothing out-of-sample on MXN. But it is <strong>not</strong> a price-forecasting model, it <strong>does not</strong> cleanly generalize to every EM pair in every period, and it <strong>does not</strong> survive strict multiple-testing correction after searching across strategies.</p>
 <hr/>
-<h2>1. The idea in one minute</h2>
+<h2 id="1-the-idea-in-one-minute">1. The idea in one minute</h2>
 <p>Most FX hedging programs use a fixed hedge ratio (e.g. 80% of exposure). This project asks whether <strong>when</strong> you hedge matters as much as <strong>how much</strong>.</p>
 <pre><code class="mermaid">
 flowchart LR
@@ -412,7 +412,7 @@ flowchart LR
 <p><strong>Benchmarks:</strong></p>
 <ul><li><em>Buy and hold</em> — always long USD/MXN  </li><li><em>Random walk</em> — always flat (zero position). This is the right null for “does timing add value vs doing nothing?”</li></ul>
 <hr/>
-<h2>2. What I did — the research ladder</h2>
+<h2 id="2-what-i-did-the-research-ladder">2. What I did — the research ladder</h2>
 <p>I pre-registered six levels of evidence so the project couldn’t “stop when the chart looked good.”</p>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>Level</th><th>Question</th><th>Method</th></tr></thead>
@@ -430,7 +430,7 @@ python scripts/run_research_ladder.py --refresh
 python scripts/build_publication.py
 </code></pre>
 <hr/>
-<h2>3. What I found</h2>
+<h2 id="3-what-i-found">3. What I found</h2>
 <h3>Level 1 — Returns differ by regime (USD/MXN)</h3>
 <p>Spot USD/MXN returns are <strong>not</strong> the same in every regime. Strategy P&L concentrates in <strong>R2 (trend + low vol)</strong>:</p>
 <div class="table-wrap"><table class="data-table">
@@ -457,8 +457,8 @@ python scripts/build_publication.py
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>ticker</th><th class="num">sharpe</th><th class="num">total_return_pct</th><th class="num">max_drawdown_pct</th><th>primary_beats_rw</th></tr></thead>
 <tbody>
-<tr><td>USDMXN=X</td><td class="num">0.13</td><td class="num">20.99</td><td class="num">-32.61</td><td>True</td></tr>
-<tr><td>USDBRL=X</td><td class="num">0.272</td><td class="num">100.32</td><td class="num">-41.34</td><td>True</td></tr>
+<tr><td>USDMXN=X</td><td class="num">0.124</td><td class="num">20.36</td><td class="num">-44.27</td><td>True</td></tr>
+<tr><td>USDBRL=X</td><td class="num">0.278</td><td class="num">103.28</td><td class="num">-41.34</td><td>True</td></tr>
 <tr><td>USDCOP=X</td><td class="num">0.121</td><td class="num">14.22</td><td class="num">-41.89</td><td>True</td></tr>
 <tr><td>USDJPY=X</td><td class="num">0.197</td><td class="num">44.22</td><td class="num">-24.47</td><td>True</td></tr>
 <tr><td>EURUSD=X</td><td class="num">0.138</td><td class="num">21.2</td><td class="num">-26.51</td><td>True</td></tr>
@@ -477,7 +477,7 @@ python scripts/build_publication.py
 <tr><td>AUDUSD=X</td><td class="num">-0.059</td><td class="num">-24.92</td><td class="num">-39.12</td><td>False</td></tr>
 <tr><td>USDCHF=X</td><td class="num">-0.116</td><td class="num">-30.05</td><td class="num">-51.87</td><td>False</td></tr>
 </tbody></table></div>
-<p><strong>Cross-pair OOS:</strong> 57.9% of pair×split cells beat the flat benchmark (33.0/57.0). Only <strong>USD/MXN</strong> and <strong>USD/TRY</strong> beat the benchmark on all three OOS splits.</p>
+<p><strong>Cross-pair OOS:</strong> 56.1% of pair×split cells beat the flat benchmark (32.0/57.0). Only <strong>USD/MXN</strong> and <strong>USD/TRY</strong> beat the benchmark on all three OOS splits.</p>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>ticker</th><th class="num">splits_beating_rw</th><th class="num">splits_total</th><th>all_splits_beat_rw</th></tr></thead>
 <tbody>
@@ -492,7 +492,7 @@ python scripts/build_publication.py
 <tr><td>USDINR=X</td><td class="num">2</td><td class="num">3</td><td>False</td></tr>
 <tr><td>USDJPY=X</td><td class="num">1</td><td class="num">3</td><td>False</td></tr>
 <tr><td>USDKRW=X</td><td class="num">2</td><td class="num">3</td><td>False</td></tr>
-<tr><td>USDMXN=X</td><td class="num">3</td><td class="num">3</td><td>True</td></tr>
+<tr><td>USDMXN=X</td><td class="num">2</td><td class="num">3</td><td>False</td></tr>
 <tr><td>USDMYR=X</td><td class="num">2</td><td class="num">3</td><td>False</td></tr>
 <tr><td>USDPEN=X</td><td class="num">0</td><td class="num">3</td><td>False</td></tr>
 <tr><td>USDPHP=X</td><td class="num">2</td><td class="num">3</td><td>False</td></tr>
@@ -521,7 +521,7 @@ python scripts/build_publication.py
 </tbody></table></div>
 <p>Searching across <code>legacy</code>, <code>flat_range</code>, and <code>r2_only</code> and picking the best <strong>does not</strong> pass a formal reality check. Treat <code>r2_only</code>’s strong in-sample stats with skepticism.</p>
 <hr/>
-<h2>4. Hypothesis scorecard</h2>
+<h2 id="4-hypothesis-scorecard">4. Hypothesis scorecard</h2>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>#</th><th>Hypothesis</th><th>Verdict</th></tr></thead>
 <tbody>
@@ -533,7 +533,7 @@ python scripts/build_publication.py
 <tr><td>H7</td><td>White Reality Check</td><td><strong>Not supported</strong></td></tr>
 </tbody></table></div>
 <hr/>
-<h2>5. Practical takeaway for hedging</h2>
+<h2 id="5-practical-takeaway-for-hedging">5. Practical takeaway for hedging</h2>
 <p><strong>What this supports</strong></p>
 <ul><li>Regime labels are a useful <strong>risk-management language</strong> for USD/MXN.</li><li>There is evidence that <strong>staying flat in range regimes</strong> avoids churn when trend signals are unreliable.</li><li>Out-of-sample on MXN, the rule did not underperform “do nothing” — and helped in recent windows.</li></ul>
 <p><strong>What this does not support</strong></p>
@@ -541,10 +541,10 @@ python scripts/build_publication.py
 <p><strong>Plain-English policy framing</strong></p>
 <div class="principle-box"><p>“We don’t use this to predict MXN. We use it to ask: <em>Is this a trending environment where our hedge should be active, or a range environment where we should avoid over-trading?</em> On MXN, that distinction shows up in the data. On other pairs, results are mixed.”</p></div>
 <hr/>
-<h2>6. Limitations</h2>
+<h2 id="6-limitations">6. Limitations</h2>
 <ul><li>Rule-based regimes with fixed thresholds (no ML, no forward curve).</li><li>Yahoo/Stooq daily spot only; no intraday or options.</li><li>Costs and carry are stylized assumptions, not live treasury fills.</li><li>USD/TRY results are dominated by long-run lira depreciation — not comparable to MXN for policy use.</li><li>Holdout window 2025–2026 was evaluated once; do not re-tune parameters after seeing it.</li></ul>
 <hr/>
-<h2>7. Reproducibility</h2>
+<h2 id="7-reproducibility">7. Reproducibility</h2>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>Item</th><th>Location</th></tr></thead>
 <tbody>
@@ -554,7 +554,7 @@ python scripts/build_publication.py
 <tr><td>Model card</td><td><code>reports/model_cards/usdmxn_regime_model.md</code></td></tr>
 </tbody></table></div>
 <hr/>
-<h2>Disclaimer</h2>
+<h2 id="disclaimer">Disclaimer</h2>
 <p>This document is <strong>research and risk framing only</strong>. It is <strong>not</strong> investment advice, a trading recommendation, or a substitute for professional treasury, accounting, or regulatory judgment. Past backtests do not guarantee future results.</p>
 <hr/>
 <p><em>Generated by BR3N Macro Labs — <code>build_publication.py</code></em></p>

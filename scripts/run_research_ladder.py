@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run six-level research ladder."""
+"""Run eight-level research ladder."""
 
 import argparse
 import sys
