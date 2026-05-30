@@ -373,6 +373,9 @@ body.cover-page header.hero-cover {
   <a href="ladder.html">Ladder</a>
   <a href="hedge-governance.html">Hedge Gov</a>
   <a href="model-zoo.html" class="primary">Model Zoo</a>
+  <a href="lab-status.html">Lab Status</a>
+  <a href="unanswered-fx.html">Unanswered FX</a>
+  <a href="history.html">History</a>
 </nav>
     </div>
   </header>
@@ -381,7 +384,7 @@ body.cover-page header.hero-cover {
 <p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
 
 <div class="stat-grid">
-  <div class="stat"><div class="label">Models run</div><div class="value">16/16</div><div class="label">successful</div></div>
+  <div class="stat"><div class="label">Models run</div><div class="value">24/24</div><div class="label">successful</div></div>
   <div class="stat"><div class="label">Beat RW (RMSE)</div><div class="value warn">1</div><div class="label">forecast models</div></div>
   <div class="stat"><div class="label">Best trading</div><div class="value">dollar_stress_model</div><div class="label">by net Sharpe</div></div>
   <div class="stat"><div class="label">Best hedge</div><div class="value good">no_change_in_range_model</div><div class="label">cost-adj risk reduction</div></div>
@@ -409,7 +412,7 @@ python scripts/generate_model_zoo_report.py
 <hr/>
 <h2>Full model zoo report</h2>
 <h1>BR3N Macro Labs — Model Zoo Report</h1>
-<p><strong>Generated:</strong> 2026-05-30 15:26</p>
+<p><strong>Generated:</strong> 2026-05-30 16:46</p>
 <div class="principle-box"><p>Research and education only. Not investment advice. No guaranteed returns. No live trading.</p></div>
 <p>The model zoo is designed to prevent overreliance on a single rule. The objective is <strong>not</strong> to find one perfect FX predictor, but to test whether different model families provide value under different regimes and decision contexts.</p>
 <p>This tests <strong>conditional forecastability</strong> — not proof that FX is predictable.</p>
@@ -418,8 +421,8 @@ python scripts/generate_model_zoo_report.py
 <p>Compare simple, explainable models against random walk, buy-and-hold, and always-flat benchmarks under transaction costs, walk-forward splits, and separate forecast / trading / hedge-governance lenses.</p>
 <hr/>
 <h2 id="2-models-tested">2. Models tested</h2>
-<ul><li><strong>Attempted:</strong> 16</li><li><strong>Successful:</strong> 16</li><li><strong>Skipped:</strong> 0</li></ul>
-<ul><li>random_walk_model</li><li>buy_and_hold_model</li><li>always_flat_model</li><li>ma_crossover_model</li><li>regime_trend_model</li><li>r2_only_model</li><li>r2_only_vol_scaled_model</li><li>r1_risk_off_model</li><li>volatility_breakout_model</li><li>mean_reversion_range_model</li><li>carry_proxy_model</li><li>dollar_stress_model</li><li>flow_pressure_model</li><li>ensemble_vote_model</li><li>conservative_hedge_model</li><li>no_change_in_range_model</li></ul>
+<ul><li><strong>Attempted:</strong> 24</li><li><strong>Successful:</strong> 24</li><li><strong>Skipped:</strong> 0</li></ul>
+<ul><li>random_walk_model</li><li>buy_and_hold_model</li><li>always_flat_model</li><li>ma_crossover_model</li><li>regime_trend_model</li><li>r2_only_model</li><li>r2_only_vol_scaled_model</li><li>r1_risk_off_model</li><li>volatility_breakout_model</li><li>mean_reversion_range_model</li><li>carry_proxy_model</li><li>carry_regime_model</li><li>carry_fragility_risk_off_model</li><li>r2_carry_confirmed_model</li><li>carry_adjusted_hedge_model</li><li>dollar_stress_model</li><li>flow_pressure_model</li><li>ensemble_vote_model</li><li>conservative_hedge_model</li><li>no_change_in_range_model</li><li>news_stress_risk_off_model</li><li>r2_news_confirmed_model</li><li>r1_news_escalation_model</li><li>news_flow_pressure_model</li></ul>
 <h3>Run log</h3>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>model_name</th><th>status</th><th>reason</th><th>required_columns_missing</th></tr></thead>
@@ -435,6 +438,10 @@ python scripts/generate_model_zoo_report.py
 <tr><td>volatility_breakout_model</td><td>success</td><td>nan</td><td>nan</td></tr>
 <tr><td>mean_reversion_range_model</td><td>success</td><td>nan</td><td>nan</td></tr>
 <tr><td>carry_proxy_model</td><td>success</td><td>nan</td><td>nan</td></tr>
+<tr><td>carry_regime_model</td><td>success</td><td>nan</td><td>nan</td></tr>
+<tr><td>carry_fragility_risk_off_model</td><td>success</td><td>nan</td><td>nan</td></tr>
+<tr><td>r2_carry_confirmed_model</td><td>success</td><td>nan</td><td>nan</td></tr>
+<tr><td>carry_adjusted_hedge_model</td><td>success</td><td>nan</td><td>nan</td></tr>
 <tr><td>dollar_stress_model</td><td>success</td><td>nan</td><td>nan</td></tr>
 <tr><td>flow_pressure_model</td><td>success</td><td>nan</td><td>nan</td></tr>
 <tr><td>ensemble_vote_model</td><td>success</td><td>nan</td><td>nan</td></tr>
@@ -456,10 +463,15 @@ python scripts/generate_model_zoo_report.py
 <tr><td>r1_risk_off_model</td><td class="num">0.007188</td><td class="num">0.007175</td><td class="num">0.004992</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">24.35</td></tr>
 <tr><td>volatility_breakout_model</td><td class="num">0.007231</td><td class="num">0.007175</td><td class="num">0.005042</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">5.13</td></tr>
 <tr><td>mean_reversion_range_model</td><td class="num">0.007185</td><td class="num">0.007175</td><td class="num">0.004975</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">4.06</td></tr>
-<tr><td>carry_proxy_model</td><td class="num">0.007183</td><td class="num">0.007175</td><td class="num">0.004971</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">16.08</td></tr>
+<tr><td>carry_proxy_model</td><td class="num">0.007183</td><td class="num">0.007175</td><td class="num">0.004971</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">7.97</td></tr>
+<tr><td>carry_regime_model</td><td class="num">0.007178</td><td class="num">0.007175</td><td class="num">0.004967</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">2.58</td></tr>
+<tr><td>r2_carry_confirmed_model</td><td class="num">0.00718</td><td class="num">0.007175</td><td class="num">0.004971</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">7.97</td></tr>
 <tr><td>dollar_stress_model</td><td class="num">0.00718</td><td class="num">0.007175</td><td class="num">0.004977</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">31.62</td></tr>
 <tr><td>flow_pressure_model</td><td class="num">0.007175</td><td class="num">0.007175</td><td class="num">0.004965</td><td class="num">0.004964</td><td>True</td><td>False</td><td class="num">34.25</td></tr>
-<tr><td>ensemble_vote_model</td><td class="num">0.007217</td><td class="num">0.007175</td><td class="num">0.005</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">24.3</td></tr>
+<tr><td>ensemble_vote_model</td><td class="num">0.007219</td><td class="num">0.007175</td><td class="num">0.005003</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">25.36</td></tr>
+<tr><td>news_stress_risk_off_model</td><td class="num">0.007175</td><td class="num">0.007175</td><td class="num">0.004964</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">0.0</td></tr>
+<tr><td>r2_news_confirmed_model</td><td class="num">0.007186</td><td class="num">0.007175</td><td class="num">0.004989</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">19.84</td></tr>
+<tr><td>news_flow_pressure_model</td><td class="num">0.007175</td><td class="num">0.007175</td><td class="num">0.004964</td><td class="num">0.004964</td><td>False</td><td>False</td><td class="num">0.0</td></tr>
 </tbody></table></div>
 <hr/>
 <h2 id="4-trading-pl-results">4. Trading P&L results</h2>
@@ -476,18 +488,26 @@ python scripts/generate_model_zoo_report.py
 <tr><td>r1_risk_off_model</td><td class="num">-16.14</td><td class="num">-0.08</td><td class="num">-46.81</td><td class="num">395</td><td class="num">7.9</td><td class="num">50.3</td></tr>
 <tr><td>volatility_breakout_model</td><td class="num">-21.24</td><td class="num">-0.252</td><td class="num">-33.13</td><td class="num">1041</td><td class="num">20.84</td><td class="num">16.1</td></tr>
 <tr><td>mean_reversion_range_model</td><td class="num">-30.02</td><td class="num">-0.534</td><td class="num">-32.33</td><td class="num">335</td><td class="num">6.76</td><td class="num">8.3</td></tr>
-<tr><td>carry_proxy_model</td><td class="num">-4.98</td><td class="num">-0.017</td><td class="num">-28.14</td><td class="num">174</td><td class="num">3.48</td><td class="num">30.7</td></tr>
+<tr><td>carry_proxy_model</td><td class="num">-1.02</td><td class="num">0.007</td><td class="num">-13.46</td><td class="num">106</td><td class="num">2.12</td><td class="num">16.5</td></tr>
+<tr><td>carry_regime_model</td><td class="num">-10.39</td><td class="num">-0.242</td><td class="num">-15.41</td><td class="num">184</td><td class="num">3.68</td><td class="num">5.5</td></tr>
+<tr><td>r2_carry_confirmed_model</td><td class="num">2.38</td><td class="num">0.044</td><td class="num">-23.38</td><td class="num">192</td><td class="num">3.84</td><td class="num">16.4</td></tr>
 <tr><td>dollar_stress_model</td><td class="num">90.35</td><td class="num">0.312</td><td class="num">-28.06</td><td class="num">603</td><td class="num">12.06</td><td class="num">60.4</td></tr>
 <tr><td>flow_pressure_model</td><td class="num">-10.65</td><td class="num">-0.002</td><td class="num">-37.23</td><td class="num">539</td><td class="num">10.78</td><td class="num">72.1</td></tr>
-<tr><td>ensemble_vote_model</td><td class="num">77.53</td><td class="num">0.305</td><td class="num">-26.57</td><td class="num">290</td><td class="num">5.8</td><td class="num">48.4</td></tr>
+<tr><td>ensemble_vote_model</td><td class="num">76.76</td><td class="num">0.302</td><td class="num">-25.93</td><td class="num">434</td><td class="num">8.68</td><td class="num">50.6</td></tr>
+<tr><td>news_stress_risk_off_model</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0</td><td class="num">0.0</td><td class="num">0.0</td></tr>
+<tr><td>r2_news_confirmed_model</td><td class="num">-20.48</td><td class="num">-0.133</td><td class="num">-43.35</td><td class="num">909</td><td class="num">18.18</td><td class="num">40.9</td></tr>
+<tr><td>news_flow_pressure_model</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0</td><td class="num">0.0</td><td class="num">0.0</td></tr>
 </tbody></table></div>
 <hr/>
 <h2 id="5-hedge-governance-results">5. Hedge-governance results</h2>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>model_name</th><th class="num">volatility_reduction</th><th class="num">hedge_turnover</th><th class="num">total_hedge_cost</th><th class="num">cost_adjusted_risk_reduction</th><th class="num">average_hedge_ratio</th><th class="num">regret_proxy</th></tr></thead>
 <tbody>
+<tr><td>carry_fragility_risk_off_model</td><td class="num">6.665</td><td class="num">69.5</td><td class="num">1.39</td><td class="num">5.275</td><td class="num">0.568</td><td class="num">3.293</td></tr>
+<tr><td>carry_adjusted_hedge_model</td><td class="num">8.098</td><td class="num">115.05</td><td class="num">2.301</td><td class="num">5.797</td><td class="num">0.68</td><td class="num">2.293</td></tr>
 <tr><td>conservative_hedge_model</td><td class="num">6.81</td><td class="num">106.1</td><td class="num">2.122</td><td class="num">4.688</td><td class="num">0.614</td><td class="num">3.05</td></tr>
 <tr><td>no_change_in_range_model</td><td class="num">7.163</td><td class="num">26.9</td><td class="num">0.538</td><td class="num">6.625</td><td class="num">0.66</td><td class="num">2.781</td></tr>
+<tr><td>r1_news_escalation_model</td><td class="num">6.541</td><td class="num">193.0</td><td class="num">3.86</td><td class="num">2.681</td><td class="num">0.534</td><td class="num">3.49</td></tr>
 </tbody></table></div>
 <hr/>
 <h2 id="6-walk-forward-results">6. Walk-forward results</h2>
@@ -496,20 +516,24 @@ python scripts/generate_model_zoo_report.py
 <tbody>
 <tr><td>always_flat_model</td><td>trading</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
 <tr><td>buy_and_hold_model</td><td>trading</td><td class="num">2.9345</td><td class="num">0.1619</td><td class="num">-11.092</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
-<tr><td>carry_proxy_model</td><td>hybrid</td><td class="num">-0.555</td><td class="num">-0.1966</td><td class="num">-5.7025</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
+<tr><td>carry_adjusted_hedge_model</td><td>hedge_governance</td><td class="num">nan</td><td class="num">nan</td><td class="num">nan</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>8.0756</td><td class="num">20</td></tr>
+<tr><td>carry_fragility_risk_off_model</td><td>hedge_governance</td><td class="num">nan</td><td class="num">nan</td><td class="num">nan</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>6.6944</td><td class="num">20</td></tr>
+<tr><td>carry_proxy_model</td><td>hybrid</td><td class="num">0.5255</td><td class="num">0.2032</td><td class="num">-3.235</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
+<tr><td>carry_regime_model</td><td>hybrid</td><td class="num">0.0525</td><td class="num">-0.0755</td><td class="num">-1.306</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
 <tr><td>conservative_hedge_model</td><td>hedge_governance</td><td class="num">nan</td><td class="num">nan</td><td class="num">nan</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>6.8225</td><td class="num">20</td></tr>
 <tr><td>dollar_stress_model</td><td>hybrid</td><td class="num">3.7685</td><td class="num">0.2319</td><td class="num">-9.458</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
-<tr><td>ensemble_vote_model</td><td>hybrid</td><td class="num">0.4375</td><td class="num">-0.0738</td><td class="num">-8.163</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
+<tr><td>ensemble_vote_model</td><td>hybrid</td><td class="num">0.837</td><td class="num">0.106</td><td class="num">-8.2345</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
 <tr><td>flow_pressure_model</td><td>hybrid</td><td class="num">-2.173</td><td class="num">-0.2426</td><td class="num">-10.555</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
 <tr><td>ma_crossover_model</td><td>hybrid</td><td class="num">1.3245</td><td class="num">0.0091</td><td class="num">-11.7215</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
 <tr><td>mean_reversion_range_model</td><td>hybrid</td><td class="num">-1.3645</td><td class="num">-0.7942</td><td class="num">-3.1475</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
+<tr><td>news_flow_pressure_model</td><td>hybrid</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
+<tr><td>news_stress_risk_off_model</td><td>hybrid</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
 <tr><td>no_change_in_range_model</td><td>hedge_governance</td><td class="num">nan</td><td class="num">nan</td><td class="num">nan</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>7.2397</td><td class="num">20</td></tr>
+<tr><td>r1_news_escalation_model</td><td>hedge_governance</td><td class="num">nan</td><td class="num">nan</td><td class="num">nan</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>6.4728</td><td class="num">20</td></tr>
 <tr><td>r1_risk_off_model</td><td>hybrid</td><td class="num">-1.253</td><td class="num">-0.218</td><td class="num">-6.899</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
+<tr><td>r2_carry_confirmed_model</td><td>hybrid</td><td class="num">-0.0805</td><td class="num">-0.0168</td><td class="num">-3.656</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
+<tr><td>r2_news_confirmed_model</td><td>hybrid</td><td class="num">-1.4985</td><td class="num">-0.2354</td><td class="num">-6.0595</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
 <tr><td>r2_only_model</td><td>hybrid</td><td class="num">-1.253</td><td class="num">-0.218</td><td class="num">-6.899</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
-<tr><td>r2_only_vol_scaled_model</td><td>hybrid</td><td class="num">-1.348</td><td class="num">-0.2382</td><td class="num">-6.5705</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
-<tr><td>random_walk_model</td><td>forecast</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
-<tr><td>regime_trend_model</td><td>hybrid</td><td class="num">0.235</td><td class="num">-0.099</td><td class="num">-11.518</td><td class="num">0.0072</td><td class="num">0.0072</td><td class="num">0.0053</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
-<tr><td>volatility_breakout_model</td><td>hybrid</td><td class="num">-1.784</td><td class="num">-0.511</td><td class="num">-4.2055</td><td class="num">0.0073</td><td class="num">0.0072</td><td class="num">0.0054</td><td class="num">0.0053</td><td>nan</td><td class="num">20</td></tr>
 </tbody></table></div>
 <hr/>
 <h2 id="7-what-worked">7. What worked</h2>

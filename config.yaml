@@ -6,6 +6,10 @@ data:
   spot_tier: 1
   official_spot_series: "DEXMXUS"  # FRED H.10 USD/MXN
   prefer_tier1_spot: true          # Tier 1 FRED H.10 for USD/MXN; yfinance fallback
+  preferred_source: "fred_h10"
+  fallback_source: "yfinance"
+  fred_series:
+    USD_MXN: "DEXMXUS"
 
 # Tier 2 — Bloomberg (requires licensed Terminal or B-PIPE; see docs/BLOOMBERG_SETUP.md)
 bloomberg:
@@ -159,6 +163,32 @@ corridors:
 flow_proxies:
   enabled: true
 
+news:
+  enabled: true
+  use_fred_uncertainty: true
+  use_gdelt: false
+  use_placeholders_if_missing: true
+  fred_series:
+    us_policy_uncertainty_daily: "USEPUINDXD"
+  stress_zscore_threshold: 2.0
+  rolling_percentile_window: 252
+
+carry:
+  enabled: true
+  use_policy_rate_proxy: true
+  use_forward_points: false
+  domestic_currency: "USD"
+  foreign_currency: "MXN"
+  domestic_rate_series: "FEDFUNDS"
+  foreign_rate_series: "INTGSBMXM193N"
+  fallback_foreign_policy_rate: null
+  carry_zscore_window: 252
+  high_carry_percentile: 0.75
+  carry_compression_threshold: -0.25
+  carry_fragility_vol_percentile: 0.75
+  carry_stress_vix_threshold: null
+  forward_csv: "data/raw/forwards_usdmxn.csv"
+
 hedge_governance:
   enabled: true
   hedge_transaction_cost_bps: 2.0
@@ -202,11 +232,19 @@ model_zoo:
     - volatility_breakout_model
     - mean_reversion_range_model
     - carry_proxy_model
+    - carry_regime_model
+    - carry_fragility_risk_off_model
+    - r2_carry_confirmed_model
+    - carry_adjusted_hedge_model
     - dollar_stress_model
     - flow_pressure_model
     - ensemble_vote_model
     - conservative_hedge_model
     - no_change_in_range_model
+    - news_stress_risk_off_model
+    - r2_news_confirmed_model
+    - r1_news_escalation_model
+    - news_flow_pressure_model
   breakout_window: 20
   mean_reversion_z_threshold: 1.0
   ensemble_min_votes: 2
@@ -227,9 +265,14 @@ self_improvement:
     ml_direction_min: 0.53
   auto_rerun:
     - backtest
-    - research
+    - data_upgrade
+    - news
+    - carry
     - under_tested
+    - flagship_lane
+    - model_zoo
     - data_quality
+    - lab_status
   never_tune_on_holdout: true
   # Automatic scheduling (macOS LaunchAgent — see scripts/install_auto_improve_launchd.sh)
   auto_improve:

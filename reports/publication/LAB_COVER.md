@@ -12,6 +12,16 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 
 ---
 
+## Lab Operations
+
+**[Lab Status](lab-status.html)** — auto-generated health snapshot (data quality, provenance, model zoo, news/carry layers). Updated by the nightly pipeline; source file: `reports/LAB_STATUS.md`.
+
+**[Unanswered FX Questions](unanswered-fx.html)** — major research questions, flagship lane, and roadmap.
+
+**[FX History & Foundations](history.html)** — 300 years of exchange-rate research and how FX Lab fits after Meese-Rogoff.
+
+---
+
 ## Explore FX Lab Research
 
 ---

@@ -40,7 +40,17 @@ def _master_scorecard_rows(
     cfg: dict,
     corridor_id: str,
     meta: dict,
+    load_meta: Optional[dict] = None,
 ) -> List[dict]:
+    from .data_provenance import build_run_provenance
+
+    prov = build_run_provenance(
+        cfg,
+        df,
+        currency_pair=meta.get("official_pair_label"),
+        source=(load_meta or {}).get("source", "yfinance"),
+        data_tier=(load_meta or {}).get("data_tier", "prototype"),
+    )
     rows = []
     ann = int(cfg["backtest"]["annualization_days"])
     for mode in ["buy_and_hold", "legacy", "flat_range", "r2_only", "random_walk"]:
@@ -77,6 +87,10 @@ def _master_scorecard_rows(
                 "observations": n,
                 "start_date": str(df.index.min().date()) if n else None,
                 "end_date": str(df.index.max().date()) if n else None,
+                **{k: prov[k] for k in (
+                    "source", "data_tier", "currency_pair", "sample_start", "sample_end",
+                    "observations", "run_timestamp", "config_hash", "model_version",
+                ) if k in prov},
             }
         )
     return rows
@@ -156,7 +170,7 @@ def run_single_corridor(
                 out_dir / f"{corridor_id}_hedge_governance_detail.csv", index=False
             )
 
-        master_rows = _master_scorecard_rows(feat, cfg, corridor_id, meta)
+        master_rows = _master_scorecard_rows(feat, cfg, corridor_id, meta, load_meta)
         return log, pd.DataFrame(master_rows)
 
     except Exception as exc:

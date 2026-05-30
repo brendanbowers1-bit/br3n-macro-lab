@@ -214,9 +214,19 @@ def save_governance_outputs(
     scorecard: pd.DataFrame,
     detail: pd.DataFrame,
     out_dir: Optional[Path] = None,
+    cfg: Optional[dict] = None,
 ) -> tuple[Path, Path]:
     out_dir = out_dir or ROOT / "data" / "outputs"
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    if cfg is not None and not scorecard.empty:
+        from .data_provenance import build_run_provenance, provenance_from_cache, stamp_scorecard
+
+        prov = provenance_from_cache(cfg.get("data", {}).get("ticker", "USDMXN=X"))
+        if not prov:
+            prov = build_run_provenance(cfg)
+        scorecard = stamp_scorecard(scorecard, prov)
+
     sc_path = out_dir / "hedge_governance_scorecard.csv"
     det_path = out_dir / "hedge_governance_detail.csv"
     scorecard.to_csv(sc_path, index=False)

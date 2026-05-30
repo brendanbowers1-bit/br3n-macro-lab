@@ -30,8 +30,17 @@ SNAPSHOT_FILES = [
     "flow_pressure_test_results.csv",
     "random_walk_validity_map.csv",
     "data_quality_report.csv",
+    "data_source_comparison_usdmxn.csv",
     "strategy_scorecard.csv",
+    "usdmxn_scorecard.csv",
     "walkforward_oos.csv",
+    "model_zoo_forecast_scorecard.csv",
+    "model_zoo_trading_scorecard.csv",
+    "model_zoo_hedge_scorecard.csv",
+    "model_zoo_run_log.csv",
+    "news_feature_test_results.csv",
+    "carry_regime_test_results.csv",
+    "carry_hedge_governance_scorecard.csv",
 ]
 
 EXPERIMENT_CATALOG = {
@@ -64,6 +73,31 @@ EXPERIMENT_CATALOG = {
         "priority": 2,
         "action": "Pre-register next experiment before testing; avoid tuning on holdout 2025–2026.",
         "script": "python scripts/run_research_ladder.py",
+    },
+    "data_provenance": {
+        "priority": 1,
+        "action": "Rerun backtest with preferred_source fred_h10; verify scorecard provenance columns.",
+        "script": "python scripts/run_usdmxn_backtest.py",
+    },
+    "model_zoo_forecast": {
+        "priority": 2,
+        "action": "Focus hedge-governance path; do not claim forecast alpha until RW beaten OOS.",
+        "script": "python scripts/run_model_zoo.py",
+    },
+    "news_layer": {
+        "priority": 3,
+        "action": "Validate news stress splits on holdout; optional GDELT with look-ahead checks.",
+        "script": "python scripts/run_news_layer.py",
+    },
+    "carry_layer": {
+        "priority": 2,
+        "action": "Add forward points CSV; compare policy-rate proxy vs executable carry.",
+        "script": "python scripts/run_carry_layer.py",
+    },
+    "carry_hedge_governance": {
+        "priority": 1,
+        "action": "Test carry_adjusted_regime under forward_full costs on multi-pair OOS.",
+        "script": "python scripts/run_carry_layer.py",
     },
 }
 
@@ -173,17 +207,38 @@ def rerun_pipelines(cfg: dict) -> dict:
     results: Dict[str, bool] = {}
 
     stage_scripts = {
+        "full_pipeline": ["scripts/run_full_lab_pipeline.sh"],
         "backtest": ["scripts/run_usdmxn_backtest.py"],
+        "data_upgrade": ["scripts/run_data_upgrade_report.py"],
+        "news": ["scripts/run_news_layer.py"],
+        "carry": ["scripts/run_carry_layer.py"],
+        "model_zoo": ["scripts/run_model_zoo.py", "scripts/generate_model_zoo_report.py"],
         "research": ["scripts/run_research_models.py"],
         "under_tested": ["scripts/run_under_tested_research.py"],
-        "data_quality": ["scripts/run_data_quality.py", "scripts/export_data_sources.py"],
+        "flagship_lane": ["scripts/run_flagship_research_lane.py"],
+        "data_quality": [
+            "scripts/run_data_quality.py",
+            "scripts/export_data_sources.py",
+        ],
         "ladder": ["scripts/run_research_ladder.py"],
+        "lab_status": ["scripts/generate_lab_status.py"],
     }
 
     for stage in stages:
         ok = True
         for script in stage_scripts.get(stage, []):
-            if not _subprocess_run(f"python {script}"):
+            if script.endswith(".sh"):
+                try:
+                    r = subprocess.run(
+                        ["bash", str(ROOT / script)],
+                        cwd=ROOT,
+                        timeout=1800,
+                    )
+                    if r.returncode != 0:
+                        ok = False
+                except subprocess.TimeoutExpired:
+                    ok = False
+            elif not _subprocess_run(f"python {script}"):
                 ok = False
         results[stage] = ok
     return results
@@ -246,6 +301,16 @@ def run_self_improvement(
         shutil.copy2(run_dir / "proposed_experiments.csv", latest / "proposed_experiments.csv")
     pd.DataFrame(scores).to_csv(latest / "dimension_scores.csv", index=False)
 
+    try:
+        from src.lab_status import write_lab_status
+
+        status_path = write_lab_status(cfg)
+        summary["lab_status_path"] = str(status_path.relative_to(ROOT))
+        shutil.copy2(status_path, run_dir / "LAB_STATUS.md")
+        shutil.copy2(status_path, latest / "LAB_STATUS.md")
+    except Exception as exc:
+        summary["lab_status_error"] = str(exc)[:200]
+
     return summary
 
 
@@ -274,5 +339,7 @@ def print_summary(summary: dict) -> None:
             print(f"     → {p['suggested_script']}")
 
     print(f"\nSnapshot: data/runs/{summary['run_id']}/")
+    if summary.get("lab_status_path"):
+        print(f"Lab status: {summary['lab_status_path']}")
     print("Reminder: Research-only. No auto-tuning on holdout. Not investment advice.")
     print("=" * 60)

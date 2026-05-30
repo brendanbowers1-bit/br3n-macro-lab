@@ -43,7 +43,10 @@ SOURCE_TIER_NUMBER: Dict[str, int] = {
     "yfinance": 4,
     "stooq": 4,
     "fred": 1,
+    "fred_h10": 1,
     "fed_h10": 1,
+    "fed_h10_direct": 1,
+    "central_bank": 1,
     "bis_eer": 1,
     "imf_ifs": 1,
     "world_bank_remittances": 1,
@@ -123,6 +126,9 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "licensing_notes": "Terms of use restrict redistribution; not for commercial data resale",
         "best_use_case": "Prototype backtests, dashboards, code testing",
         "public_url": "https://finance.yahoo.com",
+        "use": "fast prototyping",
+        "warning": "unofficial source",
+        "architecture_tier": "prototype",
     },
     "stooq": {
         "name": "Stooq",
@@ -135,6 +141,9 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "licensing_notes": "Check Stooq terms; not institutionally recognized",
         "best_use_case": "Fallback spot prices for local development",
         "public_url": "https://stooq.com",
+        "use": "fast prototyping fallback",
+        "warning": "unofficial source",
+        "architecture_tier": "prototype",
     },
     "fred": {
         "name": "FRED (Federal Reserve Economic Data)",
@@ -148,6 +157,21 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "best_use_case": "Random-walk tests, macro FX research, rate differentials",
         "public_url": "https://fred.stlouisfed.org",
     },
+    "fred_h10": {
+        "name": "FRED H.10 FX Series",
+        "data_type": "Official USD FX rates via FRED (H.10)",
+        "official_status": "official",
+        "cost_tier": "free",
+        "update_frequency": "daily (updated weekly)",
+        "strengths": "Official public USD FX rates, citable, long history",
+        "weaknesses": "Daily data updated weekly; not bid/ask; not executable",
+        "licensing_notes": "Public domain with attribution; FRED terms",
+        "best_use_case": "Official/public USD FX rates through FRED/Fed H.10",
+        "public_url": "https://fred.stlouisfed.org",
+        "use": "official/public USD FX rates through FRED/Fed H.10",
+        "warning": "Daily data updated weekly; not bid/ask/executable",
+        "architecture_tier": "academic",
+    },
     "fed_h10": {
         "name": "Federal Reserve H.10",
         "data_type": "G.5/H.10 foreign exchange rates",
@@ -159,6 +183,39 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "licensing_notes": "Public domain; Federal Reserve Board",
         "best_use_case": "Academic memos, official spot benchmarks",
         "public_url": "https://www.federalreserve.gov/releases/h10/",
+        "use": "official/public USD FX rates through FRED/Fed H.10",
+        "warning": "Daily data updated weekly; not bid/ask/executable",
+        "architecture_tier": "academic",
+    },
+    "fed_h10_direct": {
+        "name": "Federal Reserve H.10 (direct pages)",
+        "data_type": "G.5/H.10 historical release pages",
+        "official_status": "official",
+        "cost_tier": "free",
+        "update_frequency": "daily (business days)",
+        "strengths": "Primary Federal Reserve publication source",
+        "weaknesses": "Manual/scrape parsing; not bid/ask",
+        "licensing_notes": "Public domain; Federal Reserve Board",
+        "best_use_case": "Federal Reserve H.10 direct historical pages",
+        "public_url": "https://www.federalreserve.gov/releases/h10/",
+        "use": "Federal Reserve H.10 direct historical pages",
+        "warning": "Public research source, not executable market data",
+        "architecture_tier": "academic",
+    },
+    "central_bank": {
+        "name": "Central Banks (aggregate)",
+        "data_type": "Policy rates, reserves, remittances, official FX",
+        "official_status": "official",
+        "cost_tier": "free",
+        "update_frequency": "varies by country",
+        "strengths": "Official country-level FX and macro data",
+        "weaknesses": "Format varies by country; not unified vendor feed",
+        "licensing_notes": "Varies by central bank; attribution required",
+        "best_use_case": "Policy rates, reserves, remittances, official FX data",
+        "public_url": None,
+        "use": "policy rates, reserves, remittances, official FX data",
+        "warning": "format varies by country",
+        "architecture_tier": "academic",
     },
     "bis_eer": {
         "name": "BIS Effective Exchange Rates",
@@ -171,6 +228,9 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "licensing_notes": "BIS terms apply; attribution required",
         "best_use_case": "Macro competitiveness, broad FX pressure research",
         "public_url": "https://www.bis.org/statistics/eer.htm",
+        "use": "nominal and real effective exchange rates",
+        "warning": "index data, not bilateral spot",
+        "architecture_tier": "academic",
     },
     "imf_ifs": {
         "name": "IMF International Financial Statistics",
@@ -195,6 +255,9 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "licensing_notes": "World Bank open data terms",
         "best_use_case": "Payment-corridor context, seasonality hypotheses",
         "public_url": "https://www.worldbank.org/en/topic/migrationremittances",
+        "use": "remittance flows and corridor costs",
+        "warning": "lower frequency; not real-time flow",
+        "architecture_tier": "academic",
     },
     "banxico": {
         "name": "Banxico (Banco de México)",
@@ -267,6 +330,9 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "licensing_notes": "Bloomberg agreement; no public redistribution",
         "best_use_case": "Professional FX strategy, carry, execution, hedging research",
         "public_url": "https://www.bloomberg.com/professional",
+        "use": "spot, forwards, swaps, options, curves, bid/ask",
+        "warning": "licensed; do not publish restricted data without permission",
+        "architecture_tier": "trading_grade",
     },
     "lseg_refinitiv": {
         "name": "LSEG / Refinitiv",
@@ -279,6 +345,9 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "licensing_notes": "LSEG data license required",
         "best_use_case": "Trading-grade backtests, forward points, execution",
         "public_url": "https://www.lseg.com/en/data-analytics",
+        "use": "professional FX market data",
+        "warning": "licensed",
+        "architecture_tier": "trading_grade",
     },
     "factset": {
         "name": "FactSet",
@@ -363,6 +432,9 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
         "licensing_notes": "Employer legal/compliance approval required",
         "best_use_case": "Payment-corridor FX pressure, internal hedge tools",
         "public_url": None,
+        "use": "corridor pressure and real customer-flow research",
+        "warning": "sensitive; use only with authorization",
+        "architecture_tier": "proprietary_edge",
     },
     "proprietary_order_flow": {
         "name": "Proprietary Order Flow",
@@ -380,6 +452,17 @@ DATA_SOURCE_REGISTRY: Dict[str, Dict[str, Any]] = {
 
 # FRED series for official USD/MXN (H.10 daily rate, MXN per USD)
 FRED_H10_USDMXN_SERIES = "DEXMXUS"
+
+
+def get_source_metadata(source_key: str) -> Dict[str, Any]:
+    """Return registry metadata for a source key (alias for get_data_source)."""
+    return get_data_source(source_key)
+
+
+def source_registry_dataframe() -> pd.DataFrame:
+    """Return enriched registry as a DataFrame."""
+    rows = [enrich_source(k, v) for k, v in DATA_SOURCE_REGISTRY.items()]
+    return pd.DataFrame(rows)
 
 
 def get_data_source(source_key: str) -> Dict[str, Any]:
@@ -461,6 +544,5 @@ def export_data_source_registry(path: Optional[Path] = None) -> Path:
     """Export enriched registry to CSV."""
     path = path or ROOT / "data" / "outputs" / "data_source_registry.csv"
     path.parent.mkdir(parents=True, exist_ok=True)
-    rows = [enrich_source(k, v) for k, v in DATA_SOURCE_REGISTRY.items()]
-    pd.DataFrame(rows).to_csv(path, index=False)
+    source_registry_dataframe().to_csv(path, index=False)
     return path

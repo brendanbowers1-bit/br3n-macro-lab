@@ -23,16 +23,25 @@ from src.model_zoo import run_model_zoo
 
 
 def _load_features() -> pd.DataFrame:
+    carry_path = ROOT / "data/processed/usdmxn_features_regimes_carry.csv"
+    news_path = ROOT / "data/processed/usdmxn_features_regimes_news.csv"
     flow_path = ROOT / "data/processed/usdmxn_features_regimes_flow.csv"
     base_path = ROOT / "data/processed/usdmxn_features_regimes.csv"
 
-    if flow_path.exists():
+    if carry_path.exists():
+        path = carry_path
+        print(f"Using carry-enhanced features: {path.name}")
+    elif news_path.exists():
+        path = news_path
+        print(f"Using news-enhanced features: {path.name}")
+    elif flow_path.exists():
         path = flow_path
     elif base_path.exists():
         path = base_path
     else:
         print("Missing processed data. Run first:")
         print("  python scripts/run_usdmxn_backtest.py")
+        print("  python scripts/run_carry_layer.py  # optional carry features")
         sys.exit(1)
 
     df = pd.read_csv(path, parse_dates=["date"])

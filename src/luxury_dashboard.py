@@ -89,6 +89,10 @@ PAGES = [
     "Corridor Roadmap",
     "Hedge Governance",
     "Flow Pressure",
+    "News & Macro Stress",
+    "Carry & UIP Lab",
+    "Unanswered FX Questions",
+    "FX History",
     "Academic Tests",
     "Data Quality",
     "FX Desk Command Center",
@@ -588,6 +592,49 @@ def flow_pressure_comparison(fp: pd.DataFrame) -> go.Figure:
     )
     fig.update_yaxes(title="Ann. Volatility %")
     return apply_plotly_style(fig, "Volatility: Flow Window vs Normal")
+
+
+def news_vol_comparison(news_tests: pd.DataFrame) -> go.Figure:
+    row = news_tests[news_tests["test_name"] == "high_vs_normal_news_stress"]
+    if row.empty:
+        row = news_tests.iloc[[0]]
+    else:
+        row = row.iloc[[0]]
+    r = row.iloc[0]
+    fig = go.Figure(
+        go.Bar(
+            x=["High News Stress", "Normal Days"],
+            y=[r.get("volatility_high_news"), r.get("volatility_normal")],
+            marker_color=[C["amber"], C["cyan"]],
+        )
+    )
+    fig.update_yaxes(title="Ann. Volatility %")
+    return apply_plotly_style(fig, "Volatility: High News Stress vs Normal")
+
+
+def news_stress_timeline(df: pd.DataFrame) -> go.Figure:
+    work = df.copy()
+    if "date" not in work.columns:
+        work = work.reset_index()
+    work["date"] = pd.to_datetime(work["date"])
+    fig = go.Figure()
+    if "price" in work.columns:
+        fig.add_trace(
+            go.Scatter(x=work["date"], y=work["price"], name="USD/MXN", line=dict(color=C["cyan"], width=1))
+        )
+    if "news_stress_regime" in work.columns:
+        stress = work[work["news_stress_regime"].astype(bool)]
+        if not stress.empty and "price" in stress.columns:
+            fig.add_trace(
+                go.Scatter(
+                    x=stress["date"],
+                    y=stress["price"],
+                    mode="markers",
+                    name="News stress",
+                    marker=dict(color=C["amber"], size=4, symbol="diamond"),
+                )
+            )
+    return apply_plotly_style(fig, "USD/MXN with News-Stress Markers")
 
 
 def corridor_heatmap(
@@ -1267,6 +1314,250 @@ def page_flow_pressure() -> None:
     )
 
 
+def page_news_macro_stress() -> None:
+    section_header("News & Macro Stress", "News as regime/risk feature — not price prediction")
+
+    news_tests = safe_read_csv(OUT / "news_feature_test_results.csv")
+    news_df_path = PROC / "usdmxn_features_regimes_news.csv"
+    news_df = safe_read_csv(news_df_path) if news_df_path.exists() else None
+    fc = safe_read_csv(OUT / "model_zoo_forecast_scorecard.csv")
+    tr = safe_read_csv(OUT / "model_zoo_trading_scorecard.csv")
+    hg = safe_read_csv(OUT / "model_zoo_hedge_scorecard.csv")
+    strategy_md = safe_read_markdown(REPORTS / "NEWS_DATA_STRATEGY.md")
+
+    fred_loaded = news_df is not None and "policy_uncertainty_index" in news_df.columns and news_df["policy_uncertainty_index"].notna().any()
+    gdelt_loaded = news_df is not None and "total_usdmxn_news_intensity" in news_df.columns and news_df["total_usdmxn_news_intensity"].notna().any()
+    placeholders = news_df is None or (
+        "news_stress_regime" in news_df.columns and news_df.get("policy_uncertainty_index", pd.Series()).isna().all()
+    )
+
+    st.markdown(
+        '<div class="callout">News features identify <strong>stress regimes</strong>, '
+        "not guaranteed FX direction. Research and risk-framing only.</div>",
+        unsafe_allow_html=True,
+    )
+
+    c1, c2, c3 = st.columns(3)
+    for col, (t, v, kind) in zip(
+        [c1, c2, c3],
+        [
+            ("FRED uncertainty", "Loaded" if fred_loaded else "Not loaded", "success" if fred_loaded else "warning"),
+            ("GDELT", "Loaded" if gdelt_loaded else "Skipped", "success" if gdelt_loaded else "info"),
+            ("Placeholders only", "Yes" if placeholders and not fred_loaded else "No", "warning" if placeholders else "success"),
+        ],
+    ):
+        with col:
+            st.markdown(
+                f'<div class="info-card">{status_badge(t, kind)}<p style="margin:0.4rem 0 0">{v}</p></div>',
+                unsafe_allow_html=True,
+            )
+
+    if news_df is None:
+        missing_section("python scripts/run_news_layer.py", "News-enhanced feature file")
+    else:
+        if "policy_uncertainty_index" in news_df.columns and news_df["policy_uncertainty_index"].notna().any():
+            section_header("Policy Uncertainty (FRED)")
+            nd = news_df.dropna(subset=["policy_uncertainty_index"])
+            fig = go.Figure(
+                go.Scatter(
+                    x=pd.to_datetime(nd["date"]),
+                    y=nd["policy_uncertainty_index"],
+                    line=dict(color=C["gold"], width=1.5),
+                )
+            )
+            fig.update_yaxes(title="USEPUINDXD")
+            st.plotly_chart(apply_plotly_style(fig, "US Economic Policy Uncertainty"), width="stretch")
+
+        if "news_stress_regime" in news_df.columns:
+            section_header("News Stress Timeline")
+            st.plotly_chart(news_stress_timeline(news_df), width="stretch")
+            n_stress = int(news_df["news_stress_regime"].astype(bool).sum())
+            st.markdown(
+                f'<div class="info-card">News-stress days: <strong>{n_stress}</strong> '
+                f"({round(n_stress / len(news_df) * 100, 1)}% of sample)</div>",
+                unsafe_allow_html=True,
+            )
+
+    if news_tests is not None and not news_tests.empty:
+        section_header("News Feature Tests")
+        high = news_tests[news_tests["test_name"] == "high_vs_normal_news_stress"]
+        if not high.empty:
+            st.plotly_chart(news_vol_comparison(news_tests), width="stretch")
+        st.dataframe(news_tests, width="stretch", hide_index=True)
+    else:
+        missing_section("python scripts/run_news_layer.py", "news_feature_test_results.csv")
+
+    news_models = [
+        "news_stress_risk_off_model",
+        "r2_news_confirmed_model",
+        "r1_news_escalation_model",
+        "news_flow_pressure_model",
+    ]
+    section_header("News-Aware Model Zoo Results")
+    for label, sc in [("Forecast", fc), ("Trading", tr), ("Hedge", hg)]:
+        if sc is not None and "model_name" in sc.columns:
+            sub = sc[sc["model_name"].isin(news_models)]
+            if not sub.empty:
+                st.markdown(f"**{label} scorecard (news models)**")
+                st.dataframe(sub, width="stretch", hide_index=True)
+
+    cols = st.columns(3)
+    cards = [
+        ("News as risk modifier", "News features identify stress regimes, not price prediction."),
+        ("R2 quiet-trend hypothesis", "Orderly low-volatility trends may be cleaner when news stress is low."),
+        ("R1 crisis hypothesis", "High-vol trend plus news stress may indicate escalation, not normal alpha."),
+    ]
+    for col, (title, body) in zip(cols, cards):
+        with col:
+            st.markdown(f'<div class="info-card"><h4>{title}</h4><p>{body}</p></div>', unsafe_allow_html=True)
+
+    st.markdown(
+        '<div class="warning-box">News data can be noisy, revised, biased by media coverage, '
+        "and subject to look-ahead mistakes. All news features require out-of-sample testing.</div>",
+        unsafe_allow_html=True,
+    )
+
+    if strategy_md:
+        with st.expander("News data strategy"):
+            st.markdown(strategy_md)
+
+
+def carry_vol_comparison(tests: pd.DataFrame) -> go.Figure:
+    row = tests[tests["test_name"] == "high_carry_vs_low_carry"]
+    if row.empty:
+        row = tests.iloc[[0]]
+    else:
+        row = row.iloc[[0]]
+    r = row.iloc[0]
+    fig = go.Figure(
+        go.Bar(
+            x=["High Carry", "Low Carry"],
+            y=[r.get("volatility_high_carry"), r.get("volatility_low_carry")],
+            marker_color=[C["gold"], C["cyan"]],
+        )
+    )
+    fig.update_yaxes(title="Ann. Volatility %")
+    return apply_plotly_style(fig, "Volatility: High Carry vs Low Carry")
+
+
+def carry_fragility_timeline(df: pd.DataFrame) -> go.Figure:
+    work = df.copy()
+    if "date" not in work.columns:
+        work = work.reset_index()
+    work["date"] = pd.to_datetime(work["date"])
+    fig = go.Figure()
+    if "price" in work.columns:
+        fig.add_trace(go.Scatter(x=work["date"], y=work["price"], name="USD/MXN", line=dict(color=C["cyan"], width=1)))
+    if "carry_fragility_regime" in work.columns:
+        frag = work[work["carry_fragility_regime"].astype(bool)]
+        if not frag.empty:
+            fig.add_trace(
+                go.Scatter(
+                    x=frag["date"], y=frag["price"], mode="markers",
+                    name="Carry fragility", marker=dict(color=C["gold"], size=4, symbol="diamond"),
+                )
+            )
+    return apply_plotly_style(fig, "USD/MXN with Carry-Fragility Markers")
+
+
+def page_carry_uip_lab() -> None:
+    section_header("Carry & UIP Lab", "When yield creates structure — and when it hides crash risk")
+
+    carry_df_path = PROC / "usdmxn_features_regimes_carry.csv"
+    carry_df = safe_read_csv(carry_df_path) if carry_df_path.exists() else None
+    tests = safe_read_csv(OUT / "carry_regime_test_results.csv")
+    hg = safe_read_csv(OUT / "carry_hedge_governance_scorecard.csv")
+    fc = safe_read_csv(OUT / "model_zoo_forecast_scorecard.csv")
+    tr = safe_read_csv(OUT / "model_zoo_trading_scorecard.csv")
+    framework_md = safe_read_markdown(REPORTS / "CARRY_RESEARCH_FRAMEWORK.md")
+
+    st.markdown(
+        '<div class="hero-subtitle">Testing when yield creates structure and when yield hides crash risk. '
+        "Carry is a regime/risk feature — not a magic trading signal.</div>",
+        unsafe_allow_html=True,
+    )
+
+    if carry_df is None:
+        missing_section("python scripts/run_carry_layer.py", "Carry-enhanced feature file")
+        return
+
+    latest = carry_df.iloc[-1]
+    has_carry = pd.notna(latest.get("carry_proxy"))
+    c1, c2, c3, c4, c5, c6 = st.columns(6)
+    cards = [
+        ("Carry proxy", f"{float(latest['carry_proxy']):.3f}" if has_carry else "—"),
+        ("Carry percentile", f"{float(latest['carry_percentile']):.2f}" if pd.notna(latest.get("carry_percentile")) else "—"),
+        ("High carry?", "Yes" if latest.get("is_high_carry") else "No"),
+        ("Fragility?", "Yes" if latest.get("carry_fragility_regime") else "No"),
+        ("Forward data?", "Yes" if latest.get("forward_data_available") else "No"),
+        ("Carry regime", str(latest.get("carry_adjusted_regime", "—"))),
+    ]
+    for col, (t, v) in zip([c1, c2, c3, c4, c5, c6], cards):
+        with col:
+            st.markdown(metric_card(t, v), unsafe_allow_html=True)
+
+    if has_carry and "carry_proxy" in carry_df.columns:
+        section_header("Carry Proxy Over Time")
+        cd = carry_df.dropna(subset=["carry_proxy"])
+        fig = go.Figure(go.Scatter(x=pd.to_datetime(cd["date"]), y=cd["carry_proxy"], line=dict(color=C["gold"], width=1.5)))
+        fig.update_yaxes(title="Foreign − Domestic policy rate (proxy)")
+        st.plotly_chart(apply_plotly_style(fig, "Policy-Rate Carry Proxy (USD/MXN)"), width="stretch")
+
+    if "carry_zscore" in carry_df.columns:
+        section_header("Carry Z-Score")
+        cz = carry_df.dropna(subset=["carry_zscore"])
+        fig = go.Figure(go.Scatter(x=pd.to_datetime(cz["date"]), y=cz["carry_zscore"], line=dict(color=C["amber"], width=1)))
+        st.plotly_chart(apply_plotly_style(fig, "Carry Z-Score"), width="stretch")
+
+    if "carry_fragility_regime" in carry_df.columns:
+        section_header("Price with Carry-Fragility Markers")
+        st.plotly_chart(carry_fragility_timeline(carry_df), width="stretch")
+
+    if tests is not None and not tests.empty:
+        section_header("Carry Regime Tests")
+        hi = tests[tests["test_name"] == "high_carry_vs_low_carry"]
+        if not hi.empty:
+            st.plotly_chart(carry_vol_comparison(tests), width="stretch")
+        st.dataframe(tests, width="stretch", hide_index=True)
+
+    if hg is not None:
+        section_header("Carry Hedge Governance")
+        st.dataframe(hg, width="stretch", hide_index=True)
+
+    carry_models = [
+        "carry_proxy_model", "carry_regime_model", "carry_fragility_risk_off_model",
+        "r2_carry_confirmed_model", "carry_adjusted_hedge_model",
+    ]
+    section_header("Carry-Aware Model Zoo")
+    for label, sc in [("Forecast", fc), ("Trading", tr)]:
+        if sc is not None and "model_name" in sc.columns:
+            sub = sc[sc["model_name"].isin(carry_models)]
+            if not sub.empty:
+                st.markdown(f"**{label}**")
+                st.dataframe(sub, width="stretch", hide_index=True)
+
+    cols = st.columns(2)
+    cards_interp = [
+        ("Carry is not free yield", "Carry may compensate investors for crash, liquidity, or dollar-stress risk."),
+        ("UIP question", "High-yield currencies should theoretically depreciate to offset yield — empirically this often fails or appears regime-dependent."),
+        ("Carry fragility", "High carry plus rising vol/news/dollar stress may indicate carry is becoming dangerous."),
+        ("Hedge governance", "Forward/carry costs matter. Spot hedges may still be expensive after forward points and carry drag."),
+    ]
+    for i, (title, body) in enumerate(cards_interp):
+        with cols[i % 2]:
+            st.markdown(f'<div class="info-card"><h4>{title}</h4><p>{body}</p></div>', unsafe_allow_html=True)
+
+    st.markdown(
+        '<div class="warning-box">Policy-rate carry is a proxy. Trading-grade hedge economics require '
+        "actual forward points, bid/ask spreads, and transaction costs.</div>",
+        unsafe_allow_html=True,
+    )
+
+    if framework_md:
+        with st.expander("Carry research framework"):
+            st.markdown(framework_md)
+
+
 def page_academic_tests() -> None:
     section_header("Academic Tests", "Journal-grade framing — prototype data until Tier 1 rerun")
 
@@ -1336,24 +1627,26 @@ def page_data_quality() -> None:
     manifest = safe_read_csv(OUT / "data_quality_manifest.csv")
     dq = safe_read_csv(OUT / "data_quality_report.csv")
     reg = safe_read_csv(OUT / "data_source_registry.csv")
+    cmp_df = safe_read_csv(OUT / "data_source_comparison_usdmxn.csv")
     dl = safe_read_csv(OUT / "corridor_download_log.csv")
     layer_md = safe_read_markdown(REPORTS / "DATA_QUALITY_LAYER.md")
+    upgrade_md = safe_read_markdown(REPORTS / "DATA_UPGRADE_REPORT.md")
 
     st.markdown(
         '<div class="callout">Every FX claim in this lab must record <strong>source</strong>, '
-        "<strong>tier (1–4)</strong>, and <strong>quality flag</strong>. "
-        "Tier 1 = FRED / Fed H.10 / BIS. Tier 4 = yfinance prototype.</div>",
+        "<strong>data tier</strong>, and <strong>quality flag</strong>. "
+        "Prototype ≠ academic-grade ≠ trading-grade.</div>",
         unsafe_allow_html=True,
     )
 
-    tier_badges = [
-        ("Tier 1", "Official / academic", "success", "tier-1"),
-        ("Tier 2", "Professional vendor", "info", "tier-2"),
-        ("Tier 3", "Proprietary internal", "gold", "tier-3"),
-        ("Tier 4", "Prototype (yfinance)", "warning", "tier-4"),
+    arch_badges = [
+        ("Prototype", "yfinance / Stooq", "warning", "tier-4"),
+        ("Academic-grade", "FRED / Fed H.10 / BIS", "success", "tier-1"),
+        ("Trading-grade", "Bloomberg / LSEG / EBS", "info", "tier-2"),
+        ("Proprietary edge", "Payment flows (authorized)", "gold", "tier-3"),
     ]
     cols = st.columns(4)
-    for col, (label, desc, kind, css) in zip(cols, tier_badges):
+    for col, (label, desc, kind, css) in zip(cols, arch_badges):
         with col:
             st.markdown(
                 f'<div class="info-card">'
@@ -1362,6 +1655,47 @@ def page_data_quality() -> None:
                 f"</div>",
                 unsafe_allow_html=True,
             )
+
+    current_source = "unknown"
+    current_tier = "prototype"
+    if dq is not None and not dq.empty:
+        row0 = dq.iloc[0]
+        current_source = str(row0.get("source", row0.get("source_name", "unknown")))
+        current_tier = str(row0.get("architecture_tier", row0.get("data_tier", "prototype")))
+
+    if current_source in ("yfinance", "stooq", "fallback_cache", "download"):
+        st.markdown(
+            '<div class="warning-box"><strong>Prototype data.</strong> Good for development, '
+            "not enough for academic claims without rerunning on FRED/Fed H.10.</div>",
+            unsafe_allow_html=True,
+        )
+    elif current_source in ("fred_h10", "fred", "fed_h10", "fed_h10_direct"):
+        st.markdown(
+            '<div class="callout"><strong>Academic-grade public source.</strong> '
+            "Good for public research, but not executable trading data.</div>",
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        '<div class="warning-box">Hedge economics remain incomplete until forward points '
+        "and bid/ask data are added (trading-grade tier).</div>",
+        unsafe_allow_html=True,
+    )
+
+    if cmp_df is not None and not cmp_df.empty:
+        section_header("Source Comparison (USD/MXN)", "FRED H.10 vs yfinance")
+        cr = cmp_df.iloc[0]
+        c1, c2, c3, c4 = st.columns(4)
+        cards = [
+            ("FRED loaded", str(cr.get("fred_loaded", "—"))),
+            ("yfinance loaded", str(cr.get("yfinance_loaded", "—"))),
+            ("Return correlation", str(cr.get("daily_return_correlation", "—"))),
+            ("Agree closely", str(cr.get("agree_closely", "—"))),
+        ]
+        for col, (t, v) in zip([c1, c2, c3, c4], cards):
+            with col:
+                st.markdown(metric_card(t, v), unsafe_allow_html=True)
+        st.dataframe(cmp_df, width="stretch", hide_index=True)
 
     if manifest is not None:
         section_header("Quality Manifest", "All series in the research stack")
@@ -1378,25 +1712,57 @@ def page_data_quality() -> None:
         ] if c in manifest.columns]
         st.dataframe(manifest[show_cols], width="stretch", hide_index=True)
     elif dq is not None:
-        section_header("Primary Series")
+        section_header("Primary Series (USD/MXN)")
         row = dq.iloc[0]
         c1, c2, c3, c4 = st.columns(4)
+        qflag = row.get("quality_flag", row.get("data_quality_flag", "—"))
         cards = [
-            ("Source", str(row.get("source_name", "—"))),
-            ("Tier", str(row.get("tier_label", row.get("data_tier", "—")))),
+            ("Source", str(row.get("source", row.get("source_name", "—")))),
+            ("Data tier", str(row.get("architecture_tier", row.get("tier_label", row.get("data_tier", "—"))))),
             ("Observations", str(row.get("observation_count", "—"))),
-            ("Flag", str(row.get("data_quality_flag", "—"))),
+            ("Quality flag", str(qflag)),
         ]
         for col, (t, v) in zip([c1, c2, c3, c4], cards):
             with col:
                 st.markdown(metric_card(t, v), unsafe_allow_html=True)
+        c5, c6, c7, c8 = st.columns(4)
+        extra = [
+            ("Date range", f"{row.get('start_date', '—')} → {row.get('end_date', '—')}"),
+            ("Missing prices", str(row.get("missing_price_count", "—"))),
+            ("Suspicious returns", str(row.get("suspicious_return_count_abs_gt_10pct", row.get("suspicious_return_count", "—")))),
+            ("Stale price flags", str(row.get("stale_price_count", "—"))),
+        ]
+        for col, (t, v) in zip([c5, c6, c7, c8], extra):
+            with col:
+                st.markdown(metric_card(t, v), unsafe_allow_html=True)
+        if qflag == "OK" and current_source in ("fred_h10", "fred", "fed_h10"):
+            st.markdown(
+                '<div class="callout">Recommendation: Use FRED H.10 as source of truth for '
+                "public research; document limitations (no bid/ask, no forwards).</div>",
+                unsafe_allow_html=True,
+            )
+        elif qflag in ("WARNING", "FAIL") or current_source in ("yfinance", "stooq"):
+            st.markdown(
+                '<div class="warning-box">Recommendation: Rerun pipelines with '
+                "<code>preferred_source: fred_h10</code> before academic publication.</div>",
+                unsafe_allow_html=True,
+            )
         st.dataframe(dq, width="stretch")
     else:
-        missing_section("python scripts/run_data_quality_layer.py")
+        missing_section("python scripts/run_data_quality.py")
+
+    if upgrade_md:
+        with st.expander("Data upgrade report (FRED vs yfinance)"):
+            st.markdown(upgrade_md)
 
     if layer_md:
         with st.expander("Data quality layer summary"):
             st.markdown(layer_md)
+
+    arch_md = safe_read_markdown(REPORTS / "DATA_ARCHITECTURE.md")
+    if arch_md:
+        with st.expander("Data architecture (tiers and rules)"):
+            st.markdown(arch_md)
 
     if reg is not None:
         section_header("Source Registry", f"{len(reg)} registered sources")
@@ -1421,28 +1787,249 @@ def page_data_quality() -> None:
     )
 
 
-def page_research_questions() -> None:
+def page_unanswered_fx_questions() -> None:
+    from src.research_questions import (
+        FLAGSHIP_QUESTION_ID,
+        PRIORITY_LANES,
+        get_research_question,
+        research_questions_dataframe,
+    )
+
     st.markdown(
-        '<div class="hero-subtitle">BR3N Macro Labs studies when markets become less random — '
-        "not to claim certainty, but to improve evidence, discipline, and risk decisions.</div>",
+        '<div class="hero-title">Major Unanswered Questions in FX</div>'
+        '<div class="hero-subtitle">Testing whether currency decisions can improve even when currency forecasts fail.</div>',
         unsafe_allow_html=True,
     )
 
-    md = safe_read_markdown(REPORTS / "research_questions.md")
-    if md:
-        st.markdown(md)
+    st.markdown(
+        '<div class="info-card"><h4>Highest-Level Thesis</h4>'
+        "<p>FX markets may be mostly random-walk-like as price processes, but not all FX decisions are price forecasts. "
+        "Regime, carry, news, flow, and stress variables may fail to predict exchange rates directly while still "
+        "improving hedge governance, risk escalation, and decision discipline.</p></div>",
+        unsafe_allow_html=True,
+    )
+
+    flagship = get_research_question(FLAGSHIP_QUESTION_ID)
+    st.markdown(
+        f'<div class="info-card" style="border-color:{C["gold"]}">'
+        f'<h4>Flagship Research Lane — {flagship["title"]}</h4>'
+        f'<p><strong>{flagship["core_question"]}</strong></p>'
+        f'<p>{flagship["current_status"]}</p></div>',
+        unsafe_allow_html=True,
+    )
+
+    section_header("Priority Research Lanes", "Five unresolved questions driving current lab work")
+    cols = st.columns(min(5, len(PRIORITY_LANES)))
+    for col, qid in zip(cols, PRIORITY_LANES):
+        q = get_research_question(qid)
+        badge = "Flagship" if qid == FLAGSHIP_QUESTION_ID else f"P{q['priority']}"
+        with col:
+            st.markdown(
+                metric_card(
+                    q["title"],
+                    q["core_question"][:80] + ("…" if len(q["core_question"]) > 80 else ""),
+                    subtitle=q["current_status"],
+                    status=badge if qid == FLAGSHIP_QUESTION_ID else None,
+                ),
+                unsafe_allow_html=True,
+            )
+            st.caption(q["why_it_matters"][:120] + "…")
+            st.markdown(f"**Modules:** `{', '.join(q['model_modules'][:3])}`")
+            outs = q["output_files"][:2]
+            if outs:
+                st.markdown("**Outputs:** " + ", ".join(f"`{Path(o).name}`" for o in outs))
+
+    section_header("Flagship Lane Results", "OOS hedge governance vs forecast failure")
+    flagship_oos = safe_read_csv(OUT / "flagship_hedge_oos_scorecard.csv")
+    fc = safe_read_csv(OUT / "model_zoo_forecast_scorecard.csv")
+    if fc is not None and "model_beats_rw_rmse" in fc.columns and not fc.empty:
+        beats = int(fc["model_beats_rw_rmse"].sum())
+        st.markdown(
+            f'<div class="info-card"><p><strong>Forecast layer:</strong> {beats}/{len(fc)} models beat random walk on RMSE '
+            f"({100*beats/len(fc):.0f}%). Hedge usefulness evaluated separately.</p></div>",
+            unsafe_allow_html=True,
+        )
+    if flagship_oos is not None and not flagship_oos.empty:
+        ok = flagship_oos[flagship_oos.get("status", "ok") == "ok"]
+        ff = ok[ok.get("cost_layer", "base") == "forward_full"] if not ok.empty else ok
+        if not ff.empty:
+            st.dataframe(
+                ff.sort_values(["split", "cost_adjusted_risk_reduction"], ascending=[True, False])[
+                    [
+                        c
+                        for c in [
+                            "split",
+                            "policy_name",
+                            "policy_class",
+                            "cost_adjusted_risk_reduction",
+                            "hedge_turnover",
+                            "turnover_efficiency",
+                        ]
+                        if c in ff.columns
+                    ]
+                ],
+                width="stretch",
+                hide_index=True,
+            )
+        turnover_cmp = safe_read_csv(OUT / "flagship_turnover_adjusted_comparison.csv")
+        if turnover_cmp is not None and not turnover_cmp.empty:
+            st.markdown("**Turnover-adjusted (forward_full)**")
+            st.dataframe(turnover_cmp, width="stretch", hide_index=True)
     else:
-        questions = [
-            "When does random walk fail in FX?",
-            "What creates conditional forecastability?",
-            "Can payment-flow proxies predict currency pressure?",
-            "Can regime-based hedging beat static hedge policy?",
-            "Is FX partly balance-sheet constrained?",
-            "Can a model fail as a forecast but still help hedge governance?",
-            "When should a treasury team intentionally not adjust the hedge?",
-        ]
-        for i, q in enumerate(questions, 1):
-            st.markdown(f"**{i}.** {q}")
+        missing_section("python scripts/run_flagship_research_lane.py", "Flagship OOS hedge scorecard")
+
+    r1r2 = safe_read_csv(OUT / "r1_r2_trend_quality_comparison.csv")
+    r1r2_oos = safe_read_csv(OUT / "r1_r2_trend_quality_oos.csv")
+    if r1r2 is not None and not r1r2.empty:
+        section_header("R1 vs R2 Trend Quality")
+        st.caption("Full sample")
+        st.dataframe(r1r2, width="stretch", hide_index=True)
+        if r1r2_oos is not None and not r1r2_oos.empty:
+            st.caption("OOS test windows only")
+            st.dataframe(r1r2_oos, width="stretch", hide_index=True)
+    else:
+        missing_section("python scripts/run_flagship_research_lane.py", "R1 vs R2 trend quality comparison")
+
+    section_header("Full Research Question Registry")
+    df = research_questions_dataframe()
+    show = df[["question_id", "title", "priority", "current_status", "model_modules", "output_files"]]
+    st.dataframe(show, width="stretch", hide_index=True)
+
+    tab_roadmap, tab_flagship, tab_full = st.tabs(["Research Roadmap", "Flagship Lane", "Full Question Document"])
+    with tab_roadmap:
+        roadmap = safe_read_markdown(REPORTS / "FX_RESEARCH_ROADMAP.md")
+        if roadmap:
+            st.markdown(roadmap)
+        else:
+            missing_section(
+                "python -c \"from pathlib import Path; from src.research_roadmap_reporting import generate_research_roadmap_report; generate_research_roadmap_report(Path('.'))\"",
+                "FX research roadmap report",
+            )
+    with tab_flagship:
+        flagship_md = safe_read_markdown(REPORTS / "FLAGSHIP_RESEARCH_LANE.md")
+        if flagship_md:
+            st.markdown(flagship_md)
+        else:
+            missing_section("python scripts/run_flagship_research_lane.py", "Flagship research lane report")
+    with tab_full:
+        unanswered = safe_read_markdown(REPORTS / "UNANSWERED_FX_QUESTIONS.md")
+        if unanswered:
+            st.markdown(unanswered)
+        else:
+            st.warning("Missing reports/UNANSWERED_FX_QUESTIONS.md")
+
+    st.markdown(
+        '<div class="warning-box"><strong>Interpretation:</strong> The lab should not chase endless models. '
+        "Each model should answer one of the major research questions. The strongest current question is whether "
+        "hedge decisions can improve when price forecasts fail.</div>",
+        unsafe_allow_html=True,
+    )
+
+
+def page_fx_history() -> None:
+    st.markdown(
+        '<div class="hero-title">FX History & Academic Foundations</div>'
+        '<div class="hero-subtitle">The 300-year road from gold flows and parity conditions to random-walk benchmarks, '
+        "carry puzzles, order flow, and hedge-governance research.</div>",
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        '<div class="info-card"><h4>Why This History Matters</h4>'
+        "<p>BR3N Macro Labs does not claim to ignore prior research. FX Lab builds on major exchange-rate theories "
+        "and puzzles. Random walk remains the benchmark. The strongest current thesis is not that FX can be predicted — "
+        "it is that <strong>FX decisions may improve when prediction fails</strong>.</p></div>",
+        unsafe_allow_html=True,
+    )
+
+    section_header("Timeline", "Major milestones in exchange-rate thought")
+    timeline = [
+        ("1700s", "Hume & specie-flow adjustment", "Trade imbalances, gold flows, and international adjustment"),
+        ("1800s", "Gold standard", "Fixed rates with adjustment through prices, flows, and stress"),
+        ("Early 1900s", "Purchasing Power Parity", "Gustav Cassel — long-run relative price alignment"),
+        ("1940s–1970s", "Bretton Woods", "Managed FX; collapse ushered in modern floating rates"),
+        ("1960s", "Mundell-Fleming", "Policy works differently under fixed vs floating regimes"),
+        ("1976", "Dornbusch overshooting", "FX can overshoot when asset markets move faster than goods prices"),
+        ("1983", "Meese-Rogoff", "Random walk is extremely hard to beat out of sample"),
+        ("1980s onward", "UIP / carry puzzle", "High-yield currencies and crash-risk compensation"),
+        ("1990s–2000s", "Microstructure & order flow", "Lyons, Evans — trades reveal pressure and information"),
+        ("2008 onward", "Funding stress & CIP breakdown", "Forwards reflect balance-sheet scarcity"),
+        ("2010s–present", "Machine learning & FX", "Complex models still struggle OOS after costs"),
+    ]
+    cols = st.columns(3)
+    for i, (era, title, desc) in enumerate(timeline):
+        with cols[i % 3]:
+            st.markdown(
+                f'<div class="info-card"><div class="metric-card-title">{era}</div>'
+                f"<strong>{title}</strong><p style='margin-top:0.4rem;font-size:0.85rem'>{desc}</p></div>",
+                unsafe_allow_html=True,
+            )
+
+    section_header("Nobel Connections")
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown(
+            f'<div class="info-card" style="border-color:{C["gold"]}">'
+            "<h4>Robert Mundell — 1999</h4>"
+            "<p>Nobel for monetary and fiscal policy under different exchange-rate regimes and optimum currency areas.</p>"
+            "<p><em>Clearest Nobel link to exchange-rate regimes. FX Lab extends regime thinking to market regimes.</em></p></div>",
+            unsafe_allow_html=True,
+        )
+    with c2:
+        st.markdown(
+            '<div class="info-card"><h4>Paul Krugman — 2008</h4>'
+            "<p>Nobel for international trade and economic geography — not FX forecasting directly.</p>"
+            "<p><em>Important for trade, geography, production, and crisis context around currencies.</em></p></div>",
+            unsafe_allow_html=True,
+        )
+
+    section_header("What Every FX Person Should Know")
+    essentials = [
+        ("Random walk is the benchmark", "If a model does not beat random walk OOS, be humble."),
+        ("Spot and forwards are different", "Hedge economics require forward points, not spot charts alone."),
+        ("Carry is not free money", "Carry may compensate investors for crash and liquidity risk."),
+        ("UIP often fails", "One of the largest unresolved puzzles in FX."),
+        ("PPP is long-run", "PPP matters for valuation — not usually as a daily trading rule."),
+        ("Regime matters", "Fixed vs floating, calm vs stress, trend vs range change the problem."),
+        ("Order flow matters", "FX is not only macro — trades and flows move prices."),
+        ("Liquidity disappears in stress", "Hedging can become harder and more expensive when needed most."),
+        ("Hedging is not trading", "Judged by risk reduction, cost, and policy discipline — not alpha."),
+        ("Forecast failure ≠ decision failure", "The central FX Lab thesis."),
+    ]
+    cols = st.columns(2)
+    for i, (title, desc) in enumerate(essentials):
+        with cols[i % 2]:
+            st.markdown(
+                metric_card(title, desc),
+                unsafe_allow_html=True,
+            )
+
+    st.markdown(
+        f'<div class="info-card" style="border-color:{C["gold"]};margin-top:1rem">'
+        "<h4>How FX Lab Fits</h4>"
+        "<p>FX Lab accepts the history of exchange-rate research and the difficulty of beating random walk. "
+        "The lab asks whether regime information can improve <strong>hedge-governance decisions</strong> even when "
+        "it fails to improve price forecasts.</p></div>",
+        unsafe_allow_html=True,
+    )
+
+    tab_public, tab_full = st.tabs(["Public Page", "Full Foundations Document"])
+    with tab_public:
+        md = safe_read_markdown(REPORTS / "publication" / "FX_HISTORY_PAGE.md")
+        if md:
+            st.markdown(md)
+        else:
+            missing_section("python scripts/build_site.py", "FX history public page")
+    with tab_full:
+        md_full = safe_read_markdown(REPORTS / "FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md")
+        if md_full:
+            st.markdown(md_full)
+        else:
+            st.warning("Missing reports/FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md")
+
+
+def page_research_questions() -> None:
+    page_unanswered_fx_questions()
 
 
 def page_publication_memo() -> None:
@@ -1459,6 +2046,9 @@ def page_publication_memo() -> None:
         ("USD/MXN Flagship Memo", REPORTS / "USDMXN_FLAGSHIP_MEMO.md"),
         ("USD/MXN Regime Report", REPORTS / "usdmxn_regime_report.md"),
         ("Corridor Roadmap Report", REPORTS / "corridor_roadmap_report.md"),
+        ("Unanswered FX Questions", REPORTS / "UNANSWERED_FX_QUESTIONS.md"),
+        ("FX History & Foundations", REPORTS / "publication" / "FX_HISTORY_PAGE.md"),
+        ("FX Research Roadmap", REPORTS / "FX_RESEARCH_ROADMAP.md"),
         ("Data Quality Layer", REPORTS / "DATA_QUALITY_LAYER.md"),
     ]
     for label, path in docs:
@@ -1515,7 +2105,7 @@ def ensure_dashboard_data() -> bool:
         hg_sc, hg_det = run_all_hedge_governance(
             flow, cfg, exposures=["us_entity_long_mxn", "mx_entity_usd_liabilities"]
         )
-        save_governance_outputs(hg_sc, hg_det)
+        save_governance_outputs(hg_sc, hg_det, cfg=cfg)
         save_validity_map(build_random_walk_validity_map(flow))
 
         try:
@@ -1578,6 +2168,10 @@ def main() -> None:
         "Corridor Roadmap": page_corridor_roadmap,
         "Hedge Governance": page_hedge_governance,
         "Flow Pressure": page_flow_pressure,
+        "News & Macro Stress": page_news_macro_stress,
+        "Carry & UIP Lab": page_carry_uip_lab,
+        "Unanswered FX Questions": page_unanswered_fx_questions,
+        "FX History": page_fx_history,
         "Academic Tests": page_academic_tests,
         "Data Quality": page_data_quality,
         "FX Desk Command Center": page_fx_desk_command_center,

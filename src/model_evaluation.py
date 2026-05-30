@@ -187,6 +187,16 @@ def evaluate_all_models(
     tr_sc = pd.DataFrame(trading_rows)
     hg_sc = pd.DataFrame(hedge_rows)
 
+    from .data_provenance import build_run_provenance, provenance_from_cache, stamp_scorecard
+
+    prov = provenance_from_cache(cfg.get("data", {}).get("ticker", "USDMXN=X"))
+    if not prov:
+        prov = build_run_provenance(cfg, df.reset_index() if df.index.name else df)
+
+    fc_sc = stamp_scorecard(fc_sc, prov) if not fc_sc.empty else fc_sc
+    tr_sc = stamp_scorecard(tr_sc, prov) if not tr_sc.empty else tr_sc
+    hg_sc = stamp_scorecard(hg_sc, prov) if not hg_sc.empty else hg_sc
+
     fc_sc.to_csv(out_dir / "model_zoo_forecast_scorecard.csv", index=False)
     tr_sc.to_csv(out_dir / "model_zoo_trading_scorecard.csv", index=False)
     hg_sc.to_csv(out_dir / "model_zoo_hedge_scorecard.csv", index=False)

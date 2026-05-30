@@ -10,6 +10,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -39,6 +40,12 @@ def main() -> None:
     feat = build_features(prices, cfg)
     df = classify_regimes(feat, cfg)
 
+    # Propagate price-source metadata into feature frame for quality reporting
+    cache_full = pd.read_csv(path, parse_dates=[0], index_col=0)
+    for col in ("source", "data_tier", "tier_number", "tier_label", "convention", "downloaded_at"):
+        if col in cache_full.columns:
+            df[col] = cache_full[col].reindex(df.index).ffill().bfill()
+
     out_dir = ROOT / cfg["reporting"]["output_dir"]
     chart_dir = ROOT / cfg["reporting"]["chart_dir"]
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -60,7 +67,15 @@ def main() -> None:
     df.to_csv(proc_dir / "usdmxn_features_regimes.csv")
 
     sc = scorecard(df, cfg)
+
+    from src.data_provenance import build_run_provenance, provenance_from_cache, stamp_scorecard
+
+    prov = provenance_from_cache(ticker)
+    if not prov:
+        prov = build_run_provenance(cfg, df.reset_index())
+    sc = stamp_scorecard(sc, prov)
     sc.to_csv(out_dir / "strategy_scorecard.csv", index=False)
+    sc.to_csv(out_dir / "usdmxn_scorecard.csv", index=False)
     print("\nScorecard:\n", sc.to_string(index=False))
 
     wf_is, wf_oos = walk_forward_scorecard(df, cfg)

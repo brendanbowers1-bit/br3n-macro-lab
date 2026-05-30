@@ -1,5 +1,5 @@
 strategy,total_return_pct,ann_return_pct,ann_vol_pct,sharpe,max_drawdown_pct,win_rate_pct,cost_layer,ticker,total_cost_pct
-flat_range,-6.77,-0.31,11.68,0.032,-41.0,42.0,full_economic,USDMXN=X,24.337
+flat_range,-6.47,-0.27,10.87,0.029,-51.35,43.6,full_economic,USDMXN=X,26.42
 flat_range,60.4,2.26,17.71,0.214,-43.15,45.4,full_economic,USDBRL=X,27.564
 flat_range,-19.32,-0.94,17.66,0.035,-47.56,44.6,full_economic,USDCOP=X,31.703
 flat_range,24.05,0.85,9.67,0.136,-28.28,42.5,full_economic,USDJPY=X,17.136

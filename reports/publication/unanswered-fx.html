@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="BR3N Macro Labs — Major research questions · Research only · Not investment advice"/>
+  <title>Unanswered FX Questions — BR3N Macro Labs</title>
+  <style>
+:root {
+  --bg: #0c0f14;
+  --surface: #141a24;
+  --border: #243044;
+  --text: #e8edf4;
+  --muted: #8b9cb3;
+  --accent: #3d8bfd;
+  --accent-dim: #2563b8;
+  --good: #34d399;
+  --warn: #fbbf24;
+  --font: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "SF Mono", ui-monospace, Menlo, monospace;
+  --max: 720px;
+  --wide: 960px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 17px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header {
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #121824 0%, var(--bg) 100%);
+  padding: 2.5rem 1.5rem 2rem;
+}
+.header-inner { max-width: var(--wide); margin: 0 auto; }
+.brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+h1.title { font-size: 2rem; font-weight: 650; margin: 0 0 0.75rem; line-height: 1.2; }
+.subtitle { color: var(--muted); font-size: 1.05rem; max-width: 42rem; }
+nav.top {
+  max-width: var(--wide);
+  margin: 1.25rem auto 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+nav.top a {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: var(--surface);
+}
+nav.top a.primary {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: #fff;
+}
+main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+main.wide { max-width: var(--wide); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.card h3 { margin-top: 0; font-size: 1rem; color: var(--accent); }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat .value { font-size: 1.35rem; font-weight: 650; margin-top: 0.25rem; }
+.stat .value.good { color: var(--good); }
+.stat .value.warn { color: var(--warn); }
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 8px 8px 0;
+  color: var(--muted);
+  font-style: italic;
+}
+h2 { font-size: 1.35rem; margin: 2.25rem 0 1rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
+p { margin: 0.75rem 0; }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+th { background: #1a2230; color: var(--muted); font-weight: 600; }
+table.data-table th.num,
+table.data-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table { margin: 0; }
+.conclusion-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.claim-discipline {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text);
+}
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  background: #0a0e13;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+code { padding: 0.15rem 0.4rem; }
+pre { padding: 1rem; overflow-x: auto; }
+pre code { border: none; padding: 0; background: none; }
+footer {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.disclaimer {
+  background: #1a1510;
+  border: 1px solid #4a3820;
+  color: #d4a574;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-top: 1rem;
+}
+/* Cover page */
+body.cover-page header.hero-cover {
+  border-bottom: none;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(61, 139, 253, 0.18) 0%, transparent 55%),
+    linear-gradient(180deg, #0e1420 0%, var(--bg) 100%);
+}
+.hero-cover .lab-title {
+  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #e8edf4 0%, #8b9cb3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-cover .tagline {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 40rem;
+  margin: 0 auto 0.75rem;
+  line-height: 1.5;
+}
+.hero-cover .author {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+.fx-lab-logo {
+  display: block;
+  max-width: min(520px, 92vw);
+  width: 100%;
+  height: auto;
+  margin: 0 auto 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+.fx-lab-logo-sm {
+  display: block;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border-radius: 8px;
+}
+.cta-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.cta-row a {
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cta-row a.primary {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+.cta-row a.secondary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.principle-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+}
+.principle-box p { margin: 0.5rem 0; color: var(--text); }
+.cover-main { max-width: var(--wide); }
+.cover-main h2:first-child { margin-top: 0; }
+.vertical-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.vertical-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+.vertical-card:hover { border-color: var(--accent); }
+.vertical-card .tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.vertical-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.vertical-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+}
+.vertical-card a.btn {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+}
+.vertical-card a.btn:hover { text-decoration: none; opacity: 0.92; }
+.research-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+.research-link-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.35rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.research-link-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.research-link-card .tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.research-link-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.research-link-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  h1.title { font-size: 1.55rem; }
+  body { font-size: 16px; }
+  .hero-cover .lab-title { letter-spacing: 0.08em; }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <img src="assets/fx_lab_logo.png" alt="BR3N MACRO LABS FX Lab" class="fx-lab-logo-sm"/>
+      <div class="brand">BR3N MACRO LABS · FX LAB</div>
+      <h1 class="title">Unanswered FX Questions</h1>
+      <p class="subtitle">Major research questions · Research only · Not investment advice</p>
+      <nav class="top">
+  <a href="index.html">Home</a>
+  <a href="fx-lab.html">FX Lab</a>
+  <a href="research.html">Research</a>
+  <a href="corridor.html">Corridor</a>
+  <a href="fx_desk.html">FX Desk</a>
+  <a href="memo.html">Memo</a>
+  <a href="ladder.html">Ladder</a>
+  <a href="hedge-governance.html">Hedge Gov</a>
+  <a href="model-zoo.html">Model Zoo</a>
+  <a href="lab-status.html">Lab Status</a>
+  <a href="unanswered-fx.html" class="primary">Unanswered FX</a>
+  <a href="history.html">History</a>
+</nav>
+    </div>
+  </header>
+  <main class="wide">
+    
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="principle-box">
+  <p><strong>Research framing:</strong> These are unresolved questions in FX — not claims of predictability or trading readiness.</p>
+</div>
+<h1>Unanswered FX Questions</h1>
+<h2 id="br3n-macro-labs-fx-lab">BR3N Macro Labs — FX Lab</h2>
+<p>FX Lab studies one of the hardest problems in finance:</p>
+<p>Why are exchange rates so hard to forecast, yet sometimes structured enough to matter for trading, hedging, and risk decisions?</p>
+<p>The lab is currently focused on a narrower and more practical claim:</p>
+<p>A model can fail as a price forecast but still improve hedge governance.</p>
+<h2 id="priority-research-lanes">Priority Research Lanes</h2>
+<ol><li>Forecast Failure and Hedge Usefulness</li><li>Regime-Dependent UIP</li><li>Carry Fragility</li><li>Public Flow Proxies</li><li>R1 vs R2 Trend Quality</li></ol>
+<h2 id="current-flagship-question">Current Flagship Question</h2>
+<p>Can FX regime models fail to beat random walk as forecasts but still improve hedge-governance decisions?</p>
+<h2 id="working-thesis">Working Thesis</h2>
+<p>FX markets may be mostly random-walk-like as price processes, but not all FX decisions are price forecasts.</p>
+<p>Regime, carry, news, flow, and stress variables may fail to predict exchange rates directly while still improving hedge governance, risk escalation, and decision discipline.</p>
+<h2 id="claim-discipline">Claim Discipline</h2>
+<p>The lab does not claim:</p>
+<ul><li>FX prediction certainty</li><li>random walk disproven</li><li>guaranteed trading returns</li><li>live-trading readiness</li></ul>
+<p>The lab does claim:</p>
+<ul><li>these questions can be tested systematically</li><li>forecast accuracy, trading P&L, and hedge usefulness should be evaluated separately</li><li>hedge-governance usefulness may survive when prediction fails</li></ul>
+<hr/>
+<h2>Flagship Research Lane</h2>
+<h1>Flagship Research Lane — Forecast Failure and Hedge Usefulness</h1>
+<p><em>Generated: 2026-05-30 17:30</em></p>
+<h2 id="thesis">Thesis</h2>
+<p>BR3N Macro Labs does not need to prove that FX is predictable to create research value. The flagship lane tests whether regime intelligence improves hedge-governance decisions when price prediction fails.</p>
+<h2 id="forecast-scorecard-separate-object">Forecast Scorecard (separate object)</h2>
+<ul><li>Models evaluated: <strong>19</strong></li><li>Beat random walk (RMSE): <strong>1</strong> (5.3%)</li></ul>
+<p>Interpretation: Most models still fail the forecast-accuracy benchmark. Hedge usefulness must be evaluated independently.</p>
+<h2 id="data-context">Data Context</h2>
+<ul><li>Carry layer ready: <strong>True</strong> (policy-rate proxy; forward points required for true economics)</li><li>Forward points CSV loaded: <strong>True</strong></li></ul>
+<h2 id="oos-hedge-governance-base-costs">OOS Hedge Governance — base costs</h2>
+<h3>split_1 (2019-01-01..2021-12-31)</h3>
+<ul><li><strong>fully_hedged</strong> [static]: cost-adj 13.84, turnover 0.0, efficiency 13.84</li><li><strong>no_change_in_range_carry_aware</strong> [carry_aware]: cost-adj 10.892, turnover 6.831, efficiency 1.594</li><li><strong>mostly_hedged</strong> [static]: cost-adj 10.38, turnover 0.0, efficiency 10.38</li><li><strong>carry_adjusted_regime</strong> [carry_aware]: cost-adj 9.801, turnover 10.3, efficiency 0.952</li><li><strong>no_change_in_range</strong> [dynamic]: cost-adj 8.682, turnover 1.6, efficiency 5.426</li><li><strong>regime_based</strong> [dynamic]: cost-adj 8.451, turnover 11.8, efficiency 0.716</li><li><strong>regime_only</strong> [carry_aware]: cost-adj 8.451, turnover 11.8, efficiency 0.716</li><li><strong>volatility_triggered</strong> [dynamic]: cost-adj 8.006, turnover 4.8, efficiency 1.668</li><li><strong>half_hedged</strong> [static]: cost-adj 6.92, turnover 0.0, efficiency 6.92</li><li><strong>static_50</strong> [static]: cost-adj 6.92, turnover 0.0, efficiency 6.92</li><li><strong>r2_active_policy</strong> [dynamic]: cost-adj 6.102, turnover 12.0, efficiency 0.509</li></ul>
+<h3>split_2 (2022-01-01..2024-12-31)</h3>
+<ul><li><strong>fully_hedged</strong> [static]: cost-adj 11.62, turnover 0.0, efficiency 11.62</li><li><strong>no_change_in_range_carry_aware</strong> [carry_aware]: cost-adj 9.19, turnover 7.875, efficiency 1.167</li><li><strong>mostly_hedged</strong> [static]: cost-adj 8.715, turnover 0.0, efficiency 8.715</li><li><strong>carry_adjusted_regime</strong> [carry_aware]: cost-adj 7.62, turnover 10.9, efficiency 0.699</li><li><strong>no_change_in_range</strong> [dynamic]: cost-adj 7.211, turnover 5.0, efficiency 1.442</li><li><strong>regime_based</strong> [dynamic]: cost-adj 7.084, turnover 13.4, efficiency 0.529</li><li><strong>regime_only</strong> [carry_aware]: cost-adj 7.084, turnover 13.4, efficiency 0.529</li><li><strong>volatility_triggered</strong> [dynamic]: cost-adj 6.547, turnover 15.6, efficiency 0.42</li><li><strong>half_hedged</strong> [static]: cost-adj 5.81, turnover 0.0, efficiency 5.81</li><li><strong>static_50</strong> [static]: cost-adj 5.81, turnover 0.0, efficiency 5.81</li><li><strong>r2_active_policy</strong> [dynamic]: cost-adj 5.024, turnover 17.4, efficiency 0.289</li></ul>
+<h3>split_3 (2025-01-01..2026-12-31)</h3>
+<ul><li><strong>fully_hedged</strong> [static]: cost-adj 9.488, turnover 0.0, efficiency 9.488</li><li><strong>no_change_in_range_carry_aware</strong> [carry_aware]: cost-adj 7.354, turnover 2.25, efficiency 3.268</li><li><strong>mostly_hedged</strong> [static]: cost-adj 7.116, turnover 0.0, efficiency 7.116</li><li><strong>carry_adjusted_regime</strong> [carry_aware]: cost-adj 6.572, turnover 3.1, efficiency 2.12</li><li><strong>no_change_in_range</strong> [dynamic]: cost-adj 6.092, turnover 0.6, efficiency 10.153</li><li><strong>regime_based</strong> [dynamic]: cost-adj 5.774, turnover 4.2, efficiency 1.375</li><li><strong>regime_only</strong> [carry_aware]: cost-adj 5.774, turnover 4.2, efficiency 1.375</li><li><strong>volatility_triggered</strong> [dynamic]: cost-adj 5.037, turnover 1.8, efficiency 2.798</li><li><strong>half_hedged</strong> [static]: cost-adj 4.744, turnover 0.0, efficiency 4.744</li><li><strong>static_50</strong> [static]: cost-adj 4.744, turnover 0.0, efficiency 4.744</li><li><strong>r2_active_policy</strong> [dynamic]: cost-adj 4.654, turnover 4.2, efficiency 1.108</li></ul>
+<p><strong>Best dynamic/carry policy (base):</strong> <code>no_change_in_range_carry_aware</code></p>
+<h2 id="oos-hedge-governance-forward_full-costs">OOS Hedge Governance — forward_full costs</h2>
+<h3>split_1 (2019-01-01..2021-12-31)</h3>
+<ul><li><strong>volatility_triggered</strong> [dynamic]: cost-adj 1.884, turnover 4.8, efficiency 0.393</li><li><strong>fully_hedged</strong> [static]: cost-adj 1.67, turnover 0.0, efficiency 1.67</li><li><strong>no_change_in_range_carry_aware</strong> [carry_aware]: cost-adj 1.55, turnover 6.831, efficiency 0.227</li><li><strong>carry_adjusted_regime</strong> [carry_aware]: cost-adj 1.273, turnover 10.3, efficiency 0.124</li><li><strong>mostly_hedged</strong> [static]: cost-adj 1.252, turnover 0.0, efficiency 1.252</li><li><strong>regime_based</strong> [dynamic]: cost-adj 0.972, turnover 11.8, efficiency 0.082</li><li><strong>regime_only</strong> [carry_aware]: cost-adj 0.972, turnover 11.8, efficiency 0.082</li><li><strong>half_hedged</strong> [static]: cost-adj 0.835, turnover 0.0, efficiency 0.835</li><li><strong>static_50</strong> [static]: cost-adj 0.835, turnover 0.0, efficiency 0.835</li><li><strong>no_change_in_range</strong> [dynamic]: cost-adj 0.446, turnover 1.6, efficiency 0.279</li><li><strong>r2_active_policy</strong> [dynamic]: cost-adj -1.252, turnover 12.0, efficiency -0.104</li></ul>
+<h3>split_2 (2022-01-01..2024-12-31)</h3>
+<ul><li><strong>half_hedged</strong> [static]: cost-adj -0.291, turnover 0.0, efficiency -0.291</li><li><strong>static_50</strong> [static]: cost-adj -0.291, turnover 0.0, efficiency -0.291</li><li><strong>mostly_hedged</strong> [static]: cost-adj -0.436, turnover 0.0, efficiency -0.436</li><li><strong>fully_hedged</strong> [static]: cost-adj -0.582, turnover 0.0, efficiency -0.582</li><li><strong>volatility_triggered</strong> [dynamic]: cost-adj -0.778, turnover 15.6, efficiency -0.05</li><li><strong>no_change_in_range</strong> [dynamic]: cost-adj -0.922, turnover 5.0, efficiency -0.184</li><li><strong>regime_based</strong> [dynamic]: cost-adj -0.998, turnover 13.4, efficiency -0.074</li><li><strong>regime_only</strong> [carry_aware]: cost-adj -0.998, turnover 13.4, efficiency -0.074</li><li><strong>no_change_in_range_carry_aware</strong> [carry_aware]: cost-adj -1.017, turnover 7.875, efficiency -0.129</li><li><strong>carry_adjusted_regime</strong> [carry_aware]: cost-adj -1.18, turnover 10.9, efficiency -0.108</li><li><strong>r2_active_policy</strong> [dynamic]: cost-adj -2.137, turnover 17.4, efficiency -0.123</li></ul>
+<h3>split_3 (2025-01-01..2026-12-31)</h3>
+<ul><li><strong>fully_hedged</strong> [static]: cost-adj 3.891, turnover 0.0, efficiency 3.891</li><li><strong>no_change_in_range_carry_aware</strong> [carry_aware]: cost-adj 2.987, turnover 2.25, efficiency 1.328</li><li><strong>mostly_hedged</strong> [static]: cost-adj 2.918, turnover 0.0, efficiency 2.918</li><li><strong>carry_adjusted_regime</strong> [carry_aware]: cost-adj 2.702, turnover 3.1, efficiency 0.872</li><li><strong>no_change_in_range</strong> [dynamic]: cost-adj 2.327, turnover 0.6, efficiency 3.878</li><li><strong>regime_based</strong> [dynamic]: cost-adj 2.225, turnover 4.2, efficiency 0.53</li><li><strong>regime_only</strong> [carry_aware]: cost-adj 2.225, turnover 4.2, efficiency 0.53</li><li><strong>volatility_triggered</strong> [dynamic]: cost-adj 2.191, turnover 1.8, efficiency 1.217</li><li><strong>half_hedged</strong> [static]: cost-adj 1.946, turnover 0.0, efficiency 1.946</li><li><strong>static_50</strong> [static]: cost-adj 1.946, turnover 0.0, efficiency 1.946</li><li><strong>r2_active_policy</strong> [dynamic]: cost-adj 1.236, turnover 4.2, efficiency 0.294</li></ul>
+<p><strong>Best dynamic/carry policy (forward_full):</strong> <code>no_change_in_range_carry_aware</code></p>
+<h2 id="turnover-adjusted-comparison-forward_full">Turnover-Adjusted Comparison (forward_full)</h2>
+<h3>split_1 (2019-01-01..2021-12-31)</h3>
+<ul><li>Best static: <code>fully_hedged</code> — cost-adj 1.67, turnover 0.0, efficiency 1.67</li><li>Best dynamic (efficiency): <code>volatility_triggered</code> — cost-adj 1.884, turnover 4.8, efficiency 0.393</li><li>Dynamic beats static on cost-adj: <strong>True</strong> | on turnover efficiency: <strong>False</strong></li></ul>
+<h3>split_2 (2022-01-01..2024-12-31)</h3>
+<ul><li>Best static: <code>half_hedged</code> — cost-adj -0.291, turnover 0.0, efficiency -0.291</li><li>Best dynamic (efficiency): <code>volatility_triggered</code> — cost-adj -0.778, turnover 15.6, efficiency -0.05</li><li>Dynamic beats static on cost-adj: <strong>False</strong> | on turnover efficiency: <strong>True</strong></li></ul>
+<h3>split_3 (2025-01-01..2026-12-31)</h3>
+<ul><li>Best static: <code>fully_hedged</code> — cost-adj 3.891, turnover 0.0, efficiency 3.891</li><li>Best dynamic (efficiency): <code>no_change_in_range</code> — cost-adj 2.327, turnover 0.6, efficiency 3.878</li><li>Dynamic beats static on cost-adj: <strong>False</strong> | on turnover efficiency: <strong>False</strong></li></ul>
+<h2 id="r1-vs-r2-trend-quality-full-sample">R1 vs R2 Trend Quality (full sample)</h2>
+<h3>R1_trend_high_vol (full)</h3>
+<ul><li>Continuation probability: 0.5068</li><li>Annualized vol: 15.221%</li><li>Max drawdown: -18.873%</li><li>Carry fragility rate: 0.2921</li><li>Interpretation: High-volatility trend — often stress, liquidation, or unstable momentum; use caution rather than trend-following.</li></ul>
+<h3>R2_trend_low_vol (full)</h3>
+<ul><li>Continuation probability: 0.5248</li><li>Annualized vol: 8.275%</li><li>Max drawdown: -37.246%</li><li>Carry fragility rate: 0.1747</li><li>Interpretation: Low-volatility trend — candidate information-diffusion regime; worth testing for structured hedge adjustment (OOS required).</li></ul>
+<h2 id="r1-vs-r2-trend-quality-oos-test-windows-only">R1 vs R2 Trend Quality (OOS test windows only)</h2>
+<h3>split_1</h3>
+<p>  ### R1_trend_high_vol (oos_test)</p>
+<p>  - Continuation probability: 0.5392</p>
+<p>  - Annualized vol: 21.603%</p>
+<p>  - Max drawdown: -14.322%</p>
+<p>  - Carry fragility rate: 0.6471</p>
+<p>  - Interpretation: High-volatility trend — often stress, liquidation, or unstable momentum; use caution rather than trend-following.</p>
+<p>  ### R2_trend_low_vol (oos_test)</p>
+<p>  - Continuation probability: 0.5182</p>
+<p>  - Annualized vol: 9.275%</p>
+<p>  - Max drawdown: -11.565%</p>
+<p>  - Carry fragility rate: 0.1363</p>
+<p>  - Interpretation: Low-volatility trend — candidate information-diffusion regime; worth testing for structured hedge adjustment (OOS required).</p>
+<p>  - R2 minus R1 continuation: <strong>-0.0210</strong></p>
+<h3>split_2</h3>
+<p>  ### R1_trend_high_vol (oos_test)</p>
+<p>  - Continuation probability: 0.5029</p>
+<p>  - Annualized vol: 13.774%</p>
+<p>  - Max drawdown: -11.61%</p>
+<p>  - Carry fragility rate: 0.3161</p>
+<p>  - Interpretation: High-volatility trend — often stress, liquidation, or unstable momentum; use caution rather than trend-following.</p>
+<p>  ### R2_trend_low_vol (oos_test)</p>
+<p>  - Continuation probability: 0.5802</p>
+<p>  - Annualized vol: 9.072%</p>
+<p>  - Max drawdown: -16.784%</p>
+<p>  - Carry fragility rate: 0.287</p>
+<p>  - Interpretation: Low-volatility trend — candidate information-diffusion regime; worth testing for structured hedge adjustment (OOS required).</p>
+<p>  - R2 minus R1 continuation: <strong>0.0773</strong></p>
+<h3>split_3</h3>
+<p>  ### R1_trend_high_vol (oos_test)</p>
+<p>  - Continuation probability: 0.5238</p>
+<p>  - Annualized vol: 12.453%</p>
+<p>  - Max drawdown: -7.624%</p>
+<p>  - Carry fragility rate: 0.2476</p>
+<p>  - Interpretation: High-volatility trend — often stress, liquidation, or unstable momentum; use caution rather than trend-following.</p>
+<p>  ### R2_trend_low_vol (oos_test)</p>
+<p>  - Continuation probability: 0.5072</p>
+<p>  - Annualized vol: 7.798%</p>
+<p>  - Max drawdown: -12.672%</p>
+<p>  - Carry fragility rate: 0.2029</p>
+<p>  - Interpretation: Low-volatility trend — candidate information-diffusion regime; worth testing for structured hedge adjustment (OOS required).</p>
+<p>  - R2 minus R1 continuation: <strong>-0.0166</strong></p>
+<h2 id="claim-discipline">Claim Discipline</h2>
+<p>Results depend on data quality and cost assumptions. Static full hedge may dominate raw vol reduction; the research question is whether dynamic policies improve turnover-adjusted discipline when forecasts fail. This report does not claim trading readiness, FX predictability, or guaranteed hedge savings.</p>
+<hr/>
+<h2>Full Question Framework</h2>
+<h1>Major Unanswered Questions in FX</h1>
+<h2 id="core-theme">Core Theme</h2>
+<p>FX markets remain one of the hardest areas in finance and macroeconomics because exchange rates are difficult to forecast, random-walk benchmarks are hard to beat, and yet currencies sometimes appear structured under certain regimes.</p>
+<p>BR3N Macro Labs studies this tension.</p>
+<p>The lab does not assume that FX is predictable. It asks:</p>
+<p>When do currency markets become less random?</p>
+<p>And more importantly:</p>
+<p>Can FX decisions improve even when FX forecasts fail?</p>
+<hr/>
+<h2 id="1-why-do-exchange-rates-disconnect-from-fundamentals">1. Why Do Exchange Rates Disconnect from Fundamentals?</h2>
+<p>Macro fundamentals such as inflation, interest rates, productivity, trade balances, fiscal policy, and money supply should matter. Yet exchange rates often move in ways that appear disconnected from fundamentals, especially at short and medium horizons.</p>
+<h3>Unanswered Question</h3>
+<p>When do fundamentals matter, and when are they overwhelmed by flows, positioning, liquidity, and risk appetite?</p>
+<h3>FX Lab Test</h3>
+<p>Test whether fundamentals matter more in:</p>
+<ul><li>R2 trend + low volatility regimes</li><li>low-news-stress regimes</li><li>low-dollar-stress regimes</li><li>stable carry regimes</li></ul>
+<p>and matter less in:</p>
+<ul><li>R1 high-volatility stress regimes</li><li>R3/R4 range regimes</li><li>high-news-stress environments</li><li>high-liquidity-stress environments</li></ul>
+<h3>Data Needed</h3>
+<ul><li>FX spot</li><li>interest rates</li><li>inflation</li><li>policy rates</li><li>trade/current account proxies</li><li>VIX / dollar stress</li><li>news uncertainty</li><li>regime labels</li></ul>
+<hr/>
+<h2 id="2-why-does-uncovered-interest-parity-fail">2. Why Does Uncovered Interest Parity Fail?</h2>
+<p>Uncovered interest parity says that high-interest-rate currencies should depreciate enough to offset the yield advantage. Empirically, this often fails.</p>
+<h3>Unanswered Question</h3>
+<p>Is uncovered interest parity wrong, incomplete, or regime-dependent?</p>
+<h3>FX Lab Hypothesis</h3>
+<p>UIP may appear to fail in calm regimes and reassert itself violently during stress regimes.</p>
+<h3>FX Lab Test</h3>
+<p>Test whether carry works in:</p>
+<ul><li>R2 trend + low volatility</li><li>low-news-stress environments</li><li>low-dollar-stress environments</li><li>stable carry regimes</li></ul>
+<p>and fails or reverses in:</p>
+<ul><li>R1 high-volatility trend regimes</li><li>carry fragility regimes</li><li>high VIX / dollar stress</li><li>news stress spikes</li></ul>
+<h3>Data Needed</h3>
+<ul><li>policy rate differentials</li><li>forward points</li><li>FX swaps</li><li>spot returns</li><li>VIX / dollar stress</li><li>news stress</li><li>regime labels</li></ul>
+<hr/>
+<h2 id="3-is-fx-carry-a-risk-premium-behavioral-anomaly-or-liquidity-premium">3. Is FX Carry a Risk Premium, Behavioral Anomaly, or Liquidity Premium?</h2>
+<p>Carry trades may earn returns because investors are compensated for crash risk, liquidity risk, balance-sheet constraints, or because markets are inefficient.</p>
+<h3>Unanswered Question</h3>
+<p>Are carry returns payment for bearing rare disaster risk, or evidence of market inefficiency?</p>
+<h3>FX Lab Test</h3>
+<p>Build a Carry Fragility Index using:</p>
+<ul><li>high carry</li><li>low realized volatility</li><li>strong trend</li><li>rising news stress</li><li>rising dollar stress</li><li>rising volatility</li><li>deteriorating liquidity proxy</li></ul>
+<p>Then test whether carry fragility predicts:</p>
+<ul><li>worse drawdowns</li><li>regime transitions</li><li>volatility spikes</li><li>carry trade reversal</li><li>hedge escalation needs</li></ul>
+<h3>Data Needed</h3>
+<ul><li>policy rates</li><li>forward points</li><li>volatility</li><li>dollar stress</li><li>news stress</li><li>liquidity/spread proxies</li><li>regime labels</li></ul>
+<hr/>
+<h2 id="4-when-does-random-walk-fail">4. When Does Random Walk Fail?</h2>
+<p>Random walk remains a hard benchmark to beat in FX forecasting. But the unresolved question is whether random walk is universal or regime-specific.</p>
+<h3>Unanswered Question</h3>
+<p>Is random walk a universal model of FX, or a regime-specific model?</p>
+<h3>FX Lab Test</h3>
+<p>Build a Random-Walk Validity Map.</p>
+<p>Regime labels:</p>
+<ul><li>R1 trend + high volatility</li><li>R2 trend + low volatility</li><li>R3 range + high volatility</li><li>R4 range + low volatility</li></ul>
+<p>Evaluate each regime using:</p>
+<ul><li>RMSE vs random walk</li><li>MAE vs random walk</li><li>directional accuracy</li><li>autocorrelation</li><li>trend persistence</li><li>volatility</li><li>return asymmetry</li><li>Diebold-Mariano test where appropriate</li></ul>
+<h3>Expected Interpretation</h3>
+<ul><li>R4 may be most random-walk-like.</li><li>R2 may show potential structure.</li><li>R1 may be high-risk stress structure or unstable liquidation.</li><li>R3 may be high-risk noise.</li></ul>
+<hr/>
+<h2 id="5-can-order-flow-bridge-macro-and-fx">5. Can Order Flow Bridge Macro and FX?</h2>
+<p>Order flow may be one of the missing links between macro fundamentals and exchange-rate movement. However, true order-flow data is usually private.</p>
+<h3>Unanswered Question</h3>
+<p>Can public proxies approximate private flow pressure well enough to improve FX risk decisions?</p>
+<h3>FX Lab Test</h3>
+<p>Use public payment-flow proxies:</p>
+<ul><li>paydays</li><li>month-end</li><li>holidays</li><li>tax refund season</li><li>school-fee season</li><li>remittance seasonality</li><li>central-bank meeting weeks</li></ul>
+<p>Then test whether these proxy windows are associated with:</p>
+<ul><li>higher volatility</li><li>different regime distributions</li><li>higher hedge turnover</li><li>drawdown risk</li><li>regime transitions</li></ul>
+<h3>Data Needed</h3>
+<ul><li>FX spot</li><li>corridor calendar proxies</li><li>remittance data</li><li>central-bank calendars</li><li>holidays</li><li>ideally proprietary payment-flow data later</li></ul>
+<hr/>
+<h2 id="6-do-payment-and-remittance-flows-create-predictable-fx-pressure">6. Do Payment and Remittance Flows Create Predictable FX Pressure?</h2>
+<p>Traditional FX research often focuses on macro, carry, asset pricing, or institutional order flow. Payment-corridor FX risk is less commonly framed as a public research system.</p>
+<h3>Unanswered Question</h3>
+<p>Do millions of small cross-border payments create measurable short-term currency pressure in remittance-heavy corridors?</p>
+<h3>FX Lab Test</h3>
+<p>Test corridors:</p>
+<ul><li>US_MX / USD/MXN</li><li>US_IN / USD/INR</li><li>US_PH / USD/PHP</li><li>US_CO / USD/COP</li><li>US_BR / USD/BRL</li><li>US_GT / USD/GTQ if data quality allows</li></ul>
+<p>Measure whether flow windows show:</p>
+<ul><li>higher volatility</li><li>different regime frequency</li><li>abnormal returns</li><li>hedge-governance stress</li><li>increased no-change-in-range usefulness</li></ul>
+<h3>Data Needed</h3>
+<ul><li>FX spot</li><li>official remittance data</li><li>public calendar proxies</li><li>central bank remittance data</li><li>professional FX data later</li><li>legally usable proprietary payment-flow data later</li></ul>
+<hr/>
+<h2 id="7-can-a-model-fail-as-a-forecast-but-still-be-useful-for-hedging">7. Can a Model Fail as a Forecast but Still Be Useful for Hedging?</h2>
+<p>Academia often evaluates FX models through forecast accuracy or trading returns. But corporate treasury decisions care about exposure volatility, hedge turnover, hedge cost, policy discipline, and risk governance.</p>
+<h3>Unanswered Question</h3>
+<p>Is forecast accuracy the wrong success metric for some FX decision systems?</p>
+<h3>FX Lab Thesis</h3>
+<p>A regime model may fail to beat random walk on RMSE or MAE but still reduce:</p>
+<ul><li>hedge turnover</li><li>over-adjustment</li><li>cost-adjusted exposure volatility</li><li>decision noise</li><li>hedge regret</li><li>unnecessary policy changes</li></ul>
+<h3>FX Lab Test</h3>
+<p>Compare:</p>
+<ul><li>static 50% hedge</li><li>static 75% hedge</li><li>fully hedged</li><li>regime_based</li><li>r2_active_policy</li><li>no_change_in_range</li><li>volatility_triggered</li><li>carry_adjusted_regime</li><li>no_change_in_range_carry_aware</li></ul>
+<p>Metrics:</p>
+<ul><li>hedge turnover</li><li>hedge cost</li><li>volatility reduction</li><li>max drawdown hedged</li><li>cost-adjusted risk reduction</li><li>regret proxy</li></ul>
+<p>This is the current flagship research lane.</p>
+<hr/>
+<h2 id="8-why-do-no-arbitrage-relationships-break-in-fx">8. Why Do No-Arbitrage Relationships Break in FX?</h2>
+<p>Covered interest parity and forward pricing should be close to no-arbitrage relationships, but deviations can persist when funding markets, dealer balance sheets, collateral, or regulation matter.</p>
+<h3>Unanswered Question</h3>
+<p>Is FX pricing partly determined by balance-sheet scarcity rather than pure no-arbitrage?</p>
+<h3>FX Lab Test</h3>
+<p>Later, add:</p>
+<ul><li>cross-currency basis</li><li>forward points</li><li>dollar funding stress</li><li>quarter-end/year-end balance-sheet dates</li><li>dealer balance-sheet proxies</li><li>funding stress proxies</li></ul>
+<p>Then test:</p>
+<ul><li>Are forward/carry anomalies larger during balance-sheet stress windows?</li><li>Do quarter-end/year-end dates affect carry, spreads, and forward costs?</li><li>Does hedge cost rise during balance-sheet stress regimes?</li></ul>
+<h3>Data Needed</h3>
+<ul><li>forward points</li><li>cross-currency basis</li><li>FX swaps</li><li>bid/ask spreads</li><li>funding stress proxies</li><li>professional data source</li></ul>
+<hr/>
+<h2 id="9-when-does-central-bank-intervention-work">9. When Does Central-Bank Intervention Work?</h2>
+<p>Central-bank intervention sometimes changes market behavior and sometimes fails.</p>
+<h3>Unanswered Question</h3>
+<p>Does FX intervention work by changing supply, signaling policy, breaking momentum, or coordinating expectations?</p>
+<h3>FX Lab Test</h3>
+<p>For EM pairs, collect:</p>
+<ul><li>central-bank intervention dates</li><li>reserve changes</li><li>policy meeting dates</li><li>rate decisions</li><li>surprise moves</li><li>pre/post intervention regimes</li></ul>
+<p>Then test:</p>
+<ul><li>Does intervention work better in R1 stress?</li><li>Does it break R2 trend?</li><li>Does it reduce R3 high-volatility noise?</li><li>Does volatility fall after intervention?</li><li>Does random-walk validity change?</li></ul>
+<h3>Data Needed</h3>
+<ul><li>central bank intervention data</li><li>reserves</li><li>policy dates</li><li>FX spot</li><li>volatility</li><li>regime labels</li></ul>
+<hr/>
+<h2 id="10-are-high-volatility-trends-information-or-forced-liquidation">10. Are High-Volatility Trends Information or Forced Liquidation?</h2>
+<p>Not all trends are the same. R2 trend + low volatility may represent orderly information diffusion. R1 trend + high volatility may represent stress, liquidation, panic, crowded exits, or liquidity breakdown.</p>
+<h3>Unanswered Question</h3>
+<p>Are high-volatility FX trends less forecastable because they reflect forced liquidation rather than information?</p>
+<h3>FX Lab Test</h3>
+<p>Compare R1 vs R2 using:</p>
+<ul><li>continuation probability</li><li>drawdown profile</li><li>news stress</li><li>carry fragility</li><li>VIX/dollar stress</li><li>spread proxy</li><li>flow window proxy</li><li>trend persistence</li><li>reversal probability</li></ul>
+<h3>Interpretation</h3>
+<p>R2 may be the cleaner trend regime.</p>
+<p>R1 may be danger rather than opportunity.</p>
+<p>This directly connects to early FX Lab findings.</p>
+<hr/>
+<h2 id="11-what-is-the-right-objective-function-for-corporate-fx-hedging">11. What Is the Right Objective Function for Corporate FX Hedging?</h2>
+<p>Investors may care about return and Sharpe. Corporate treasury cares about cash-flow volatility, margins, liquidity, policy compliance, and avoiding speculation.</p>
+<h3>Unanswered Question</h3>
+<p>What is the optimal hedge policy when prediction is weak, hedge costs are real, and over-adjustment is costly?</p>
+<h3>FX Lab Test</h3>
+<p>Compare:</p>
+<ul><li>static hedge policies</li><li>calendar hedging</li><li>regime hedging</li><li>no-change-in-range</li><li>carry-adjusted hedging</li><li>stress-escalation hedging</li><li>option/collar logic later</li></ul>
+<p>Metrics:</p>
+<ul><li>exposure volatility</li><li>hedge turnover</li><li>hedge cost</li><li>regret</li><li>policy stability</li><li>drawdown</li><li>cost-adjusted protection</li></ul>
+<hr/>
+<h2 id="12-can-ai-improve-fx-decisions-without-improving-fx-forecasts">12. Can AI Improve FX Decisions Without Improving FX Forecasts?</h2>
+<p>AI may not beat random walk directly. But it may improve classification, explanation, monitoring, memo generation, anomaly detection, policy discipline, and decision architecture.</p>
+<h3>Unanswered Question</h3>
+<p>Does AI create value in FX by improving decision architecture rather than prediction accuracy?</p>
+<h3>FX Lab Test</h3>
+<p>Compare:</p>
+<ul><li>raw model signals</li><li>regime dashboard</li><li>AI-generated hedge-governance memo</li><li>policy checklist</li><li>decision scorecard</li></ul>
+<p>Measure whether the AI layer improves:</p>
+<ul><li>explanation quality</li><li>consistency</li><li>reduced over-adjustment</li><li>clearer escalation</li><li>better separation of hedging vs speculation</li></ul>
+<hr/>
+<h1>Priority Questions for BR3N Macro Labs</h1>
+<p>The five best research lanes are:</p>
+<h2 id="1-forecast-failure-and-hedge-usefulness">1. Forecast Failure and Hedge Usefulness</h2>
+<p>Can FX regime models fail to beat random walk as forecasts but still improve hedge governance?</p>
+<h2 id="2-regime-dependent-uip">2. Regime-Dependent UIP</h2>
+<p>Does uncovered interest parity fail in calm regimes and reassert itself in stress regimes?</p>
+<h2 id="3-carry-fragility">3. Carry Fragility</h2>
+<p>When does carry shift from stable yield to hidden crash risk?</p>
+<h2 id="4-public-flow-proxies">4. Public Flow Proxies</h2>
+<p>Can public calendar/remittance proxies identify FX pressure windows in major payment corridors?</p>
+<h2 id="5-r1-vs-r2-trend-quality">5. R1 vs R2 Trend Quality</h2>
+<p>Are low-volatility trends information-rich while high-volatility trends are liquidation/stress regimes?</p>
+<hr/>
+<h1>Highest-Level Thesis</h1>
+<p>FX markets may be mostly random-walk-like as price processes, but not all FX decisions are price forecasts.</p>
+<p>Regime, carry, news, flow, and stress variables may fail to predict exchange rates directly while still improving hedge governance, risk escalation, and decision discipline.</p>
+<p>The question is not only whether FX can be predicted.</p>
+<p>The question is whether FX decisions can be improved when prediction fails.</p>
+
+  </main>
+  <footer>
+    <p>BR3N Macro Labs · Prepared by Brendan Bowers · 2026-05-30</p>
+    <div class="disclaimer">This site is for research and education only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.</div>
+  </footer>
+</body>
+</html>

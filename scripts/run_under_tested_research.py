@@ -40,7 +40,7 @@ def main() -> None:
         cfg,
         exposures=["us_entity_long_mxn", "mx_entity_usd_liabilities"],
     )
-    gov_sc_path, gov_det_path = save_governance_outputs(gov_sc, gov_det)
+    gov_sc_path, gov_det_path = save_governance_outputs(gov_sc, gov_det, cfg=cfg)
 
     validity = build_random_walk_validity_map(df_flow)
     validity_path = save_validity_map(validity)

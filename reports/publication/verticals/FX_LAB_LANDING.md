@@ -22,6 +22,12 @@ Study when currency markets become less random and how regime intelligence can i
 
 ---
 
+## Lab Operations
+
+**[Lab Status](lab-status.html)** — nightly pipeline health (data quality, provenance, model zoo, news/carry). Source: `reports/LAB_STATUS.md`.
+
+---
+
 ## Explore FX Lab Research
 
 ---

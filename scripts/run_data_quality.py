@@ -9,7 +9,24 @@ sys.path.insert(0, str(ROOT))
 
 import pandas as pd
 
+from src.data_loader import load_config
 from src.data_quality import run_data_quality_checks, save_data_quality_report
+
+
+def _infer_source(df: pd.DataFrame, root: Path) -> str:
+    if "source" in df.columns and df["source"].notna().any():
+        return str(df["source"].dropna().iloc[0])
+    cache_path = root / "data" / "processed" / "USDMXN_X.csv"
+    if cache_path.exists():
+        cache = pd.read_csv(cache_path, nrows=5)
+        if "source" in cache.columns:
+            full = pd.read_csv(cache_path)
+            if full["source"].notna().any():
+                return str(full["source"].dropna().iloc[0])
+    cfg = load_config()
+    if cfg.get("data", {}).get("prefer_tier1_spot") or cfg.get("data", {}).get("preferred_source") == "fred_h10":
+        return "fred_h10"
+    return "yfinance"
 
 
 def main() -> None:
@@ -21,18 +38,15 @@ def main() -> None:
 
     df = pd.read_csv(processed, parse_dates=["date"])
 
-    # Infer source from dataframe metadata or default to yfinance prototype
-    source = "yfinance"
-    if "source" in df.columns and df["source"].notna().any():
-        source = str(df["source"].dropna().iloc[0])
-    elif (ROOT / "data" / "processed" / "USDMXN_X.csv").exists():
-        cache = pd.read_csv(ROOT / "data" / "processed" / "USDMXN_X.csv", nrows=5)
-        if "source" in cache.columns:
-            full = pd.read_csv(ROOT / "data" / "processed" / "USDMXN_X.csv")
-            if full["source"].notna().any():
-                source = str(full["source"].dropna().iloc[0])
+    source = _infer_source(df, ROOT)
 
-    report = run_data_quality_checks(df, source_name=source, price_col="price", date_col="date")
+    report = run_data_quality_checks(
+        df,
+        source_name=source,
+        price_col="price",
+        date_col="date",
+        currency_pair="USD/MXN",
+    )
     out_path = save_data_quality_report(report)
 
     print("\nBR3N Macro Labs — Data Quality Report")
@@ -43,7 +57,7 @@ def main() -> None:
     print(f"Observations:        {report['observation_count']}")
     print(f"Missing prices:      {report['missing_price_count']} ({report['missing_price_pct']}%)")
     print(f"Suspicious returns:  {report['suspicious_return_count']} (>|10%| daily)")
-    print(f"Quality flag:        {report['data_quality_flag']}")
+    print(f"Quality flag:        {report.get('quality_flag', report['data_quality_flag'])}")
     print(f"\nSaved: {out_path}")
 
 

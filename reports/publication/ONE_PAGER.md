@@ -24,7 +24,7 @@ Spot returns and strategy P&L differ by regime. Most `flat_range` P&L sits in **
 - White Reality Check p = 0.6075 → **does not** confirm data-mined alpha
 
 ## Cross-pair
-9 pairs tested. **57.9%** of OOS cells beat flat benchmark. Only **MXN + TRY** win all 3 splits.
+9 pairs tested. **56.1%** of OOS cells beat flat benchmark. Only **MXN + TRY** win all 3 splits.
 
 ## Hedging sentence you can use
 > “We use regime labels to decide when **not** to adjust the hedge — not to predict the exchange rate.”

@@ -11,8 +11,9 @@ LOG="$LOG_DIR/auto_improve_$(date +%Y%m%d).log"
 {
   echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) auto-improve start ==="
   cd "$LAB_ROOT"
+  bash scripts/run_full_lab_pipeline.sh
   # shellcheck disable=SC1091
   source .venv/bin/activate
-  python scripts/run_self_improvement.py --rerun
+  python scripts/run_self_improvement.py
   echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) auto-improve done ==="
 } >> "$LOG" 2>&1

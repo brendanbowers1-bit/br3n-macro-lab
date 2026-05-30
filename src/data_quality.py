@@ -59,6 +59,7 @@ def run_data_quality_checks(
     source_name: str,
     price_col: str = "price",
     date_col: str = "date",
+    currency_pair: str = "",
 ) -> Dict[str, Any]:
     """
     Evaluate data quality for a price series.
@@ -68,7 +69,9 @@ def run_data_quality_checks(
     """
     if df.empty:
         return {
+            "source": source_name,
             "source_name": source_name,
+            "currency_pair": currency_pair or None,
             "observation_count": 0,
             "start_date": None,
             "end_date": None,
@@ -81,9 +84,12 @@ def run_data_quality_checks(
             "zero_or_negative_price_count": 0,
             "largest_abs_daily_return": None,
             "suspicious_return_count": 0,
+            "suspicious_return_count_abs_gt_10pct": 0,
             "weekend_observation_count": 0,
+            "stale_price_count": 0,
             "inferred_frequency": "unknown",
             "data_quality_flag": "FAIL",
+            "quality_flag": "FAIL",
         }
 
     work = _normalize_df(df, price_col, date_col)
@@ -104,6 +110,25 @@ def run_data_quality_checks(
 
     weekend = int((work.index.dayofweek >= 5).sum())
 
+    # Consecutive identical price runs of 5+ business days (possible stale feed)
+    stale_price_count = 0
+    if len(valid_prices) >= 5:
+        same = valid_prices.diff().fillna(1.0).eq(0)
+        run_len = 0
+        for is_same in same:
+            if is_same:
+                run_len += 1
+                if run_len >= 5:
+                    stale_price_count += 1
+            else:
+                run_len = 0
+
+    pair = currency_pair
+    if not pair and "currency_pair" in df.columns and df["currency_pair"].notna().any():
+        pair = str(df["currency_pair"].dropna().iloc[0])
+    if not pair:
+        pair = None
+
     flag = "OK"
     if dup_count > n * 0.01 or missing_pct > 5 or zero_neg > 0:
         flag = "WARNING"
@@ -117,27 +142,30 @@ def run_data_quality_checks(
     tier = "unknown"
     tier_number = None
     tier_label = "unknown"
+    architecture_tier = "unknown"
     try:
         from .data_sources import DATA_SOURCE_REGISTRY, get_data_source
 
-        if source_name in DATA_SOURCE_REGISTRY:
-            enriched = get_data_source(source_name)
+        key = source_name
+        if key not in DATA_SOURCE_REGISTRY and key in ("fred_h10", "fred"):
+            key = "fred_h10" if key == "fred_h10" else "fred"
+        if key in DATA_SOURCE_REGISTRY:
+            enriched = get_data_source(key)
             tier = enriched["tier"]
             tier_number = enriched["tier_number"]
             tier_label = enriched["tier_label"]
-        elif source_name in ("fred_h10", "fred"):
-            enriched = get_data_source("fred")
-            tier = enriched["tier"]
-            tier_number = enriched["tier_number"]
-            tier_label = enriched["tier_label"]
+            architecture_tier = enriched.get("architecture_tier", tier)
     except Exception:
         pass
 
     return {
+        "source": source_name,
         "source_name": source_name,
         "data_tier": tier,
+        "architecture_tier": architecture_tier,
         "tier_number": tier_number,
         "tier_label": tier_label,
+        "currency_pair": pair,
         "observation_count": n,
         "start_date": str(work.index.min().date()) if n else None,
         "end_date": str(work.index.max().date()) if n else None,
@@ -150,9 +178,12 @@ def run_data_quality_checks(
         "zero_or_negative_price_count": zero_neg,
         "largest_abs_daily_return": round(largest_abs, 6) if largest_abs is not None else None,
         "suspicious_return_count": suspicious,
+        "suspicious_return_count_abs_gt_10pct": suspicious,
         "weekend_observation_count": weekend,
+        "stale_price_count": stale_price_count,
         "inferred_frequency": _infer_frequency(work.index),
         "data_quality_flag": flag,
+        "quality_flag": flag,
     }
 
 

@@ -12,7 +12,7 @@ I built a small research lab to answer one practical question for treasury and r
 
 > **Should you adjust your USD/MXN hedge based on market regime — or is it better to stay flat when the market is “range-bound”?**
 
-Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: **follow the trend in trending regimes; go flat in ranging regimes.** I stress-tested that idea with a six-level “research ladder” — from descriptive stats to out-of-sample tests, nine currency pairs, forecast errors, trading costs, and data-snooping controls.
+Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: **follow the trend in trending regimes; go flat in ranging regimes.** I stress-tested that idea with an eight-level “research ladder” — from descriptive stats to out-of-sample tests, multi-pair robustness, forecast errors, trading costs, data-snooping controls, hedge governance, and institutional proof requirements.
 
 **Bottom line:** The regime story is real for USD/MXN — returns and strategy P&L behave differently across regimes — and the “stay flat in range” rule beats doing nothing out-of-sample on MXN. But it is **not** a price-forecasting model, it **does not** cleanly generalize to every EM pair in every period, and it **does not** survive strict multiple-testing correction after searching across strategies.
 
@@ -106,8 +106,8 @@ Full-sample Sharpe (`flat_range`):
 
 | ticker | sharpe | total_return_pct | max_drawdown_pct | primary_beats_rw |
 | --- | --- | --- | --- | --- |
-| USDMXN=X | 0.13 | 20.99 | -32.61 | True |
-| USDBRL=X | 0.272 | 100.32 | -41.34 | True |
+| USDMXN=X | 0.124 | 20.36 | -44.27 | True |
+| USDBRL=X | 0.278 | 103.28 | -41.34 | True |
 | USDCOP=X | 0.121 | 14.22 | -41.89 | True |
 | USDJPY=X | 0.197 | 44.22 | -24.47 | True |
 | EURUSD=X | 0.138 | 21.2 | -26.51 | True |
@@ -127,7 +127,7 @@ Full-sample Sharpe (`flat_range`):
 | USDCHF=X | -0.116 | -30.05 | -51.87 | False |
 
 
-**Cross-pair OOS:** 57.9% of pair×split cells beat the flat benchmark (33.0/57.0). Only **USD/MXN** and **USD/TRY** beat the benchmark on all three OOS splits.
+**Cross-pair OOS:** 56.1% of pair×split cells beat the flat benchmark (32.0/57.0). Only **USD/MXN** and **USD/TRY** beat the benchmark on all three OOS splits.
 
 | ticker | splits_beating_rw | splits_total | all_splits_beat_rw |
 | --- | --- | --- | --- |
@@ -142,7 +142,7 @@ Full-sample Sharpe (`flat_range`):
 | USDINR=X | 2 | 3 | False |
 | USDJPY=X | 1 | 3 | False |
 | USDKRW=X | 2 | 3 | False |
-| USDMXN=X | 3 | 3 | True |
+| USDMXN=X | 2 | 3 | False |
 | USDMYR=X | 2 | 3 | False |
 | USDPEN=X | 0 | 3 | False |
 | USDPHP=X | 2 | 3 | False |

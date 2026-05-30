@@ -36,6 +36,7 @@ python scripts/run_usdmxn_backtest.py
 python scripts/run_research_models.py      # academic research layer
 python scripts/run_hedge_policy_tests.py   # hedge policies only
 python scripts/run_under_tested_research.py  # hedge governance, flow proxies, RW validity
+python scripts/run_flagship_research_lane.py  # flagship OOS hedge lane + R1/R2 quality
 python scripts/run_corridor_roadmap.py       # multi-corridor remittance roadmap
 python scripts/run_fx_desk_framework.py      # FX desk decision scorecards and memos
 python scripts/generate_corridor_report.py   # corridor roadmap markdown report
@@ -65,9 +66,14 @@ The dashboard includes:
 - Executive Overview
 - Random-Walk Lab
 - Regime Intelligence
+- Model Zoo
 - Corridor Roadmap
 - Hedge Governance
 - Flow Pressure
+- News & Macro Stress
+- Carry & UIP Lab
+- Unanswered FX Questions
+- FX History
 - Academic Tests
 - Data Quality
 - FX Desk Command Center
@@ -77,6 +83,56 @@ Design purpose:
 The dashboard is built for research review, investor/pilot conversations, academic framing, and treasury risk discussions.
 
 **Disclaimer:** This dashboard is for research and risk-framing only. It is not investment advice and does not place trades.
+
+## Major Unanswered FX Questions
+
+FX Lab is organized around unresolved questions in international finance and FX risk:
+
+1. Why do exchange rates disconnect from fundamentals?
+2. Why does uncovered interest parity fail?
+3. Is carry a risk premium, anomaly, or liquidity premium?
+4. When does random walk fail?
+5. Can public flow proxies approximate payment-flow pressure?
+6. Can a model fail as a forecast but still help hedging?
+7. Why do no-arbitrage relationships break?
+8. When does central-bank intervention work?
+9. Are high-volatility trends information or forced liquidation?
+10. What is the right objective function for corporate FX hedging?
+11. Can AI improve FX decisions without improving FX forecasts?
+
+**Core thesis:** The question is not only whether FX can be predicted. The question is whether FX decisions can be improved when prediction fails.
+
+Full document: `reports/UNANSWERED_FX_QUESTIONS.md`  
+Registry: `src/research_questions.py`  
+Roadmap: `reports/FX_RESEARCH_ROADMAP.md` (generate via `src/research_roadmap_reporting.py`)
+
+```bash
+python -c "from src.research_questions import research_questions_dataframe; print(research_questions_dataframe())"
+python -c "from pathlib import Path; from src.research_roadmap_reporting import generate_research_roadmap_report; print(generate_research_roadmap_report(Path('.')))"
+```
+
+## FX History & Academic Foundations
+
+FX Lab is built on the major milestones in exchange-rate research:
+
+- Hume and specie-flow adjustment
+- gold standard
+- Purchasing Power Parity
+- Bretton Woods
+- Mundell-Fleming
+- Dornbusch overshooting
+- Meese-Rogoff random-walk puzzle
+- UIP and carry puzzle
+- market microstructure and order flow
+- funding stress and CIP breakdown
+- machine learning and FX forecasting
+
+The lab’s thesis builds after this history:
+
+Forecasting exchange rates remains extremely difficult, but FX decisions may still improve when regime information is used for hedge governance, risk escalation, and decision discipline.
+
+Full document: `reports/FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md`  
+Public page: `reports/publication/history.html` (build via `python scripts/build_site.py`)
 
 ## Research ladder (Levels 1–6)
 
@@ -234,6 +290,72 @@ Additional outputs in `data/outputs/`:
 - `random_walk_validity_map.csv`
 - `data/processed/usdmxn_features_regimes_flow.csv`
 
+## News and Macro Stress Layer
+
+FX Lab can optionally include news and uncertainty features.
+
+The purpose is **not** to predict FX from headlines. The purpose is to test whether policy uncertainty, geopolitical risk, central-bank news, inflation news, commodity news, and country-specific news intensity help explain when regimes become more dangerous, more structured, or more random-walk-like.
+
+Initial sources:
+- FRED Economic Policy Uncertainty (`USEPUINDXD`)
+- Geopolitical Risk Index (planned)
+- GDELT optional (`news.use_gdelt: true`)
+- professional news analytics later if licensed
+
+News is treated as a **regime/risk feature** — not a direct trading signal. All news features require out-of-sample testing.
+
+```bash
+python scripts/run_news_layer.py    # FRED uncertainty + optional GDELT
+python scripts/run_model_zoo.py     # includes news-aware models when news CSV exists
+```
+
+| Module | Output |
+|--------|--------|
+| `src/news_features.py` | News/uncertainty feature engineering |
+| `src/gdelt_news_loader.py` | Optional GDELT open-news loader |
+| `src/news_tests.py` | High-news vs normal-day tests |
+| `reports/NEWS_DATA_STRATEGY.md` | Architecture and tier rules |
+
+Outputs:
+- `data/processed/usdmxn_features_regimes_news.csv`
+- `data/outputs/news_feature_test_results.csv`
+
+## Carry & UIP Lab
+
+FX Lab includes a carry research layer.
+
+Interest-rate carry is the return earned or paid from holding one currency against another because of interest-rate differences.
+
+The lab tests whether carry is:
+- a return source in stable regimes,
+- compensation for crash risk,
+- a warning sign when crowded,
+- useful for hedge governance,
+- or a regime-dependent failure of uncovered interest parity.
+
+**Core question:** Is the failure of uncovered interest parity constant, or is it regime-dependent compensation for liquidity, crash, and balance-sheet risk?
+
+**Important limitation:** Policy-rate differentials are only a proxy. Real hedge economics require forward points, FX swaps, bid/ask spreads, and execution cost data.
+
+```bash
+python scripts/run_carry_layer.py    # FRED policy rates + carry features
+python scripts/run_model_zoo.py     # includes carry-aware models when carry CSV exists
+```
+
+| Module | Output |
+|--------|--------|
+| `src/carry_features.py` | Carry feature engineering |
+| `src/forward_points.py` | Forward point placeholders |
+| `src/carry_tests.py` | Carry regime tests |
+| `src/carry_models.py` | Carry-aware model zoo |
+| `src/carry_hedge_governance.py` | Carry-adjusted hedge policies |
+| `reports/CARRY_RESEARCH_FRAMEWORK.md` | Research framework |
+
+Outputs:
+- `data/processed/usdmxn_features_regimes_carry.csv`
+- `data/outputs/carry_regime_test_results.csv`
+- `data/outputs/carry_hedge_governance_scorecard.csv`
+
 ## Remittance Corridor Roadmap
 
 BR3N Macro Labs is expanding from USD/MXN into major remittance and payment corridors.
@@ -351,6 +473,11 @@ The lab reviews its own evidence over time — without auto-trading or holdout t
 ```bash
 python scripts/run_self_improvement.py          # fast: score + snapshot
 python scripts/run_self_improvement.py --rerun  # re-run pipelines first
+
+# Full nightly pipeline (data → news → carry → model zoo → score → LAB_STATUS.md)
+bash scripts/run_full_lab_pipeline.sh
+python scripts/run_self_improvement.py   # score + snapshot after pipeline
+bash scripts/auto_improve_daily.sh       # scheduled daily (install LaunchAgent first)
 ```
 
 Each run snapshots scorecards to `data/runs/{run_id}/`, compares to the prior run, and proposes next experiments. See `reports/SELF_IMPROVEMENT.md`.

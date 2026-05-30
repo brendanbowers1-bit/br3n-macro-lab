@@ -215,28 +215,6 @@ def mean_reversion_range_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd
     return _build_output(df, "mean_reversion_range_model", "hybrid", sig, fc_ret)
 
 
-def carry_proxy_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
-    """Favor carry when vol low; flatten when vol high. Skips if no rate data."""
-    if not safe_columns_exist(df, ["mx_rate"]) and "high_carry" not in df.columns:
-        raise ValueError("missing_rate_data")
-
-    sig = _zero_series(df).astype(int)
-    low_vol = df.get("low_vol_flag", df.get("realized_vol_percentile", 1) < 0.5)
-    if "mx_rate" in df.columns and "us_rate" in df.columns:
-        spread = df["mx_rate"] - df["us_rate"]
-        carry_favor = spread > spread.median()
-    elif "high_carry" in df.columns:
-        carry_favor = df["high_carry"].astype(bool)
-    else:
-        carry_favor = pd.Series(True, index=df.index)
-
-    sig.loc[low_vol & carry_favor] = 1
-    sig.loc[~low_vol.astype(bool)] = 0
-    mag = df["daily_return"].rolling(60, min_periods=20).mean().shift(1).fillna(0.0)
-    fc_ret = sig.astype(float) * mag
-    return _build_output(df, "carry_proxy_model", "hybrid", sig, fc_ret)
-
-
 def dollar_stress_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
     """Favor USD vs EM when global stress is elevated."""
     stress_cols = [c for c in ("dollar_stress", "risk_off", "vix_pct") if c in df.columns]
@@ -352,6 +330,89 @@ def no_change_in_range_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.D
     return _build_output(df, "no_change_in_range_model", "hedge_governance", sig, hedge_ratio=hr)
 
 
+def news_stress_risk_off_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
+    """
+    Risk modifier: reduce EM exposure when news_stress_regime is True.
+
+    Does not create signal by itself when stress is False.
+    News is a regime/risk feature — not a price prediction claim.
+    """
+    if "news_stress_regime" not in df.columns:
+        raise ValueError("missing_news_stress_regime")
+
+    sig = _zero_series(df).astype(int)
+    stress = df["news_stress_regime"].astype(bool)
+    # EM/USD long MXN: reduce risk (flat) under news stress; no auto-long when quiet
+    sig.loc[stress] = 0
+    mag = df["daily_return"].rolling(60, min_periods=20).mean().shift(1).fillna(0.0)
+    fc_ret = sig.astype(float) * mag
+    return _build_output(df, "news_stress_risk_off_model", "hybrid", sig, fc_ret)
+
+
+def r2_news_confirmed_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
+    """
+    R2 trend only when news_stress_regime is False.
+
+    Tests whether quiet-news R2 regimes are cleaner than news-stressed R2.
+    """
+    if "news_stress_regime" not in df.columns:
+        raise ValueError("missing_news_stress_regime")
+
+    sig = _zero_series(df).astype(int)
+    in_r2 = df["regime"] == R2
+    quiet = ~df["news_stress_regime"].astype(bool)
+    sig.loc[in_r2 & quiet & (df["ma20"] > df["ma60"])] = 1
+    sig.loc[in_r2 & quiet & (df["ma20"] < df["ma60"])] = -1
+    # High news + R2: flat or reduced — do not trend-follow under stress
+    mag = df["daily_return"].rolling(60, min_periods=20).mean().shift(1).fillna(0.0)
+    fc_ret = sig.astype(float) * mag
+    return _build_output(df, "r2_news_confirmed_model", "hybrid", sig, fc_ret)
+
+
+def r1_news_escalation_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
+    """
+    R1 high-vol trend + news stress → crisis/escalation (risk framing, not alpha).
+
+    Flat signal for trading; elevated hedge ratio for governance lens.
+    """
+    if "news_stress_regime" not in df.columns:
+        raise ValueError("missing_news_stress_regime")
+
+    sig = _zero_series(df).astype(int)
+    crisis = (df["regime"] == R1) & df["news_stress_regime"].astype(bool)
+    # No normal trading signal — escalation is risk/hedge framing
+    hr = pd.Series(np.nan, index=df.index)
+    hr.loc[crisis] = 0.85
+    hr.loc[~crisis] = 0.50
+    fc_ret = _zero_series(df)
+    return _build_output(
+        df, "r1_news_escalation_model", "hedge_governance", sig, fc_ret, hedge_ratio=hr
+    )
+
+
+def news_flow_pressure_model(df: pd.DataFrame, cfg: dict, **kwargs: Any) -> pd.DataFrame:
+    """
+    Combine flow pressure windows with news intensity z-score.
+
+    Tests whether flow + news spikes coincide with higher vol / regime transitions.
+    """
+    flow_col = "is_flow_pressure_window" if "is_flow_pressure_window" in df.columns else "flow_pressure_window"
+    if flow_col not in df.columns:
+        raise ValueError("missing_flow_pressure")
+    if "news_intensity_zscore" not in df.columns:
+        raise ValueError("missing_news_intensity")
+
+    z_thresh = float(cfg.get("news", {}).get("stress_zscore_threshold", 2.0))
+    combined = df[flow_col].astype(bool) & (df["news_intensity_zscore"].fillna(0) > z_thresh)
+
+    sig = _zero_series(df).astype(int)
+    # No forced directional trade — flag combined stress windows only
+    sig.loc[combined] = 0
+    mag = df["daily_return"].rolling(20, min_periods=10).std().shift(1).fillna(0.0)
+    fc_ret = sig.astype(float) * mag
+    return _build_output(df, "news_flow_pressure_model", "hybrid", sig, fc_ret)
+
+
 # ── Registry ──────────────────────────────────────────────────────────────────
 
 ModelFunc = Callable[..., pd.DataFrame]
@@ -397,11 +458,6 @@ MODEL_REGISTRY: Dict[str, Dict[str, Any]] = {
         "func": mean_reversion_range_model,
         "required_columns": ["regime", "price", "ma20", "daily_return"],
     },
-    "carry_proxy_model": {
-        "func": carry_proxy_model,
-        "required_columns": ["daily_return"],
-        "optional_any": ["mx_rate", "high_carry"],
-    },
     "dollar_stress_model": {
         "func": dollar_stress_model,
         "required_columns": ["daily_return"],
@@ -423,6 +479,23 @@ MODEL_REGISTRY: Dict[str, Dict[str, Any]] = {
         "func": no_change_in_range_model,
         "required_columns": ["regime"],
     },
+    "news_stress_risk_off_model": {
+        "func": news_stress_risk_off_model,
+        "required_columns": ["news_stress_regime", "daily_return"],
+    },
+    "r2_news_confirmed_model": {
+        "func": r2_news_confirmed_model,
+        "required_columns": ["regime", "news_stress_regime", "ma20", "ma60", "daily_return"],
+    },
+    "r1_news_escalation_model": {
+        "func": r1_news_escalation_model,
+        "required_columns": ["regime", "news_stress_regime"],
+    },
+    "news_flow_pressure_model": {
+        "func": news_flow_pressure_model,
+        "required_columns": ["daily_return", "news_intensity_zscore"],
+        "optional_any": ["is_flow_pressure_window", "flow_pressure_window"],
+    },
 }
 
 
@@ -430,11 +503,29 @@ def _check_model_requirements(df: pd.DataFrame, meta: Dict[str, Any]) -> Tuple[b
     """Return (ok, missing_columns)."""
     missing = [c for c in meta.get("required_columns", []) if c not in df.columns]
     optional_any = meta.get("optional_any")
-    if optional_any and missing:
-        # Models like carry_proxy need at least one optional column
-        if not any(c in df.columns for c in optional_any):
-            missing.extend([c for c in optional_any if c not in df.columns])
+    if optional_any:
+        has_optional = any(c in df.columns for c in optional_any)
+        carry_cols = {"carry_proxy", "is_high_carry", "mx_rate", "carry_fragility_regime"}
+        if not has_optional and carry_cols.intersection(set(optional_any)):
+            # Carry models: need at least one carry column with data
+            if "carry_proxy" in df.columns and df["carry_proxy"].notna().any():
+                has_optional = True
+            elif "is_high_carry" in df.columns:
+                has_optional = True
+            elif "mx_rate" in df.columns and "us_rate" in df.columns:
+                has_optional = True
+        if not has_optional:
+            missing = list(set(missing + [c for c in optional_any if c not in df.columns]))
     return len(missing) == 0, missing
+
+
+def _register_carry_models() -> None:
+    from .carry_models import CARRY_MODEL_REGISTRY
+
+    MODEL_REGISTRY.update(CARRY_MODEL_REGISTRY)
+
+
+_register_carry_models()
 
 
 def generate_model_outputs(

@@ -1,6 +1,6 @@
 # BR3N Macro Labs — Model Zoo Report
 
-**Generated:** 2026-05-30 15:26
+**Generated:** 2026-05-30 16:46
 
 > Research and education only. Not investment advice. No guaranteed returns. No live trading.
 
@@ -18,8 +18,8 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 
 ## 2. Models tested
 
-- **Attempted:** 16
-- **Successful:** 16
+- **Attempted:** 24
+- **Successful:** 24
 - **Skipped:** 0
 
 - random_walk_model
@@ -33,11 +33,19 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 - volatility_breakout_model
 - mean_reversion_range_model
 - carry_proxy_model
+- carry_regime_model
+- carry_fragility_risk_off_model
+- r2_carry_confirmed_model
+- carry_adjusted_hedge_model
 - dollar_stress_model
 - flow_pressure_model
 - ensemble_vote_model
 - conservative_hedge_model
 - no_change_in_range_model
+- news_stress_risk_off_model
+- r2_news_confirmed_model
+- r1_news_escalation_model
+- news_flow_pressure_model
 
 ### Run log
 
@@ -54,6 +62,10 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 | volatility_breakout_model | success | nan | nan |
 | mean_reversion_range_model | success | nan | nan |
 | carry_proxy_model | success | nan | nan |
+| carry_regime_model | success | nan | nan |
+| carry_fragility_risk_off_model | success | nan | nan |
+| r2_carry_confirmed_model | success | nan | nan |
+| carry_adjusted_hedge_model | success | nan | nan |
 | dollar_stress_model | success | nan | nan |
 | flow_pressure_model | success | nan | nan |
 | ensemble_vote_model | success | nan | nan |
@@ -76,10 +88,15 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 | r1_risk_off_model | 0.007188 | 0.007175 | 0.004992 | 0.004964 | False | False | 24.35 |
 | volatility_breakout_model | 0.007231 | 0.007175 | 0.005042 | 0.004964 | False | False | 5.13 |
 | mean_reversion_range_model | 0.007185 | 0.007175 | 0.004975 | 0.004964 | False | False | 4.06 |
-| carry_proxy_model | 0.007183 | 0.007175 | 0.004971 | 0.004964 | False | False | 16.08 |
+| carry_proxy_model | 0.007183 | 0.007175 | 0.004971 | 0.004964 | False | False | 7.97 |
+| carry_regime_model | 0.007178 | 0.007175 | 0.004967 | 0.004964 | False | False | 2.58 |
+| r2_carry_confirmed_model | 0.00718 | 0.007175 | 0.004971 | 0.004964 | False | False | 7.97 |
 | dollar_stress_model | 0.00718 | 0.007175 | 0.004977 | 0.004964 | False | False | 31.62 |
 | flow_pressure_model | 0.007175 | 0.007175 | 0.004965 | 0.004964 | True | False | 34.25 |
-| ensemble_vote_model | 0.007217 | 0.007175 | 0.005 | 0.004964 | False | False | 24.3 |
+| ensemble_vote_model | 0.007219 | 0.007175 | 0.005003 | 0.004964 | False | False | 25.36 |
+| news_stress_risk_off_model | 0.007175 | 0.007175 | 0.004964 | 0.004964 | False | False | 0.0 |
+| r2_news_confirmed_model | 0.007186 | 0.007175 | 0.004989 | 0.004964 | False | False | 19.84 |
+| news_flow_pressure_model | 0.007175 | 0.007175 | 0.004964 | 0.004964 | False | False | 0.0 |
 
 ---
 
@@ -97,10 +114,15 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 | r1_risk_off_model | -16.14 | -0.08 | -46.81 | 395 | 7.9 | 50.3 |
 | volatility_breakout_model | -21.24 | -0.252 | -33.13 | 1041 | 20.84 | 16.1 |
 | mean_reversion_range_model | -30.02 | -0.534 | -32.33 | 335 | 6.76 | 8.3 |
-| carry_proxy_model | -4.98 | -0.017 | -28.14 | 174 | 3.48 | 30.7 |
+| carry_proxy_model | -1.02 | 0.007 | -13.46 | 106 | 2.12 | 16.5 |
+| carry_regime_model | -10.39 | -0.242 | -15.41 | 184 | 3.68 | 5.5 |
+| r2_carry_confirmed_model | 2.38 | 0.044 | -23.38 | 192 | 3.84 | 16.4 |
 | dollar_stress_model | 90.35 | 0.312 | -28.06 | 603 | 12.06 | 60.4 |
 | flow_pressure_model | -10.65 | -0.002 | -37.23 | 539 | 10.78 | 72.1 |
-| ensemble_vote_model | 77.53 | 0.305 | -26.57 | 290 | 5.8 | 48.4 |
+| ensemble_vote_model | 76.76 | 0.302 | -25.93 | 434 | 8.68 | 50.6 |
+| news_stress_risk_off_model | 0.0 | 0.0 | 0.0 | 0 | 0.0 | 0.0 |
+| r2_news_confirmed_model | -20.48 | -0.133 | -43.35 | 909 | 18.18 | 40.9 |
+| news_flow_pressure_model | 0.0 | 0.0 | 0.0 | 0 | 0.0 | 0.0 |
 
 ---
 
@@ -108,8 +130,11 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 
 | model_name | volatility_reduction | hedge_turnover | total_hedge_cost | cost_adjusted_risk_reduction | average_hedge_ratio | regret_proxy |
 | --- | --- | --- | --- | --- | --- | --- |
+| carry_fragility_risk_off_model | 6.665 | 69.5 | 1.39 | 5.275 | 0.568 | 3.293 |
+| carry_adjusted_hedge_model | 8.098 | 115.05 | 2.301 | 5.797 | 0.68 | 2.293 |
 | conservative_hedge_model | 6.81 | 106.1 | 2.122 | 4.688 | 0.614 | 3.05 |
 | no_change_in_range_model | 7.163 | 26.9 | 0.538 | 6.625 | 0.66 | 2.781 |
+| r1_news_escalation_model | 6.541 | 193.0 | 3.86 | 2.681 | 0.534 | 3.49 |
 
 ---
 
@@ -119,20 +144,24 @@ Compare simple, explainable models against random walk, buy-and-hold, and always
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | always_flat_model | trading | 0.0 | 0.0 | 0.0 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | buy_and_hold_model | trading | 2.9345 | 0.1619 | -11.092 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
-| carry_proxy_model | hybrid | -0.555 | -0.1966 | -5.7025 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
+| carry_adjusted_hedge_model | hedge_governance | nan | nan | nan | 0.0072 | 0.0072 | 0.0053 | 0.0053 | 8.0756 | 20 |
+| carry_fragility_risk_off_model | hedge_governance | nan | nan | nan | 0.0072 | 0.0072 | 0.0053 | 0.0053 | 6.6944 | 20 |
+| carry_proxy_model | hybrid | 0.5255 | 0.2032 | -3.235 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
+| carry_regime_model | hybrid | 0.0525 | -0.0755 | -1.306 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | conservative_hedge_model | hedge_governance | nan | nan | nan | 0.0072 | 0.0072 | 0.0053 | 0.0053 | 6.8225 | 20 |
 | dollar_stress_model | hybrid | 3.7685 | 0.2319 | -9.458 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
-| ensemble_vote_model | hybrid | 0.4375 | -0.0738 | -8.163 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
+| ensemble_vote_model | hybrid | 0.837 | 0.106 | -8.2345 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | flow_pressure_model | hybrid | -2.173 | -0.2426 | -10.555 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | ma_crossover_model | hybrid | 1.3245 | 0.0091 | -11.7215 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | mean_reversion_range_model | hybrid | -1.3645 | -0.7942 | -3.1475 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
+| news_flow_pressure_model | hybrid | 0.0 | 0.0 | 0.0 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
+| news_stress_risk_off_model | hybrid | 0.0 | 0.0 | 0.0 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | no_change_in_range_model | hedge_governance | nan | nan | nan | 0.0072 | 0.0072 | 0.0053 | 0.0053 | 7.2397 | 20 |
+| r1_news_escalation_model | hedge_governance | nan | nan | nan | 0.0072 | 0.0072 | 0.0053 | 0.0053 | 6.4728 | 20 |
 | r1_risk_off_model | hybrid | -1.253 | -0.218 | -6.899 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
+| r2_carry_confirmed_model | hybrid | -0.0805 | -0.0168 | -3.656 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
+| r2_news_confirmed_model | hybrid | -1.4985 | -0.2354 | -6.0595 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
 | r2_only_model | hybrid | -1.253 | -0.218 | -6.899 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
-| r2_only_vol_scaled_model | hybrid | -1.348 | -0.2382 | -6.5705 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
-| random_walk_model | forecast | 0.0 | 0.0 | 0.0 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
-| regime_trend_model | hybrid | 0.235 | -0.099 | -11.518 | 0.0072 | 0.0072 | 0.0053 | 0.0053 | nan | 20 |
-| volatility_breakout_model | hybrid | -1.784 | -0.511 | -4.2055 | 0.0073 | 0.0072 | 0.0054 | 0.0053 | nan | 20 |
 
 ---
 

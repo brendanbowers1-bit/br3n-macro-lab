@@ -228,6 +228,109 @@ def _read_cache(proc_path: Path) -> pd.DataFrame:
     raise ValueError(f"Unexpected columns: {list(cached.columns)}")
 
 
+def load_fx_data_preferred(
+    pair_config: dict,
+    config: dict,
+    force_refresh: bool = False,
+) -> Tuple[pd.DataFrame, dict]:
+    """
+    Load FX prices with priority: official academic → yfinance → local CSV.
+
+    pair_config may include ticker, history_years, currency_pair, fred_series_key.
+    """
+    data_cfg = config.get("data", {})
+    ticker = pair_config.get("ticker") or data_cfg.get("ticker", "USDMXN=X")
+    years = int(pair_config.get("history_years") or data_cfg.get("history_years", 25))
+    preferred = data_cfg.get("preferred_source", "fred_h10")
+    fallback = data_cfg.get("fallback_source", "yfinance")
+    fred_map = data_cfg.get("fred_series", {})
+
+    meta: dict = {
+        "ticker": ticker,
+        "preferred_source": preferred,
+        "fallback_source": fallback,
+        "source": "unknown",
+        "data_tier": "prototype",
+        "attempted": [],
+    }
+
+    pair_key = pair_config.get("fred_series_key")
+    if not pair_key:
+        pair_key = ticker.replace("=X", "").replace("/", "_")
+        if pair_key == "USDMXN":
+            pair_key = "USD_MXN"
+
+    currency_pair = pair_config.get("currency_pair")
+    if not currency_pair and ticker == "USDMXN=X":
+        currency_pair = "USD/MXN"
+
+    use_preferred = preferred in ("fred_h10", "fed_h10") or data_cfg.get("prefer_tier1_spot", False)
+    if use_preferred and pair_key in fred_map:
+        series_id = fred_map[pair_key]
+        meta["attempted"].append(preferred)
+        try:
+            from .official_data_loader import load_fred_csv_series
+
+            conv = pair_config.get(
+                "price_convention",
+                "Mexican pesos per U.S. dollar" if currency_pair == "USD/MXN" else currency_pair or ticker,
+            )
+            std = load_fred_csv_series(
+                series_id,
+                currency_pair or ticker.replace("=X", ""),
+                conv,
+                years=years,
+                source_key=preferred if preferred in ("fred_h10", "fed_h10") else "fred_h10",
+            )
+            df = std.set_index("date")[["price"]]
+            df = attach_source_metadata(
+                df,
+                source="fred_h10",
+                data_tier="academic",
+                tier_number=1,
+                price_type="official_public_rate",
+                convention=f"{currency_pair or ticker} ({series_id}, H.10 via FRED)",
+            )
+            meta.update(
+                {
+                    "source": "fred_h10",
+                    "data_tier": "academic",
+                    "fred_series": series_id,
+                    "currency_pair": currency_pair,
+                }
+            )
+            return df, meta
+        except Exception as exc:
+            meta["preferred_error"] = str(exc)[:200]
+            print(f"  Preferred source {preferred} failed: {exc}")
+
+    if fallback == "yfinance":
+        meta["attempted"].append("yfinance")
+        try:
+            df = fetch_yfinance(ticker, years)
+            meta.update({"source": "yfinance", "data_tier": "prototype"})
+            return df, meta
+        except Exception as exc:
+            meta["fallback_error"] = str(exc)[:200]
+            print(f"  yfinance fallback failed: {exc}")
+
+    vendor = _load_raw_csv(ticker, years)
+    if vendor is not None:
+        meta.update({"source": "vendor_csv", "data_tier": "prototype"})
+        return attach_source_metadata(
+            vendor,
+            source="vendor_csv",
+            tier_number=4,
+            price_type="close",
+            convention=ticker,
+        ), meta
+
+    raise RuntimeError(
+        f"No data for {ticker}. Tried: {meta['attempted']}. "
+        "Check network or place CSV in data/raw/."
+    )
+
+
 def load_or_fetch(cfg: dict, force_refresh: bool = False) -> Tuple[pd.DataFrame, Path]:
     ticker = cfg["data"]["ticker"]
     years = int(cfg["data"]["history_years"])
@@ -237,6 +340,29 @@ def load_or_fetch(cfg: dict, force_refresh: bool = False) -> Tuple[pd.DataFrame,
     proc_path = proc_dir / f"{safe}.csv"
 
     prefer_t1 = cfg.get("data", {}).get("prefer_tier1_spot", False)
+    preferred = cfg.get("data", {}).get("preferred_source")
+    if (prefer_t1 or preferred) and ticker.upper() == "USDMXN=X":
+        try:
+            df_pref, load_meta = load_fx_data_preferred({"ticker": ticker}, cfg, force_refresh=force_refresh)
+            df_pref, _ = sanitize_fx_prices(df_pref, ticker)
+            if load_meta.get("source"):
+                df_pref = attach_source_metadata(
+                    df_pref,
+                    source=load_meta["source"],
+                    data_tier=load_meta.get("data_tier", "academic"),
+                    tier_number=1 if load_meta.get("data_tier") == "academic" else 4,
+                    price_type="official_public_rate" if load_meta.get("source") == "fred_h10" else "close",
+                    convention=load_meta.get("fred_series", ticker),
+                )
+            _save_cache_with_metadata(df_pref, proc_path)
+            print(
+                f"Preferred source ({load_meta.get('source', preferred)}): "
+                f"{len(df_pref)} rows -> {proc_path}"
+            )
+            return df_pref[["price"]], proc_path
+        except Exception as exc:
+            print(f"  Preferred load unavailable ({exc}); falling back to legacy path")
+
     if prefer_t1 and ticker.upper() == "USDMXN=X":
         try:
             from .official_loaders import load_or_fetch_official_usdmxn

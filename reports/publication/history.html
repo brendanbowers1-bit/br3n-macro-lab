@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="BR3N Macro Labs — The 300-year road to FX Lab · Research only · Not investment advice"/>
+  <title>FX History &amp; Academic Foundations — BR3N Macro Labs</title>
+  <style>
+:root {
+  --bg: #0c0f14;
+  --surface: #141a24;
+  --border: #243044;
+  --text: #e8edf4;
+  --muted: #8b9cb3;
+  --accent: #3d8bfd;
+  --accent-dim: #2563b8;
+  --good: #34d399;
+  --warn: #fbbf24;
+  --font: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "SF Mono", ui-monospace, Menlo, monospace;
+  --max: 720px;
+  --wide: 960px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 17px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header {
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #121824 0%, var(--bg) 100%);
+  padding: 2.5rem 1.5rem 2rem;
+}
+.header-inner { max-width: var(--wide); margin: 0 auto; }
+.brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+h1.title { font-size: 2rem; font-weight: 650; margin: 0 0 0.75rem; line-height: 1.2; }
+.subtitle { color: var(--muted); font-size: 1.05rem; max-width: 42rem; }
+nav.top {
+  max-width: var(--wide);
+  margin: 1.25rem auto 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+nav.top a {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: var(--surface);
+}
+nav.top a.primary {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: #fff;
+}
+main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+main.wide { max-width: var(--wide); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.card h3 { margin-top: 0; font-size: 1rem; color: var(--accent); }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat .value { font-size: 1.35rem; font-weight: 650; margin-top: 0.25rem; }
+.stat .value.good { color: var(--good); }
+.stat .value.warn { color: var(--warn); }
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 8px 8px 0;
+  color: var(--muted);
+  font-style: italic;
+}
+h2 { font-size: 1.35rem; margin: 2.25rem 0 1rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
+p { margin: 0.75rem 0; }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+th { background: #1a2230; color: var(--muted); font-weight: 600; }
+table.data-table th.num,
+table.data-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table { margin: 0; }
+.conclusion-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.claim-discipline {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text);
+}
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  background: #0a0e13;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+code { padding: 0.15rem 0.4rem; }
+pre { padding: 1rem; overflow-x: auto; }
+pre code { border: none; padding: 0; background: none; }
+footer {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.disclaimer {
+  background: #1a1510;
+  border: 1px solid #4a3820;
+  color: #d4a574;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-top: 1rem;
+}
+/* Cover page */
+body.cover-page header.hero-cover {
+  border-bottom: none;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(61, 139, 253, 0.18) 0%, transparent 55%),
+    linear-gradient(180deg, #0e1420 0%, var(--bg) 100%);
+}
+.hero-cover .lab-title {
+  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #e8edf4 0%, #8b9cb3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-cover .tagline {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 40rem;
+  margin: 0 auto 0.75rem;
+  line-height: 1.5;
+}
+.hero-cover .author {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+.fx-lab-logo {
+  display: block;
+  max-width: min(520px, 92vw);
+  width: 100%;
+  height: auto;
+  margin: 0 auto 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+.fx-lab-logo-sm {
+  display: block;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border-radius: 8px;
+}
+.cta-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.cta-row a {
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cta-row a.primary {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+.cta-row a.secondary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.principle-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+}
+.principle-box p { margin: 0.5rem 0; color: var(--text); }
+.cover-main { max-width: var(--wide); }
+.cover-main h2:first-child { margin-top: 0; }
+.vertical-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.vertical-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+.vertical-card:hover { border-color: var(--accent); }
+.vertical-card .tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.vertical-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.vertical-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+}
+.vertical-card a.btn {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+}
+.vertical-card a.btn:hover { text-decoration: none; opacity: 0.92; }
+.research-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+.research-link-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.35rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.research-link-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.research-link-card .tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.research-link-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.research-link-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  h1.title { font-size: 1.55rem; }
+  body { font-size: 16px; }
+  .hero-cover .lab-title { letter-spacing: 0.08em; }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <img src="assets/fx_lab_logo.png" alt="BR3N MACRO LABS FX Lab" class="fx-lab-logo-sm"/>
+      <div class="brand">BR3N MACRO LABS · FX LAB</div>
+      <h1 class="title">FX History &amp; Academic Foundations</h1>
+      <p class="subtitle">The 300-year road to FX Lab · Research only · Not investment advice</p>
+      <nav class="top">
+  <a href="index.html">Home</a>
+  <a href="fx-lab.html">FX Lab</a>
+  <a href="research.html">Research</a>
+  <a href="corridor.html">Corridor</a>
+  <a href="fx_desk.html">FX Desk</a>
+  <a href="memo.html">Memo</a>
+  <a href="ladder.html">Ladder</a>
+  <a href="hedge-governance.html">Hedge Gov</a>
+  <a href="model-zoo.html">Model Zoo</a>
+  <a href="lab-status.html">Lab Status</a>
+  <a href="unanswered-fx.html">Unanswered FX</a>
+  <a href="history.html" class="primary">History</a>
+</nav>
+    </div>
+  </header>
+  <main class="wide">
+    
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="principle-box">
+  <p><strong>Academic framing:</strong> FX Lab builds on prior exchange-rate research. Random walk remains the benchmark.
+  The lab does not claim to solve FX forecasting — it asks whether regime information can improve hedge-governance
+  decisions when prediction fails.</p>
+</div>
+<h1>FX History & Academic Foundations</h1>
+<h2 id="the-300-year-road-to-fx-lab">The 300-Year Road to FX Lab</h2>
+<div class="principle-box"><p>Research and risk-framing only. Not investment advice. No live trading.</p></div>
+<hr/>
+<h2 id="why-this-history-matters">Why This History Matters</h2>
+<p>For more than 300 years, economists, policymakers, traders, and researchers have tried to understand how currencies adjust, why exchange rates move, and why they are so difficult to forecast.</p>
+<p>BR3N Macro Labs — FX Lab does not claim to overturn this history. It builds on it.</p>
+<p>The central question:</p>
+<div class="principle-box"><p>If exchange rates are extremely difficult to forecast, can FX decisions still be improved?</p></div>
+<p>FX Lab accepts the random-walk benchmark as a serious obstacle. The lab then asks whether regime, carry, news, flow, stress, and hedge-governance variables can improve risk decisions even when they fail as direct price forecasts.</p>
+<hr/>
+<h2 id="1700s-hume-and-adjustment-flows">1700s — Hume and Adjustment Flows</h2>
+<p><strong>David Hume</strong> and the <strong>price-specie-flow mechanism</strong> linked trade imbalances, gold flows, money supply, and international adjustment.</p>
+<p><strong>FX Lab connection:</strong> Currencies connect to trade flows, payment flows, liquidity, and balance-of-payments pressure — not just spot charts.</p>
+<hr/>
+<h2 id="1800s-gold-standard">1800s — Gold Standard</h2>
+<p>Currencies were linked to gold; exchange rates were mostly fixed within gold points. Adjustment occurred through prices, wages, output, gold flows, and financial stress.</p>
+<p><strong>FX Lab connection:</strong> Stable exchange rates do not mean stable systems. Risk can migrate into liquidity and stress — a theme FX Lab studies in regime intelligence.</p>
+<hr/>
+<h2 id="early-1900s-purchasing-power-parity">Early 1900s — Purchasing Power Parity</h2>
+<p><strong>Gustav Cassel</strong> formalized <strong>PPP</strong>: exchange rates should adjust over time to reflect relative price levels.</p>
+<p>PPP is a long-run anchor, not usually a short-term trading rule.</p>
+<p><strong>FX Lab connection:</strong> Fundamentals may matter more in orderly trend regimes and less during panic or noisy range regimes.</p>
+<hr/>
+<h2 id="1940s1970s-bretton-woods-and-managed-fx">1940s–1970s — Bretton Woods and Managed FX</h2>
+<p>After World War II, many currencies were pegged to the U.S. dollar under <strong>Bretton Woods</strong>. The system's collapse created the modern era of floating exchange rates — and made the forecasting problem central.</p>
+<p><strong>FX Lab connection:</strong> FX Lab operates in a world of floating rates, global capital flows, policy divergence, and cross-border payment corridors.</p>
+<hr/>
+<h2 id="1960s-mundell-fleming-and-exchange-rate-regimes">1960s — Mundell-Fleming and Exchange-Rate Regimes</h2>
+<p><strong>Robert Mundell</strong> and <strong>Marcus Fleming</strong> showed that monetary and fiscal policy work differently under fixed versus floating exchange rates and different capital mobility.</p>
+<p><strong>FX Lab connection:</strong> Regime matters — in policy and in markets. FX Lab extends this to trend/range, high/low volatility, and stress regimes.</p>
+<hr/>
+<h2 id="1976-dornbusch-overshooting">1976 — Dornbusch Overshooting</h2>
+<p><strong>Rudiger Dornbusch</strong> showed exchange rates can <strong>overshoot</strong> after monetary shocks because asset markets adjust faster than goods prices.</p>
+<p><strong>FX Lab connection:</strong> R1 (trend + high volatility) may reflect overshooting, liquidation, or stress — not every trend is an opportunity.</p>
+<hr/>
+<h2 id="1983-meese-rogoff-random-walk-puzzle">1983 — Meese-Rogoff Random-Walk Puzzle</h2>
+<p><strong>Richard Meese</strong> and <strong>Kenneth Rogoff</strong> showed structural models often failed to beat a <strong>random walk</strong> out of sample.</p>
+<p>This remains the benchmark any FX model must respect.</p>
+<p><strong>FX Lab connection:</strong> FX Lab starts here — and asks a second question: can hedge decisions improve even when forecasts fail?</p>
+<hr/>
+<h2 id="1980s-onward-uip-and-the-carry-puzzle">1980s Onward — UIP and the Carry Puzzle</h2>
+<p><strong>Uncovered interest parity</strong> often fails empirically. High-yield currencies can earn carry for long periods before crashing in stress.</p>
+<p><strong>FX Lab connection:</strong> Carry is studied as regime-dependent — stable yield versus hidden crash risk (Carry Fragility Index).</p>
+<hr/>
+<h2 id="1990s2000s-microstructure-and-order-flow">1990s–2000s — Microstructure and Order Flow</h2>
+<p><strong>Richard Lyons</strong>, <strong>Martin Evans</strong>, and others showed that <strong>order flow</strong> helps explain short-horizon FX movement.</p>
+<p><strong>FX Lab connection:</strong> Without private order flow, the lab uses public calendar and remittance proxies — exploratory, not causal.</p>
+<hr/>
+<h2 id="2008-onward-funding-stress-and-cip-breakdown">2008 Onward — Funding Stress and CIP Breakdown</h2>
+<p><strong>Covered interest parity</strong> deviations grew after 2008 as funding stress, dealer balance sheets, and regulation mattered for forwards and swaps.</p>
+<p><strong>FX Lab connection:</strong> Complete hedge economics require forward points, spreads, basis, and funding stress — not spot-only analysis.</p>
+<hr/>
+<h2 id="2010spresent-machine-learning-and-fx">2010s–Present — Machine Learning and FX</h2>
+<p>Machine learning can fit complex patterns, but FX forecasting remains difficult out of sample and after costs.</p>
+<p><strong>FX Lab connection:</strong> AI is a research accelerator, not an oracle. The model zoo compares every model to random walk, OOS tests, costs, and hedge-governance metrics.</p>
+<hr/>
+<h2 id="nobel-connections">Nobel Connections</h2>
+<h3>Robert Mundell — 1999</h3>
+<p>Nobel Memorial Prize in Economic Sciences for analysis of monetary and fiscal policy under different exchange-rate regimes and <strong>optimum currency areas</strong>.</p>
+<p><strong>For FX Lab:</strong> Exchange-rate regime matters — extended from policy regimes to market regimes.</p>
+<h3>Paul Krugman — 2008</h3>
+<p>Nobel for international trade and economic geography — not FX forecasting directly — but currencies connect deeply to trade, geography, production, and crises.</p>
+<hr/>
+<h2 id="what-every-fx-person-should-know">What Every FX Person Should Know</h2>
+<ol><li><strong>Random walk is the benchmark.</strong> Be humble if a model does not beat it OOS.</li><li><strong>Spot and forwards are different.</strong> Hedging requires forward points.</li><li><strong>Carry is not free money.</strong> It may pay for crash risk.</li><li><strong>UIP often fails empirically.</strong> One of the biggest FX puzzles.</li><li><strong>PPP is long-run,</strong> not a daily trading rule.</li><li><strong>Regime matters</strong> — fixed vs floating, calm vs stress, trend vs range.</li><li><strong>Order flow matters</strong> — trades and flows move prices.</li><li><strong>Liquidity disappears in stress</strong> — hedging gets harder when needed most.</li><li><strong>Hedging is not trading</strong> — judged by risk reduction, cost, and policy discipline.</li><li><strong>Forecast failure does not mean decision failure</strong> — the central FX Lab thesis.</li></ol>
+<hr/>
+<h2 id="how-fx-lab-fits">How FX Lab Fits</h2>
+<p>Three centuries of exchange-rate research produced powerful theories — yet exchange rates remain difficult to forecast out of sample.</p>
+<p>FX Lab accepts this challenge and asks:</p>
+<div class="principle-box"><p>Can regime information improve FX hedge-governance decisions even when it fails to improve price forecasts?</p></div>
+<p>The lab separates:</p>
+<ol><li>Forecast accuracy  </li><li>Trading P&L  </li><li>Hedge-governance usefulness  </li></ol>
+<p>A model can fail as a forecast and still improve discipline, turnover control, and risk escalation.</p>
+<hr/>
+<h2 id="closing-thesis">Closing Thesis</h2>
+<p>FX markets may be mostly random-walk-like as price processes, but not all FX decisions are price forecasts.</p>
+<p>Regime, carry, news, flow, and stress variables may fail to predict exchange rates directly while still improving hedge governance, risk escalation, and decision discipline.</p>
+<p><strong>FX Lab does not claim to solve exchange-rate forecasting.</strong> It asks whether regime information can improve FX decisions when forecasting remains weak.</p>
+<hr/>
+<h2>Full Academic Foundations</h2>
+<h1>FX History & Academic Foundations</h1>
+<h2 id="why-this-page-exists">Why This Page Exists</h2>
+<p>BR3N Macro Labs — FX Lab sits inside a long history of exchange-rate research.</p>
+<p>For more than 300 years, economists, policymakers, traders, and researchers have tried to understand how currencies adjust, why exchange rates move, why they are so difficult to forecast, and whether market behavior becomes more structured under certain conditions.</p>
+<p>FX Lab does not claim to overturn this history.</p>
+<p>Instead, the lab builds on it.</p>
+<p>The central question is:</p>
+<div class="principle-box"><p>If exchange rates are extremely difficult to forecast, can FX decisions still be improved?</p></div>
+<p>FX Lab accepts the random-walk benchmark as a serious obstacle. The lab then asks whether regime, carry, news, flow, stress, and hedge-governance variables can improve risk decisions even when they fail as direct price forecasts.</p>
+<hr/>
+<h1>1. David Hume and the Price-Specie-Flow Mechanism</h1>
+<h2 id="period">Period</h2>
+<p>1700s</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Under gold and specie systems, trade imbalances cause gold flows. Those gold flows affect money supply, prices, and ultimately international adjustment.</p>
+<p>If one country runs a trade deficit, specie flows out. Its money supply contracts, prices fall, exports become more competitive, and the imbalance adjusts.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>This is one of the earliest theories linking money, trade, prices, and international adjustment.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX is not just price movement on a chart.</p>
+<p>Currencies are connected to:</p>
+<ul><li>trade flows</li><li>payment flows</li><li>liquidity</li><li>money supply</li><li>adjustment mechanisms</li><li>balance-of-payments pressure</li></ul>
+<p>This connects directly to FX Lab’s payment-corridor and flow-pressure research.</p>
+<hr/>
+<h1>2. The Gold Standard</h1>
+<h2 id="period">Period</h2>
+<p>1800s to early 1900s</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Currencies were linked to gold, so exchange rates were mostly fixed within gold points.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>The gold standard made exchange rates appear stable, but adjustment occurred through:</p>
+<ul><li>prices</li><li>wages</li><li>output</li><li>gold flows</li><li>interest rates</li><li>financial stress</li></ul>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>Stable exchange rates do not mean stable systems.</p>
+<p>Risk can migrate from the exchange rate into liquidity, output, capital flows, and financial stress.</p>
+<p>FX Lab studies this broader idea: markets may look calm until stress appears elsewhere.</p>
+<hr/>
+<h1>3. Purchasing Power Parity — Gustav Cassel</h1>
+<h2 id="period">Period</h2>
+<p>Early 1900s</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Purchasing Power Parity, or PPP, says exchange rates should adjust over time to reflect relative price levels between countries.</p>
+<p>In plain English:</p>
+<div class="principle-box"><p>If one country becomes more expensive relative to another, its currency should eventually adjust.</p></div>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>PPP is one of the foundational long-run exchange-rate theories.</p>
+<p>It is not usually a short-term trading rule, but it remains important for long-run valuation and macro analysis.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab asks whether fundamentals like relative prices matter more in some regimes than others.</p>
+<p>For example:</p>
+<ul><li>fundamentals may matter more in orderly trend regimes</li><li>fundamentals may matter less during panic, liquidation, or noisy range regimes</li></ul>
+<hr/>
+<h1>4. Keynes, Bretton Woods, and Managed Exchange Rates</h1>
+<h2 id="period">Period</h2>
+<p>1940s to early 1970s</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>After World War II, the Bretton Woods system pegged many currencies to the U.S. dollar, while the dollar was linked to gold.</p>
+<p>Exchange rates were managed rather than fully floating.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>The collapse of Bretton Woods created the modern era of floating exchange rates.</p>
+<p>The forecasting problem became more central once major currencies floated freely.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab operates in the post-Bretton Woods world:</p>
+<ul><li>floating exchange rates</li><li>global capital flows</li><li>central-bank policy</li><li>speculative and hedging flows</li><li>cross-border payment corridors</li></ul>
+<p>The random-walk problem becomes especially important in this environment.</p>
+<hr/>
+<h1>5. Mundell-Fleming and Open-Economy Policy</h1>
+<h2 id="period">Period</h2>
+<p>1960s</p>
+<h2 id="key-names">Key Names</h2>
+<ul><li>Robert Mundell</li><li>Marcus Fleming</li></ul>
+<h2 id="core-idea">Core Idea</h2>
+<p>The Mundell-Fleming model explains how monetary and fiscal policy work differently under fixed versus floating exchange rates and under different degrees of capital mobility.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>It became a foundation of open-economy macroeconomics.</p>
+<p>Robert Mundell later won the 1999 Nobel Memorial Prize in Economic Sciences for work on monetary and fiscal policy under different exchange-rate regimes and optimum currency areas.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>The key lesson:</p>
+<div class="principle-box"><p>Regime matters.</p></div>
+<p>Policy does not work the same way in every exchange-rate environment.</p>
+<p>FX Lab extends this intuition into market regimes:</p>
+<ul><li>trend versus range</li><li>high volatility versus low volatility</li><li>calm versus stress</li><li>random-walk-like versus potentially structured</li></ul>
+<hr/>
+<h1>6. Optimum Currency Areas</h1>
+<h2 id="period">Period</h2>
+<p>1961 onward</p>
+<h2 id="key-name">Key Name</h2>
+<p>Robert Mundell</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Countries should share a currency only if they have enough economic integration, labor mobility, fiscal flexibility, and shock-sharing capacity.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>This theory became central to euro-area debates and currency-union design.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>Currency systems are institutional designs, not just market prices.</p>
+<p>FX Lab studies currencies as systems shaped by:</p>
+<ul><li>policy</li><li>flows</li><li>liquidity</li><li>institutions</li><li>payment corridors</li><li>risk management</li></ul>
+<hr/>
+<h1>7. Dornbusch Overshooting</h1>
+<h2 id="period">Period</h2>
+<p>1976</p>
+<h2 id="key-name">Key Name</h2>
+<p>Rudiger Dornbusch</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Exchange rates can overshoot after monetary shocks because financial markets adjust faster than goods prices.</p>
+<p>In plain English:</p>
+<div class="principle-box"><p>FX can move too far in the short run because asset markets move quickly while prices in the real economy adjust slowly.</p></div>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>Overshooting helps explain why exchange rates can be so volatile and disconnected from slow-moving fundamentals.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab’s R1 regime — trend plus high volatility — may sometimes reflect overshooting, liquidation, stress, or panic rather than clean information.</p>
+<p>This is why FX Lab does not treat every trend as an opportunity.</p>
+<p>Some trends are dangerous.</p>
+<hr/>
+<h1>8. Monetary Models of Exchange Rates</h1>
+<h2 id="period">Period</h2>
+<p>1970s</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Exchange rates should be determined by money supplies, interest rates, income, and price levels.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>These models were serious structural attempts to explain exchange rates.</p>
+<p>But they later struggled against random-walk benchmarks.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab respects structural models but tests everything against naive benchmarks.</p>
+<p>The lab does not assume that more variables automatically produce better forecasts.</p>
+<hr/>
+<h1>9. Meese-Rogoff and the Random-Walk Puzzle</h1>
+<h2 id="period">Period</h2>
+<p>1983</p>
+<h2 id="key-names">Key Names</h2>
+<ul><li>Richard Meese</li><li>Kenneth Rogoff</li></ul>
+<h2 id="core-idea">Core Idea</h2>
+<p>Meese and Rogoff showed that structural exchange-rate models often failed to beat a random walk out of sample.</p>
+<p>In plain English:</p>
+<div class="principle-box"><p>A simple forecast that tomorrow’s exchange rate equals today’s exchange rate was extremely hard to beat.</p></div>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>This is one of the most important results in exchange-rate economics.</p>
+<p>It remains the benchmark that any FX forecasting model must respect.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>This is the foundation of FX Lab.</p>
+<p>FX Lab does not start by assuming FX is predictable.</p>
+<p>It starts with the random-walk challenge and asks:</p>
+<div class="principle-box"><p>When, if ever, does random walk become less useful?</p></div>
+<p>But FX Lab also asks a second question:</p>
+<div class="principle-box"><p>Even when random walk remains hard to beat, can hedge decisions still improve?</p></div>
+<hr/>
+<h1>10. The Forward Premium Puzzle and Uncovered Interest Parity Failure</h1>
+<h2 id="period">Period</h2>
+<p>1980s onward</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Uncovered Interest Parity, or UIP, says that high-interest-rate currencies should depreciate enough to offset their yield advantage.</p>
+<p>Empirically, this often fails.</p>
+<p>High-yield currencies can produce positive carry returns for long periods before crashing during stress.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>This is one of the largest unresolved puzzles in FX.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab studies carry as regime-dependent.</p>
+<p>The lab asks:</p>
+<ul><li>Does carry work in calm regimes?</li><li>Does carry fail during stress?</li><li>Is carry compensation for crash risk?</li><li>Does carry become fragile when volatility rises?</li><li>Should hedge decisions change when forward/carry costs are expensive?</li></ul>
+<hr/>
+<h1>11. Peso Problems, Rare Disasters, and Risk Premia</h1>
+<h2 id="period">Period</h2>
+<p>1980s onward</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Some apparent FX anomalies may reflect rare events that investors fear but that do not appear often in the sample.</p>
+<p>A strategy may look profitable because it is quietly selling disaster insurance.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>Carry trades and other FX strategies can look stable until a rare crisis causes large losses.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab uses this logic to treat high-carry and low-volatility environments cautiously.</p>
+<p>The lab asks:</p>
+<div class="principle-box"><p>Is this a real edge, or is it compensation for hidden crash risk?</p></div>
+<p>This connects to the Carry Fragility Index.</p>
+<hr/>
+<h1>12. Target Zones and Speculative Attacks</h1>
+<h2 id="period">Period</h2>
+<p>1980s to 1990s</p>
+<h2 id="key-names">Key Names</h2>
+<ul><li>Paul Krugman</li><li>Flood and Garber</li><li>Maurice Obstfeld</li></ul>
+<h2 id="core-idea">Core Idea</h2>
+<p>Pegged or managed exchange-rate systems can break when reserves, credibility, and expectations fail.</p>
+<p>Currency crises can be driven by fundamentals, expectations, or self-fulfilling attacks.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>Currency markets can shift suddenly from calm to crisis.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab treats high-volatility trend regimes as possible crisis or stress regimes, not simply normal trends.</p>
+<p>The desk implication:</p>
+<div class="principle-box"><p>R1 may require escalation, not blind trend-following.</p></div>
+<hr/>
+<h1>13. Obstfeld-Rogoff and Modern International Macro</h1>
+<h2 id="period">Period</h2>
+<p>1990s onward</p>
+<h2 id="key-names">Key Names</h2>
+<ul><li>Maurice Obstfeld</li><li>Kenneth Rogoff</li></ul>
+<h2 id="core-idea">Core Idea</h2>
+<p>Open-economy macro expanded into intertemporal models, current-account dynamics, sticky prices, international prices, and global equilibrium.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>Exchange rates sit inside a full macro-financial system.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab does not attempt to replace full macro theory.</p>
+<p>It builds an empirical decision framework that tests whether market regimes improve practical FX decisions.</p>
+<hr/>
+<h1>14. Market Microstructure and Order Flow</h1>
+<h2 id="period">Period</h2>
+<p>Late 1990s to 2000s</p>
+<h2 id="key-names">Key Names</h2>
+<ul><li>Richard Lyons</li><li>Martin Evans</li></ul>
+<h2 id="core-idea">Core Idea</h2>
+<p>Order flow can help explain exchange-rate movement because trades reveal information, pressure, and dispersed beliefs.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>Traditional macro models often failed at short horizons. Microstructure research showed that actual buying and selling pressure matters.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab does not yet have true order-flow data.</p>
+<p>Instead, the lab uses public flow proxies such as:</p>
+<ul><li>paydays</li><li>month-end</li><li>holidays</li><li>remittance seasonality</li><li>central-bank dates</li></ul>
+<p>These are not actual order-flow data.</p>
+<p>They are early public proxies for corridor pressure.</p>
+<hr/>
+<h1>15. News, Announcements, and Information Transmission</h1>
+<h2 id="period">Period</h2>
+<p>2000s onward</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Macro announcements, central-bank communication, inflation surprises, political shocks, and geopolitical news affect FX directly and indirectly through volatility, expectations, and order flow.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>News may not predict FX prices directly, but it can change the regime.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab treats news as a risk and regime modifier.</p>
+<p>The lab does not ask:</p>
+<div class="principle-box"><p>Does news predict tomorrow’s exchange rate?</p></div>
+<p>It asks:</p>
+<div class="principle-box"><p>Does news stress help identify when a regime is unstable, dangerous, or less random-walk-like?</p></div>
+<hr/>
+<h1>16. Carry Trade Crash-Risk Literature</h1>
+<h2 id="period">Period</h2>
+<p>2000s to 2010s</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Carry returns may compensate investors for crash risk, downside tail risk, liquidity risk, or exposure to global risk appetite.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>Carry can look like free yield but may actually be payment for bearing bad-state risk.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab’s carry layer asks:</p>
+<div class="principle-box"><p>When does yield create structure, and when does yield hide crash risk?</p></div>
+<hr/>
+<h1>17. Covered Interest Parity Breakdown and Dollar Funding Stress</h1>
+<h2 id="period">Period</h2>
+<p>Especially after 2008</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Covered interest parity should be close to arbitrage. But after the financial crisis, deviations became important because funding stress, dealer balance sheets, collateral, and regulation matter.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>FX forwards and swaps are not just textbook formulas. They reflect real funding constraints and balance-sheet scarcity.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab’s hedge economics cannot be complete until it includes:</p>
+<ul><li>forward points</li><li>FX swaps</li><li>bid/ask spreads</li><li>cross-currency basis</li><li>funding stress</li></ul>
+<hr/>
+<h1>18. Machine Learning and Exchange Rates</h1>
+<h2 id="period">Period</h2>
+<p>2010s to present</p>
+<h2 id="core-idea">Core Idea</h2>
+<p>Machine learning can fit complex relationships, but exchange-rate forecasting remains difficult. Apparent gains often weaken out of sample or after costs.</p>
+<h2 id="why-it-matters">Why It Matters</h2>
+<p>AI does not automatically solve the Meese-Rogoff problem.</p>
+<h2 id="fx-lab-connection">FX Lab Connection</h2>
+<p>FX Lab uses AI as a research accelerator, not an oracle.</p>
+<p>The model zoo is useful only because it compares every model against:</p>
+<ul><li>random walk</li><li>out-of-sample tests</li><li>trading costs</li><li>hedge-governance metrics</li><li>data-snooping controls</li></ul>
+<hr/>
+<h1>Nobel Prize Connections</h1>
+<h2 id="robert-mundell-1999">Robert Mundell — 1999</h2>
+<p>Robert Mundell is the clearest Nobel connection to exchange-rate economics.</p>
+<p>He won the 1999 Nobel Memorial Prize in Economic Sciences for analysis of monetary and fiscal policy under different exchange-rate regimes and optimum currency areas.</p>
+<h2 id="why-mundell-matters-for-fx-lab">Why Mundell Matters for FX Lab</h2>
+<p>The key lesson is:</p>
+<div class="principle-box"><p>Exchange-rate regime matters.</p></div>
+<p>FX Lab extends that principle from policy regimes to market regimes.</p>
+<hr/>
+<h2 id="paul-krugman-2008">Paul Krugman — 2008</h2>
+<p>Paul Krugman won the 2008 Nobel Memorial Prize in Economic Sciences for work in international trade and economic geography, not specifically FX forecasting.</p>
+<p>But his work matters because currencies are deeply connected to trade, geography, production, scale, and global economic structure.</p>
+<h2 id="why-krugman-matters-for-fx-lab">Why Krugman Matters for FX Lab</h2>
+<p>FX is not only speculation. It is connected to:</p>
+<ul><li>trade</li><li>geography</li><li>production</li><li>market structure</li><li>crises</li><li>capital flows</li></ul>
+<hr/>
+<h1>Other Major Names to Know</h1>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>Name</th><th>Contribution</th></tr></thead>
+<tbody>
+<tr><td>David Hume</td><td>Price-specie-flow adjustment</td></tr>
+<tr><td>Gustav Cassel</td><td>Purchasing Power Parity</td></tr>
+<tr><td>John Maynard Keynes</td><td>International monetary order and Bretton Woods influence</td></tr>
+<tr><td>Robert Mundell</td><td>Exchange-rate regimes and optimum currency areas</td></tr>
+<tr><td>Marcus Fleming</td><td>Open-economy macro policy model</td></tr>
+<tr><td>Rudiger Dornbusch</td><td>Exchange-rate overshooting</td></tr>
+<tr><td>Paul Krugman</td><td>Trade theory and currency crisis / target-zone work</td></tr>
+<tr><td>Maurice Obstfeld</td><td>Currency crises and open-economy macro</td></tr>
+<tr><td>Kenneth Rogoff</td><td>Random-walk puzzle and international macro</td></tr>
+<tr><td>Richard Meese</td><td>Random-walk benchmark</td></tr>
+<tr><td>Richard Lyons</td><td>FX microstructure and order flow</td></tr>
+<tr><td>Martin Evans</td><td>Order flow and macro-news transmission</td></tr>
+</tbody></table></div>
+<hr/>
+<h1>What Every FX Person Should Know</h1>
+<h2 id="1-random-walk-is-the-benchmark">1. Random walk is the benchmark.</h2>
+<p>If a model does not beat random walk out of sample, be humble.</p>
+<h2 id="2-spot-and-forwards-are-different">2. Spot and forwards are different.</h2>
+<p>Hedging economics require forward points, not just spot charts.</p>
+<h2 id="3-carry-is-not-free-money">3. Carry is not free money.</h2>
+<p>Carry may be compensation for crash risk.</p>
+<h2 id="4-uip-often-fails-empirically">4. UIP often fails empirically.</h2>
+<p>That failure is one of the biggest FX puzzles.</p>
+<h2 id="5-ppp-is-long-run-not-a-short-term-trading-rule">5. PPP is long-run, not a short-term trading rule.</h2>
+<p>PPP matters, but not usually as a daily trading signal.</p>
+<h2 id="6-regime-matters">6. Regime matters.</h2>
+<p>Fixed versus floating, calm versus stress, trend versus range, and liquid versus illiquid conditions all change the problem.</p>
+<h2 id="7-order-flow-matters">7. Order flow matters.</h2>
+<p>FX is not only macro. Trades and flows move prices.</p>
+<h2 id="8-liquidity-disappears-when-it-is-needed-most">8. Liquidity disappears when it is needed most.</h2>
+<p>Stress regimes can make hedging more difficult and more expensive.</p>
+<h2 id="9-hedging-is-not-trading">9. Hedging is not trading.</h2>
+<p>A hedge is judged by risk reduction, cost, policy discipline, and exposure management — not just P&L.</p>
+<h2 id="10-forecast-failure-does-not-mean-decision-failure">10. Forecast failure does not mean decision failure.</h2>
+<p>This is the central FX Lab thesis.</p>
+<hr/>
+<h1>How FX Lab Fits After This History</h1>
+<p>Three centuries of exchange-rate research have produced powerful theories of monetary adjustment, parity conditions, policy regimes, market microstructure, and financial stress.</p>
+<p>Yet the central empirical challenge remains:</p>
+<div class="principle-box"><p>Exchange rates are difficult to forecast out of sample.</p></div>
+<p>FX Lab accepts this challenge.</p>
+<p>The lab’s contribution is to ask a different question:</p>
+<div class="principle-box"><p>Can regime information improve FX hedge-governance decisions even when it fails to improve price forecasts?</p></div>
+<p>This shifts the focus from prediction to decision usefulness.</p>
+<p>FX Lab separates:</p>
+<ol><li>Forecast accuracy  </li><li>Trading P&L  </li><li>Hedge-governance usefulness  </li></ol>
+<p>A model can fail as a forecast and still be useful if it improves discipline, reduces unnecessary hedge turnover, lowers over-adjustment, or improves risk escalation.</p>
+<hr/>
+<h1>Core FX Lab Thesis</h1>
+<p>FX markets may be mostly random-walk-like as price processes, but not all FX decisions are price forecasts.</p>
+<p>Regime, carry, news, flow, and stress variables may fail to predict exchange rates directly while still improving hedge governance, risk escalation, and decision discipline.</p>
+<p>The question is not only whether FX can be predicted.</p>
+<p>The question is whether FX decisions can be improved when prediction fails.</p>
+
+  </main>
+  <footer>
+    <p>BR3N Macro Labs · Prepared by Brendan Bowers · 2026-05-30</p>
+    <div class="disclaimer">This site is for research and education only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.</div>
+  </footer>
+</body>
+</html>
