@@ -19,6 +19,7 @@ VERTICALS_DIR = PUB_DIR / "verticals"
 PUBLIC_SITE_BASE = "https://brendanbowers1-bit.github.io/br3n-macro-lab"
 
 FX_LAB_TAGLINE = "Testing When Currency Markets Become Less Random"
+FX_LAB_LOGO = "assets/fx_lab_logo.png"
 
 
 def _css() -> str:
@@ -194,6 +195,23 @@ body.cover-page header.hero-cover {
   color: var(--accent);
   font-size: 0.95rem;
   margin-bottom: 2rem;
+}
+.fx-lab-logo {
+  display: block;
+  max-width: min(520px, 92vw);
+  width: 100%;
+  height: auto;
+  margin: 0 auto 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+.fx-lab-logo-sm {
+  display: block;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border-radius: 8px;
 }
 .cta-row {
   display: flex;
@@ -433,7 +451,8 @@ def _shell(
 <body>
   <header>
     <div class="header-inner">
-      <div class="brand">{html.escape(LAB_NAME_DISPLAY)}</div>
+      <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)} FX Lab" class="fx-lab-logo-sm"/>
+      <div class="brand">{html.escape(LAB_NAME_DISPLAY)} · FX LAB</div>
       <h1 class="title">{html.escape(title)}</h1>
       <p class="subtitle">{html.escape(subtitle)}</p>
       {nav}
@@ -454,9 +473,8 @@ def _cover_shell(body: str) -> str:
     hero = f"""
 <header class="hero-cover">
   <div class="header-inner">
-    <h1 class="lab-title">{html.escape(LAB_NAME_DISPLAY)}</h1>
-    <p class="tagline">FX LAB</p>
-    <p class="author">{html.escape(FX_LAB_TAGLINE)} · Prepared by Brendan Bowers</p>
+    <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)} FX Lab" class="fx-lab-logo"/>
+    <p class="author">Prepared by Brendan Bowers</p>
     <div class="cta-row">
       <a href="fx-lab.html" class="primary">FX Lab Overview</a>
       <a href="research.html" class="secondary">USD/MXN Research</a>

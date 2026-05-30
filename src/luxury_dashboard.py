@@ -23,6 +23,7 @@ sys.path.insert(0, str(ROOT))
 OUT = ROOT / "data" / "outputs"
 PROC = ROOT / "data" / "processed"
 REPORTS = ROOT / "reports"
+FX_LOGO = REPORTS / "publication" / "assets" / "fx_lab_logo.png"
 
 # ── Brand palette ─────────────────────────────────────────────────────────────
 C = {
@@ -631,9 +632,15 @@ def corridor_heatmap(
 
 # ── Page renderers ────────────────────────────────────────────────────────────
 def page_executive_overview() -> None:
+    if FX_LOGO.exists():
+        st.image(str(FX_LOGO), width=420)
+    else:
+        st.markdown(
+            '<div class="hero-title">BR3N MACRO LABS</div>'
+            '<div class="hero-subtitle">FX LAB</div>',
+            unsafe_allow_html=True,
+        )
     st.markdown(
-        '<div class="hero-title">BR3N MACRO LABS</div>'
-        '<div class="hero-subtitle">FX LAB</div>'
         f'<div class="hero-tagline">{FX_LAB_TAGLINE}<br>'
         "Conditional forecastability · Regime intelligence · Hedge governance · Corridor research</div>",
         unsafe_allow_html=True,
@@ -1424,6 +1431,8 @@ def main() -> None:
         ensure_dashboard_data()
 
     with st.sidebar:
+        if FX_LOGO.exists():
+            st.image(str(FX_LOGO), width="stretch")
         st.markdown('<div class="sidebar-brand">BR3N MACRO LABS</div>', unsafe_allow_html=True)
         st.markdown('<div class="sidebar-tag">FX LAB</div>', unsafe_allow_html=True)
         st.markdown(
