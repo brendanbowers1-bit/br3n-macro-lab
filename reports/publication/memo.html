@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Full Research Note — BR3N Macro Lab</title>
+  <meta name="description" content="BR3N Macro Labs — FX regime intelligence for currency markets, treasury risk, and conditional forecastability"/>
+  <title>Full Research Note — BR3N Macro Labs</title>
   <style>
 :root {
   --bg: #0c0f14;
@@ -145,23 +146,91 @@ footer {
   font-size: 0.88rem;
   margin-top: 1rem;
 }
+/* Cover page */
+body.cover-page header.hero-cover {
+  border-bottom: none;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(61, 139, 253, 0.18) 0%, transparent 55%),
+    linear-gradient(180deg, #0e1420 0%, var(--bg) 100%);
+}
+.hero-cover .lab-title {
+  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #e8edf4 0%, #8b9cb3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-cover .tagline {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 40rem;
+  margin: 0 auto 0.75rem;
+  line-height: 1.5;
+}
+.hero-cover .author {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+.cta-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.cta-row a {
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cta-row a.primary {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+.cta-row a.secondary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.principle-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+}
+.principle-box p { margin: 0.5rem 0; color: var(--text); }
+.cover-main { max-width: var(--wide); }
+.cover-main h2:first-child { margin-top: 0; }
 @media (max-width: 600px) {
   h1.title { font-size: 1.55rem; }
   body { font-size: 16px; }
+  .hero-cover .lab-title { letter-spacing: 0.08em; }
 }
 </style>
 </head>
 <body>
   <header>
     <div class="header-inner">
-      <div class="brand">BR3N Macro Lab</div>
+      <div class="brand">BR3N MACRO LABS</div>
       <h1 class="title">Full Research Note</h1>
       <p class="subtitle">USD/MXN regime research · Research only · Not investment advice</p>
-      
-<nav class="top">
-  <a href="index.html" class="primary">One-pager</a>
-  <a href="memo.html">Full research note</a>
-  <a href="ladder.html">Ladder summary</a>
+      <nav class="top">
+  <a href="index.html">Home</a>
+  <a href="research.html">USD/MXN Research</a>
+  <a href="memo.html" class="primary">Full memo</a>
+  <a href="ladder.html">Ladder</a>
 </nav>
     </div>
   </header>
@@ -173,7 +242,7 @@ footer {
 <hr/>
 <h2>Abstract</h2>
 <p>I built a small research lab to answer one practical question for treasury and risk teams:</p>
-<blockquote><p><strong>Should you adjust your USD/MXN hedge based on market regime — or is it better to stay flat when the market is “range-bound”?</strong></p></blockquote>
+<div class="principle-box"><p><strong>Should you adjust your USD/MXN hedge based on market regime — or is it better to stay flat when the market is “range-bound”?</strong></p></div>
 <p>Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: <strong>follow the trend in trending regimes; go flat in ranging regimes.</strong> I stress-tested that idea with a six-level “research ladder” — from descriptive stats to out-of-sample tests, nine currency pairs, forecast errors, trading costs, and data-snooping controls.</p>
 <p><strong>Bottom line:</strong> The regime story is real for USD/MXN — returns and strategy P&amp;L behave differently across regimes — and the “stay flat in range” rule beats doing nothing out-of-sample on MXN. But it is <strong>not</strong> a price-forecasting model, it <strong>does not</strong> cleanly generalize to every EM pair in every period, and it <strong>does not</strong> survive strict multiple-testing correction after searching across strategies.</p>
 <hr/>
@@ -213,7 +282,7 @@ flowchart LR
 <tr><td><strong>5</strong></td><td>Does it survive costs?</td><td>Spreads, slippage, roll, carry assumptions</td></tr>
 <tr><td><strong>6</strong></td><td>Did I overfit?</td><td>Holdout window, bootstrap Sharpe, White Reality Check</td></tr>
 </tbody></table>
-<p>All code and config live in <strong>BR3N Macro Lab</strong> (<code>~/fx_regime_lab</code>). Reproduce with:</p>
+<p>All code and config live in <strong>BR3N Macro Labs</strong> (<code>~/fx_regime_lab</code>). Reproduce with:</p>
 <pre><code class="bash">
 python scripts/run_research_ladder.py --refresh
 python scripts/build_publication.py
@@ -308,7 +377,7 @@ python scripts/build_publication.py
 <p><strong>What this does not support</strong></p>
 <ul><li>A deployable alpha strategy after realistic costs.</li><li>A universal rule across all EM FX pairs and all periods.</li><li>Better point forecasts of USD/MXN.</li></ul>
 <p><strong>Plain-English policy framing</strong></p>
-<blockquote><p>“We don’t use this to predict MXN. We use it to ask: <em>Is this a trending environment where our hedge should be active, or a range environment where we should avoid over-trading?</em> On MXN, that distinction shows up in the data. On other pairs, results are mixed.”</p></blockquote>
+<div class="principle-box"><p>“We don’t use this to predict MXN. We use it to ask: <em>Is this a trending environment where our hedge should be active, or a range environment where we should avoid over-trading?</em> On MXN, that distinction shows up in the data. On other pairs, results are mixed.”</p></div>
 <hr/>
 <h2>6. Limitations</h2>
 <ul><li>Rule-based regimes with fixed thresholds (no ML, no forward curve).</li><li>Yahoo/Stooq daily spot only; no intraday or options.</li><li>Costs and carry are stylized assumptions, not live treasury fills.</li><li>USD/TRY results are dominated by long-run lira depreciation — not comparable to MXN for policy use.</li><li>Holdout window 2025–2026 was evaluated once; do not re-tune parameters after seeing it.</li></ul>
@@ -326,11 +395,11 @@ python scripts/build_publication.py
 <h2>Disclaimer</h2>
 <p>This document is <strong>research and risk framing only</strong>. It is <strong>not</strong> investment advice, a trading recommendation, or a substitute for professional treasury, accounting, or regulatory judgment. Past backtests do not guarantee future results.</p>
 <hr/>
-<p><em>Generated by BR3N Macro Lab — <code>build_publication.py</code></em></p>
+<p><em>Generated by BR3N Macro Labs — <code>build_publication.py</code></em></p>
   </main>
   <footer>
-    <p>BR3N Macro Lab · Generated 2026-05-30</p>
-    <div class="disclaimer">This site is for research and education only. It is not investment advice, a trading recommendation, or a substitute for professional judgment.</div>
+    <p>BR3N Macro Labs · Prepared by Brendan Bowers · 2026-05-30</p>
+    <div class="disclaimer">This site is for research and education only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.</div>
   </footer>
 </body>
 </html>

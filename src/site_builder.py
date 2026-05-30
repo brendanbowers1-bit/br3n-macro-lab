@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict
 
-from . import LAB_NAME
+from . import LAB_NAME, LAB_NAME_DISPLAY
 
 ROOT = Path(__file__).resolve().parents[1]
 PUB_DIR = ROOT / "reports" / "publication"
@@ -158,9 +158,77 @@ footer {
   font-size: 0.88rem;
   margin-top: 1rem;
 }
+/* Cover page */
+body.cover-page header.hero-cover {
+  border-bottom: none;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(61, 139, 253, 0.18) 0%, transparent 55%),
+    linear-gradient(180deg, #0e1420 0%, var(--bg) 100%);
+}
+.hero-cover .lab-title {
+  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #e8edf4 0%, #8b9cb3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-cover .tagline {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 40rem;
+  margin: 0 auto 0.75rem;
+  line-height: 1.5;
+}
+.hero-cover .author {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+.cta-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.cta-row a {
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cta-row a.primary {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+.cta-row a.secondary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.principle-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+}
+.principle-box p { margin: 0.5rem 0; color: var(--text); }
+.cover-main { max-width: var(--wide); }
+.cover-main h2:first-child { margin-top: 0; }
 @media (max-width: 600px) {
   h1.title { font-size: 1.55rem; }
   body { font-size: 16px; }
+  .hero-cover .lab-title { letter-spacing: 0.08em; }
 }
 """
 
@@ -211,8 +279,19 @@ def _md_to_html(text: str) -> str:
             out.append(f"<h2>{_inline(line[3:])}</h2>")
         elif line.startswith("### "):
             out.append(f"<h3>{_inline(line[4:])}</h3>")
-        elif line.startswith("> "):
-            out.append(f"<blockquote><p>{_inline(line[2:])}</p></blockquote>")
+        elif line.startswith(">") or line.startswith("> "):
+            quote_lines = []
+            while i < len(lines) and (lines[i].startswith(">") or lines[i].strip() == ""):
+                if lines[i].startswith(">"):
+                    q = lines[i].lstrip(">").strip()
+                    if q:
+                        quote_lines.append(q)
+                elif quote_lines:
+                    break
+                i += 1
+            inner = " ".join(_inline(q) for q in quote_lines)
+            out.append(f'<div class="principle-box"><p>{inner}</p></div>')
+            continue
         elif re.match(r"^[-*] ", line):
             items = []
             while i < len(lines) and re.match(r"^[-*] ", lines[i]):
@@ -245,42 +324,105 @@ def _inline(s: str) -> str:
     return s
 
 
-def _shell(title: str, body: str, *, wide: bool = False, nav_home: bool = True) -> str:
-    nav = ""
-    if nav_home:
-        nav = """
-<nav class="top">
-  <a href="index.html" class="primary">One-pager</a>
-  <a href="memo.html">Full research note</a>
-  <a href="ladder.html">Ladder summary</a>
-</nav>"""
+def _nav(active: str = "") -> str:
+    links = [
+        ("index.html", "Home", "home"),
+        ("research.html", "USD/MXN Research", "research"),
+        ("memo.html", "Full memo", "memo"),
+        ("ladder.html", "Ladder", "ladder"),
+    ]
+    parts = ['<nav class="top">']
+    for href, label, key in links:
+        cls = ' class="primary"' if key == active else ""
+        parts.append(f'  <a href="{href}"{cls}>{label}</a>')
+    parts.append("</nav>")
+    return "\n".join(parts)
+
+
+def _shell(
+    title: str,
+    body: str,
+    *,
+    wide: bool = False,
+    nav_active: str = "research",
+    subtitle: str = "USD/MXN regime research · Research only · Not investment advice",
+) -> str:
     main_class = "wide" if wide else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>{html.escape(title)} — {LAB_NAME}</title>
+  <meta name="description" content="{html.escape(LAB_NAME)} — FX regime intelligence for currency markets, treasury risk, and conditional forecastability"/>
+  <title>{html.escape(title)} — {html.escape(LAB_NAME)}</title>
   <style>{_css()}</style>
 </head>
 <body>
   <header>
     <div class="header-inner">
-      <div class="brand">{html.escape(LAB_NAME)}</div>
+      <div class="brand">{html.escape(LAB_NAME_DISPLAY)}</div>
       <h1 class="title">{html.escape(title)}</h1>
-      <p class="subtitle">USD/MXN regime research · Research only · Not investment advice</p>
-      {nav}
+      <p class="subtitle">{html.escape(subtitle)}</p>
+      {_nav(nav_active)}
     </div>
   </header>
   <main class="{main_class}">
     {body}
   </main>
   <footer>
-    <p>{html.escape(LAB_NAME)} · Generated {datetime.now():%Y-%m-%d}</p>
-    <div class="disclaimer">This site is for research and education only. It is not investment advice, a trading recommendation, or a substitute for professional judgment.</div>
+    <p>{html.escape(LAB_NAME)} · Prepared by Brendan Bowers · {datetime.now():%Y-%m-%d}</p>
+    <div class="disclaimer">This site is for research and education only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.</div>
   </footer>
 </body>
 </html>"""
+
+
+def _cover_shell(body: str) -> str:
+    hero = f"""
+<header class="hero-cover">
+  <div class="header-inner">
+    <h1 class="lab-title">{html.escape(LAB_NAME_DISPLAY)}</h1>
+    <p class="tagline">FX Regime Intelligence for Currency Markets, Treasury Risk, and Conditional Forecastability</p>
+    <p class="author">Prepared by Brendan Bowers</p>
+    <div class="cta-row">
+      <a href="research.html" class="primary">View USD/MXN Research</a>
+      <a href="memo.html" class="secondary">Full Research Note</a>
+      <a href="ladder.html" class="secondary">Evidence Ladder</a>
+    </div>
+    {_nav("home")}
+  </div>
+</header>"""
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="{html.escape(LAB_NAME)} — independent AI-assisted macro research on conditional FX forecastability"/>
+  <title>{html.escape(LAB_NAME_DISPLAY)} — FX Regime Intelligence</title>
+  <style>{_css()}</style>
+</head>
+<body class="cover-page">
+  {hero}
+  <main class="cover-main wide">
+    {body}
+  </main>
+  <footer>
+    <p>{html.escape(LAB_NAME)} · Prepared by Brendan Bowers · {datetime.now():%Y-%m-%d}</p>
+    <div class="disclaimer">This research is for education, analysis, and risk-framing purposes only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.</div>
+  </footer>
+</body>
+</html>"""
+
+
+def _cover_body_from_md(text: str) -> str:
+    """Convert LAB_COVER.md, skipping title block (rendered in hero)."""
+    lines = text.splitlines()
+    start = 0
+    for i, line in enumerate(lines):
+        if line.startswith("## "):
+            start = i
+            break
+    return _md_to_html("\n".join(lines[start:]))
 
 
 def _landing_stats() -> str:
@@ -323,30 +465,38 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
 
     one_pager = (out_dir / "ONE_PAGER.md").read_text(encoding="utf-8") if (out_dir / "ONE_PAGER.md").exists() else ""
     memo = (out_dir / "FX_REGIME_RESEARCH_NOTE.md").read_text(encoding="utf-8") if (out_dir / "FX_REGIME_RESEARCH_NOTE.md").exists() else ""
+    cover_md = (out_dir / "LAB_COVER.md").read_text(encoding="utf-8") if (out_dir / "LAB_COVER.md").exists() else ""
 
-    # Landing page: hero + stats + one-pager body
-    landing_body = f"""
+    # Cover page (home)
+    cover_path = out_dir / "index.html"
+    cover_path.write_text(_cover_shell(_cover_body_from_md(cover_md)), encoding="utf-8")
+
+    # Research one-pager
+    research_body = f"""
 {_landing_stats()}
 <div class="card">
-  <h3>Start here</h3>
-  <p>Three ways to read this work — pick your depth.</p>
+  <h3>Research depth</h3>
   <ul>
-    <li><strong>This page</strong> — 2-minute summary</li>
-    <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations (~5 min)</li>
-    <li><a href="ladder.html"><strong>Ladder summary</strong></a> — six-level evidence checklist</li>
+    <li><strong>This page</strong> — 2-minute USD/MXN summary</li>
+    <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations</li>
+    <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — six-level checklist</li>
+    <li><a href="index.html"><strong>Lab home</strong></a> — mission and objectives</li>
   </ul>
 </div>
 {_md_to_html(one_pager)}
 """
-    index_path = out_dir / "index.html"
-    index_path.write_text(_shell("USD/MXN Regime Research", landing_body), encoding="utf-8")
+    research_path = out_dir / "research.html"
+    research_path.write_text(_shell("USD/MXN Regime Research", research_body, nav_active="research"), encoding="utf-8")
 
     memo_body = _md_to_html(memo)
     memo_path = out_dir / "memo.html"
-    memo_path.write_text(_shell("Full Research Note", memo_body, wide=True), encoding="utf-8")
+    memo_path.write_text(_shell("Full Research Note", memo_body, wide=True, nav_active="memo"), encoding="utf-8")
 
     ladder_md = (ROOT / "reports/research_ladder/RESEARCH_LADDER.md").read_text(encoding="utf-8") if (ROOT / "reports/research_ladder/RESEARCH_LADDER.md").exists() else "_Run the research ladder first._"
     ladder_path = out_dir / "ladder.html"
-    ladder_path.write_text(_shell("Research Ladder", _md_to_html(ladder_md), wide=True), encoding="utf-8")
+    ladder_path.write_text(
+        _shell("Research Ladder", _md_to_html(ladder_md), wide=True, nav_active="ladder", subtitle="Six-level evidence framework · Research only"),
+        encoding="utf-8",
+    )
 
-    return {"index": index_path, "memo": memo_path, "ladder": ladder_path}
+    return {"index": cover_path, "research": research_path, "memo": memo_path, "ladder": ladder_path}

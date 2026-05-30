@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Research Ladder — BR3N Macro Lab</title>
+  <meta name="description" content="BR3N Macro Labs — FX regime intelligence for currency markets, treasury risk, and conditional forecastability"/>
+  <title>Research Ladder — BR3N Macro Labs</title>
   <style>
 :root {
   --bg: #0c0f14;
@@ -145,23 +146,91 @@ footer {
   font-size: 0.88rem;
   margin-top: 1rem;
 }
+/* Cover page */
+body.cover-page header.hero-cover {
+  border-bottom: none;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(61, 139, 253, 0.18) 0%, transparent 55%),
+    linear-gradient(180deg, #0e1420 0%, var(--bg) 100%);
+}
+.hero-cover .lab-title {
+  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #e8edf4 0%, #8b9cb3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-cover .tagline {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 40rem;
+  margin: 0 auto 0.75rem;
+  line-height: 1.5;
+}
+.hero-cover .author {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+.cta-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.cta-row a {
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cta-row a.primary {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+.cta-row a.secondary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.principle-box {
+  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+}
+.principle-box p { margin: 0.5rem 0; color: var(--text); }
+.cover-main { max-width: var(--wide); }
+.cover-main h2:first-child { margin-top: 0; }
 @media (max-width: 600px) {
   h1.title { font-size: 1.55rem; }
   body { font-size: 16px; }
+  .hero-cover .lab-title { letter-spacing: 0.08em; }
 }
 </style>
 </head>
 <body>
   <header>
     <div class="header-inner">
-      <div class="brand">BR3N Macro Lab</div>
+      <div class="brand">BR3N MACRO LABS</div>
       <h1 class="title">Research Ladder</h1>
-      <p class="subtitle">USD/MXN regime research · Research only · Not investment advice</p>
-      
-<nav class="top">
-  <a href="index.html" class="primary">One-pager</a>
-  <a href="memo.html">Full research note</a>
-  <a href="ladder.html">Ladder summary</a>
+      <p class="subtitle">Six-level evidence framework · Research only</p>
+      <nav class="top">
+  <a href="index.html">Home</a>
+  <a href="research.html">USD/MXN Research</a>
+  <a href="memo.html">Full memo</a>
+  <a href="ladder.html" class="primary">Ladder</a>
 </nav>
     </div>
   </header>
@@ -171,7 +240,7 @@ footer {
 <p><strong>Primary pair:</strong> USDMXN=X  </p>
 <p><strong>Period:</strong> 2006-09-15 → 2026-05-22 (5125 bars)  </p>
 <p><strong>Primary strategy:</strong> flat_range</p>
-<blockquote><p>Research only. Not investment advice.</p></blockquote>
+<div class="principle-box"><p>Research only. Not investment advice.</p></div>
 <hr/>
 <h2>Ladder status</h2>
 <table>
@@ -344,8 +413,8 @@ footer {
 <hr/>
   </main>
   <footer>
-    <p>BR3N Macro Lab · Generated 2026-05-30</p>
-    <div class="disclaimer">This site is for research and education only. It is not investment advice, a trading recommendation, or a substitute for professional judgment.</div>
+    <p>BR3N Macro Labs · Prepared by Brendan Bowers · 2026-05-30</p>
+    <div class="disclaimer">This site is for research and education only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.</div>
   </footer>
 </body>
 </html>
