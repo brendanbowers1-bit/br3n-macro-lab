@@ -18,6 +18,16 @@ _EXPECTED_MEDIAN = {
     "USDPHP=X": (40.0, 70.0),
     "USDZAR=X": (8.0, 25.0),
     "USDTRY=X": (0.5, 60.0),
+    "USDCLP=X": (400.0, 1200.0),
+    "USDPLN=X": (2.5, 5.5),
+    "USDKRW=X": (900.0, 1600.0),
+    "USDTHB=X": (28.0, 45.0),
+    "USDMYR=X": (3.0, 5.5),
+    "USDIDR=X": (8000.0, 18000.0),
+    "USDPEN=X": (2.5, 4.5),
+    "GBPUSD=X": (1.0, 2.0),
+    "AUDUSD=X": (0.55, 1.15),
+    "USDCHF=X": (0.7, 1.2),
 }
 
 # Max |daily return| before interpolation (TRY allows larger moves)

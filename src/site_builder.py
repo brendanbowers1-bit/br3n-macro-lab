@@ -328,6 +328,7 @@ def _nav(active: str = "") -> str:
     links = [
         ("index.html", "Home", "home"),
         ("research.html", "USD/MXN Research", "research"),
+        ("corridor.html", "Corridor Roadmap", "corridor"),
         ("memo.html", "Full memo", "memo"),
         ("ladder.html", "Ladder", "ladder"),
     ]
@@ -386,6 +387,7 @@ def _cover_shell(body: str) -> str:
     <p class="author">Prepared by Brendan Bowers</p>
     <div class="cta-row">
       <a href="research.html" class="primary">View USD/MXN Research</a>
+      <a href="corridor.html" class="secondary">Corridor Roadmap</a>
       <a href="memo.html" class="secondary">Full Research Note</a>
       <a href="ladder.html" class="secondary">Evidence Ladder</a>
     </div>
@@ -479,6 +481,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
   <ul>
     <li><strong>This page</strong> — 2-minute USD/MXN summary</li>
     <li><a href="memo.html"><strong>Full research note</strong></a> — methods, tables, limitations</li>
+    <li><a href="corridor.html"><strong>Corridor roadmap</strong></a> — remittance corridor expansion</li>
     <li><a href="ladder.html"><strong>Evidence ladder</strong></a> — six-level checklist</li>
     <li><a href="index.html"><strong>Lab home</strong></a> — mission and objectives</li>
   </ul>
@@ -499,4 +502,18 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
-    return {"index": cover_path, "research": research_path, "memo": memo_path, "ladder": ladder_path}
+    corridor_md_path = ROOT / "reports" / "corridor_roadmap_report.md"
+    corridor_md = corridor_md_path.read_text(encoding="utf-8") if corridor_md_path.exists() else "_Run `python scripts/run_corridor_roadmap.py` first._"
+    corridor_path = out_dir / "corridor.html"
+    corridor_path.write_text(
+        _shell(
+            "Remittance Corridor Roadmap",
+            _md_to_html(corridor_md),
+            wide=True,
+            nav_active="corridor",
+            subtitle="Multi-corridor FX research · Exploratory · Not investment advice",
+        ),
+        encoding="utf-8",
+    )
+
+    return {"index": cover_path, "research": research_path, "memo": memo_path, "ladder": ladder_path, "corridor": corridor_path}

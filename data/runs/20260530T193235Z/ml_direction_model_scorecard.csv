@@ -1,0 +1,5 @@
+model_name,accuracy,precision,recall,f1,directional_accuracy,observations,warning
+logistic_direction_model,0.5084,0.4208,0.3633,0.3899,50.84,1725,
+random_forest_direction_model,0.5061,0.4421,0.5429,0.4874,50.61,1725,
+gradient_boosting_direction_model,0.5212,0.4546,0.5375,0.4926,52.12,1725,
+majority_class_baseline,0.5675,,,,56.75,1725,Naive baseline — not random walk but useful comparator.

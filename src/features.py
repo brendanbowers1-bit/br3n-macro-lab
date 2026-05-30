@@ -5,8 +5,10 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
+from .macro_loader import merge_macro_features
 
-def build_features(df: pd.DataFrame, cfg: dict) -> pd.DataFrame:
+
+def build_features(df: pd.DataFrame, cfg: dict, force_macro_refresh: bool = False) -> pd.DataFrame:
     fc = cfg["features"]
     out = df.copy()
     out["daily_return"] = out["price"].pct_change()
@@ -37,4 +39,8 @@ def build_features(df: pd.DataFrame, cfg: dict) -> pd.DataFrame:
             out["ma_spread_pct"] < -trend_thr
         ).astype(int)
     out["trend_direction"] = np.where(out["ma20"] > out["ma60"], 1, -1)
+
+    if cfg.get("macro", {}).get("enabled", False):
+        out = merge_macro_features(out, cfg, force_refresh=force_macro_refresh)
+
     return out.dropna()

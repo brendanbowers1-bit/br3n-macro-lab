@@ -2,6 +2,17 @@ data:
   ticker: "USDMXN=X"
   history_years: 25
   interval: "1d"
+  # Data tier: 1=official, 2=professional, 3=proprietary, 4=prototype (default)
+  spot_tier: 4
+  official_spot_series: "DEXMXUS"  # FRED H.10 USD/MXN
+  prefer_tier1_spot: false         # set true + run fetch_tier1_official.py for academic reruns
+
+# Tier 2 — Bloomberg (requires licensed Terminal or B-PIPE; see docs/BLOOMBERG_SETUP.md)
+bloomberg:
+  enabled: false
+  usdmxn_ticker: "USDMXN Curncy"
+  host: "localhost"
+  port: 8194
 
 # Macro context: DXY, VIX, US–MX rate spread (FRED + Yahoo)
 macro:
@@ -125,3 +136,47 @@ research_ladder:
   holdout:
     start: "2025-01-01"
     end: "2026-12-31"
+
+# Academic research layer
+research:
+  train_ratio: 0.7
+  min_train_rows: 200
+  hedge_transaction_cost_bps: 2.0
+  default_exposure: "us_entity_long_mxn"
+
+# Multi-corridor remittance roadmap
+corridors:
+  enabled: true
+  priority_to_run: 1
+  include_priority_2: false
+  save_individual_outputs: true
+
+flow_proxies:
+  enabled: true
+
+hedge_governance:
+  enabled: true
+  hedge_transaction_cost_bps: 2.0
+
+random_walk_validity:
+  enabled: true
+
+# Self-improvement loop — snapshot runs, score evidence, propose next experiments
+self_improvement:
+  runs_dir: "data/runs"
+  compare_last_n: 10
+  weak_thresholds:
+    sharpe_oos_min: 0.0
+    dm_p_max: 0.05
+    ml_direction_min: 0.53
+  auto_rerun:
+    - backtest
+    - research
+    - under_tested
+    - data_quality
+  never_tune_on_holdout: true
+  # Automatic scheduling (macOS LaunchAgent — see scripts/install_auto_improve_launchd.sh)
+  auto_improve:
+    enabled: true           # set true after running install script
+    schedule: "30 6 * * *"  # 6:30 AM daily (minute hour dom month weekday)
+    rerun_pipelines: true   # --rerun before scoring each scheduled run

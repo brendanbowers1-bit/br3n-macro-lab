@@ -1,0 +1,3 @@
+strategy,total_return_pct,ann_return_pct,ann_vol_pct,sharpe,max_drawdown_pct,win_rate_pct,cost_layer,ticker,total_cost_pct
+flat_range,20.99,0.84,11.68,0.13,-32.61,42.5,base_costs_only,USDMXN=X,4.26
+flat_range,-6.77,-0.31,11.68,0.032,-41.0,42.0,full_economic,USDMXN=X,24.337

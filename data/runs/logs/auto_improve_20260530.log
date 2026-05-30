@@ -1,0 +1,210 @@
+=== 2026-05-30T19:33:50Z auto-improve start ===
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+BR3N Macro Labs — USDMXN=X (25y)
+==================================================
+Data: 5857 rows from /Users/brendanbowers/fx_regime_lab/data/processed/USDMXN_X.csv
+
+Scorecard:
+     strategy  total_return_pct  ann_return_pct  ann_vol_pct  sharpe  max_drawdown_pct  win_rate_pct  trades  pct_flat  total_cost_pct
+buy_and_hold             58.08            2.02        12.30   0.224            -35.61          47.7       1       0.0            0.02
+      legacy             15.36            0.63        12.30   0.112            -39.43          50.5     114       0.0            4.54
+  flat_range             20.99            0.84        11.68   0.130            -32.61          42.5     213      15.9            4.26
+     r2_only             18.31            0.74         6.13   0.150            -25.06          23.5     292      53.8            5.84
+ random_walk              0.00            0.00         0.00   0.000              0.00           0.0       0     100.0            0.00
+
+Walk-forward OOS:
+   strategy  total_return_pct  ann_return_pct  ann_vol_pct  sharpe  max_drawdown_pct  win_rate_pct  fold        sample                period
+    legacy            -13.71          -13.27        14.10  -0.939            -17.45          47.9     0 out_of_sample 2009-03-19_2010-03-18
+flat_range             -9.19           -8.88        13.15  -0.642            -12.60          41.0     0 out_of_sample 2009-03-19_2010-03-18
+    legacy            -11.44          -11.06        10.82  -1.030            -16.06          49.8     1 out_of_sample 2010-03-19_2011-03-18
+flat_range            -11.50          -11.13        10.17  -1.109            -15.49          42.9     1 out_of_sample 2010-03-19_2011-03-18
+    legacy              7.51            7.27        14.96   0.543            -10.02          52.3     2 out_of_sample 2011-03-19_2012-03-18
+flat_range              9.48            9.17        13.51   0.717             -8.27          50.0     2 out_of_sample 2011-03-19_2012-03-18
+    legacy             -2.09           -2.02         9.90  -0.157            -10.30          49.4     3 out_of_sample 2012-03-19_2013-03-18
+flat_range             -5.27           -5.09         9.53  -0.501            -10.71          42.5     3 out_of_sample 2012-03-19_2013-03-18
+    legacy            -12.30          -11.90        10.93  -1.104            -16.66          46.0     4 out_of_sample 2013-03-19_2014-03-18
+flat_range             -7.81           -7.55         9.96  -0.738            -13.29          35.6     4 out_of_sample 2013-03-19_2014-03-18
+    legacy             16.35           15.75         8.06   1.856             -3.21          52.5     5 out_of_sample 2014-03-19_2015-03-18
+flat_range             15.30           14.73         7.83   1.795             -3.21          46.7     5 out_of_sample 2014-03-19_2015-03-18
+    legacy             11.43           10.97        11.49   0.964             -8.08          56.5     6 out_of_sample 2015-03-19_2016-03-18
+flat_range              9.55            9.17        11.05   0.849             -7.56          49.2     6 out_of_sample 2015-03-19_2016-03-18
+    legacy            -16.79          -16.32        16.80  -0.975            -23.03          48.8     7 out_of_sample 2016-03-19_2017-03-18
+flat_range            -12.76          -12.39        16.30  -0.729            -19.53          44.6     7 out_of_sample 2016-03-19_2017-03-18
+    legacy              1.22            1.18        10.32   0.165             -8.36          50.4     8 out_of_sample 2017-03-19_2018-03-18
+flat_range              4.68            4.53         9.80   0.501             -8.13          47.3     8 out_of_sample 2017-03-19_2018-03-18
+    legacy             -3.88           -3.75        12.01  -0.258            -12.37          49.8     9 out_of_sample 2018-03-19_2019-03-18
+flat_range             -6.88           -6.65        11.10  -0.564            -11.73          42.1     9 out_of_sample 2018-03-19_2019-03-18
+    legacy              6.46            6.23        12.22   0.555            -13.25          49.4    10 out_of_sample 2019-03-19_2020-03-18
+flat_range              3.21            3.09        10.89   0.333            -12.25          34.9    10 out_of_sample 2019-03-19_2020-03-18
+    legacy              0.46            0.44        18.18   0.115            -16.03          50.6    11 out_of_sample 2020-03-19_2021-03-18
+flat_range              0.54            0.52        18.00   0.119            -15.98          48.7    11 out_of_sample 2020-03-19_2021-03-18
+    legacy            -15.15          -14.67         9.24  -1.669            -16.91          46.0    12 out_of_sample 2021-03-19_2022-03-18
+flat_range            -10.32           -9.98         7.73  -1.321            -12.01          32.2    12 out_of_sample 2021-03-19_2022-03-18
+    legacy              0.91            0.88        11.07   0.135             -6.19          55.4    13 out_of_sample 2022-03-19_2023-03-18
+flat_range             -3.56           -3.45        10.85  -0.270             -7.77          46.5    13 out_of_sample 2022-03-19_2023-03-18
+    legacy              6.12            5.90         9.60   0.645             -8.92          54.0    14 out_of_sample 2023-03-19_2024-03-18
+flat_range              9.20            8.87         9.13   0.976             -8.22          46.0    14 out_of_sample 2023-03-19_2024-03-18
+    legacy             19.96           19.29        14.23   1.311             -6.49          51.5    15 out_of_sample 2024-03-19_2025-03-18
+flat_range             12.79           12.37        13.32   0.942             -7.54          47.7    15 out_of_sample 2024-03-19_2025-03-18
+    legacy             11.76           11.52         9.20   1.231             -5.06          55.6    16 out_of_sample 2025-03-19_2026-03-18
+flat_range              6.90            6.76         9.02   0.770             -5.06          47.1    16 out_of_sample 2025-03-19_2026-03-18
+    legacy             -1.15           -6.01         9.24  -0.626             -5.08          48.9    17 out_of_sample 2026-03-19_2026-05-22
+flat_range             -2.53          -12.85         8.75  -1.529             -4.96          44.7    17 out_of_sample 2026-03-19_2026-05-22
+
+Latest regime: R1_trend_high_vol
+Latest price:  17.2977
+flat_range beats legacy (Sharpe): True
+
+Chart: /Users/brendanbowers/fx_regime_lab/reports/charts/equity_curves.png
+Outputs: /Users/brendanbowers/fx_regime_lab/data/outputs
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/linear_model/_linear_loss.py:200: RuntimeWarning: divide by zero encountered in matmul
+  raw_prediction = X @ weights + intercept
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/linear_model/_linear_loss.py:200: RuntimeWarning: overflow encountered in matmul
+  raw_prediction = X @ weights + intercept
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/linear_model/_linear_loss.py:200: RuntimeWarning: invalid value encountered in matmul
+  raw_prediction = X @ weights + intercept
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/linear_model/_linear_loss.py:330: RuntimeWarning: divide by zero encountered in matmul
+  grad[:n_features] = X.T @ grad_pointwise + l2_reg_strength * weights
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/linear_model/_linear_loss.py:330: RuntimeWarning: overflow encountered in matmul
+  grad[:n_features] = X.T @ grad_pointwise + l2_reg_strength * weights
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/linear_model/_linear_loss.py:330: RuntimeWarning: invalid value encountered in matmul
+  grad[:n_features] = X.T @ grad_pointwise + l2_reg_strength * weights
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: divide by zero encountered in matmul
+  ret = a @ b
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: overflow encountered in matmul
+  ret = a @ b
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: invalid value encountered in matmul
+  ret = a @ b
+
+============================================================
+BR3N Macro Labs — Research Pipeline Summary
+============================================================
+Beats random walk by RMSE: False
+Beats random walk by MAE:   False
+Diebold-Mariano p-value:    0.2456
+DM interpretation:          No statistically significant difference in forecast accuracy.
+Best ML direction model:    gradient_boosting_direction_model (52.12%)
+Best hedge policy (cost-adj risk reduction): fully_hedged
+  Vol reduction: 12.296% | Turnover: 1.0
+Regime-based hedging beats best static policy: False
+
+White RC p-value: 0.686 — Simplified educational bootstrap only — not a full White Reality Check. Do not t...
+
+Reminder: Research and risk-framing only. Not investment advice.
+============================================================
+
+Outputs:
+  forecast_scorecard: /Users/brendanbowers/fx_regime_lab/data/outputs/forecast_scorecard.csv
+  academic_test_results: /Users/brendanbowers/fx_regime_lab/data/outputs/academic_test_results.csv
+  ml_direction_model_scorecard: /Users/brendanbowers/fx_regime_lab/data/outputs/ml_direction_model_scorecard.csv
+  hedge_policy_scorecard: /Users/brendanbowers/fx_regime_lab/data/outputs/hedge_policy_scorecard.csv
+  hedge_policy_detail: /Users/brendanbowers/fx_regime_lab/data/outputs/hedge_policy_detail.csv
+/Users/brendanbowers/fx_regime_lab/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Saved flow-enhanced data: /Users/brendanbowers/fx_regime_lab/data/processed/usdmxn_features_regimes_flow.csv
+
+============================================================
+BR3N Macro Labs — Under-Tested Research Summary
+============================================================
+Best policy (cost-adj risk reduction): fully_hedged
+  Cost-adj risk reduction: 12.276
+Lowest turnover policy: never_hedged (0.0)
+no_change_in_range vs regime_based turnover: 23.2 vs 87.3 (reduced)
+Flow window vol vs normal: 11.9679% vs 13.0896% (not higher)
+Most random-walk-like regime(s): none
+Most potential-structure regime(s): R1_trend_high_vol, R2_trend_low_vol, R3_range_high_vol
+
+Reminder: Exploratory research only. Not investment advice.
+============================================================
+
+Outputs:
+  flow data: /Users/brendanbowers/fx_regime_lab/data/processed/usdmxn_features_regimes_flow.csv
+  flow pressure: /Users/brendanbowers/fx_regime_lab/data/outputs/flow_pressure_test_results.csv
+  hedge governance scorecard: /Users/brendanbowers/fx_regime_lab/data/outputs/hedge_governance_scorecard.csv
+  hedge governance detail: /Users/brendanbowers/fx_regime_lab/data/outputs/hedge_governance_detail.csv
+  random walk validity: /Users/brendanbowers/fx_regime_lab/data/outputs/random_walk_validity_map.csv
+
+BR3N Macro Labs — Data Quality Report
+==================================================
+Source:              yfinance
+Tier:                4 — Prototype data
+Date range:          2004-03-19 → 2026-05-22
+Observations:        5773
+Missing prices:      0 (0.0%)
+Suspicious returns:  0 (>|10%| daily)
+Quality flag:        OK
+
+Saved: /Users/brendanbowers/fx_regime_lab/data/outputs/data_quality_report.csv
+Exported /Users/brendanbowers/fx_regime_lab/data/outputs/data_source_registry.csv
+
+BR3N Macro Labs — Data Tier Stack (Tier 1 = highest quality)
+============================================================
+
+Tier 1 — Official / academic-grade (public research)
+  - Federal Reserve H.10
+  - FRED (e.g. DEXMXUS for USD/MXN)
+  - BIS effective exchange rates
+  - IMF International Financial Statistics
+  - World Bank remittances
+  - Banxico / central banks
+
+Tier 2 — Professional market data (requires license)
+  - Bloomberg
+  - LSEG / Refinitiv
+  - FactSet
+  - CME DataMine
+  - Cboe FX
+  - EBS
+  - 360T
+  - FXall
+  - bank quotes
+
+Tier 3 — Proprietary data (internal only)
+  - payment corridor flows
+  - order flow
+  - settlement timing
+  - hedge execution data
+
+Tier 4 — Prototype data (development only)
+  - yfinance
+  - Stooq
+  - free web sources
+
+Principle: Always record source name, tier number, and tier label with every test.
+Current lab default: Tier 4 (yfinance). Upgrade path: fetch Tier 1 via FRED/H.10.
+
+============================================================
+BR3N Macro Labs — Self-Improvement Loop
+============================================================
+Run ID:   20260530T193358Z
+Health:   needs_work
+
+Dimension scores:
+  [weak              ] data_quality: Tier 4, flag OK, source yfinance
+  [weak              ] forecast_vs_random_walk: RMSE beats RW: False; MAE beats RW: False; DM p-value: 0.2456
+  [weak              ] ml_direction: Best directional accuracy: 52.12% (threshold 53%)
+  [weak              ] trading_oos: flat_range positive Sharpe OOS folds: 9/18
+  [strong            ] hedge_governance: Best policy: fully_hedged (12.276); no_change_in_range turnover win vs regime_based: True
+  [weak              ] data_snooping_control: White Reality Check p-value: 0.6860 (need < 0.05 to reject data mining)
+
+Proposed next experiments (research-only):
+  1. [data_quality] Upgrade to Tier 1 official spot: python scripts/fetch_tier1_official.py (or set FRED_API_KEY).
+     → python scripts/fetch_tier1_official.py
+  2. [forecast_vs_random_walk] Test conditional forecastability by regime (Level 4 ladder); do not claim FX prediction.
+     → python scripts/run_research_ladder.py
+  3. [trading_oos] Review transaction costs and flat_range rule; run level5 economic friction tests.
+     → python scripts/run_research_ladder.py
+  4. [data_snooping_control] Pre-register next experiment before testing; avoid tuning on holdout 2025–2026.
+     → python scripts/run_research_ladder.py
+  5. [ml_direction] Deprioritize ML direction; focus hedge-governance path (forecast failure vs hedge usefulness).
+     → python scripts/run_under_tested_research.py
+
+Snapshot: data/runs/20260530T193358Z/
+Reminder: Research-only. No auto-tuning on holdout. Not investment advice.
+============================================================
+=== 2026-05-30T19:33:58Z auto-improve done ===

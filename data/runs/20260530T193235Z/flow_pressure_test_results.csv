@@ -1,0 +1,2 @@
+average_return_flow_window,average_return_normal,volatility_flow_window,volatility_normal,percent_positive_flow_window,percent_positive_normal,regime_distribution_flow_window,regime_distribution_normal,t_stat_return_difference,p_value_return_difference,observations_flow_window,observations_normal
+1.5e-05,0.000344,11.9679,13.0896,47.05,49.39,R2_trend_low_vol:49.9%; R1_trend_high_vol:35.8%; R4_range_low_vol:11.3%; R3_range_high_vol:3.0%,R2_trend_low_vol:47.3%; R1_trend_high_vol:39.2%; R4_range_low_vol:11.6%; R3_range_high_vol:1.9%,-1.4002,0.1616,4123,1650

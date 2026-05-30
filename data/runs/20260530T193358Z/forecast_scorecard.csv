@@ -1,0 +1,2 @@
+rmse_model,rmse_random_walk,mae_model,mae_random_walk,model_beats_rw_rmse,model_beats_rw_mae,directional_accuracy_model,directional_accuracy_random_walk,observations,sample,model
+0.00790763,0.00789923,0.00554396,0.00552273,False,False,45.32,0.0,1732,oos_last_30pct,regime_conditioned_mean_return

@@ -1,0 +1,115 @@
+{
+  "run_id": "20260530T193358Z",
+  "timestamp": "2026-05-30T19:33:58.219983+00:00",
+  "health": "needs_work",
+  "scores": [
+    {
+      "dimension": "data_quality",
+      "verdict": "weak",
+      "detail": "Tier 4, flag OK, source yfinance"
+    },
+    {
+      "dimension": "forecast_vs_random_walk",
+      "verdict": "weak",
+      "detail": "RMSE beats RW: False; MAE beats RW: False; DM p-value: 0.2456"
+    },
+    {
+      "dimension": "ml_direction",
+      "verdict": "weak",
+      "detail": "Best directional accuracy: 52.12% (threshold 53%)"
+    },
+    {
+      "dimension": "trading_oos",
+      "verdict": "weak",
+      "detail": "flat_range positive Sharpe OOS folds: 9/18"
+    },
+    {
+      "dimension": "hedge_governance",
+      "verdict": "strong",
+      "detail": "Best policy: fully_hedged (12.276); no_change_in_range turnover win vs regime_based: True"
+    },
+    {
+      "dimension": "data_snooping_control",
+      "verdict": "weak",
+      "detail": "White Reality Check p-value: 0.6860 (need < 0.05 to reject data mining)"
+    }
+  ],
+  "proposals": [
+    {
+      "dimension": "data_quality",
+      "verdict": "weak",
+      "current_detail": "Tier 4, flag OK, source yfinance",
+      "priority": 1,
+      "proposed_action": "Upgrade to Tier 1 official spot: python scripts/fetch_tier1_official.py (or set FRED_API_KEY).",
+      "suggested_script": "python scripts/fetch_tier1_official.py"
+    },
+    {
+      "dimension": "forecast_vs_random_walk",
+      "verdict": "weak",
+      "current_detail": "RMSE beats RW: False; MAE beats RW: False; DM p-value: 0.2456",
+      "priority": 2,
+      "proposed_action": "Test conditional forecastability by regime (Level 4 ladder); do not claim FX prediction.",
+      "suggested_script": "python scripts/run_research_ladder.py"
+    },
+    {
+      "dimension": "trading_oos",
+      "verdict": "weak",
+      "current_detail": "flat_range positive Sharpe OOS folds: 9/18",
+      "priority": 2,
+      "proposed_action": "Review transaction costs and flat_range rule; run level5 economic friction tests.",
+      "suggested_script": "python scripts/run_research_ladder.py"
+    },
+    {
+      "dimension": "data_snooping_control",
+      "verdict": "weak",
+      "current_detail": "White Reality Check p-value: 0.6860 (need < 0.05 to reject data mining)",
+      "priority": 2,
+      "proposed_action": "Pre-register next experiment before testing; avoid tuning on holdout 2025\u20132026.",
+      "suggested_script": "python scripts/run_research_ladder.py"
+    },
+    {
+      "dimension": "ml_direction",
+      "verdict": "weak",
+      "current_detail": "Best directional accuracy: 52.12% (threshold 53%)",
+      "priority": 3,
+      "proposed_action": "Deprioritize ML direction; focus hedge-governance path (forecast failure vs hedge usefulness).",
+      "suggested_script": "python scripts/run_under_tested_research.py"
+    }
+  ],
+  "rerun": true,
+  "rerun_results": {
+    "backtest": true,
+    "research": true,
+    "under_tested": true,
+    "data_quality": true
+  },
+  "files_snapshotted": [
+    "forecast_scorecard.csv",
+    "academic_test_results.csv",
+    "ml_direction_model_scorecard.csv",
+    "hedge_policy_scorecard.csv",
+    "hedge_governance_scorecard.csv",
+    "flow_pressure_test_results.csv",
+    "random_walk_validity_map.csv",
+    "data_quality_report.csv",
+    "strategy_scorecard.csv",
+    "walkforward_oos.csv",
+    "research_ladder/level3_multipair_oos.csv",
+    "research_ladder/level3_multipair.csv",
+    "research_ladder/level6_holdout.csv",
+    "research_ladder/level5_economic.csv",
+    "research_ladder/level1_spot_by_regime.csv",
+    "research_ladder/level6_white_reality_check.csv",
+    "research_ladder/level1_strategy_by_regime.csv",
+    "research_ladder/level4_forecast_errors.csv",
+    "research_ladder/level2_oos_splits.csv",
+    "research_ladder/level3_oos_by_pair.csv",
+    "research_ladder/level5_multipair_economic.csv",
+    "research_ladder/level3_oos_summary.csv"
+  ],
+  "disclaimer": "Research-only self-improvement. Not investment advice. No auto-tuning on holdout.",
+  "comparison": {
+    "has_prior": false,
+    "deltas": []
+  }
+}

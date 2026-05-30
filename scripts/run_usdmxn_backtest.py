@@ -55,6 +55,10 @@ def main() -> None:
     detail[cols].to_csv(out_dir / "usdmxn_backtest_detail.csv")
     df.to_csv(out_dir / "usdmxn_labeled.csv")
 
+    proc_dir = ROOT / "data" / "processed"
+    proc_dir.mkdir(parents=True, exist_ok=True)
+    df.to_csv(proc_dir / "usdmxn_features_regimes.csv")
+
     sc = scorecard(df, cfg)
     sc.to_csv(out_dir / "strategy_scorecard.csv", index=False)
     print("\nScorecard:\n", sc.to_string(index=False))

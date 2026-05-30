@@ -1,0 +1,13 @@
+split,sample,train_bars,test_bars,test_period,strategy,total_return_pct,sharpe,max_drawdown_pct,beats_random_walk_sharpe
+split_1,test,2347,783,2019-01-01..2021-12-31,legacy,-1.86,0.024,-18.42,
+split_1,test,2347,783,2019-01-01..2021-12-31,flat_range,0.42,0.075,-15.98,True
+split_1,test,2347,783,2019-01-01..2021-12-31,r2_only,1.67,0.112,-9.54,
+split_1,test,2347,783,2019-01-01..2021-12-31,random_walk,0.0,0.0,0.0,
+split_2,test,3130,782,2022-01-01..2024-12-31,legacy,22.34,0.625,-11.62,
+split_2,test,3130,782,2022-01-01..2024-12-31,flat_range,10.92,0.363,-13.3,True
+split_2,test,3130,782,2022-01-01..2024-12-31,r2_only,19.86,1.014,-4.03,
+split_2,test,3130,782,2022-01-01..2024-12-31,random_walk,0.0,0.0,0.0,
+split_3,test,3912,358,2025-01-01..2026-12-31,legacy,8.35,0.604,-7.01,
+split_3,test,3912,358,2025-01-01..2026-12-31,flat_range,3.82,0.317,-7.07,True
+split_3,test,3912,358,2025-01-01..2026-12-31,r2_only,8.64,1.13,-3.39,
+split_3,test,3912,358,2025-01-01..2026-12-31,random_walk,0.0,0.0,0.0,

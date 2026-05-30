@@ -1,0 +1,6 @@
+dimension,verdict,current_detail,priority,proposed_action,suggested_script
+data_quality,weak,"Tier 4, flag OK, source yfinance",1,Upgrade to Tier 1 official spot: python scripts/fetch_tier1_official.py (or set FRED_API_KEY).,python scripts/fetch_tier1_official.py
+forecast_vs_random_walk,weak,RMSE beats RW: False; MAE beats RW: False; DM p-value: 0.2456,2,Test conditional forecastability by regime (Level 4 ladder); do not claim FX prediction.,python scripts/run_research_ladder.py
+trading_oos,weak,flat_range positive Sharpe OOS folds: 9/18,2,Review transaction costs and flat_range rule; run level5 economic friction tests.,python scripts/run_research_ladder.py
+data_snooping_control,weak,White Reality Check p-value: 0.6860 (need < 0.05 to reject data mining),2,Pre-register next experiment before testing; avoid tuning on holdout 2025–2026.,python scripts/run_research_ladder.py
+ml_direction,weak,Best directional accuracy: 52.12% (threshold 53%),3,Deprioritize ML direction; focus hedge-governance path (forecast failure vs hedge usefulness).,python scripts/run_under_tested_research.py

@@ -22,4 +22,19 @@ def classify_regimes(df: pd.DataFrame, cfg: dict) -> pd.DataFrame:
     out.loc[trending & ~high_vol, "regime"] = R2
     out.loc[~trending & high_vol, "regime"] = R3
     out.loc[~trending & ~high_vol, "regime"] = R4
+
+    out["regime_context"] = out["regime"].astype(str)
+    if "dollar_stress" in out.columns:
+        out.loc[out["dollar_stress"] == 1, "regime_context"] = (
+            out.loc[out["dollar_stress"] == 1, "regime_context"] + "+dollar_stress"
+        )
+    if "risk_off" in out.columns:
+        out.loc[out["risk_off"] == 1, "regime_context"] = (
+            out.loc[out["risk_off"] == 1, "regime_context"] + "+risk_off"
+        )
+    if "high_carry" in out.columns:
+        out.loc[out["high_carry"] == 1, "regime_context"] = (
+            out.loc[out["high_carry"] == 1, "regime_context"] + "+high_carry"
+        )
+
     return out

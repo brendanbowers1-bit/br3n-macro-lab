@@ -17,13 +17,48 @@ pip install -r requirements.txt
 
 ```bash
 python scripts/run_usdmxn_backtest.py
+python scripts/run_research_models.py      # academic research layer
+python scripts/run_hedge_policy_tests.py   # hedge policies only
+python scripts/run_under_tested_research.py  # hedge governance, flow proxies, RW validity
+python scripts/run_corridor_roadmap.py       # multi-corridor remittance roadmap
+python scripts/generate_corridor_report.py   # corridor roadmap markdown report
+python scripts/export_data_sources.py       # data source registry
+python scripts/run_data_quality.py          # data quality report
+python scripts/fetch_tier1_official.py      # Tier 1 USD/MXN via FRED H.10
 python scripts/generate_report.py
 python scripts/run_research_ladder.py   # six-level evidence ladder
 python scripts/build_publication.py     # markdown memo + one-pager
 python scripts/build_site.py --open     # styled HTML site (best for sharing)
 python scripts/serve_publication.py     # local URL http://127.0.0.1:8765
 streamlit run src/dashboard.py          # live dashboard + Research Note page
+streamlit run src/luxury_dashboard.py     # high-end institutional research terminal
 ```
+
+## High-End Dashboard
+
+Run:
+
+```bash
+streamlit run src/luxury_dashboard.py
+```
+
+The dashboard includes:
+
+- Executive Overview
+- Random-Walk Lab
+- Regime Intelligence
+- Corridor Roadmap
+- Hedge Governance
+- Flow Pressure
+- Academic Tests
+- Data Quality
+- Research Questions
+- Publication Memo
+
+Design purpose:
+The dashboard is built for research review, investor/pilot conversations, academic framing, and treasury risk discussions.
+
+**Disclaimer:** This dashboard is for research and risk-framing only. It is not investment advice and does not place trades.
 
 ## Research ladder (Levels 1–6)
 
@@ -110,6 +145,166 @@ python scripts/run_research_ladder.py --refresh
 - Train 2010–2018 → test 2019–2021
 - Train 2010–2021 → test 2022–2024  
 - Train 2010–2024 → test 2025–2026
+
+## Academic Research Layer
+
+BR3N Macro Labs tests five high-level questions (see `reports/research_questions.md`):
+
+1. When does random walk fail in FX?
+2. What creates conditional forecastability?
+3. Can payment-flow proxies predict currency pressure?
+4. Can regime-based hedging beat static hedge policy?
+5. Is FX partly a balance-sheet-constrained market?
+
+The lab **separates**:
+- **Forecasting accuracy** (`src/forecast_tests.py`, `src/academic_tests.py`)
+- **Trading P&L** (`src/backtest.py`)
+- **Hedging usefulness** (`src/hedge_backtest.py`)
+
+A model may fail to beat random walk on RMSE but still help hedge governance by reducing turnover or avoiding over-adjustment in noisy regimes.
+
+| Module | Output |
+|--------|--------|
+| `src/research_runner.py` | Master pipeline |
+| `src/research_models.py` | ML direction models |
+| `src/hedge_backtest.py` | Hedge policy scorecard |
+| `scripts/run_research_models.py` | Run all research tests |
+| `scripts/run_hedge_policy_tests.py` | Hedge tests only |
+
+Outputs in `data/outputs/`:
+- `forecast_scorecard.csv`
+- `academic_test_results.csv`
+- `ml_direction_model_scorecard.csv`
+- `hedge_policy_scorecard.csv`
+- `hedge_policy_detail.csv`
+
+### Core Academic References
+
+- **Meese & Rogoff (1983)** — *Journal of International Economics*. Establishes the random-walk benchmark problem in FX forecasting.
+- **Diebold & Mariano (1995)** — *Journal of Business & Economic Statistics*. Formal test for comparing forecast accuracy.
+- **Clark & West (2007)** — *Journal of Econometrics*. Tests for nested forecast models vs benchmarks.
+- **Sullivan, Timmermann & White (1999)** — *Journal of Finance*. Data-snooping / bootstrap warning when testing many rules.
+
+## Under-Tested Research Layer
+
+BR3N Macro Labs is testing an applied question that is less saturated than pure FX forecasting:
+
+**Can regime classification improve hedge governance even when exchange-rate forecasts fail to beat random walk?**
+
+The lab tests:
+- when not to hedge
+- no-change-in-range policy
+- regime-based hedge ratios
+- public payment-flow proxies
+- random-walk validity by regime
+- forecast failure versus hedge usefulness
+
+A model may fail as a forecasting model but still be useful as a hedge-governance tool if it reduces unnecessary hedge turnover, avoids over-adjustment in noisy regimes, or improves cost-adjusted risk reduction.
+
+| Module | Output |
+|--------|--------|
+| `src/flow_proxies.py` | Calendar flow-pressure features |
+| `src/flow_pressure_tests.py` | Flow window vs normal-day tests |
+| `src/hedge_governance.py` | Hedge governance policies + scorecard |
+| `src/random_walk_validity.py` | Regime-specific RW validity map |
+| `scripts/run_under_tested_research.py` | Run all under-tested research |
+
+Additional outputs in `data/outputs/`:
+- `hedge_governance_scorecard.csv`
+- `hedge_governance_detail.csv`
+- `flow_pressure_test_results.csv`
+- `random_walk_validity_map.csv`
+- `data/processed/usdmxn_features_regimes_flow.csv`
+
+## Remittance Corridor Roadmap
+
+BR3N Macro Labs is expanding from USD/MXN into major remittance and payment corridors.
+
+Initial priority corridors:
+
+- U.S. → Mexico / USD/MXN
+- U.S. → India / USD/INR
+- U.S. → Philippines / USD/PHP
+- U.S. → Colombia / USD/COP
+- U.S. → Brazil / USD/BRL
+- U.S. → Guatemala / USD/GTQ, if data quality allows
+- Gulf → India / USD/INR proxy, because AED and SAR are USD-pegged
+
+Research question:
+Do major remittance corridors show regime-specific FX behavior around public payment-flow windows?
+
+Important limitation:
+Public calendar proxies are not actual payment-flow data. They are exploratory proxies used until official remittance data or legally usable proprietary flow data becomes available.
+
+## Corridor Research Outputs
+
+The corridor roadmap creates:
+
+- `corridor_master_scorecard.csv`
+- `corridor_download_log.csv`
+- `corridor_random_walk_validity.csv`
+- `corridor_flow_pressure_summary.csv`
+- `corridor_hedge_governance_summary.csv`
+- `corridor_roadmap_report.md`
+
+## Best Data Upgrade Path
+
+For publication-grade corridor research, upgrade from yfinance to:
+
+1. Federal Reserve H.10 / FRED where available.
+2. BIS effective exchange rates.
+3. World Bank remittance data.
+4. Central bank spot/remittance data.
+5. Bloomberg/LSEG/FactSet for forwards, swaps, bid/ask, and professional FX data.
+6. Legally usable proprietary payment-flow data only with proper authorization.
+
+## Data Strategy
+
+BR3N Macro Labs uses a **four-tier data stack** (Tier 1 = highest quality):
+
+| Tier | Label | Examples |
+|------|-------|----------|
+| **1** | Official / academic-grade | FRED, Federal Reserve H.10, BIS, IMF, World Bank, central banks |
+| **2** | Professional market data | Bloomberg, LSEG/Refinitiv, FactSet, CME, Cboe FX, EBS, 360T, FXall |
+| **3** | Proprietary data | Payment flows, order flow, settlement timing, hedge execution data |
+| **4** | Prototype data | Yahoo/yfinance, Stooq, free web sources |
+
+**Principle:** Every model should record the data source, **tier number**, and tier label used in the test.
+
+**Warning:** Results on Tier 4 prototype data are not publication-grade until rerun on Tier 1 official sources. Trading/hedging claims require Tier 2 professional data (bid/ask, forwards, execution costs).
+
+```bash
+python scripts/export_data_sources.py    # registry + tier plan
+python scripts/run_data_quality.py       # quality check (current default: Tier 4)
+python scripts/fetch_tier1_official.py     # free Tier 1 USD/MXN via FRED H.10
+python scripts/run_self_improvement.py     # score evidence + propose next experiments
+python scripts/fetch_bloomberg_spot.py --check  # Bloomberg availability (requires license)
+python scripts/fetch_bloomberg_spot.py     # Tier 2 USD/MXN via Bloomberg Terminal
+```
+
+See `reports/DATA_STRATEGY.md` and `src/data_sources.py`.
+
+| Module | Output |
+|--------|--------|
+| `src/data_sources.py` | Source registry and tier metadata |
+| `src/data_quality.py` | Price series quality checks |
+| `scripts/export_data_sources.py` | Export registry CSV |
+| `scripts/run_data_quality.py` | Quality report for processed data |
+
+Outputs:
+- `data/outputs/data_source_registry.csv`
+- `data/outputs/data_quality_report.csv`
+
+## Self-improvement loop
+
+The lab reviews its own evidence over time — without auto-trading or holdout tuning.
+
+```bash
+python scripts/run_self_improvement.py          # fast: score + snapshot
+python scripts/run_self_improvement.py --rerun  # re-run pipelines first
+```
+
+Each run snapshots scorecards to `data/runs/{run_id}/`, compares to the prior run, and proposes next experiments. See `reports/SELF_IMPROVEMENT.md`.
 
 ## What it does
 

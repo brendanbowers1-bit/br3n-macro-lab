@@ -22,7 +22,7 @@ from .level3_multipair import (
     run_multipair_oos,
 )
 from .level4_forecast import run_forecast_tests
-from .level5_economic import economic_scorecard
+from .level5_economic import economic_scorecard, multipair_economic_scorecard
 from .level6_snooping import (
     bootstrap_sharpe_test,
     holdout_evaluation,
@@ -48,7 +48,7 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     prices, _ = load_or_fetch(cfg, force_refresh=refresh)
-    df = classify_regimes(build_features(prices, cfg), cfg)
+    df = classify_regimes(build_features(prices, cfg, force_macro_refresh=refresh), cfg)
     primary = cfg["backtest"].get("primary_strategy", "flat_range")
 
     # Level 1
@@ -77,6 +77,8 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
     # Level 5
     l5 = economic_scorecard(df, cfg)
     l5.to_csv(out_dir / "level5_economic.csv", index=False)
+    l5_mp = multipair_economic_scorecard(cfg)
+    l5_mp.to_csv(out_dir / "level5_multipair_economic.csv", index=False)
 
     # Level 6
     l6_ho = holdout_evaluation(df, cfg)
@@ -101,7 +103,8 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
         "level3": (
             "done"
             if "ticker" in l3.columns
-            and (l3["strategy"] != "ERROR").sum() >= len(cfg.get("research_ladder", {}).get("pairs", [])) * 4
+            and l3[l3["strategy"] != "ERROR"]["ticker"].nunique()
+            >= len(cfg.get("research_ladder", {}).get("pairs", [])) * 0.8
             else "partial"
         ),
         "level4": "done" if not l4.empty else "pending",

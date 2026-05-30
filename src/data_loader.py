@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from io import StringIO
 from pathlib import Path
 from typing import Optional, Tuple
@@ -24,7 +25,33 @@ STOOQ = {
     "USDPHP=X": "usdphp",
     "USDZAR=X": "usdzar",
     "USDTRY=X": "usdtry",
+    "USDCLP=X": "usdclp",
+    "USDPLN=X": "usdpln",
+    "USDKRW=X": "usdkrw",
+    "USDTHB=X": "usdthb",
+    "USDMYR=X": "usdmyr",
+    "USDIDR=X": "usdidr",
+    "USDPEN=X": "usdpen",
+    "GBPUSD=X": "gbpusd",
+    "AUDUSD=X": "audusd",
+    "USDCHF=X": "usdchf",
 }
+
+
+def _load_raw_csv(ticker: str, years: int) -> pd.DataFrame | None:
+    """Optional vendor CSV: data/raw/USDMXN_X.csv with columns date, price (or close)."""
+    safe = ticker.replace("=", "_")
+    raw_path = ROOT / "data" / "raw" / f"{safe}.csv"
+    if not raw_path.exists():
+        return None
+    raw = pd.read_csv(raw_path, parse_dates=[0], index_col=0)
+    raw.columns = [str(c).lower() for c in raw.columns]
+    col = "price" if "price" in raw.columns else "close"
+    df = pd.DataFrame({"price": raw[col]}, index=raw.index)
+    df.index.name = "date"
+    df = _trim_years(df.sort_index(), years)
+    print(f"  Using vendor CSV: {raw_path} ({len(df)} rows)")
+    return df
 
 
 def load_config(path: Optional[Path] = None) -> dict:
@@ -37,6 +64,103 @@ def _trim_years(df: pd.DataFrame, years: int) -> pd.DataFrame:
         cutoff = df.index.max() - pd.DateOffset(years=years)
         df = df.loc[df.index >= cutoff]
     return df
+
+
+def attach_source_metadata(
+    df: pd.DataFrame,
+    source: str,
+    data_tier: str = "prototype",
+    tier_number: Optional[int] = None,
+    price_type: str = "close",
+    convention: str = "",
+) -> pd.DataFrame:
+    """
+    Attach data provenance columns to a price dataframe.
+
+    Tier 1 = official/academic (best public). Tier 4 = prototype (yfinance/Stooq).
+    """
+    from .data_sources import DATA_TIERS, normalize_tier_number, tier_number_to_label
+
+    if tier_number is None:
+        tier_number = normalize_tier_number(data_tier)
+    tier_slug = DATA_TIERS[tier_number]["slug"]
+
+    out = df.copy()
+    out["source"] = source
+    out["data_tier"] = tier_slug
+    out["tier_number"] = tier_number
+    out["tier_label"] = tier_number_to_label(tier_number)
+    out["price_type"] = price_type
+    out["convention"] = convention or source
+    out["downloaded_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return out
+
+
+def load_local_csv(
+    path: Path | str,
+    source_name: str,
+    price_col: str = "price",
+    date_col: str = "date",
+    data_tier: str = "prototype",
+) -> pd.DataFrame:
+    """
+    Read a local CSV, standardize date/price, and attach source metadata.
+
+    Accepts columns: date + price, or date + close.
+    """
+    path = Path(path)
+    raw = pd.read_csv(path)
+    raw.columns = [str(c).lower() for c in raw.columns]
+
+    col = price_col if price_col in raw.columns else "close"
+    if col not in raw.columns:
+        raise ValueError(f"No price column in {path}; expected '{price_col}' or 'close'")
+
+    if date_col in raw.columns:
+        dates = pd.to_datetime(raw[date_col])
+    else:
+        dates = pd.to_datetime(raw.iloc[:, 0])
+
+    df = pd.DataFrame({"price": pd.to_numeric(raw[col], errors="coerce")}, index=dates)
+    df.index.name = "date"
+    df = df.sort_index().dropna(subset=["price"])
+    return attach_source_metadata(
+        df,
+        source=source_name,
+        data_tier=data_tier,
+        price_type="close",
+        convention=str(path.name),
+    )
+
+
+def load_fred_series(series_id: str, api_key: Optional[str] = None) -> pd.DataFrame:
+    """
+    Load a Tier 1 FRED series as a price dataframe.
+
+    Uses the public FRED CSV endpoint (no API key required).
+    For USD/MXN H.10 spot, see also src/official_loaders.fetch_official_usdmxn().
+    """
+    from .macro_loader import fetch_fred_series as _fetch
+
+    s = _fetch(series_id)
+    df = pd.DataFrame({"price": s}).dropna()
+    df.index.name = "date"
+    return attach_source_metadata(
+        df,
+        source="fred",
+        tier_number=1,
+        price_type="official_daily",
+        convention=f"FRED:{series_id}",
+    )
+
+
+def _save_cache_with_metadata(df: pd.DataFrame, proc_path: Path) -> None:
+    """Save price series; include metadata columns when present."""
+    cols = ["price"]
+    for c in ("source", "data_tier", "tier_number", "tier_label", "price_type", "convention", "downloaded_at"):
+        if c in df.columns:
+            cols.append(c)
+    df[cols].to_csv(proc_path)
 
 
 def fetch_yfinance(ticker: str, years: int) -> pd.DataFrame:
@@ -57,7 +181,14 @@ def fetch_yfinance(ticker: str, years: int) -> pd.DataFrame:
     df = pd.DataFrame({"price": close}).dropna()
     df.index = pd.to_datetime(df.index).tz_localize(None)
     df.index.name = "date"
-    return _trim_years(df, years)
+    df = _trim_years(df, years)
+    return attach_source_metadata(
+        df,
+        source="yfinance",
+        tier_number=4,
+        price_type="close",
+        convention=ticker,
+    )
 
 
 def fetch_stooq(ticker: str, years: int) -> pd.DataFrame:
@@ -69,7 +200,14 @@ def fetch_stooq(ticker: str, years: int) -> pd.DataFrame:
     raw["Date"] = pd.to_datetime(raw["Date"])
     df = pd.DataFrame({"price": raw["Close"]}, index=raw["Date"]).sort_index()
     df.index.name = "date"
-    return _trim_years(df, years)
+    df = _trim_years(df, years)
+    return attach_source_metadata(
+        df,
+        source="stooq",
+        tier_number=4,
+        price_type="close",
+        convention=ticker,
+    )
 
 
 def fetch_prices(ticker: str, years: int) -> pd.DataFrame:
@@ -141,7 +279,15 @@ def load_or_fetch(cfg: dict, force_refresh: bool = False) -> Tuple[pd.DataFrame,
             return old[["price"]], proc_path
 
     df, _ = sanitize_fx_prices(df, ticker)
-    df[["price"]].to_csv(proc_path)
+    if "source" not in df.columns:
+        df = attach_source_metadata(
+            df,
+            source=source if not source.startswith("fallback") else "fallback_cache",
+            tier_number=4,
+            price_type="close",
+            convention=ticker,
+        )
+    _save_cache_with_metadata(df, proc_path)
     print(f"Saved {len(df)} rows -> {proc_path} ({df.index.min().date()} to {df.index.max().date()})")
     return df[["price"]], proc_path
 
@@ -169,20 +315,25 @@ def load_pair_prices(
             return df[["price"]], meta
         force_refresh = True
 
-    downloaded = None
-    try:
-        downloaded = fetch_prices(ticker, years)
-        meta["source"] = "download"
-    except Exception as exc:
-        meta["download_error"] = str(exc)[:120]
-
-    if downloaded is not None:
-        df = downloaded
-    elif proc_path.exists():
-        df = _read_cache(proc_path)
-        meta["source"] = "cache_fallback"
+    vendor = _load_raw_csv(ticker, years)
+    if vendor is not None:
+        df = vendor
+        meta["source"] = "vendor_csv"
     else:
-        raise RuntimeError(f"No data for {ticker}: download failed and no cache")
+        downloaded = None
+        try:
+            downloaded = fetch_prices(ticker, years)
+            meta["source"] = "download"
+        except Exception as exc:
+            meta["download_error"] = str(exc)[:120]
+
+        if downloaded is not None:
+            df = downloaded
+        elif proc_path.exists():
+            df = _read_cache(proc_path)
+            meta["source"] = "cache_fallback"
+        else:
+            raise RuntimeError(f"No data for {ticker}: download failed and no cache")
 
     if (
         proc_path.exists()
@@ -196,12 +347,21 @@ def load_pair_prices(
 
     df, clean_meta = sanitize_fx_prices(df, ticker)
     meta.update(clean_meta)
+    if "source" not in df.columns:
+        src = meta.get("source", "download")
+        df = attach_source_metadata(
+            df,
+            source=src,
+            tier_number=4,
+            price_type="close",
+            convention=ticker,
+        )
     if not validate_series(df, ticker):
         raise RuntimeError(
             f"{ticker}: price series failed validation after cleaning "
             f"(median={meta.get('median_after_invert')})"
         )
-    df[["price"]].to_csv(proc_path)
+    _save_cache_with_metadata(df, proc_path)
     meta["rows"] = len(df)
     meta["path"] = str(proc_path)
     return df[["price"]], meta

@@ -1,0 +1,5 @@
+regime,observations,average_daily_return,volatility_ann_pct,directional_bias,autocorrelation_1d,autocorrelation_5d,percent_positive_days,random_walk_validity_label
+R1_trend_high_vol,2125,0.000328,16.489,positive,-0.0515,-0.0658,49.13,Potential structure
+R2_trend_low_vol,2837,-6e-05,8.921,negative,-0.0521,0.0236,47.37,Potential structure
+R3_range_high_vol,154,0.000914,13.329,positive,-0.1848,-0.0318,50.65,Potential structure
+R4_range_low_vol,657,-5.7e-05,8.016,negative,-0.028,-0.0224,43.99,High-risk noise

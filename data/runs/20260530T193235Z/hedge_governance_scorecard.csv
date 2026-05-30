@@ -1,0 +1,17 @@
+policy_name,exposure_type,total_return_proxy,unhedged_volatility,hedged_volatility,volatility_reduction,max_drawdown_unhedged,max_drawdown_hedged,hedge_turnover,total_hedge_cost,average_hedge_ratio,number_of_hedge_changes,cost_adjusted_risk_reduction,regret_proxy
+never_hedged,us_entity_long_mxn,-55.242,12.3,12.3,0.0,-69.095,-69.095,0.0,0.0,0.0,0,0.0,8.48
+half_hedged,us_entity_long_mxn,-30.114,12.3,6.15,6.15,-69.095,-42.737,0.5,0.01,0.5,1,6.14,4.24
+mostly_hedged,us_entity_long_mxn,-15.496,12.3,3.075,9.225,-69.095,-23.769,0.75,0.015,0.75,1,9.21,2.12
+fully_hedged,us_entity_long_mxn,-0.02,12.3,0.004,12.296,-69.095,0.0,1.0,0.02,1.0,1,12.276,0.0
+regime_based,us_entity_long_mxn,-21.35,12.3,4.535,7.765,-69.095,-33.174,87.3,1.746,0.597,443,6.019,3.223
+r2_active_policy,us_entity_long_mxn,-39.332,12.3,6.627,5.673,-69.095,-47.439,103.0,2.06,0.547,343,3.613,4.09
+no_change_in_range,us_entity_long_mxn,-25.621,12.3,4.564,7.736,-69.095,-34.236,23.2,0.464,0.66,228,7.272,2.99
+volatility_triggered,us_entity_long_mxn,-15.727,12.3,5.114,7.186,-69.095,-31.835,72.1,1.442,0.518,240,5.744,3.748
+never_hedged,mx_entity_usd_liabilities,57.955,12.3,12.3,0.0,-35.609,-35.609,0.0,0.0,0.0,0,0.0,8.48
+half_hedged,mx_entity_usd_liabilities,31.186,12.3,6.15,6.15,-35.609,-19.114,0.5,0.01,0.5,1,6.14,4.24
+mostly_hedged,mx_entity_usd_liabilities,15.767,12.3,3.075,9.225,-35.609,-9.884,0.75,0.015,0.75,1,9.21,2.12
+fully_hedged,mx_entity_usd_liabilities,-0.02,12.3,0.004,12.296,-35.609,0.0,1.0,0.02,1.0,1,12.276,0.0
+regime_based,mx_entity_usd_liabilities,17.132,12.3,4.534,7.766,-35.609,-14.734,87.3,1.746,0.597,443,6.02,3.224
+r2_active_policy,mx_entity_usd_liabilities,43.038,12.3,6.625,5.675,-35.609,-18.144,103.0,2.06,0.547,343,3.615,4.09
+no_change_in_range,mx_entity_usd_liabilities,26.997,12.3,4.564,7.736,-35.609,-13.262,23.2,0.464,0.66,228,7.272,2.989
+volatility_triggered,mx_entity_usd_liabilities,8.585,12.3,5.113,7.187,-35.609,-17.428,72.1,1.442,0.518,240,5.745,3.747

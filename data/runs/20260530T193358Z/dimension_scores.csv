@@ -1,0 +1,7 @@
+dimension,verdict,detail
+data_quality,weak,"Tier 4, flag OK, source yfinance"
+forecast_vs_random_walk,weak,RMSE beats RW: False; MAE beats RW: False; DM p-value: 0.2456
+ml_direction,weak,Best directional accuracy: 52.12% (threshold 53%)
+trading_oos,weak,flat_range positive Sharpe OOS folds: 9/18
+hedge_governance,strong,Best policy: fully_hedged (12.276); no_change_in_range turnover win vs regime_based: True
+data_snooping_control,weak,White Reality Check p-value: 0.6860 (need < 0.05 to reject data mining)
