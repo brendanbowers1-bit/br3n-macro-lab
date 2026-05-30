@@ -23,22 +23,27 @@ sys.path.insert(0, str(ROOT))
 OUT = ROOT / "data" / "outputs"
 PROC = ROOT / "data" / "processed"
 REPORTS = ROOT / "reports"
-FX_LOGO = REPORTS / "publication" / "assets" / "fx_lab_logo.png"
+FX_LOGO = REPORTS / "publication" / "assets" / "br3n_macro_labs_logo.png"
+BRAND_MOTTO = "Research. Regime. Risk."
 
-# ── Brand palette ─────────────────────────────────────────────────────────────
+# ── Brand palette (academic institutional) ────────────────────────────────────
 C = {
-    "bg": "#080A0F",
-    "panel": "#111827",
-    "border": "#273244",
-    "text": "#F8FAFC",
-    "text2": "#94A3B8",
-    "muted": "#64748B",
-    "gold": "#D4AF37",
-    "cyan": "#38BDF8",
-    "green": "#22C55E",
-    "amber": "#F59E0B",
-    "red": "#EF4444",
-    "purple": "#A78BFA",
+    "bg": "#f7f5f0",
+    "panel": "#ffffff",
+    "sidebar": "#1e3a5f",
+    "sidebar_text": "#e8edf4",
+    "border": "#d4dce8",
+    "text": "#1a2744",
+    "text2": "#5c6578",
+    "muted": "#7a8496",
+    "navy": "#1e3a5f",
+    "gold": "#1e3a5f",
+    "bronze": "#7a6342",
+    "cyan": "#2c5282",
+    "green": "#1f6b4a",
+    "amber": "#9a6700",
+    "red": "#9b2c2c",
+    "purple": "#4a5568",
 }
 
 REGIME_COLORS = {
@@ -55,10 +60,10 @@ RW_COLORS = {
 }
 
 PLOTLY_LAYOUT = dict(
-    template="plotly_dark",
+    template="simple_white",
     paper_bgcolor=C["bg"],
     plot_bgcolor=C["panel"],
-    font=dict(family="Inter, SF Pro Display, Helvetica Neue, Arial, sans-serif", color=C["text2"]),
+    font=dict(family="Source Sans 3, Helvetica Neue, Arial, sans-serif", color=C["text2"]),
     margin=dict(l=40, r=20, t=50, b=40),
 )
 
@@ -104,26 +109,44 @@ FX_LAB_TAGLINE = "Testing When Currency Markets Become Less Random"
 # ── CSS ───────────────────────────────────────────────────────────────────────
 LUXURY_CSS = f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
 html, body, [class*="css"] {{
-    font-family: Inter, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
 }}
 .stApp {{
     background-color: {C["bg"]};
     color: {C["text"]};
 }}
 section[data-testid="stSidebar"] {{
-    background-color: {C["panel"]};
-    border-right: 1px solid {C["border"]};
+    background-color: {C["sidebar"]};
+    border-right: 1px solid #152a45;
 }}
-section[data-testid="stSidebar"] .stRadio label {{
-    color: {C["text2"]} !important;
+section[data-testid="stSidebar"] .stRadio label,
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] span {{
+    color: {C["sidebar_text"]} !important;
+}}
+section[data-testid="stSidebar"] .sidebar-brand {{
+    color: #ffffff !important;
+}}
+section[data-testid="stSidebar"] .sidebar-tag,
+section[data-testid="stSidebar"] .sidebar-motto {{
+    color: rgba(232, 237, 244, 0.75) !important;
+}}
+.logo-frame {{
+    background: #ffffff;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 0.85rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }}
 .hero-title {{
-    font-size: 2.1rem;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
-    color: {C["gold"]};
+    letter-spacing: 0.06em;
+    color: {C["navy"]};
     margin-bottom: 0.25rem;
 }}
 .tier-pill {{
@@ -156,10 +179,11 @@ section[data-testid="stSidebar"] .stRadio label {{
     margin-bottom: 1.5rem;
 }}
 .section-header {{
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: {C["text"]};
-    border-left: 3px solid {C["gold"]};
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: {C["navy"]};
+    border-left: 3px solid {C["navy"]};
     padding-left: 12px;
     margin: 1.5rem 0 0.75rem 0;
 }}
@@ -209,9 +233,9 @@ section[data-testid="stSidebar"] .stRadio label {{
 .pill-info    {{ background: rgba(56,189,248,0.15); color: {C["cyan"]}; border: 1px solid {C["cyan"]}; }}
 .pill-gold    {{ background: rgba(212,175,55,0.12); color: {C["gold"]}; border: 1px solid {C["gold"]}; }}
 .callout {{
-    background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(17,24,39,0.95));
+    background: {C["panel"]};
     border: 1px solid {C["border"]};
-    border-left: 3px solid {C["gold"]};
+    border-left: 3px solid {C["navy"]};
     border-radius: 8px;
     padding: 1rem 1.25rem;
     margin: 1rem 0;
@@ -234,9 +258,11 @@ section[data-testid="stSidebar"] .stRadio label {{
     margin-bottom: 0.75rem;
 }}
 .info-card h4 {{
-    color: {C["gold"]};
+    color: {C["navy"]};
     margin: 0 0 0.5rem 0;
     font-size: 0.95rem;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 700;
 }}
 .info-card p {{
     color: {C["text2"]};
@@ -253,17 +279,27 @@ section[data-testid="stSidebar"] .stRadio label {{
     text-align: center;
 }}
 .sidebar-brand {{
-    font-size: 0.85rem;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
-    color: {C["gold"]};
-    margin-bottom: 0.25rem;
+    letter-spacing: 0.18em;
+    color: #ffffff;
+    margin-bottom: 0.15rem;
 }}
 .sidebar-tag {{
     font-size: 0.72rem;
-    color: {C["muted"]};
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(232, 237, 244, 0.8);
     line-height: 1.4;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.35rem;
+}}
+.sidebar-motto {{
+    font-size: 0.65rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(232, 237, 244, 0.55);
+    margin-bottom: 1.25rem;
 }}
 .missing-card {{
     background: {C["panel"]};
@@ -681,7 +717,9 @@ def corridor_heatmap(
 # ── Page renderers ────────────────────────────────────────────────────────────
 def page_executive_overview() -> None:
     if FX_LOGO.exists():
-        st.image(str(FX_LOGO), width=420)
+        st.markdown('<div class="logo-frame">', unsafe_allow_html=True)
+        st.image(str(FX_LOGO), width=280)
+        st.markdown("</div>", unsafe_allow_html=True)
     else:
         st.markdown(
             '<div class="hero-title">BR3N MACRO LABS</div>'
@@ -2139,11 +2177,14 @@ def main() -> None:
 
     with st.sidebar:
         if FX_LOGO.exists():
+            st.markdown('<div class="logo-frame">', unsafe_allow_html=True)
             st.image(str(FX_LOGO), width="stretch")
+            st.markdown("</div>", unsafe_allow_html=True)
         st.markdown('<div class="sidebar-brand">BR3N MACRO LABS</div>', unsafe_allow_html=True)
         st.markdown('<div class="sidebar-tag">FX LAB</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="sidebar-motto">{BRAND_MOTTO}</div>', unsafe_allow_html=True)
         st.markdown(
-            f'<div style="color:{C["muted"]};font-size:0.78rem;margin-bottom:1rem;line-height:1.4">'
+            f'<div style="color:rgba(232,237,244,0.65);font-size:0.76rem;margin-bottom:1rem;line-height:1.45">'
             f"{FX_LAB_TAGLINE}</div>",
             unsafe_allow_html=True,
         )

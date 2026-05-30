@@ -19,7 +19,8 @@ VERTICALS_DIR = PUB_DIR / "verticals"
 PUBLIC_SITE_BASE = "https://brendanbowers1-bit.github.io/br3n-macro-lab"
 
 FX_LAB_TAGLINE = "Testing When Currency Markets Become Less Random"
-FX_LAB_LOGO = "assets/fx_lab_logo.png"
+FX_LAB_LOGO = "assets/br3n_macro_labs_logo.png"
+BRAND_MOTTO = "Research. Regime. Risk."
 
 # (href, title, description, tag)
 HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
@@ -43,17 +44,21 @@ FX_LAB_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
 
 def _css() -> str:
     return """
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 :root {
-  --bg: #0c0f14;
-  --surface: #141a24;
-  --border: #243044;
-  --text: #e8edf4;
-  --muted: #8b9cb3;
-  --accent: #3d8bfd;
-  --accent-dim: #2563b8;
-  --good: #34d399;
-  --warn: #fbbf24;
-  --font: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --surface-alt: #f0ede6;
+  --border: #d4dce8;
+  --border-strong: #b8c4d4;
+  --text: #1a2744;
+  --muted: #5c6578;
+  --accent: #1e3a5f;
+  --accent-dim: #152a45;
+  --good: #1f6b4a;
+  --warn: #9a6700;
+  --font: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
   --mono: "SF Mono", ui-monospace, Menlo, monospace;
   --max: 720px;
   --wide: 960px;
@@ -64,43 +69,58 @@ body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.65;
+  line-height: 1.7;
   font-size: 17px;
+  -webkit-font-smoothing: antialiased;
 }
 a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a:hover { color: var(--accent-dim); text-decoration: underline; }
 header {
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, #121824 0%, var(--bg) 100%);
-  padding: 2.5rem 1.5rem 2rem;
+  border-bottom: 2px solid var(--border-strong);
+  background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
+  padding: 2rem 1.5rem 1.75rem;
 }
 .header-inner { max-width: var(--wide); margin: 0 auto; }
 .brand {
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
-h1.title { font-size: 2rem; font-weight: 650; margin: 0 0 0.75rem; line-height: 1.2; }
-.subtitle { color: var(--muted); font-size: 1.05rem; max-width: 42rem; }
+h1.title {
+  font-family: var(--serif);
+  font-size: 2.15rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.subtitle { color: var(--muted); font-size: 1.02rem; max-width: 42rem; line-height: 1.55; }
 nav.top {
   max-width: var(--wide);
   margin: 1.25rem auto 0;
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 nav.top a {
-  padding: 0.45rem 0.9rem;
+  padding: 0.4rem 0.85rem;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.9rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   background: var(--surface);
+  color: var(--accent);
 }
+nav.top a:hover { background: var(--surface-alt); text-decoration: none; }
 nav.top a.primary {
-  background: var(--accent-dim);
+  background: var(--accent);
   border-color: var(--accent);
   color: #fff;
 }
@@ -109,11 +129,12 @@ main.wide { max-width: var(--wide); }
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 1.25rem 1.5rem;
   margin: 1.5rem 0;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
 }
-.card h3 { margin-top: 0; font-size: 1rem; color: var(--accent); }
+.card h3 { margin-top: 0; font-size: 1rem; color: var(--accent); font-family: var(--serif); }
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -123,24 +144,35 @@ main.wide { max-width: var(--wide); }
 .stat {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 1rem;
 }
-.stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.stat .value { font-size: 1.35rem; font-weight: 650; margin-top: 0.25rem; }
+.stat .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.stat .value { font-family: var(--serif); font-size: 1.45rem; font-weight: 700; margin-top: 0.25rem; color: var(--text); }
 .stat .value.good { color: var(--good); }
 .stat .value.warn { color: var(--warn); }
 blockquote {
   margin: 1.5rem 0;
-  padding: 1rem 1.25rem;
+  padding: 1rem 1.35rem;
   border-left: 3px solid var(--accent);
-  background: var(--surface);
-  border-radius: 0 8px 8px 0;
+  background: var(--surface-alt);
+  border-radius: 0 4px 4px 0;
   color: var(--muted);
+  font-family: var(--serif);
+  font-size: 1.08rem;
   font-style: italic;
 }
-h2 { font-size: 1.35rem; margin: 2.25rem 0 1rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border); }
-h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
+h2 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin: 2.25rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-strong);
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
 p { margin: 0.75rem 0; }
 ul, ol { padding-left: 1.25rem; }
 li { margin: 0.35rem 0; }
@@ -155,7 +187,7 @@ th, td {
   padding: 0.55rem 0.75rem;
   text-align: left;
 }
-th { background: #1a2230; color: var(--muted); font-weight: 600; }
+th { background: var(--surface-alt); color: var(--accent); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
 table.data-table th.num,
 table.data-table td.num {
   text-align: right;
@@ -169,16 +201,17 @@ table.data-table td.num {
 }
 .table-wrap table { margin: 0; }
 .conclusion-box {
-  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
+  background: var(--surface);
   border: 1px solid var(--accent);
-  border-radius: 12px;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
   padding: 1.25rem 1.5rem;
   margin: 1.5rem 0;
 }
 .claim-discipline {
-  background: var(--surface);
+  background: var(--surface-alt);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 1.25rem 1.5rem;
   margin: 1.5rem 0;
   color: var(--text);
@@ -186,9 +219,10 @@ table.data-table td.num {
 code, pre {
   font-family: var(--mono);
   font-size: 0.85rem;
-  background: #0a0e13;
+  background: var(--surface-alt);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 4px;
+  color: var(--text);
 }
 code { padding: 0.15rem 0.4rem; }
 pre { padding: 1rem; overflow-x: auto; }
@@ -197,99 +231,120 @@ footer {
   max-width: var(--wide);
   margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--border-strong);
   color: var(--muted);
   font-size: 0.85rem;
+  background: var(--surface-alt);
 }
 .disclaimer {
-  background: #1a1510;
-  border: 1px solid #4a3820;
-  color: #d4a574;
+  background: #fff8ee;
+  border: 1px solid #e8d5b0;
+  color: #6b5344;
   padding: 0.75rem 1rem;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 0.88rem;
   margin-top: 1rem;
 }
 /* Cover page */
+body.cover-page {
+  background: var(--bg);
+}
 body.cover-page header.hero-cover {
-  border-bottom: none;
-  padding: 4rem 1.5rem 3rem;
+  border-bottom: 2px solid var(--border-strong);
+  padding: 3rem 1.5rem 2.5rem;
   text-align: center;
   background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(61, 139, 253, 0.18) 0%, transparent 55%),
-    linear-gradient(180deg, #0e1420 0%, var(--bg) 100%);
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(30, 58, 95, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
 }
 .hero-cover .lab-title {
-  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
-  letter-spacing: 0.12em;
-  margin: 0 0 1rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
   line-height: 1.1;
-  background: linear-gradient(135deg, #e8edf4 0%, #8b9cb3 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
 }
 .hero-cover .tagline {
   color: var(--muted);
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
   max-width: 40rem;
-  margin: 0 auto 0.75rem;
-  line-height: 1.5;
+  margin: 0 auto 0.5rem;
+  line-height: 1.55;
+}
+.hero-cover .motto {
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0.75rem auto 1.5rem;
+  font-weight: 600;
 }
 .hero-cover .author {
   color: var(--accent);
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.5rem;
+}
+.logo-frame {
+  display: inline-block;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 24px rgba(26, 39, 68, 0.08);
 }
 .fx-lab-logo {
   display: block;
-  max-width: min(520px, 92vw);
+  max-width: min(340px, 88vw);
   width: 100%;
   height: auto;
-  margin: 0 auto 1.25rem;
-  border-radius: 12px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  margin: 0 auto;
 }
 .fx-lab-logo-sm {
   display: block;
-  max-width: 280px;
+  max-width: 220px;
   width: 100%;
   height: auto;
   margin: 0 0 1rem;
-  border-radius: 8px;
 }
 .cta-row {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.65rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 }
 .cta-row a {
-  padding: 0.65rem 1.25rem;
-  border-radius: 8px;
-  font-size: 0.95rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
   font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
 }
 .cta-row a.primary {
-  background: var(--accent-dim);
+  background: var(--accent);
   border: 1px solid var(--accent);
   color: #fff;
 }
 .cta-row a.secondary {
   background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
+  border: 1px solid var(--border-strong);
+  color: var(--accent);
 }
 .principle-box {
-  background: linear-gradient(135deg, #141f33 0%, var(--surface) 100%);
-  border: 1px solid var(--accent);
-  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
   padding: 1.5rem 1.75rem;
   margin: 2rem 0;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
 }
 .principle-box p { margin: 0.5rem 0; color: var(--text); }
 .cover-main { max-width: var(--wide); }
@@ -303,14 +358,15 @@ body.cover-page header.hero-cover {
 .vertical-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 1.5rem;
   text-align: left;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
 }
-.vertical-card:hover { border-color: var(--accent); }
+.vertical-card:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(26, 39, 68, 0.08); }
 .vertical-card .tag {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -318,6 +374,7 @@ body.cover-page header.hero-cover {
 }
 .vertical-card h3 {
   margin: 0 0 0.5rem;
+  font-family: var(--serif);
   font-size: 1.15rem;
   color: var(--text);
   border: none;
@@ -330,12 +387,15 @@ body.cover-page header.hero-cover {
 }
 .vertical-card a.btn {
   display: inline-block;
-  padding: 0.55rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   text-decoration: none;
   color: #fff;
+  background: var(--accent);
 }
 .vertical-card a.btn:hover { text-decoration: none; opacity: 0.92; }
 .research-link-grid {
@@ -348,16 +408,17 @@ body.cover-page header.hero-cover {
   display: block;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 1.25rem 1.35rem;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.15s ease, transform 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
 }
 .research-link-card:hover {
   border-color: var(--accent);
   text-decoration: none;
-  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26, 39, 68, 0.08);
 }
 .research-link-card .tag {
   font-size: 0.68rem;
@@ -366,10 +427,12 @@ body.cover-page header.hero-cover {
   color: var(--accent);
   margin-bottom: 0.4rem;
   display: block;
+  font-weight: 600;
 }
 .research-link-card h3 {
   margin: 0 0 0.35rem;
-  font-size: 1.05rem;
+  font-family: var(--serif);
+  font-size: 1.08rem;
   color: var(--text);
   border: none;
   padding: 0;
@@ -389,7 +452,7 @@ body.cover-page header.hero-cover {
 @media (max-width: 600px) {
   h1.title { font-size: 1.55rem; }
   body { font-size: 16px; }
-  .hero-cover .lab-title { letter-spacing: 0.08em; }
+  .hero-cover .lab-title { letter-spacing: 0.05em; }
 }
 """
 
@@ -643,7 +706,7 @@ def _shell(
 <body>
   <header>
     <div class="header-inner">
-      <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)} FX Lab" class="fx-lab-logo-sm"/>
+      <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo-sm"/></div>
       <div class="brand">{html.escape(LAB_NAME_DISPLAY)} · FX LAB</div>
       <h1 class="title">{html.escape(title)}</h1>
       <p class="subtitle">{html.escape(subtitle)}</p>
@@ -665,8 +728,10 @@ def _cover_shell(body: str) -> str:
     hero = f"""
 <header class="hero-cover">
   <div class="header-inner">
-    <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)} FX Lab" class="fx-lab-logo"/>
-    <p class="author">Prepared by Brendan Bowers</p>
+    <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo"/></div>
+    <p class="motto">{html.escape(BRAND_MOTTO)}</p>
+    <p class="tagline">{html.escape(FX_LAB_TAGLINE)}</p>
+    <p class="author">Prepared by Brendan Bowers · Independent Research</p>
     <div class="cta-row">
       <a href="fx-lab.html" class="primary">FX Lab Overview</a>
       <a href="research.html" class="secondary">USD/MXN Research</a>
