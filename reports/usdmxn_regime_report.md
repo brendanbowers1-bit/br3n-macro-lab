@@ -1,6 +1,6 @@
 # USD/MXN Regime Research Report
 
-**Generated:** 2026-05-30 13:44  
+**Generated:** 2026-05-30 13:57  
 **Ticker:** USDMXN=X  
 **Period:** 2004-03-19 → 2026-05-22  
 **Bars:** 5773

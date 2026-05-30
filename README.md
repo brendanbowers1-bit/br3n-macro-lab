@@ -4,6 +4,8 @@ Research-only system to study **when FX pairs are more forecastable** by market 
 
 **Not investment advice.** No live trading. No broker API.
 
+BR3N Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, financial institution, payment company, trading platform, or data vendor. This research is for education, analysis, and risk-framing only.
+
 ## Install
 
 ```bash
@@ -21,6 +23,7 @@ python scripts/run_research_models.py      # academic research layer
 python scripts/run_hedge_policy_tests.py   # hedge policies only
 python scripts/run_under_tested_research.py  # hedge governance, flow proxies, RW validity
 python scripts/run_corridor_roadmap.py       # multi-corridor remittance roadmap
+python scripts/run_fx_desk_framework.py      # FX desk decision scorecards and memos
 python scripts/generate_corridor_report.py   # corridor roadmap markdown report
 python scripts/export_data_sources.py       # data source registry
 python scripts/run_data_quality.py          # data quality report
@@ -45,6 +48,7 @@ streamlit run src/luxury_dashboard.py
 The dashboard includes:
 
 - Executive Overview
+- FX Desk Command Center (cross-border payments and treasury)
 - Random-Walk Lab
 - Regime Intelligence
 - Corridor Roadmap
@@ -246,6 +250,37 @@ The corridor roadmap creates:
 - `corridor_flow_pressure_summary.csv`
 - `corridor_hedge_governance_summary.csv`
 - `corridor_roadmap_report.md`
+
+## Cross-Border Payments FX Desk Decision Framework
+
+BR3N Macro Labs is an independent research lab studying FX regime intelligence, conditional forecastability, payment-corridor risk, and treasury hedge governance.
+
+The framework translates regime research into the core decisions faced by global payments and multi-currency treasury FX desks:
+
+1. What is the true real-time exposure?
+2. Should the desk hedge now, later, partially, or not at all?
+3. What customer FX spread or pricing posture is appropriate?
+4. Can the local currency actually be sourced at the quoted rate?
+5. How much local currency should be prefunded?
+6. Which bank or liquidity provider should receive the trade?
+7. Are there value-date, settlement, weekend, or holiday mismatches?
+8. Are forward points and carry costs worth the hedge protection?
+9. What happens during a shock?
+10. Is the action a real hedge or unauthorized speculation?
+
+```bash
+python scripts/run_fx_desk_framework.py
+streamlit run src/luxury_dashboard.py
+```
+
+Outputs:
+
+- `data/outputs/fx_desk_scorecard.csv`
+- `reports/fx_desk_memos/{corridor_id}_fx_desk_memo.md`
+- `reports/FX_DESK_DECISION_FRAMEWORK.md`
+
+The deepest lab question is:
+How do we turn millions of small customer transfers into a real-time map of global currency pressure, without over-hedging noise or taking unauthorized directional risk?
 
 ## Best Data Upgrade Path
 

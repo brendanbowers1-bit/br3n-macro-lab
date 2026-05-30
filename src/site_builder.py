@@ -329,6 +329,7 @@ def _nav(active: str = "") -> str:
         ("index.html", "Home", "home"),
         ("research.html", "USD/MXN Research", "research"),
         ("corridor.html", "Corridor Roadmap", "corridor"),
+        ("fx_desk.html", "FX Desk Framework", "fx_desk"),
         ("memo.html", "Full memo", "memo"),
         ("ladder.html", "Ladder", "ladder"),
     ]
@@ -388,6 +389,7 @@ def _cover_shell(body: str) -> str:
     <div class="cta-row">
       <a href="research.html" class="primary">View USD/MXN Research</a>
       <a href="corridor.html" class="secondary">Corridor Roadmap</a>
+      <a href="fx_desk.html" class="secondary">FX Desk Framework</a>
       <a href="memo.html" class="secondary">Full Research Note</a>
       <a href="ladder.html" class="secondary">Evidence Ladder</a>
     </div>
@@ -516,4 +518,25 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
-    return {"index": cover_path, "research": research_path, "memo": memo_path, "ladder": ladder_path, "corridor": corridor_path}
+    fx_desk_md_path = ROOT / "reports" / "FX_DESK_DECISION_FRAMEWORK.md"
+    fx_desk_md = fx_desk_md_path.read_text(encoding="utf-8") if fx_desk_md_path.exists() else "_Run `python scripts/run_fx_desk_framework.py` first._"
+    fx_desk_path = out_dir / "fx_desk.html"
+    fx_desk_path.write_text(
+        _shell(
+            "Cross-Border Payments FX Desk Framework",
+            _md_to_html(fx_desk_md),
+            wide=True,
+            nav_active="fx_desk",
+            subtitle="Payments and treasury FX decisions · Research only · Not investment advice",
+        ),
+        encoding="utf-8",
+    )
+
+    return {
+        "index": cover_path,
+        "research": research_path,
+        "memo": memo_path,
+        "ladder": ladder_path,
+        "corridor": corridor_path,
+        "fx_desk": fx_desk_path,
+    }

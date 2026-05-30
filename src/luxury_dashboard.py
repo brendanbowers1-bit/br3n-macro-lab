@@ -82,6 +82,7 @@ REGIME_INFO = {
 
 PAGES = [
     "Executive Overview",
+    "FX Desk Command Center",
     "Random-Walk Lab",
     "Regime Intelligence",
     "Corridor Roadmap",
@@ -329,8 +330,9 @@ def missing_section(script_cmd: str, description: str = "") -> None:
 def footer_disclaimer() -> None:
     st.markdown(
         '<div class="footer-disclaimer">'
-        "BR3N Macro Labs — research and risk-framing only. Not investment advice. "
-        "No live trading. No broker API. Results depend on data quality."
+        "BR3N Macro Labs is an independent research project — not affiliated with, endorsed by, "
+        "or sponsored by any employer, financial institution, payment company, trading platform, "
+        "or data vendor. Research and risk-framing only. Not investment advice. No live trading."
         "</div>",
         unsafe_allow_html=True,
     )
@@ -675,6 +677,116 @@ def page_executive_overview() -> None:
                 f'<div class="info-card"><h4>{title}</h4><p>{q}</p></div>',
                 unsafe_allow_html=True,
             )
+
+
+def page_fx_desk_command_center() -> None:
+    """Cross-border payments FX desk decision framework visualization."""
+    st.markdown(
+        '<div class="hero-title">FX DESK COMMAND CENTER</div>'
+        '<div class="hero-subtitle">Cross-border payments and treasury decisions</div>'
+        '<div class="hero-tagline">Exposure, hedging, pricing, liquidity, settlement, and crisis-risk '
+        "intelligence for payment-corridor and multi-currency treasury operations.</div>",
+        unsafe_allow_html=True,
+    )
+
+    desk_sc = safe_read_csv(OUT / "fx_desk_scorecard.csv")
+    framework_md = safe_read_markdown(REPORTS / "FX_DESK_DECISION_FRAMEWORK.md")
+
+    if desk_sc is None:
+        missing_section(
+            "python scripts/run_fx_desk_framework.py",
+            "FX desk scorecard and corridor memos",
+        )
+    else:
+        # Default to US_MX or first row
+        corridor_options = desk_sc["corridor_id"].tolist() if "corridor_id" in desk_sc.columns else []
+        selected = st.selectbox("Corridor", corridor_options, index=0) if corridor_options else None
+        row = desk_sc[desk_sc["corridor_id"] == selected].iloc[0] if selected else desk_sc.iloc[0]
+
+        c1, c2, c3, c4, c5, c6 = st.columns(6)
+        kpis = [
+            ("Latest Regime", str(row.get("latest_regime", "—"))),
+            ("Desk Risk Level", str(row.get("overall_desk_risk_level", "—"))),
+            ("Hedge Timing", str(row.get("hedge_timing_posture", "—"))[:40] + "…"),
+            ("Pricing Posture", str(row.get("customer_pricing_posture", "—"))[:35] + "…"),
+            ("Prefunding", str(row.get("prefunding_posture", "—"))[:35] + "…"),
+            ("Data Quality", str(row.get("data_quality_warning", "—"))[:35] + "…"),
+        ]
+        for col, (title, val) in zip([c1, c2, c3, c4, c5, c6], kpis):
+            with col:
+                st.markdown(metric_card(title, val), unsafe_allow_html=True)
+
+        st.markdown(
+            f'<div class="callout">{row.get("plain_language_summary", "")}</div>',
+            unsafe_allow_html=True,
+        )
+
+    section_header("Decision Modules", "Ten core FX desk decisions — research translation")
+    try:
+        from src.fx_desk_decisions import list_decision_modules
+
+        modules = list_decision_modules()
+        cols = st.columns(2)
+        for i, mod in enumerate(modules):
+            with cols[i % 2]:
+                risks = ", ".join(mod["primary_risks"][:3])
+                inputs = ", ".join(mod["inputs"][:4])
+                st.markdown(
+                    f'<div class="info-card">'
+                    f'<h4>{mod["title"]}</h4>'
+                    f'<p><strong>Q:</strong> {mod["question"]}</p>'
+                    f'<p><strong>Inputs:</strong> {inputs}…</p>'
+                    f'<p><strong>Risks:</strong> {risks}…</p>'
+                    f'<p><strong>BR3N link:</strong> {mod["br3n_model_link"]}</p>'
+                    f"</div>",
+                    unsafe_allow_html=True,
+                )
+    except ImportError:
+        st.warning("Decision registry not loaded.")
+
+    if desk_sc is not None:
+        section_header("Corridor Risk Table")
+        show_cols = [
+            c
+            for c in [
+                "corridor_id",
+                "pair_label",
+                "latest_regime",
+                "overall_desk_risk_level",
+                "hedge_timing_posture",
+                "customer_pricing_posture",
+                "prefunding_posture",
+                "data_quality_warning",
+            ]
+            if c in desk_sc.columns
+        ]
+        st.dataframe(desk_sc[show_cols], width="stretch")
+
+    section_header("FX Desk Memo Viewer")
+    memo_dir = REPORTS / "fx_desk_memos"
+    if memo_dir.exists():
+        memos = sorted(memo_dir.glob("*_fx_desk_memo.md"))
+        if memos:
+            memo_names = [m.name for m in memos]
+            choice = st.selectbox("Select memo", memo_names)
+            content = safe_read_markdown(memo_dir / choice)
+            if content:
+                st.markdown(content)
+        else:
+            missing_section("python scripts/run_fx_desk_framework.py", "Corridor FX desk memos")
+    else:
+        missing_section("python scripts/run_fx_desk_framework.py")
+
+    if framework_md:
+        with st.expander("Full FX Desk Decision Framework"):
+            st.markdown(framework_md)
+
+    st.markdown(
+        '<div class="warning-box">Independent research only — not affiliated with any payment company '
+        "or employer. This dashboard does not replace policy, approvals, exposure systems, "
+        "compliance review, or human desk judgment.</div>",
+        unsafe_allow_html=True,
+    )
 
 
 def page_random_walk_lab() -> None:
@@ -1276,6 +1388,7 @@ def main() -> None:
 
     renderers = {
         "Executive Overview": page_executive_overview,
+        "FX Desk Command Center": page_fx_desk_command_center,
         "Random-Walk Lab": page_random_walk_lab,
         "Regime Intelligence": page_regime_intelligence,
         "Corridor Roadmap": page_corridor_roadmap,
