@@ -1,6 +1,6 @@
 # BR3N Macro Labs — Research Ladder
 
-**Generated:** 2026-05-30 12:46  
+**Generated:** 2026-05-30 12:49  
 **Primary pair:** USDMXN=X  
 **Period:** 2004-03-19 → 2026-05-22 (5773 bars)  
 **Primary strategy:** flat_range
