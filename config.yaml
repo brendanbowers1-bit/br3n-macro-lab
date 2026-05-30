@@ -1,0 +1,85 @@
+data:
+  ticker: "USDMXN=X"
+  history_years: 20
+  interval: "1d"
+
+features:
+  ma_short: 20
+  ma_long: 60
+  realized_vol_window: 20
+  vol_percentile_window: 252
+  vol_percentile_threshold: 0.60
+
+regimes:
+  trend_threshold: 0.0025
+  use_absolute_ma_spread: true
+
+backtest:
+  starting_equity: 1.0
+  annualization_days: 252
+  transaction_cost_bps: 2.0
+  execution_lag_days: 1
+  train_years: 5
+  test_years: 1
+  walk_forward_enabled: true
+  random_walk_seed: 42
+  primary_strategy: flat_range
+
+risk:
+  max_position: 1.0
+  allow_short: true
+
+# Level 5 — economic frictions (research assumptions)
+economic:
+  spread_bps: 3.0
+  slippage_bps: 1.0
+  roll_bps_monthly: 5.0
+  carry_annual_bps: 350  # USDMXN long USD leg approx
+  max_drawdown_stop: null  # e.g. 0.15 to simulate risk limit
+
+reporting:
+  output_dir: "data/outputs"
+  chart_dir: "reports/charts"
+  report_dir: "reports"
+  ladder_dir: "reports/research_ladder"
+
+# Level 2 — fixed OOS splits (pre-registered style)
+research_ladder:
+  level2_splits:
+    - name: split_1
+      train_start: "2010-01-01"
+      train_end: "2018-12-31"
+      test_start: "2019-01-01"
+      test_end: "2021-12-31"
+    - name: split_2
+      train_start: "2010-01-01"
+      train_end: "2021-12-31"
+      test_start: "2022-01-01"
+      test_end: "2024-12-31"
+    - name: split_3
+      train_start: "2010-01-01"
+      train_end: "2024-12-31"
+      test_start: "2025-01-01"
+      test_end: "2026-12-31"
+
+  # Level 3 — multi-pair panel
+  pairs:
+    - USDMXN=X
+    - USDBRL=X
+    - USDCOP=X
+    - USDJPY=X
+    - EURUSD=X
+    - USDINR=X
+    - USDPHP=X
+    - USDZAR=X
+    - USDTRY=X
+
+  strategies:
+    - legacy
+    - flat_range
+    - r2_only
+
+  # Level 6 — holdout (never tune on this until final sign-off)
+  holdout:
+    start: "2025-01-01"
+    end: "2026-12-31"

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Research Ladder — BR3N Macro Lab</title>
+  <style>
+:root {
+  --bg: #0c0f14;
+  --surface: #141a24;
+  --border: #243044;
+  --text: #e8edf4;
+  --muted: #8b9cb3;
+  --accent: #3d8bfd;
+  --accent-dim: #2563b8;
+  --good: #34d399;
+  --warn: #fbbf24;
+  --font: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "SF Mono", ui-monospace, Menlo, monospace;
+  --max: 720px;
+  --wide: 960px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 17px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header {
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #121824 0%, var(--bg) 100%);
+  padding: 2.5rem 1.5rem 2rem;
+}
+.header-inner { max-width: var(--wide); margin: 0 auto; }
+.brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+h1.title { font-size: 2rem; font-weight: 650; margin: 0 0 0.75rem; line-height: 1.2; }
+.subtitle { color: var(--muted); font-size: 1.05rem; max-width: 42rem; }
+nav.top {
+  max-width: var(--wide);
+  margin: 1.25rem auto 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+nav.top a {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: var(--surface);
+}
+nav.top a.primary {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: #fff;
+}
+main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+main.wide { max-width: var(--wide); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.card h3 { margin-top: 0; font-size: 1rem; color: var(--accent); }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat .value { font-size: 1.35rem; font-weight: 650; margin-top: 0.25rem; }
+.stat .value.good { color: var(--good); }
+.stat .value.warn { color: var(--warn); }
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 8px 8px 0;
+  color: var(--muted);
+  font-style: italic;
+}
+h2 { font-size: 1.35rem; margin: 2.25rem 0 1rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
+p { margin: 0.75rem 0; }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+th { background: #1a2230; color: var(--muted); font-weight: 600; }
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  background: #0a0e13;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+code { padding: 0.15rem 0.4rem; }
+pre { padding: 1rem; overflow-x: auto; }
+pre code { border: none; padding: 0; background: none; }
+footer {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.disclaimer {
+  background: #1a1510;
+  border: 1px solid #4a3820;
+  color: #d4a574;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-top: 1rem;
+}
+@media (max-width: 600px) {
+  h1.title { font-size: 1.55rem; }
+  body { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">BR3N Macro Lab</div>
+      <h1 class="title">Research Ladder</h1>
+      <p class="subtitle">USD/MXN regime research · Research only · Not investment advice</p>
+      
+<nav class="top">
+  <a href="index.html" class="primary">One-pager</a>
+  <a href="memo.html">Full research note</a>
+  <a href="ladder.html">Ladder summary</a>
+</nav>
+    </div>
+  </header>
+  <main class="wide">
+    <h1>BR3N Macro Lab — Research Ladder</h1>
+<p><strong>Generated:</strong> 2026-05-30 11:28  </p>
+<p><strong>Primary pair:</strong> USDMXN=X  </p>
+<p><strong>Period:</strong> 2006-09-15 → 2026-05-22 (5125 bars)  </p>
+<p><strong>Primary strategy:</strong> flat_range</p>
+<blockquote><p>Research only. Not investment advice.</p></blockquote>
+<hr/>
+<h2>Ladder status</h2>
+<table>
+<thead><tr><th>Level</th><th>Question</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Do returns differ by regime?</td><td>done</td></tr>
+<tr><td>2</td><td>Beat random walk OOS?</td><td>done</td></tr>
+<tr><td>3</td><td>Works on other pairs?</td><td>done</td></tr>
+<tr><td>4</td><td>Better forecast errors?</td><td>done</td></tr>
+<tr><td>5</td><td>Economic value after costs?</td><td>partial</td></tr>
+<tr><td>6</td><td>Data-snooping control?</td><td>done</td></tr>
+</tbody></table>
+<hr/>
+<h2>Level 1 — Descriptive evidence</h2>
+<p><strong>Question:</strong> Do returns differ by regime?</p>
+<h3>Spot returns by regime</h3>
+<table>
+<thead><tr><th>regime</th><th>pct_time</th><th>days</th><th>avg_bps_day_spot</th><th>sharpe_spot</th><th>max_dd_pct_spot</th></tr></thead>
+<tbody>
+<tr><td>R1_trend_high_vol</td><td>36.18</td><td>1854</td><td>3.06</td><td>0.446</td><td>-20.09</td></tr>
+<tr><td>R2_trend_low_vol</td><td>51.14</td><td>2621</td><td>-0.42</td><td>-0.116</td><td>-22.69</td></tr>
+<tr><td>R3_range_high_vol</td><td>2.26</td><td>116</td><td>17.27</td><td>2.958</td><td>-4.92</td></tr>
+<tr><td>R4_range_low_vol</td><td>10.42</td><td>534</td><td>-0.69</td><td>-0.205</td><td>-13.87</td></tr>
+</tbody></table>
+<h3>Strategy (flat_range) by regime</h3>
+<table>
+<thead><tr><th>regime</th><th>avg_bps_day_flat_range</th><th>sharpe_flat_range</th><th>max_dd_pct_flat_range</th></tr></thead>
+<tbody>
+<tr><td>R1_trend_high_vol</td><td>0.03</td><td>0.005</td><td>-37.23</td></tr>
+<tr><td>R2_trend_low_vol</td><td>1.59</td><td>0.443</td><td>-19.54</td></tr>
+<tr><td>R3_range_high_vol</td><td>-0.57</td><td>-9.966</td><td>-0.66</td></tr>
+<tr><td>R4_range_low_vol</td><td>-0.22</td><td>-5.643</td><td>-1.19</td></tr>
+</tbody></table>
+<hr/>
+<h2>Level 2 — Out-of-sample (fixed splits)</h2>
+<p><strong>Question:</strong> Does the model beat random walk on unseen data?</p>
+<p>Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 2025–2026.</p>
+<table>
+<thead><tr><th>split</th><th>sample</th><th>train_bars</th><th>test_bars</th><th>test_period</th><th>strategy</th><th>total_return_pct</th><th>sharpe</th><th>max_drawdown_pct</th><th>beats_random_walk_sharpe</th></tr></thead>
+<tbody>
+<tr><td>split_1</td><td>test</td><td>2347</td><td>783</td><td>2019-01-01..2021-12-31</td><td>legacy</td><td>-1.86</td><td>0.024</td><td>-18.42</td><td>None</td></tr>
+<tr><td>split_1</td><td>test</td><td>2347</td><td>783</td><td>2019-01-01..2021-12-31</td><td>flat_range</td><td>0.42</td><td>0.075</td><td>-15.98</td><td>True</td></tr>
+<tr><td>split_1</td><td>test</td><td>2347</td><td>783</td><td>2019-01-01..2021-12-31</td><td>r2_only</td><td>1.67</td><td>0.112</td><td>-9.54</td><td>None</td></tr>
+<tr><td>split_1</td><td>test</td><td>2347</td><td>783</td><td>2019-01-01..2021-12-31</td><td>random_walk</td><td>0.0</td><td>0.0</td><td>0.0</td><td>None</td></tr>
+<tr><td>split_2</td><td>test</td><td>3130</td><td>782</td><td>2022-01-01..2024-12-31</td><td>legacy</td><td>22.34</td><td>0.625</td><td>-11.62</td><td>None</td></tr>
+<tr><td>split_2</td><td>test</td><td>3130</td><td>782</td><td>2022-01-01..2024-12-31</td><td>flat_range</td><td>10.92</td><td>0.363</td><td>-13.3</td><td>True</td></tr>
+<tr><td>split_2</td><td>test</td><td>3130</td><td>782</td><td>2022-01-01..2024-12-31</td><td>r2_only</td><td>19.86</td><td>1.014</td><td>-4.03</td><td>None</td></tr>
+<tr><td>split_2</td><td>test</td><td>3130</td><td>782</td><td>2022-01-01..2024-12-31</td><td>random_walk</td><td>0.0</td><td>0.0</td><td>0.0</td><td>None</td></tr>
+<tr><td>split_3</td><td>test</td><td>3912</td><td>358</td><td>2025-01-01..2026-12-31</td><td>legacy</td><td>8.35</td><td>0.604</td><td>-7.01</td><td>None</td></tr>
+<tr><td>split_3</td><td>test</td><td>3912</td><td>358</td><td>2025-01-01..2026-12-31</td><td>flat_range</td><td>3.82</td><td>0.317</td><td>-7.07</td><td>True</td></tr>
+<tr><td>split_3</td><td>test</td><td>3912</td><td>358</td><td>2025-01-01..2026-12-31</td><td>r2_only</td><td>8.64</td><td>1.13</td><td>-3.39</td><td>None</td></tr>
+<tr><td>split_3</td><td>test</td><td>3912</td><td>358</td><td>2025-01-01..2026-12-31</td><td>random_walk</td><td>0.0</td><td>0.0</td><td>0.0</td><td>None</td></tr>
+</tbody></table>
+<hr/>
+<h2>Level 3 — Multi-pair</h2>
+<p><strong>Question:</strong> Does this work outside USD/MXN?</p>
+<table>
+<thead><tr><th>strategy</th><th>total_return_pct</th><th>ann_return_pct</th><th>ann_vol_pct</th><th>sharpe</th><th>max_drawdown_pct</th><th>win_rate_pct</th><th>trades</th><th>pct_flat</th><th>total_cost_pct</th><th>ticker</th><th>bars</th><th>start</th><th>end</th><th>primary_beats_rw</th></tr></thead>
+<tbody>
+<tr><td>flat_range</td><td>28.9</td><td>1.26</td><td>12.17</td><td>0.163</td><td>-32.61</td><td>43.5</td><td>187</td><td>14.5</td><td>3.74</td><td>USDMXN=X</td><td>5125</td><td>2006-09-15</td><td>2026-05-22</td><td>True</td></tr>
+<tr><td>flat_range</td><td>62.95</td><td>2.44</td><td>17.23</td><td>0.226</td><td>-41.34</td><td>45.0</td><td>191</td><td>11.5</td><td>3.82</td><td>USDBRL=X</td><td>5097</td><td>2006-09-18</td><td>2026-05-25</td><td>True</td></tr>
+<tr><td>flat_range</td><td>22.63</td><td>1.01</td><td>17.99</td><td>0.146</td><td>-41.89</td><td>44.2</td><td>189</td><td>10.2</td><td>3.78</td><td>USDCOP=X</td><td>5113</td><td>2006-09-15</td><td>2026-05-22</td><td>True</td></tr>
+<tr><td>flat_range</td><td>59.0</td><td>2.32</td><td>10.02</td><td>0.279</td><td>-21.68</td><td>42.3</td><td>181</td><td>15.5</td><td>3.62</td><td>USDJPY=X</td><td>5104</td><td>2006-09-18</td><td>2026-05-25</td><td>True</td></tr>
+<tr><td>flat_range</td><td>21.83</td><td>0.98</td><td>9.13</td><td>0.153</td><td>-24.12</td><td>42.0</td><td>188</td><td>16.2</td><td>3.78</td><td>EURUSD=X</td><td>5104</td><td>2006-09-15</td><td>2026-05-22</td><td>True</td></tr>
+<tr><td>flat_range</td><td>17.62</td><td>0.8</td><td>7.01</td><td>0.149</td><td>-24.2</td><td>36.9</td><td>197</td><td>25.1</td><td>3.94</td><td>USDINR=X</td><td>5102</td><td>2006-09-15</td><td>2026-05-22</td><td>True</td></tr>
+<tr><td>flat_range</td><td>3.16</td><td>0.15</td><td>7.63</td><td>0.059</td><td>-35.86</td><td>39.1</td><td>185</td><td>20.5</td><td>3.7</td><td>USDPHP=X</td><td>5100</td><td>2006-09-15</td><td>2026-05-22</td><td>True</td></tr>
+<tr><td>flat_range</td><td>-19.3</td><td>-1.05</td><td>17.02</td><td>0.023</td><td>-40.4</td><td>43.5</td><td>215</td><td>11.2</td><td>4.3</td><td>USDZAR=X</td><td>5118</td><td>2006-09-18</td><td>2026-05-25</td><td>True</td></tr>
+<tr><td>flat_range</td><td>1107.91</td><td>13.05</td><td>16.0</td><td>0.847</td><td>-36.72</td><td>50.6</td><td>142</td><td>9.7</td><td>2.86</td><td>USDTRY=X</td><td>5118</td><td>2006-09-15</td><td>2026-05-22</td><td>True</td></tr>
+</tbody></table>
+<h3>Per-pair OOS (<code>flat_range</code> vs random walk)</h3>
+<table>
+<thead><tr><th>split</th><th>primary_sharpe</th><th>primary_return_pct</th><th>rw_sharpe</th><th>beats_rw</th><th>ticker</th></tr></thead>
+<tbody>
+<tr><td>split_1</td><td>0.075</td><td>0.42</td><td>0.0</td><td>True</td><td>USDMXN=X</td></tr>
+<tr><td>split_2</td><td>0.363</td><td>10.92</td><td>0.0</td><td>True</td><td>USDMXN=X</td></tr>
+<tr><td>split_3</td><td>0.317</td><td>3.82</td><td>0.0</td><td>True</td><td>USDMXN=X</td></tr>
+<tr><td>split_1</td><td>-0.201</td><td>-14.38</td><td>0.0</td><td>False</td><td>USDBRL=X</td></tr>
+<tr><td>split_2</td><td>0.048</td><td>-0.78</td><td>0.0</td><td>True</td><td>USDBRL=X</td></tr>
+<tr><td>split_3</td><td>-0.709</td><td>-12.34</td><td>0.0</td><td>False</td><td>USDBRL=X</td></tr>
+<tr><td>split_1</td><td>-0.318</td><td>-16.49</td><td>0.0</td><td>False</td><td>USDCOP=X</td></tr>
+<tr><td>split_2</td><td>0.041</td><td>-1.65</td><td>0.0</td><td>True</td><td>USDCOP=X</td></tr>
+<tr><td>split_3</td><td>-0.367</td><td>-8.53</td><td>0.0</td><td>False</td><td>USDCOP=X</td></tr>
+<tr><td>split_1</td><td>-0.367</td><td>-6.65</td><td>0.0</td><td>False</td><td>USDJPY=X</td></tr>
+<tr><td>split_2</td><td>0.776</td><td>25.54</td><td>0.0</td><td>True</td><td>USDJPY=X</td></tr>
+<tr><td>split_3</td><td>-0.08</td><td>-1.55</td><td>0.0</td><td>False</td><td>USDJPY=X</td></tr>
+<tr><td>split_1</td><td>-0.004</td><td>-0.49</td><td>0.0</td><td>False</td><td>EURUSD=X</td></tr>
+<tr><td>split_2</td><td>0.067</td><td>0.7</td><td>0.0</td><td>True</td><td>EURUSD=X</td></tr>
+<tr><td>split_3</td><td>0.487</td><td>4.71</td><td>0.0</td><td>True</td><td>EURUSD=X</td></tr>
+<tr><td>split_1</td><td>-1.045</td><td>-19.17</td><td>0.0</td><td>False</td><td>USDINR=X</td></tr>
+<tr><td>split_2</td><td>0.042</td><td>0.25</td><td>0.0</td><td>True</td><td>USDINR=X</td></tr>
+<tr><td>split_3</td><td>0.838</td><td>6.79</td><td>0.0</td><td>True</td><td>USDINR=X</td></tr>
+<tr><td>split_1</td><td>-0.455</td><td>-8.61</td><td>0.0</td><td>False</td><td>USDPHP=X</td></tr>
+<tr><td>split_2</td><td>0.49</td><td>9.92</td><td>0.0</td><td>True</td><td>USDPHP=X</td></tr>
+<tr><td>split_3</td><td>0.316</td><td>3.69</td><td>0.0</td><td>True</td><td>USDPHP=X</td></tr>
+<tr><td>split_1</td><td>0.156</td><td>3.84</td><td>0.0</td><td>True</td><td>USDZAR=X</td></tr>
+<tr><td>split_2</td><td>-0.203</td><td>-10.49</td><td>0.0</td><td>False</td><td>USDZAR=X</td></tr>
+<tr><td>split_3</td><td>-0.088</td><td>-8.23</td><td>0.0</td><td>False</td><td>USDZAR=X</td></tr>
+<tr><td>split_1</td><td>1.097</td><td>101.52</td><td>0.0</td><td>True</td><td>USDTRY=X</td></tr>
+<tr><td>split_2</td><td>3.212</td><td>154.86</td><td>0.0</td><td>True</td><td>USDTRY=X</td></tr>
+<tr><td>split_3</td><td>5.127</td><td>29.2</td><td>0.0</td><td>True</td><td>USDTRY=X</td></tr>
+</tbody></table>
+<h3>OOS summary by pair</h3>
+<table>
+<thead><tr><th>ticker</th><th>splits_beating_rw</th><th>splits_total</th><th>all_splits_beat_rw</th></tr></thead>
+<tbody>
+<tr><td>EURUSD=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDBRL=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDCOP=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDINR=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDJPY=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDMXN=X</td><td>3</td><td>3</td><td>True</td></tr>
+<tr><td>USDPHP=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDTRY=X</td><td>3</td><td>3</td><td>True</td></tr>
+<tr><td>USDZAR=X</td><td>1</td><td>3</td><td>False</td></tr>
+</tbody></table>
+<h3>OOS aggregate</h3>
+<table>
+<thead><tr><th>cells</th><th>beats_rw_cells</th><th>pct_beats_rw</th><th>pairs_tested</th></tr></thead>
+<tbody>
+<tr><td>27.0</td><td>16.0</td><td>59.3</td><td>9.0</td></tr>
+</tbody></table>
+<hr/>
+<h2>Level 4 — Forecast errors</h2>
+<p><strong>Question:</strong> Better forecasts than random walk (zero)?</p>
+<table>
+<thead><tr><th>split</th><th>test_period</th><th>strategy</th><th>mae_model</th><th>rmse_model</th><th>dir_acc_model_pct</th><th>mae_rw</th><th>rmse_rw</th><th>dir_acc_rw_pct</th><th>dm_stat</th><th>dm_pvalue</th><th>model_beats_rw_mae</th><th>clark_west_note</th></tr></thead>
+<tbody>
+<tr><td>split_1</td><td>2019-01-01..2021-12-31</td><td>flat_range</td><td>0.005939102761101291</td><td>0.008647659921353528</td><td>39.59131545338442</td><td>0.005938415226997784</td><td>0.008647735214997272</td><td>0.0</td><td>-0.0012933186736936038</td><td>0.9989680812857389</td><td>False</td><td>CW not run — use when nested OLS forecas</td></tr>
+<tr><td>split_2</td><td>2022-01-01..2024-12-31</td><td>flat_range</td><td>0.0052463370621143</td><td>0.007216597405093337</td><td>46.67519181585678</td><td>0.0052454287107691</td><td>0.007216001927182372</td><td>0.0</td><td>0.008531476531811844</td><td>0.9931929491709532</td><td>False</td><td>CW not run — use when nested OLS forecas</td></tr>
+<tr><td>split_3</td><td>2025-01-01..2026-12-31</td><td>flat_range</td><td>0.004477809349403005</td><td>0.006424743002585592</td><td>46.089385474860336</td><td>0.004475033861764117</td><td>0.00642495899872646</td><td>0.0</td><td>-0.0027506823051637857</td><td>0.9978052758246763</td><td>False</td><td>CW not run — use when nested OLS forecas</td></tr>
+</tbody></table>
+<hr/>
+<h2>Level 5 — Economic value</h2>
+<p><strong>Question:</strong> Money/risk after spreads, roll, carry?</p>
+<table>
+<thead><tr><th>strategy</th><th>total_return_pct</th><th>ann_return_pct</th><th>ann_vol_pct</th><th>sharpe</th><th>max_drawdown_pct</th><th>win_rate_pct</th><th>cost_layer</th><th>total_cost_pct</th></tr></thead>
+<tbody>
+<tr><td>flat_range</td><td>28.9</td><td>1.26</td><td>12.17</td><td>0.163</td><td>-32.61</td><td>43.5</td><td>base_costs_only</td><td>3.74</td></tr>
+<tr><td>flat_range</td><td>2.43</td><td>0.12</td><td>12.18</td><td>0.071</td><td>-41.0</td><td>43.0</td><td>full_economic</td><td>21.649</td></tr>
+</tbody></table>
+<hr/>
+<h2>Level 6 — Data-snooping control</h2>
+<h3>Pre-registered hypotheses</h3>
+<ul><li>H1: Average spot return differs across R1–R4 regimes (Level 1).</li><li>H2: flat_range OOS Sharpe exceeds random_walk on fixed splits (Level 2).</li><li>H3: Effect appears in &gt;=50% of EM FX pairs tested (Level 3).</li><li>H4: Model 1-step forecast RMSE &lt; random walk on OOS splits (Level 4).</li><li>H5: Net return remains positive after full economic frictions (Level 5).</li><li>H6: Holdout period not used for any parameter tuning (Level 6).</li><li>H7: Best-of-strategy Sharpe survives White Reality Check (p &lt; 0.05).</li></ul>
+<h3>Holdout evaluation (do not tune on this window)</h3>
+<table>
+<thead><tr><th>strategy</th><th>total_return_pct</th><th>ann_return_pct</th><th>ann_vol_pct</th><th>sharpe</th><th>max_drawdown_pct</th><th>win_rate_pct</th><th>sample</th><th>period</th></tr></thead>
+<tbody>
+<tr><td>flat_range</td><td>3.82</td><td>2.67</td><td>9.87</td><td>0.317</td><td>-7.07</td><td>45.8</td><td>holdout</td><td>2025-01-01..2026-12-31</td></tr>
+<tr><td>legacy</td><td>8.35</td><td>5.81</td><td>10.2</td><td>0.604</td><td>-7.01</td><td>53.9</td><td>holdout</td><td>2025-01-01..2026-12-31</td></tr>
+<tr><td>random_walk</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>holdout</td><td>2025-01-01..2026-12-31</td></tr>
+</tbody></table>
+<h3>Bootstrap Sharpe check (flat_range, full sample)</h3>
+<ul><li>observed_sharpe: 0.163</li><li>boot_pvalue_approx: 0.22</li></ul>
+<h3>White Reality Check (legacy / flat_range / r2_only)</h3>
+<table>
+<thead><tr><th>strategy</th><th>observed_sharpe</th><th>is_best</th><th>bars</th><th>best_strategy</th><th>observed_max_sharpe</th><th>white_rc_pvalue</th><th>n_boot</th><th>block_len</th><th>rejects_data_mining_5pct</th></tr></thead>
+<tbody>
+<tr><td>flat_range</td><td>0.1634</td><td>False</td><td>5125.0</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td></tr>
+<tr><td>legacy</td><td>0.1346</td><td>False</td><td>5125.0</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td></tr>
+<tr><td>r2_only</td><td>0.2306</td><td>True</td><td>5125.0</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td><td>nan</td></tr>
+<tr><td>_SUMMARY</td><td>nan</td><td>nan</td><td>nan</td><td>r2_only</td><td>0.2306</td><td>0.628</td><td>2000.0</td><td>10.0</td><td>False</td></tr>
+</tbody></table>
+<ul><li>best_strategy: r2_only</li><li>white_rc_pvalue: 0.628</li><li>rejects_data_mining_5pct: False</li></ul>
+<h3>Holdout discipline</h3>
+<ul><li>Do not change <code>config.yaml</code> after reading holdout results</li><li>Document all trials in a research log</li></ul>
+<hr/>
+<h2>Next actions</h2>
+<ol><li>Refresh all pairs: <code>python scripts/run_research_ladder.py --refresh</code> (Terminal.app)</li><li>USDCOP and other EM feeds are auto-sanitized (<code>src/data_cleaning.py</code>)</li><li>Do not change <code>config.yaml</code> thresholds after reading holdout results.</li></ol>
+<hr/>
+  </main>
+  <footer>
+    <p>BR3N Macro Lab · Generated 2026-05-30</p>
+    <div class="disclaimer">This site is for research and education only. It is not investment advice, a trading recommendation, or a substitute for professional judgment.</div>
+  </footer>
+</body>
+</html>

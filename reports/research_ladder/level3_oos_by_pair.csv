@@ -1,0 +1,10 @@
+ticker,splits_beating_rw,splits_total,all_splits_beat_rw
+EURUSD=X,2,3,False
+USDBRL=X,1,3,False
+USDCOP=X,1,3,False
+USDINR=X,2,3,False
+USDJPY=X,1,3,False
+USDMXN=X,3,3,True
+USDPHP=X,2,3,False
+USDTRY=X,3,3,True
+USDZAR=X,1,3,False

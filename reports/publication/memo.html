@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Full Research Note — BR3N Macro Lab</title>
+  <style>
+:root {
+  --bg: #0c0f14;
+  --surface: #141a24;
+  --border: #243044;
+  --text: #e8edf4;
+  --muted: #8b9cb3;
+  --accent: #3d8bfd;
+  --accent-dim: #2563b8;
+  --good: #34d399;
+  --warn: #fbbf24;
+  --font: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "SF Mono", ui-monospace, Menlo, monospace;
+  --max: 720px;
+  --wide: 960px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 17px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header {
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #121824 0%, var(--bg) 100%);
+  padding: 2.5rem 1.5rem 2rem;
+}
+.header-inner { max-width: var(--wide); margin: 0 auto; }
+.brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+h1.title { font-size: 2rem; font-weight: 650; margin: 0 0 0.75rem; line-height: 1.2; }
+.subtitle { color: var(--muted); font-size: 1.05rem; max-width: 42rem; }
+nav.top {
+  max-width: var(--wide);
+  margin: 1.25rem auto 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+nav.top a {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: var(--surface);
+}
+nav.top a.primary {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: #fff;
+}
+main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+main.wide { max-width: var(--wide); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.card h3 { margin-top: 0; font-size: 1rem; color: var(--accent); }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.stat .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat .value { font-size: 1.35rem; font-weight: 650; margin-top: 0.25rem; }
+.stat .value.good { color: var(--good); }
+.stat .value.warn { color: var(--warn); }
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 8px 8px 0;
+  color: var(--muted);
+  font-style: italic;
+}
+h2 { font-size: 1.35rem; margin: 2.25rem 0 1rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
+p { margin: 0.75rem 0; }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+th { background: #1a2230; color: var(--muted); font-weight: 600; }
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  background: #0a0e13;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+code { padding: 0.15rem 0.4rem; }
+pre { padding: 1rem; overflow-x: auto; }
+pre code { border: none; padding: 0; background: none; }
+footer {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.disclaimer {
+  background: #1a1510;
+  border: 1px solid #4a3820;
+  color: #d4a574;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-top: 1rem;
+}
+@media (max-width: 600px) {
+  h1.title { font-size: 1.55rem; }
+  body { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">BR3N Macro Lab</div>
+      <h1 class="title">Full Research Note</h1>
+      <p class="subtitle">USD/MXN regime research · Research only · Not investment advice</p>
+      
+<nav class="top">
+  <a href="index.html" class="primary">One-pager</a>
+  <a href="memo.html">Full research note</a>
+  <a href="ladder.html">Ladder summary</a>
+</nav>
+    </div>
+  </header>
+  <main class="wide">
+    <h1>When Should You Hedge? A Simple Regime Test on USD/MXN</h1>
+<p><strong>Author:</strong> Brendan Bowers  </p>
+<p><strong>Date:</strong> 2026-05-30  </p>
+<p><strong>Type:</strong> Research note (not investment advice)</p>
+<hr/>
+<h2>Abstract</h2>
+<p>I built a small research lab to answer one practical question for treasury and risk teams:</p>
+<blockquote><p><strong>Should you adjust your USD/MXN hedge based on market regime — or is it better to stay flat when the market is “range-bound”?</strong></p></blockquote>
+<p>Using ~20 years of daily FX data, I classified each day into four regimes (trend vs range × high vs low volatility), then tested a simple rule: <strong>follow the trend in trending regimes; go flat in ranging regimes.</strong> I stress-tested that idea with a six-level “research ladder” — from descriptive stats to out-of-sample tests, nine currency pairs, forecast errors, trading costs, and data-snooping controls.</p>
+<p><strong>Bottom line:</strong> The regime story is real for USD/MXN — returns and strategy P&amp;L behave differently across regimes — and the “stay flat in range” rule beats doing nothing out-of-sample on MXN. But it is <strong>not</strong> a price-forecasting model, it <strong>does not</strong> cleanly generalize to every EM pair in every period, and it <strong>does not</strong> survive strict multiple-testing correction after searching across strategies.</p>
+<hr/>
+<h2>1. The idea in one minute</h2>
+<p>Most FX hedging programs use a fixed hedge ratio (e.g. 80% of exposure). This project asks whether <strong>when</strong> you hedge matters as much as <strong>how much</strong>.</p>
+<pre><code class="mermaid">
+flowchart LR
+    A[Daily USD/MXN price] --&gt; B[4 regimes]
+    B --&gt; C{Trending?}
+    C --&gt;|Yes| D[Follow MA trend signal]
+    C --&gt;|No — range| E[Stay flat — no position]
+    D --&gt; F[Compare vs benchmarks]
+    E --&gt; F
+</code></pre>
+<p><strong>Four regimes</strong></p>
+<table>
+<thead><tr><th>Regime</th><th>Plain English</th><th>~Time in sample</th></tr></thead>
+<tbody>
+<tr><td>R1</td><td>Trending + volatile</td><td>36.18%</td></tr>
+<tr><td>R2</td><td>Trending + calm</td><td>51.14%</td></tr>
+<tr><td>R3</td><td>Range-bound + volatile</td><td>2.26%</td></tr>
+<tr><td>R4</td><td>Range-bound + calm</td><td>10.42%</td></tr>
+</tbody></table>
+<p><strong>Strategy tested (<code>flat_range</code>):</strong> Use a simple moving-average trend signal (MA20 vs MA60) <strong>only</strong> in trending regimes (R1/R2). In range regimes (R3/R4), <strong>position = 0</strong>.</p>
+<p><strong>Benchmarks:</strong></p>
+<ul><li><em>Buy and hold</em> — always long USD/MXN  </li><li><em>Random walk</em> — always flat (zero position). This is the right null for “does timing add value vs doing nothing?”</li></ul>
+<hr/>
+<h2>2. What I did — the research ladder</h2>
+<p>I pre-registered six levels of evidence so the project couldn’t “stop when the chart looked good.”</p>
+<table>
+<thead><tr><th>Level</th><th>Question</th><th>Method</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Do returns differ by regime?</td><td>Average bps/day, Sharpe, drawdown by regime</td></tr>
+<tr><td><strong>2</strong></td><td>Does it work out-of-sample?</td><td>Train 2010–18 → test 2019–21; roll forward to 2022–24 and 2025–26</td></tr>
+<tr><td><strong>3</strong></td><td>Is it only MXN?</td><td>Same test on 9 G10/EM pairs</td></tr>
+<tr><td><strong>4</strong></td><td>Does it forecast prices?</td><td>MAE, RMSE, directional accuracy, Diebold–Mariano test</td></tr>
+<tr><td><strong>5</strong></td><td>Does it survive costs?</td><td>Spreads, slippage, roll, carry assumptions</td></tr>
+<tr><td><strong>6</strong></td><td>Did I overfit?</td><td>Holdout window, bootstrap Sharpe, White Reality Check</td></tr>
+</tbody></table>
+<p>All code and config live in <strong>BR3N Macro Lab</strong> (<code>~/fx_regime_lab</code>). Reproduce with:</p>
+<pre><code class="bash">
+python scripts/run_research_ladder.py --refresh
+python scripts/build_publication.py
+</code></pre>
+<hr/>
+<h2>3. What I found</h2>
+<h3>Level 1 — Returns differ by regime (USD/MXN)</h3>
+<p>Spot USD/MXN returns are <strong>not</strong> the same in every regime. Strategy P&amp;L concentrates in <strong>R2 (trend + low vol)</strong>:</p>
+<table>
+<thead><tr><th>regime</th><th>avg_bps_day_flat_range</th><th>sharpe_flat_range</th></tr></thead>
+<tbody>
+<tr><td>R1_trend_high_vol</td><td>0.03</td><td>0.005</td></tr>
+<tr><td>R2_trend_low_vol</td><td>1.59</td><td>0.443</td></tr>
+<tr><td>R3_range_high_vol</td><td>-0.57</td><td>-9.966</td></tr>
+<tr><td>R4_range_low_vol</td><td>-0.22</td><td>-5.643</td></tr>
+</tbody></table>
+<p><strong>Interpretation:</strong> The edge, if any, is about <strong>when not to trade</strong> (sit out range regimes), not about calling every wiggle.</p>
+<h3>Level 2 — Out-of-sample on USD/MXN</h3>
+<p><code>flat_range</code> beat the flat benchmark (random walk) on <strong>all three</strong> pre-declared test windows:</p>
+<table>
+<thead><tr><th>test_window</th><th>flat_range_return_%</th><th>flat_range_sharpe</th><th>random_walk_sharpe</th><th>beats_flat_benchmark</th></tr></thead>
+<tbody>
+<tr><td>2019-01-01..2021-12-31</td><td>0.42</td><td>0.075</td><td>0.0</td><td>True</td></tr>
+<tr><td>2022-01-01..2024-12-31</td><td>10.92</td><td>0.363</td><td>0.0</td><td>True</td></tr>
+<tr><td>2025-01-01..2026-12-31</td><td>3.82</td><td>0.317</td><td>0.0</td><td>True</td></tr>
+</tbody></table>
+<p>2019–2021 was economically weak (+0.4%, Sharpe 0.08). Stronger periods: 2022–2024 (+10.9%, Sharpe 0.36).</p>
+<h3>Level 3 — Other currency pairs</h3>
+<p>Full-sample Sharpe (<code>flat_range</code>):</p>
+<table>
+<thead><tr><th>ticker</th><th>sharpe</th><th>total_return_pct</th><th>max_drawdown_pct</th><th>primary_beats_rw</th></tr></thead>
+<tbody>
+<tr><td>USDMXN=X</td><td>0.163</td><td>28.9</td><td>-32.61</td><td>True</td></tr>
+<tr><td>USDBRL=X</td><td>0.226</td><td>62.95</td><td>-41.34</td><td>True</td></tr>
+<tr><td>USDCOP=X</td><td>0.146</td><td>22.63</td><td>-41.89</td><td>True</td></tr>
+<tr><td>USDJPY=X</td><td>0.279</td><td>59.0</td><td>-21.68</td><td>True</td></tr>
+<tr><td>EURUSD=X</td><td>0.153</td><td>21.83</td><td>-24.12</td><td>True</td></tr>
+<tr><td>USDINR=X</td><td>0.149</td><td>17.62</td><td>-24.2</td><td>True</td></tr>
+<tr><td>USDPHP=X</td><td>0.059</td><td>3.16</td><td>-35.86</td><td>True</td></tr>
+<tr><td>USDZAR=X</td><td>0.023</td><td>-19.3</td><td>-40.4</td><td>True</td></tr>
+<tr><td>USDTRY=X</td><td>0.847</td><td>1107.91</td><td>-36.72</td><td>True</td></tr>
+</tbody></table>
+<p><strong>Cross-pair OOS:</strong> 59.3% of pair×split cells beat the flat benchmark (16.0/27.0). Only <strong>USD/MXN</strong> and <strong>USD/TRY</strong> beat the benchmark on all three OOS splits.</p>
+<table>
+<thead><tr><th>ticker</th><th>splits_beating_rw</th><th>splits_total</th><th>all_splits_beat_rw</th></tr></thead>
+<tbody>
+<tr><td>EURUSD=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDBRL=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDCOP=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDINR=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDJPY=X</td><td>1</td><td>3</td><td>False</td></tr>
+<tr><td>USDMXN=X</td><td>3</td><td>3</td><td>True</td></tr>
+<tr><td>USDPHP=X</td><td>2</td><td>3</td><td>False</td></tr>
+<tr><td>USDTRY=X</td><td>3</td><td>3</td><td>True</td></tr>
+<tr><td>USDZAR=X</td><td>1</td><td>3</td><td>False</td></tr>
+</tbody></table>
+<h3>Level 4 — Not a forecasting model</h3>
+<p>Forecast errors were <strong>not</strong> better than a random-walk (zero) forecast. Diebold–Mariano p-values ≈ 0.99. <strong>Do not</strong> describe this as “predicting MXN.”</p>
+<h3>Level 5 — Economics after frictions</h3>
+<table>
+<thead><tr><th>Cost layer</th><th>Total return</th><th>Sharpe</th></tr></thead>
+<tbody>
+<tr><td>Base (2 bps turnover)</td><td>28.9%</td><td>0.163</td></tr>
+<tr><td>Full economic stack</td><td>2.43%</td><td>0.071</td></tr>
+</tbody></table>
+<p>Realistic frictions cut cumulative return sharply. Still slightly positive on MXN over 20y, but <strong>not</strong> a high-Sharpe trading strategy.</p>
+<h3>Level 6 — Data-snooping</h3>
+<table>
+<thead><tr><th>Check</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Best strategy (full sample)</td><td><code>r2_only</code></td></tr>
+<tr><td>White Reality Check p-value</td><td>0.628</td></tr>
+<tr><td>Survives 5% threshold?</td><td><strong>No</strong> (p &gt; 0.05)</td></tr>
+</tbody></table>
+<p>Searching across <code>legacy</code>, <code>flat_range</code>, and <code>r2_only</code> and picking the best <strong>does not</strong> pass a formal reality check. Treat <code>r2_only</code>’s strong in-sample stats with skepticism.</p>
+<hr/>
+<h2>4. Hypothesis scorecard</h2>
+<table>
+<thead><tr><th>#</th><th>Hypothesis</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>H1</td><td>Returns differ across regimes</td><td><strong>Supported</strong></td></tr>
+<tr><td>H2</td><td>OOS Sharpe beats flat benchmark on MXN</td><td><strong>Supported</strong> (weak in 2019–21)</td></tr>
+<tr><td>H3</td><td>Works on ≥50% of EM pairs</td><td><strong>Mixed</strong> — full sample yes; strict OOS no</td></tr>
+<tr><td>H4</td><td>Better price forecasts than random walk</td><td><strong>Not supported</strong></td></tr>
+<tr><td>H5</td><td>Positive after full economic costs</td><td><strong>Weak yes</strong> (2.43%)</td></tr>
+<tr><td>H7</td><td>White Reality Check</td><td><strong>Not supported</strong></td></tr>
+</tbody></table>
+<hr/>
+<h2>5. Practical takeaway for hedging</h2>
+<p><strong>What this supports</strong></p>
+<ul><li>Regime labels are a useful <strong>risk-management language</strong> for USD/MXN.</li><li>There is evidence that <strong>staying flat in range regimes</strong> avoids churn when trend signals are unreliable.</li><li>Out-of-sample on MXN, the rule did not underperform “do nothing” — and helped in recent windows.</li></ul>
+<p><strong>What this does not support</strong></p>
+<ul><li>A deployable alpha strategy after realistic costs.</li><li>A universal rule across all EM FX pairs and all periods.</li><li>Better point forecasts of USD/MXN.</li></ul>
+<p><strong>Plain-English policy framing</strong></p>
+<blockquote><p>“We don’t use this to predict MXN. We use it to ask: <em>Is this a trending environment where our hedge should be active, or a range environment where we should avoid over-trading?</em> On MXN, that distinction shows up in the data. On other pairs, results are mixed.”</p></blockquote>
+<hr/>
+<h2>6. Limitations</h2>
+<ul><li>Rule-based regimes with fixed thresholds (no ML, no forward curve).</li><li>Yahoo/Stooq daily spot only; no intraday or options.</li><li>Costs and carry are stylized assumptions, not live treasury fills.</li><li>USD/TRY results are dominated by long-run lira depreciation — not comparable to MXN for policy use.</li><li>Holdout window 2025–2026 was evaluated once; do not re-tune parameters after seeing it.</li></ul>
+<hr/>
+<h2>7. Reproducibility</h2>
+<table>
+<thead><tr><th>Item</th><th>Location</th></tr></thead>
+<tbody>
+<tr><td>Code</td><td><code>~/fx_regime_lab</code></td></tr>
+<tr><td>Config (pre-registered splits)</td><td><code>config.yaml</code></td></tr>
+<tr><td>Full ladder output</td><td><code>reports/research_ladder/</code></td></tr>
+<tr><td>Model card</td><td><code>reports/model_cards/usdmxn_regime_model.md</code></td></tr>
+</tbody></table>
+<hr/>
+<h2>Disclaimer</h2>
+<p>This document is <strong>research and risk framing only</strong>. It is <strong>not</strong> investment advice, a trading recommendation, or a substitute for professional treasury, accounting, or regulatory judgment. Past backtests do not guarantee future results.</p>
+<hr/>
+<p><em>Generated by BR3N Macro Lab — <code>build_publication.py</code></em></p>
+  </main>
+  <footer>
+    <p>BR3N Macro Lab · Generated 2026-05-30</p>
+    <div class="disclaimer">This site is for research and education only. It is not investment advice, a trading recommendation, or a substitute for professional judgment.</div>
+  </footer>
+</body>
+</html>

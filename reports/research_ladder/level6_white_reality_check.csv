@@ -1,0 +1,5 @@
+strategy,observed_sharpe,is_best,bars,best_strategy,observed_max_sharpe,white_rc_pvalue,n_boot,block_len,rejects_data_mining_5pct
+flat_range,0.1634,False,5125.0,,,,,,
+legacy,0.1346,False,5125.0,,,,,,
+r2_only,0.2306,True,5125.0,,,,,,
+_SUMMARY,,,,r2_only,0.2306,0.628,2000.0,10.0,False
