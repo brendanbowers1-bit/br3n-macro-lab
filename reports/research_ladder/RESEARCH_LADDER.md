@@ -1,6 +1,6 @@
 # BR3N Macro Labs — Research Ladder
 
-**Generated:** 2026-05-30 15:55  
+**Generated:** 2026-05-30 15:59  
 **Primary pair:** USDMXN=X  
 **Period:** 2001-09-14 → 2026-05-15 (6183 bars)  
 **Primary strategy:** flat_range
@@ -45,7 +45,7 @@
 | 5 — Economic value after full frictions | Money/risk after spreads, roll, carry? | Not robust yet |
 | 6 — Data-snooping control | Data-snooping / holdout discipline? | Not supported yet |
 | 7 — Hedge-governance usefulness | Can regime rules improve hedge governance when forecasts fail? | See Level 7 below |
-| 8 — Institutional proof | External validity for hedge-governance claims? | Not met — 0 met, 5 partial, 4 failed |
+| 8 — Institutional proof | External validity for hedge-governance claims? | Not met — 1 met, 6 partial, 2 failed |
 
 ---
 
@@ -325,15 +325,15 @@ Do **not** upgrade hedge-governance claims from prototype to institutional until
 
 | requirement | pass_threshold | evidence_status | current_state | design_notes |
 | --- | --- | --- | --- | --- |
-| Many currency pairs | >= 10 pairs with hedge scorecards published | Not met | Hedge: 1 pair(s); trading ladder: ~19 pairs | Trading ladder covers ~19 pairs; hedge govern… |
-| Multiple decades | >= 20 years per pair without survivorship gaps | Partial | ~25 years on flagship pair only | USD/MXN ~20–25y; not validated across full pa… |
-| Official data | Tier-1 spot (FRED H.10 or licensed feed) for … | Partial | FRED H.10 for USD/MXN; prototype fallback sti… | FRED H.10 for USD/MXN when available; Yahoo f… |
+| Many currency pairs | >= 10 pairs with hedge scorecards published | Partial | 19 pairs with hedge OOS scorecards (target 10) | Trading ladder covers ~19 pairs; hedge govern… |
+| Multiple decades | >= 20 years per pair without survivorship gaps | Partial | 25y configured; multi-pair decades not validated | USD/MXN ~20–25y; not validated across full pa… |
+| Official data | Tier-1 spot (FRED H.10 or licensed feed) for … | Partial | Tier-1 preferred; not enforced across full he… | FRED H.10 for USD/MXN when available; Yahoo f… |
 | Real or realistic forward costs | Forward points + roll in static vs dynamic he… | Not met | No forward curve or bid/ask history in hedge … | Turnover bps + spread/slippage/roll/carry ass… |
-| Static vs dynamic hedge policies | Static benchmarks vs dynamic policies on same… | Partial | Static vs dynamic tested on 1 pair(s), mostly… | Tested on USD/MXN: never/half/mostly/fully vs… |
+| Static vs dynamic hedge policies | Static benchmarks vs dynamic policies on same… | Partial | Static vs dynamic tested OOS on 19 pairs | Tested on USD/MXN: never/half/mostly/fully vs… |
 | Transaction costs | All hedge and trading metrics net of explicit… | Partial | Costs included but simplified (bps on hedge t… | 2 bps turnover + Level 5 frictions for tradin… |
-| Out-of-sample tests | Walk-forward OOS for hedge policies, not only… | Not met | Hedge policies not yet walk-forward OOS; trad… | Trading OOS (3 splits) exists; hedge headline… |
+| Out-of-sample tests | Walk-forward OOS for hedge policies, not only… | Met | Hedge OOS on 19 pairs; H8a pass (100.0%) | Trading OOS (3 splits) exists; hedge headline… |
 | Data-snooping controls | Pre-registered hypotheses; White RC / SPA on … | Not met | White RC p = 0.6075 — does not reject data-mi… | White RC p ≈ 0.61 on trading strategies — doe… |
-| Multiple corporate exposure types | >= 3 exposure types with published scorecards | Partial | 2 exposure type(s) published; need >= 3 | Code supports receiver / US-long-MXN / USD-li… |
+| Multiple corporate exposure types | >= 3 exposure types with published scorecards | Partial | 3 exposure types in hedge OOS panel (19 pairs) | Code supports receiver / US-long-MXN / USD-li… |
 
 
 ### Pre-registered hypotheses (Level 8 upgrade path)
@@ -347,6 +347,43 @@ Do **not** upgrade hedge-governance claims from prototype to institutional until
 ### First planned test
 
 Multi-pair walk-forward OOS hedge policy comparison — see `reports/research_log/PRE_REGISTRATION_LOG.md` (Multi-Pair Hedge OOS).
+
+Run: `python scripts/run_multipair_hedge_oos.py`
+
+### Multi-pair hedge OOS summary (pre-registered)
+
+- Pairs tested: **19** (target ≥ 10)
+- Exposure types: **3**
+- Comparison cells (no_change vs regime_based): **829**
+- H8a — pairs where no_change wins majority of cells: **19** (100.0% of pairs) → **PASS**
+- H8b — median turnover reduction: **74.07%** → **PASS**
+
+**Note:** H8a/H8b use simplified hedge turnover costs (no forward curve). Passing these hypotheses does **not** clear the full Level 8 gate — all nine institutional requirements must be **Met**.
+
+### Per-pair OOS (no_change vs regime_based)
+
+| ticker | cells | win_rate | median_turnover_red_% |
+| --- | --- | --- | --- |
+| AUDUSD=X | 36 | 77.8 | 74.5 |
+| EURUSD=X | 42 | 81.0 | 75.0 |
+| GBPUSD=X | 42 | 85.7 | 73.9 |
+| USDBRL=X | 42 | 57.1 | 75.0 |
+| USDCHF=X | 42 | 85.7 | 71.1 |
+| USDCLP=X | 42 | 61.9 | 77.2 |
+| USDCOP=X | 42 | 71.4 | 72.7 |
+| USDIDR=X | 46 | 56.5 | 72.0 |
+| USDINR=X | 42 | 76.2 | 83.0 |
+| USDJPY=X | 46 | 73.9 | 78.1 |
+| USDKRW=X | 42 | 85.7 | 67.5 |
+| USDMXN=X | 69 | 69.6 | 77.4 |
+| USDMYR=X | 42 | 78.6 | 75.0 |
+| USDPEN=X | 46 | 95.7 | 69.6 |
+| USDPHP=X | 42 | 85.7 | 75.0 |
+| USDPLN=X | 42 | 66.7 | 73.2 |
+| USDTHB=X | 42 | 76.2 | 70.3 |
+| USDTRY=X | 40 | 50.0 | 68.0 |
+| USDZAR=X | 42 | 66.7 | 70.0 |
+
 
 **Claim discipline:** Level 7 prototype results (USD/MXN, one exposure type, full sample) do **not** satisfy Level 8. They justify continued research, not desk adoption.
 

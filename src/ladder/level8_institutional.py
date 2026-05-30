@@ -80,7 +80,7 @@ def _count_multipair(root: Path) -> int:
     return int(df["ticker"].nunique())
 
 
-def _hedge_pair_count(root: Path) -> int:
+def _legacy_hedge_pair_count(root: Path) -> int:
     path = root / "data" / "outputs" / "hedge_governance_scorecard.csv"
     if not path.exists():
         return 0
@@ -89,10 +89,10 @@ def _hedge_pair_count(root: Path) -> int:
         return 0
     if "ticker" in df.columns:
         return int(df["ticker"].nunique())
-    return 1 if len(df) else 0
+    return 1
 
 
-def _exposure_type_count(root: Path) -> int:
+def _legacy_exposure_count(root: Path) -> int:
     path = root / "data" / "outputs" / "hedge_governance_scorecard.csv"
     if not path.exists():
         return 0
@@ -100,6 +100,35 @@ def _exposure_type_count(root: Path) -> int:
     if df.empty or "exposure_type" not in df.columns:
         return 0
     return int(df["exposure_type"].nunique())
+
+
+def _hedge_oos_pair_count(root: Path) -> int:
+    path = root / "reports" / "research_ladder" / "level8_hedge_oos_scorecard.csv"
+    if not path.exists():
+        return _legacy_hedge_pair_count(root)
+    df = pd.read_csv(path)
+    ok = df[df["status"] == "ok"] if "status" in df.columns else df
+    if ok.empty or "ticker" not in ok.columns:
+        return 0
+    return int(ok["ticker"].nunique())
+
+
+def _hedge_oos_exposure_count(root: Path) -> int:
+    path = root / "reports" / "research_ladder" / "level8_hedge_oos_scorecard.csv"
+    if not path.exists():
+        return _legacy_exposure_count(root)
+    df = pd.read_csv(path)
+    ok = df[df["status"] == "ok"] if "status" in df.columns else df
+    if ok.empty or "exposure_type" not in ok.columns:
+        return 0
+    return int(ok["exposure_type"].nunique())
+
+
+def _hedge_oos_summary(root: Path) -> pd.DataFrame:
+    path = root / "reports" / "research_ladder" / "level8_hedge_oos_summary.csv"
+    if not path.exists():
+        return pd.DataFrame()
+    return pd.read_csv(path)
 
 
 def _white_rc_pvalue(root: Path) -> float | None:
@@ -117,16 +146,20 @@ def _white_rc_pvalue(root: Path) -> float | None:
 def _assess_status(req_id: str, root: Path, cfg: dict) -> tuple[str, str]:
     """Return (evidence_status, current_state) for one requirement."""
     multipair = _count_multipair(root)
-    hedge_pairs = _hedge_pair_count(root)
-    exposures = _exposure_type_count(root)
+    hedge_pairs = _hedge_oos_pair_count(root)
+    exposures = _hedge_oos_exposure_count(root)
+    oos_summary = _hedge_oos_summary(root)
     wrc_p = _white_rc_pvalue(root)
     prefer_tier1 = bool(cfg.get("data", {}).get("prefer_tier1_spot", False))
     history_years = int(cfg.get("data", {}).get("history_years", 20))
+    min_pairs = int(cfg.get("hedge_oos", {}).get("min_pairs", 10))
 
     if req_id == "pairs":
-        if hedge_pairs >= 10:
-            return "Met", f"{hedge_pairs} pairs with hedge scorecards"
-        return "Not met", f"Hedge: {hedge_pairs} pair(s); trading ladder: ~{multipair} pairs"
+        if hedge_pairs >= min_pairs:
+            return "Partial", f"{hedge_pairs} pairs with hedge OOS scorecards (target {min_pairs})"
+        if hedge_pairs >= 1:
+            return "Not met", f"Hedge OOS: {hedge_pairs} pair(s); target ≥ {min_pairs}"
+        return "Not met", f"No hedge OOS scorecard; trading ladder: ~{multipair} pairs"
 
     if req_id == "decades":
         if history_years >= 20 and hedge_pairs >= 5:
@@ -144,15 +177,30 @@ def _assess_status(req_id: str, root: Path, cfg: dict) -> tuple[str, str]:
         return "Not met", "No forward curve or bid/ask history in hedge scorecards"
 
     if req_id == "static_vs_dynamic":
+        if hedge_pairs >= min_pairs:
+            return "Partial", f"Static vs dynamic tested OOS on {hedge_pairs} pairs"
         if hedge_pairs >= 1:
-            return "Partial", f"Static vs dynamic tested on {max(hedge_pairs, 1)} pair(s), mostly full sample"
-        return "Not met", "No hedge policy scorecard on disk"
+            return "Partial", f"Static vs dynamic tested OOS on {hedge_pairs} pair(s)"
+        return "Not met", "No hedge OOS scorecard on disk"
 
     if req_id == "transaction_costs":
         return "Partial", "Costs included but simplified (bps on hedge turnover)"
 
     if req_id == "oos":
-        return "Not met", "Hedge policies not yet walk-forward OOS; trading OOS exists"
+        if not oos_summary.empty:
+            s = oos_summary.iloc[0]
+            pairs = int(s.get("pairs_tested", 0))
+            h8a = bool(s.get("h8a_pass", False))
+            if pairs >= min_pairs and h8a:
+                return "Met", f"Hedge OOS on {pairs} pairs; H8a pass ({s.get('pct_pairs_h8a')}%)"
+            if pairs >= min_pairs:
+                return "Partial", (
+                    f"Hedge OOS on {pairs} pairs; H8a "
+                    f"{'pass' if h8a else 'fail'} ({s.get('pct_pairs_h8a')}%)"
+                )
+            if pairs >= 1:
+                return "Partial", f"Hedge OOS started ({pairs} pairs); need ≥ {min_pairs}"
+        return "Not met", "Hedge policies not yet run multi-pair OOS"
 
     if req_id == "snooping":
         if wrc_p is not None and wrc_p < 0.05:
@@ -162,11 +210,13 @@ def _assess_status(req_id: str, root: Path, cfg: dict) -> tuple[str, str]:
         return "Not met", "White Reality Check not run or missing"
 
     if req_id == "exposures":
+        if exposures >= 3 and hedge_pairs >= min_pairs:
+            return "Partial", f"{exposures} exposure types in hedge OOS panel ({hedge_pairs} pairs)"
         if exposures >= 3:
-            return "Met", f"{exposures} exposure types in scorecard"
+            return "Partial", f"{exposures} exposure types in hedge OOS; need ≥ {min_pairs} pairs"
         if exposures >= 1:
-            return "Partial", f"{exposures} exposure type(s) published; need >= 3"
-        return "Not met", "No exposure-type diversity in published scorecards"
+            return "Partial", f"{exposures} exposure type(s) in hedge OOS; need ≥ 3"
+        return "Not met", "No exposure-type diversity in hedge OOS scorecards"
 
     return "Not met", "Not assessed"
 

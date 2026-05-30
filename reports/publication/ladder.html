@@ -378,7 +378,7 @@ body.cover-page header.hero-cover {
   </header>
   <main class="wide">
     <p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p><h1>BR3N Macro Labs — Research Ladder</h1>
-<p><strong>Generated:</strong> 2026-05-30 15:55  </p>
+<p><strong>Generated:</strong> 2026-05-30 15:59  </p>
 <p><strong>Primary pair:</strong> USDMXN=X  </p>
 <p><strong>Period:</strong> 2001-09-14 → 2026-05-15 (6183 bars)  </p>
 <p><strong>Primary strategy:</strong> flat_range</p>
@@ -404,7 +404,7 @@ body.cover-page header.hero-cover {
 <tr><td>5 — Economic value after full frictions</td><td>Money/risk after spreads, roll, carry?</td><td>Not robust yet</td></tr>
 <tr><td>6 — Data-snooping control</td><td>Data-snooping / holdout discipline?</td><td>Not supported yet</td></tr>
 <tr><td>7 — Hedge-governance usefulness</td><td>Can regime rules improve hedge governance when forecasts fail?</td><td>See Level 7 below</td></tr>
-<tr><td>8 — Institutional proof</td><td>External validity for hedge-governance claims?</td><td>Not met — 0 met, 5 partial, 4 failed</td></tr>
+<tr><td>8 — Institutional proof</td><td>External validity for hedge-governance claims?</td><td>Not met — 1 met, 6 partial, 2 failed</td></tr>
 </tbody></table></div>
 <hr/>
 <h2>Claim discipline</h2>
@@ -639,20 +639,48 @@ body.cover-page header.hero-cover {
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>requirement</th><th>pass_threshold</th><th>evidence_status</th><th>current_state</th><th>design_notes</th></tr></thead>
 <tbody>
-<tr><td>Many currency pairs</td><td>>= 10 pairs with hedge scorecards published</td><td>Not met</td><td>Hedge: 1 pair(s); trading ladder: ~19 pairs</td><td>Trading ladder covers ~19 pairs; hedge govern…</td></tr>
-<tr><td>Multiple decades</td><td>>= 20 years per pair without survivorship gaps</td><td>Partial</td><td>~25 years on flagship pair only</td><td>USD/MXN ~20–25y; not validated across full pa…</td></tr>
-<tr><td>Official data</td><td>Tier-1 spot (FRED H.10 or licensed feed) for …</td><td>Partial</td><td>FRED H.10 for USD/MXN; prototype fallback sti…</td><td>FRED H.10 for USD/MXN when available; Yahoo f…</td></tr>
+<tr><td>Many currency pairs</td><td>>= 10 pairs with hedge scorecards published</td><td>Partial</td><td>19 pairs with hedge OOS scorecards (target 10)</td><td>Trading ladder covers ~19 pairs; hedge govern…</td></tr>
+<tr><td>Multiple decades</td><td>>= 20 years per pair without survivorship gaps</td><td>Partial</td><td>25y configured; multi-pair decades not validated</td><td>USD/MXN ~20–25y; not validated across full pa…</td></tr>
+<tr><td>Official data</td><td>Tier-1 spot (FRED H.10 or licensed feed) for …</td><td>Partial</td><td>Tier-1 preferred; not enforced across full he…</td><td>FRED H.10 for USD/MXN when available; Yahoo f…</td></tr>
 <tr><td>Real or realistic forward costs</td><td>Forward points + roll in static vs dynamic he…</td><td>Not met</td><td>No forward curve or bid/ask history in hedge …</td><td>Turnover bps + spread/slippage/roll/carry ass…</td></tr>
-<tr><td>Static vs dynamic hedge policies</td><td>Static benchmarks vs dynamic policies on same…</td><td>Partial</td><td>Static vs dynamic tested on 1 pair(s), mostly…</td><td>Tested on USD/MXN: never/half/mostly/fully vs…</td></tr>
+<tr><td>Static vs dynamic hedge policies</td><td>Static benchmarks vs dynamic policies on same…</td><td>Partial</td><td>Static vs dynamic tested OOS on 19 pairs</td><td>Tested on USD/MXN: never/half/mostly/fully vs…</td></tr>
 <tr><td>Transaction costs</td><td>All hedge and trading metrics net of explicit…</td><td>Partial</td><td>Costs included but simplified (bps on hedge t…</td><td>2 bps turnover + Level 5 frictions for tradin…</td></tr>
-<tr><td>Out-of-sample tests</td><td>Walk-forward OOS for hedge policies, not only…</td><td>Not met</td><td>Hedge policies not yet walk-forward OOS; trad…</td><td>Trading OOS (3 splits) exists; hedge headline…</td></tr>
+<tr><td>Out-of-sample tests</td><td>Walk-forward OOS for hedge policies, not only…</td><td>Met</td><td>Hedge OOS on 19 pairs; H8a pass (100.0%)</td><td>Trading OOS (3 splits) exists; hedge headline…</td></tr>
 <tr><td>Data-snooping controls</td><td>Pre-registered hypotheses; White RC / SPA on …</td><td>Not met</td><td>White RC p = 0.6075 — does not reject data-mi…</td><td>White RC p ≈ 0.61 on trading strategies — doe…</td></tr>
-<tr><td>Multiple corporate exposure types</td><td>>= 3 exposure types with published scorecards</td><td>Partial</td><td>2 exposure type(s) published; need >= 3</td><td>Code supports receiver / US-long-MXN / USD-li…</td></tr>
+<tr><td>Multiple corporate exposure types</td><td>>= 3 exposure types with published scorecards</td><td>Partial</td><td>3 exposure types in hedge OOS panel (19 pairs)</td><td>Code supports receiver / US-long-MXN / USD-li…</td></tr>
 </tbody></table></div>
 <h3>Pre-registered hypotheses (Level 8 upgrade path)</h3>
 <ul><li>H8a: <code>no_change_in_range</code> beats <code>regime_based</code> on cost-adjusted risk reduction OOS on >= 50% of pairs tested.</li><li>H8b: Turnover reduction (no_change vs regime_based) >= 40% median across pairs without worse max drawdown hedged.</li><li>H8c: Results replicate on Tier-1 spot only (no prototype fallback in published scorecards).</li><li>H8d: Forward-point-adjusted hedge costs do not reverse the ranking of no_change vs static 50% / 75%.</li><li>H8e: Best hedge policy survives White Reality Check on the pre-registered policy set (p < 0.05).</li><li>H8f: At least three exposure types show consistent turnover discipline vs reactive regime hedging.</li></ul>
 <h3>First planned test</h3>
 <p>Multi-pair walk-forward OOS hedge policy comparison — see <code>reports/research_log/PRE_REGISTRATION_LOG.md</code> (Multi-Pair Hedge OOS).</p>
+<p>Run: <code>python scripts/run_multipair_hedge_oos.py</code></p>
+<h3>Multi-pair hedge OOS summary (pre-registered)</h3>
+<ul><li>Pairs tested: <strong>19</strong> (target ≥ 10)</li><li>Exposure types: <strong>3</strong></li><li>Comparison cells (no_change vs regime_based): <strong>829</strong></li><li>H8a — pairs where no_change wins majority of cells: <strong>19</strong> (100.0% of pairs) → <strong>PASS</strong></li><li>H8b — median turnover reduction: <strong>74.07%</strong> → <strong>PASS</strong></li></ul>
+<p><strong>Note:</strong> H8a/H8b use simplified hedge turnover costs (no forward curve). Passing these hypotheses does <strong>not</strong> clear the full Level 8 gate — all nine institutional requirements must be <strong>Met</strong>.</p>
+<h3>Per-pair OOS (no_change vs regime_based)</h3>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>ticker</th><th class="num">cells</th><th class="num">win_rate</th><th class="num">median_turnover_red_%</th></tr></thead>
+<tbody>
+<tr><td>AUDUSD=X</td><td class="num">36</td><td class="num">77.8</td><td class="num">74.5</td></tr>
+<tr><td>EURUSD=X</td><td class="num">42</td><td class="num">81.0</td><td class="num">75.0</td></tr>
+<tr><td>GBPUSD=X</td><td class="num">42</td><td class="num">85.7</td><td class="num">73.9</td></tr>
+<tr><td>USDBRL=X</td><td class="num">42</td><td class="num">57.1</td><td class="num">75.0</td></tr>
+<tr><td>USDCHF=X</td><td class="num">42</td><td class="num">85.7</td><td class="num">71.1</td></tr>
+<tr><td>USDCLP=X</td><td class="num">42</td><td class="num">61.9</td><td class="num">77.2</td></tr>
+<tr><td>USDCOP=X</td><td class="num">42</td><td class="num">71.4</td><td class="num">72.7</td></tr>
+<tr><td>USDIDR=X</td><td class="num">46</td><td class="num">56.5</td><td class="num">72.0</td></tr>
+<tr><td>USDINR=X</td><td class="num">42</td><td class="num">76.2</td><td class="num">83.0</td></tr>
+<tr><td>USDJPY=X</td><td class="num">46</td><td class="num">73.9</td><td class="num">78.1</td></tr>
+<tr><td>USDKRW=X</td><td class="num">42</td><td class="num">85.7</td><td class="num">67.5</td></tr>
+<tr><td>USDMXN=X</td><td class="num">69</td><td class="num">69.6</td><td class="num">77.4</td></tr>
+<tr><td>USDMYR=X</td><td class="num">42</td><td class="num">78.6</td><td class="num">75.0</td></tr>
+<tr><td>USDPEN=X</td><td class="num">46</td><td class="num">95.7</td><td class="num">69.6</td></tr>
+<tr><td>USDPHP=X</td><td class="num">42</td><td class="num">85.7</td><td class="num">75.0</td></tr>
+<tr><td>USDPLN=X</td><td class="num">42</td><td class="num">66.7</td><td class="num">73.2</td></tr>
+<tr><td>USDTHB=X</td><td class="num">42</td><td class="num">76.2</td><td class="num">70.3</td></tr>
+<tr><td>USDTRY=X</td><td class="num">40</td><td class="num">50.0</td><td class="num">68.0</td></tr>
+<tr><td>USDZAR=X</td><td class="num">42</td><td class="num">66.7</td><td class="num">70.0</td></tr>
+</tbody></table></div>
 <p><strong>Claim discipline:</strong> Level 7 prototype results (USD/MXN, one exposure type, full sample) do <strong>not</strong> satisfy Level 8. They justify continued research, not desk adoption.</p>
 <hr/>
 <h2 id="next-actions">Next actions</h2>

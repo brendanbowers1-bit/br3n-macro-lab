@@ -44,6 +44,7 @@ python scripts/run_data_quality.py          # data quality report
 python scripts/fetch_tier1_official.py      # Tier 1 USD/MXN via FRED H.10
 python scripts/generate_report.py
 python scripts/run_research_ladder.py   # eight-level evidence ladder
+python scripts/run_multipair_hedge_oos.py  # Level 8 multi-pair hedge OOS (pre-registered)
 python scripts/build_publication.py     # markdown memo + one-pager
 python scripts/build_site.py --open     # styled HTML site (best for sharing)
 python scripts/serve_publication.py     # local URL http://127.0.0.1:8765

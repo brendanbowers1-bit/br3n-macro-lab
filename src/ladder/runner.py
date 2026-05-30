@@ -35,6 +35,7 @@ from .level8_institutional import (
     level8_preregistered_hypotheses,
     level8_upgrade_gate,
 )
+from .level8_hedge_oos import hedge_oos_report_md, run_multipair_hedge_oos, save_hedge_oos_outputs
 
 
 def _fmt_cell(val) -> str:
@@ -179,6 +180,18 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
     l8 = institutional_proof_matrix(root, cfg)
     l8.to_csv(out_dir / "level8_institutional_proof.csv", index=False)
     l8_status = level8_overall_status(l8)
+
+    hedge_oos_md = ""
+    if cfg.get("hedge_oos", {}).get("enabled", True):
+        try:
+            ho_sc, ho_cmp, ho_sum = run_multipair_hedge_oos(cfg, force_refresh=refresh)
+            save_hedge_oos_outputs(ho_sc, ho_cmp, ho_sum, out_dir)
+            l8 = institutional_proof_matrix(root, cfg)
+            l8.to_csv(out_dir / "level8_institutional_proof.csv", index=False)
+            l8_status = level8_overall_status(l8)
+            hedge_oos_md = hedge_oos_report_md(ho_sc, ho_cmp, ho_sum)
+        except Exception as exc:
+            hedge_oos_md = f"_Multi-pair hedge OOS failed: {exc}_\n"
 
     # Master report
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -357,10 +370,14 @@ Splits: train 2010–2018 → test 2019–2021; roll → test 2022–2024; test 
     for h in level8_preregistered_hypotheses():
         md += f"- {h}\n"
 
-    md += """
+    md += f"""
 ### First planned test
 
 Multi-pair walk-forward OOS hedge policy comparison — see `reports/research_log/PRE_REGISTRATION_LOG.md` (Multi-Pair Hedge OOS).
+
+Run: `python scripts/run_multipair_hedge_oos.py`
+
+{hedge_oos_md}
 
 **Claim discipline:** Level 7 prototype results (USD/MXN, one exposure type, full sample) do **not** satisfy Level 8. They justify continued research, not desk adoption.
 

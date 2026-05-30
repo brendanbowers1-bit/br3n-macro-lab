@@ -164,6 +164,27 @@ hedge_governance:
   hedge_transaction_cost_bps: 2.0
   max_daily_hedge_adjustment: 0.10
 
+hedge_oos:
+  enabled: true
+  min_pairs: 10
+  min_years_history: 15
+  include_walk_forward: true
+  include_fixed_splits: true
+  policies:
+    - half_hedged
+    - mostly_hedged
+    - regime_based
+    - no_change_in_range
+    - volatility_triggered
+  exposures:
+    - receiver_currency_exposure
+    - usd_liability_exposure
+  exposures_by_pair:
+    USDMXN=X:
+      - us_entity_long_mxn
+      - receiver_currency_exposure
+      - usd_liability_exposure
+
 model_zoo:
   enabled: true
   models:
