@@ -1,6 +1,6 @@
 # BR3N Macro Labs — Research Ladder
 
-**Generated:** 2026-05-30 15:59  
+**Generated:** 2026-05-30 16:07  
 **Primary pair:** USDMXN=X  
 **Period:** 2001-09-14 → 2026-05-15 (6183 bars)  
 **Primary strategy:** flat_range
@@ -45,7 +45,7 @@
 | 5 — Economic value after full frictions | Money/risk after spreads, roll, carry? | Not robust yet |
 | 6 — Data-snooping control | Data-snooping / holdout discipline? | Not supported yet |
 | 7 — Hedge-governance usefulness | Can regime rules improve hedge governance when forecasts fail? | See Level 7 below |
-| 8 — Institutional proof | External validity for hedge-governance claims? | Not met — 1 met, 6 partial, 2 failed |
+| 8 — Institutional proof | External validity for hedge-governance claims? | Not met — 0 met, 8 partial, 1 failed |
 
 ---
 
@@ -328,11 +328,11 @@ Do **not** upgrade hedge-governance claims from prototype to institutional until
 | Many currency pairs | >= 10 pairs with hedge scorecards published | Partial | 19 pairs with hedge OOS scorecards (target 10) | Trading ladder covers ~19 pairs; hedge govern… |
 | Multiple decades | >= 20 years per pair without survivorship gaps | Partial | 25y configured; multi-pair decades not validated | USD/MXN ~20–25y; not validated across full pa… |
 | Official data | Tier-1 spot (FRED H.10 or licensed feed) for … | Partial | Tier-1 preferred; not enforced across full he… | FRED H.10 for USD/MXN when available; Yahoo f… |
-| Real or realistic forward costs | Forward points + roll in static vs dynamic he… | Not met | No forward curve or bid/ask history in hedge … | Turnover bps + spread/slippage/roll/carry ass… |
+| Real or realistic forward costs | Forward points + roll in static vs dynamic he… | Partial | Forward roll + carry layer run; H8d fail | Turnover bps + spread/slippage/roll/carry ass… |
 | Static vs dynamic hedge policies | Static benchmarks vs dynamic policies on same… | Partial | Static vs dynamic tested OOS on 19 pairs | Tested on USD/MXN: never/half/mostly/fully vs… |
 | Transaction costs | All hedge and trading metrics net of explicit… | Partial | Costs included but simplified (bps on hedge t… | 2 bps turnover + Level 5 frictions for tradin… |
-| Out-of-sample tests | Walk-forward OOS for hedge policies, not only… | Met | Hedge OOS on 19 pairs; H8a pass (100.0%) | Trading OOS (3 splits) exists; hedge headline… |
-| Data-snooping controls | Pre-registered hypotheses; White RC / SPA on … | Not met | White RC p = 0.6075 — does not reject data-mi… | White RC p ≈ 0.61 on trading strategies — doe… |
+| Out-of-sample tests | Walk-forward OOS for hedge policies, not only… | Partial | Hedge OOS (forward_full) on 19 pairs; H8a pas… | Trading OOS (3 splits) exists; hedge headline… |
+| Data-snooping controls | Pre-registered hypotheses; White RC / SPA on … | Not met | Hedge policy White RC p = 0.6630 — does not r… | White RC p ≈ 0.61 on trading strategies — doe… |
 | Multiple corporate exposure types | >= 3 exposure types with published scorecards | Partial | 3 exposure types in hedge OOS panel (19 pairs) | Code supports receiver / US-long-MXN / USD-li… |
 
 
@@ -352,37 +352,57 @@ Run: `python scripts/run_multipair_hedge_oos.py`
 
 ### Multi-pair hedge OOS summary (pre-registered)
 
+**Cost layer: `base`**
+
 - Pairs tested: **19** (target ≥ 10)
 - Exposure types: **3**
-- Comparison cells (no_change vs regime_based): **829**
-- H8a — pairs where no_change wins majority of cells: **19** (100.0% of pairs) → **PASS**
-- H8b — median turnover reduction: **74.07%** → **PASS**
+- H8a (no_change vs regime_based): **PASS** (100.0% of pairs)
+- H8b (median turnover reduction): **PASS** (74.07%)
+- H8d (no_change vs static 50%/75%): **PASS** (100.0% of pairs)
 
-**Note:** H8a/H8b use simplified hedge turnover costs (no forward curve). Passing these hypotheses does **not** clear the full Level 8 gate — all nine institutional requirements must be **Met**.
+**Cost layer: `forward_full`**
 
-### Per-pair OOS (no_change vs regime_based)
+- Pairs tested: **19** (target ≥ 10)
+- Exposure types: **3**
+- H8a (no_change vs regime_based): **PASS** (84.21% of pairs)
+- H8b (median turnover reduction): **PASS** (74.07%)
+- H8d (no_change vs static 50%/75%): **FAIL** (31.58% of pairs)
+
+**Note:** `forward_full` adds spread/slippage + forward roll + carry drag from per-pair economic assumptions — still not a live forward curve. Level 8 gate requires all nine requirements **Met**.
+
+### Per-pair OOS — forward_full (no_change vs regime_based)
 
 | ticker | cells | win_rate | median_turnover_red_% |
 | --- | --- | --- | --- |
-| AUDUSD=X | 36 | 77.8 | 74.5 |
+| AUDUSD=X | 36 | 83.3 | 74.5 |
 | EURUSD=X | 42 | 81.0 | 75.0 |
-| GBPUSD=X | 42 | 85.7 | 73.9 |
-| USDBRL=X | 42 | 57.1 | 75.0 |
-| USDCHF=X | 42 | 85.7 | 71.1 |
-| USDCLP=X | 42 | 61.9 | 77.2 |
-| USDCOP=X | 42 | 71.4 | 72.7 |
-| USDIDR=X | 46 | 56.5 | 72.0 |
-| USDINR=X | 42 | 76.2 | 83.0 |
-| USDJPY=X | 46 | 73.9 | 78.1 |
+| GBPUSD=X | 42 | 90.5 | 73.9 |
+| USDBRL=X | 42 | 28.6 | 75.0 |
+| USDCHF=X | 42 | 81.0 | 71.1 |
+| USDCLP=X | 42 | 66.7 | 77.2 |
+| USDCOP=X | 42 | 52.4 | 72.7 |
+| USDIDR=X | 46 | 47.8 | 72.0 |
+| USDINR=X | 42 | 57.1 | 83.0 |
+| USDJPY=X | 46 | 52.2 | 78.1 |
 | USDKRW=X | 42 | 85.7 | 67.5 |
-| USDMXN=X | 69 | 69.6 | 77.4 |
-| USDMYR=X | 42 | 78.6 | 75.0 |
+| USDMXN=X | 69 | 56.5 | 77.4 |
+| USDMYR=X | 42 | 85.7 | 75.0 |
 | USDPEN=X | 46 | 95.7 | 69.6 |
-| USDPHP=X | 42 | 85.7 | 75.0 |
+| USDPHP=X | 42 | 90.5 | 75.0 |
 | USDPLN=X | 42 | 66.7 | 73.2 |
-| USDTHB=X | 42 | 76.2 | 70.3 |
-| USDTRY=X | 40 | 50.0 | 68.0 |
+| USDTHB=X | 42 | 73.8 | 70.3 |
+| USDTRY=X | 40 | 10.0 | 68.0 |
 | USDZAR=X | 42 | 66.7 | 70.0 |
+
+
+### Hedge policy White Reality Check (pre-registered policy set)
+
+- **flagship_daily_sharpe** (base): best = `volatility_triggered`, p = **0.4985**, rejects snooping @5% = **no**
+- **flagship_daily_sharpe** (forward_full): best = `volatility_triggered`, p = **0.522**, rejects snooping @5% = **no**
+- **panel_oos_metric_bootstrap** (base): best = `nan`, p = **0.49**, rejects snooping @5% = **no**
+- **panel_oos_metric_bootstrap** (forward_full): best = `nan`, p = **0.663**, rejects snooping @5% = **no**
+
+**Note:** Flagship test uses daily hedged-return Sharpe on USD/MXN. Panel test bootstraps OOS cost-adjusted risk reduction cells. Passing H8e requires p < 0.05 on the forward_full panel or flagship test.
 
 
 **Claim discipline:** Level 7 prototype results (USD/MXN, one exposure type, full sample) do **not** satisfy Level 8. They justify continued research, not desk adoption.
