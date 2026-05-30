@@ -21,6 +21,22 @@ PUBLIC_SITE_BASE = "https://brendanbowers1-bit.github.io/br3n-macro-lab"
 FX_LAB_TAGLINE = "Testing When Currency Markets Become Less Random"
 FX_LAB_LOGO = "assets/fx_lab_logo.png"
 
+# (href, title, description, tag)
+HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
+    ("fx-lab.html", "FX Lab Overview", "Mission, modules, and research outputs", "Start here"),
+    ("research.html", "USD/MXN Regime Research", "2-minute summary and key stats", "Research"),
+    ("hedge-governance.html", "Hedge Governance Memo", "Forecast failure, hedge usefulness", "Flagship"),
+    ("model-zoo.html", "Model Zoo", "Conditional forecastability tests", "Models"),
+    ("ladder.html", "Evidence Ladder", "Seven-level evidence framework", "Methods"),
+    ("memo.html", "Full Research Note", "Methods, tables, limitations", "Deep dive"),
+    ("corridor.html", "Corridor Roadmap", "Multi-corridor payment research", "Corridors"),
+    ("fx_desk.html", "FX Desk Framework", "Cross-border payments and treasury decisions", "Desk"),
+]
+
+FX_LAB_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
+    link for link in HOME_RESEARCH_LINKS if link[0] != "fx-lab.html"
+]
+
 
 def _css() -> str:
     return """
@@ -319,6 +335,48 @@ body.cover-page header.hero-cover {
   color: #fff;
 }
 .vertical-card a.btn:hover { text-decoration: none; opacity: 0.92; }
+.research-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+.research-link-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.35rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.research-link-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.research-link-card .tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.research-link-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.research-link-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
 .back-link {
   display: inline-block;
   margin-bottom: 1rem;
@@ -357,7 +415,35 @@ def _numeric_col_flags(headers: list[str], rows: list[list[str]]) -> list[bool]:
     return flags
 
 
-def _md_to_html(text: str) -> str:
+def _research_links_grid(links: list[tuple[str, str, str, str]]) -> str:
+    cards = []
+    for href, title, desc, tag in links:
+        cards.append(
+            f'<a href="{html.escape(href, quote=True)}" class="research-link-card">'
+            f'<span class="tag">{html.escape(tag)}</span>'
+            f"<h3>{html.escape(title)}</h3>"
+            f"<p>{html.escape(desc)}</p>"
+            f"</a>"
+        )
+    return '<div class="research-link-grid">' + "".join(cards) + "</div>"
+
+
+def _skip_research_link_bullets(lines: list[str], i: int) -> int:
+    while i < len(lines):
+        stripped = lines[i].strip()
+        if stripped.startswith("## ") or stripped == "---":
+            break
+        if re.match(r"^[-*] ", lines[i]):
+            i += 1
+            continue
+        if not stripped:
+            i += 1
+            continue
+        break
+    return i
+
+
+def _md_to_html(text: str, *, research_links: list[tuple[str, str, str, str]] | None = None) -> str:
     """Minimal markdown → HTML (headings, lists, tables, bold, code, blockquote)."""
     lines = text.splitlines()
     out: list[str] = []
@@ -423,6 +509,13 @@ def _md_to_html(text: str) -> str:
         elif line.startswith("## Main conclusion"):
             out.append(f"<h2>{_inline(line[3:])}</h2>")
             i += 1
+            continue
+        elif line.startswith("## Explore FX Lab Research"):
+            out.append("<h2>Explore FX Lab Research</h2>")
+            if research_links:
+                out.append(_research_links_grid(research_links))
+            i += 1
+            i = _skip_research_link_bullets(lines, i)
             continue
         elif line.startswith("## "):
             out.append(f"<h2>{_inline(line[3:])}</h2>")
@@ -595,7 +688,7 @@ def _cover_body_from_md(text: str) -> str:
         if line.startswith("## "):
             start = i
             break
-    return _md_to_html("\n".join(lines[start:]))
+    return _md_to_html("\n".join(lines[start:]), research_links=HOME_RESEARCH_LINKS)
 
 
 def _landing_stats() -> str:
@@ -704,7 +797,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     fx_lab_path.write_text(
         _shell(
             "FX Lab",
-            _md_to_html(fx_lab_md),
+            _md_to_html(fx_lab_md, research_links=FX_LAB_RESEARCH_LINKS),
             wide=True,
             nav_active="fx",
             nav_html=_nav_fx("fx"),

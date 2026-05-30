@@ -301,6 +301,48 @@ body.cover-page header.hero-cover {
   color: #fff;
 }
 .vertical-card a.btn:hover { text-decoration: none; opacity: 0.92; }
+.research-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+.research-link-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.35rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.research-link-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.research-link-card .tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.research-link-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.research-link-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
 .back-link {
   display: inline-block;
   margin-bottom: 1rem;
@@ -346,7 +388,7 @@ body.cover-page header.hero-cover {
 <ul><li>When does random walk fail in FX?</li><li>When are currencies conditionally forecastable?</li><li>Can regime models improve hedge discipline even when forecasts are weak?</li><li>Do payment corridors show flow-pressure behavior?</li><li>When should a desk avoid hedge over-adjustment?</li></ul>
 <hr/>
 <h2>Explore FX Lab Research</h2>
-<ul><li><strong><a href="research.html">USD/MXN Regime Research</a></strong> — 2-minute summary and key stats</li><li><strong><a href="memo.html">Full Research Note</a></strong> — methods, tables, limitations</li><li><strong><a href="corridor.html">Corridor Roadmap</a></strong> — multi-corridor remittance research</li><li><strong><a href="fx_desk.html">FX Desk Framework</a></strong> — cross-border payments and treasury decisions</li><li><strong><a href="ladder.html">Evidence Ladder</a></strong> — seven-level evidence framework</li><li><strong><a href="hedge-governance.html">Hedge Governance Memo</a></strong> — forecast failure, hedge usefulness</li><li><strong><a href="model-zoo.html">Model Zoo</a></strong> — conditional forecastability tests</li></ul>
+<div class="research-link-grid"><a href="research.html" class="research-link-card"><span class="tag">Research</span><h3>USD/MXN Regime Research</h3><p>2-minute summary and key stats</p></a><a href="hedge-governance.html" class="research-link-card"><span class="tag">Flagship</span><h3>Hedge Governance Memo</h3><p>Forecast failure, hedge usefulness</p></a><a href="model-zoo.html" class="research-link-card"><span class="tag">Models</span><h3>Model Zoo</h3><p>Conditional forecastability tests</p></a><a href="ladder.html" class="research-link-card"><span class="tag">Methods</span><h3>Evidence Ladder</h3><p>Seven-level evidence framework</p></a><a href="memo.html" class="research-link-card"><span class="tag">Deep dive</span><h3>Full Research Note</h3><p>Methods, tables, limitations</p></a><a href="corridor.html" class="research-link-card"><span class="tag">Corridors</span><h3>Corridor Roadmap</h3><p>Multi-corridor payment research</p></a><a href="fx_desk.html" class="research-link-card"><span class="tag">Desk</span><h3>FX Desk Framework</h3><p>Cross-border payments and treasury decisions</p></a></div>
 <hr/>
 <h2>Core Principle</h2>
 <div class="principle-box"><p>We do not use AI to claim certainty. We use AI to organize evidence, classify regimes, test hypotheses, and improve risk decisions.</p></div>

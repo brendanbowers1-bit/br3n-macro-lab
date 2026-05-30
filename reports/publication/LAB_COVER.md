@@ -14,15 +14,6 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 
 ## Explore FX Lab Research
 
-- **[FX Lab Overview](fx-lab.html)** — mission, modules, and research outputs
-- **[USD/MXN Regime Research](research.html)** — 2-minute summary and key stats
-- **[Corridor Roadmap](corridor.html)** — multi-corridor payment research
-- **[FX Desk Framework](fx_desk.html)** — cross-border payments and treasury decisions
-- **[Full Research Note](memo.html)** — methods, tables, limitations
-- **[Evidence Ladder](ladder.html)** — seven-level evidence framework
-- **[Hedge Governance Memo](hedge-governance.html)** — forecast failure, hedge usefulness
-- **[Model Zoo](model-zoo.html)** — conditional forecastability tests
-
 ---
 
 ## Disclaimer
