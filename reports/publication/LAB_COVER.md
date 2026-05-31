@@ -20,6 +20,8 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 
 **[FX History & Foundations](history.html)** — 300 years of exchange-rate research and how FX Lab fits after Meese-Rogoff.
 
+**[Open Source FX AI Model Lab](open-source-ai.html)** — borrow, benchmark, and improve open-source FX AI baselines.
+
 ---
 
 ## Explore FX Lab Research

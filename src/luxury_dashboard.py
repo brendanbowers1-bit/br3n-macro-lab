@@ -98,6 +98,7 @@ PAGES = [
     "Carry & UIP Lab",
     "Unanswered FX Questions",
     "FX History",
+    "Open Source FX AI Lab",
     "Academic Tests",
     "Data Quality",
     "FX Desk Command Center",
@@ -2066,6 +2067,138 @@ def page_fx_history() -> None:
             st.warning("Missing reports/FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md")
 
 
+def page_open_source_fx_ai_lab() -> None:
+    """Open Source FX AI Model Lab — borrow, benchmark, improve, explain."""
+    from src.models.model_registry import CATEGORY_LABELS, MODEL_REGISTRY, models_dataframe
+
+    OS = {
+        "bg": "#0a0e14",
+        "surface": "#121a28",
+        "border": "#2a3548",
+        "text": "#e8edf4",
+        "muted": "#94a3b8",
+        "blue": "#5b9fd4",
+        "green": "#3d9970",
+    }
+
+    st.markdown(
+        f'<div style="background:{OS["bg"]};border:1px solid {OS["border"]};border-radius:8px;'
+        f'padding:1.5rem 1.75rem;margin-bottom:1.25rem">'
+        f'<div style="font-family:Cormorant Garamond,serif;font-size:1.85rem;color:{OS["text"]};'
+        f'font-weight:600">Open Source FX AI Model Lab</div>'
+        f'<div style="color:{OS["blue"]};font-size:1rem;margin-top:0.35rem;letter-spacing:0.06em">'
+        f'Borrow. Benchmark. Improve. Explain.</div></div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        f'<div style="background:{OS["surface"]};border-left:4px solid {OS["blue"]};'
+        f'border:1px solid {OS["border"]};padding:1rem 1.25rem;border-radius:4px;margin-bottom:1rem">'
+        "<strong>Warning:</strong> These models are not trading systems by themselves. They are research baselines. "
+        "Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and "
+        "no look-ahead bias before any trading use.</div>",
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        f'<div style="background:{OS["surface"]};border-left:4px solid {OS["green"]};'
+        f'border:1px solid {OS["border"]};padding:1rem 1.25rem;border-radius:4px;margin-bottom:1.25rem">'
+        "<strong>Core thesis:</strong> Most open-source FX AI models only predict the next candle from OHLC. "
+        "BR3N FX Lab adds carry, macro, volatility regimes, news sentiment, better labels, transaction costs, "
+        "and walk-forward backtesting.<br/><br/>"
+        "<strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a "
+        "disciplined research pipeline that proves when a model works, when it fails, and why.</div>",
+        unsafe_allow_html=True,
+    )
+
+    section_header("Model Registry", "Open-source baselines and experiment candidates")
+    for cat_key, cat_label in CATEGORY_LABELS.items():
+        st.markdown(f"**{cat_label}**")
+        cols = st.columns(3)
+        idx = 0
+        for mid, meta in MODEL_REGISTRY.items():
+            if meta.get("category") != cat_key:
+                continue
+            with cols[idx % 3]:
+                imps = meta.get("br3n_improvement", [])
+                imp_list = "".join(f"<li>{i}</li>" for i in imps[:4])
+                st.markdown(
+                    f'<div style="background:{OS["surface"]};border:1px solid {OS["border"]};'
+                    f'border-radius:6px;padding:0.9rem 1rem;margin-bottom:0.75rem;min-height:11rem">'
+                    f'<div style="font-size:0.7rem;color:{OS["muted"]};text-transform:uppercase">'
+                    f'{meta.get("type", "")} · {meta.get("status", "")}</div>'
+                    f'<div style="color:{OS["blue"]};font-weight:600;margin:0.35rem 0">{meta.get("title", mid)}</div>'
+                    f'<div style="font-size:0.82rem;color:{OS["muted"]}">{meta.get("description", "")}</div>'
+                    f'<ul style="font-size:0.75rem;color:{OS["muted"]};margin:0.5rem 0 0 1rem">{imp_list}</ul>'
+                    f"</div>",
+                    unsafe_allow_html=True,
+                )
+            idx += 1
+
+    section_header("Architecture — BR3N FX Lab v1")
+    st.code(
+        """BR3N FX Lab v1
+├── Baselines (LSTM, Transformer, TimesFM, Lag-Llama, FinRL/TensorTrade)
+├── Data Layer (OHLCV, carry, macro, DXY/VIX, news)
+├── Signal Engine (direction, return, vol, carry, confidence)
+├── Trading Layer (long/short/flat, sizing, costs, drawdown)
+└── Research Dashboard (Sharpe, drawdown, regime performance)""",
+        language=None,
+    )
+
+    section_header("Research Questions")
+    questions = [
+        "Do time-series foundation models outperform LSTM and Transformer in FX?",
+        "Does interest-rate carry improve directional accuracy?",
+        "Does news sentiment help after central bank events?",
+        "Trend continuation vs mean reversion — which is more predictable?",
+        "Most predictable pair: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, USD/INR?",
+        "Does edge survive transaction costs?",
+        "Can a model know when not to trade?",
+        "Can BR3N explain why a trade works?",
+    ]
+    for q in questions:
+        st.markdown(f"- {q}")
+
+    section_header("Benchmarking Standard")
+    st.markdown(
+        "Same pair · timeframe · train/test split · costs · dates · risk limits · walk-forward method.\n\n"
+        "**Metrics:** directional accuracy, precision/recall on signals, Sharpe, Sortino, max drawdown, "
+        "win rate, profit factor, turnover, cost drag, performance by regime."
+    )
+
+    section_header("Build Roadmap")
+    roadmap = [
+        ("Phase 1", "Model registry + documentation (this page)"),
+        ("Phase 2", "LSTM + Transformer wrappers"),
+        ("Phase 3", "TimesFM + Lag-Llama adapters"),
+        ("Phase 4", "Macro / carry / news feature pipeline"),
+        ("Phase 5", "Walk-forward backtesting engine"),
+        ("Phase 6", "Model comparison dashboard"),
+        ("Phase 7", "Trade explanation engine"),
+        ("Phase 8", "Publish research notes"),
+    ]
+    for phase, desc in roadmap:
+        st.markdown(f"**{phase}:** {desc}")
+
+    section_header("Registry Table")
+    st.dataframe(models_dataframe(), use_container_width=True, hide_index=True)
+
+    tab_pub, tab_full = st.tabs(["Public Page", "Full Lab Document"])
+    with tab_pub:
+        md = safe_read_markdown(REPORTS / "publication" / "OPEN_SOURCE_FX_AI_MODEL_LAB_PAGE.md")
+        if md:
+            st.markdown(md)
+        else:
+            missing_section("python scripts/build_site.py", "Open Source FX AI Model Lab page")
+    with tab_full:
+        md_full = safe_read_markdown(REPORTS / "OPEN_SOURCE_FX_AI_MODEL_LAB.md")
+        if md_full:
+            st.markdown(md_full)
+        else:
+            st.warning("Missing reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md")
+
+
 def page_research_questions() -> None:
     page_unanswered_fx_questions()
 
@@ -2213,6 +2346,7 @@ def main() -> None:
         "Carry & UIP Lab": page_carry_uip_lab,
         "Unanswered FX Questions": page_unanswered_fx_questions,
         "FX History": page_fx_history,
+        "Open Source FX AI Lab": page_open_source_fx_ai_lab,
         "Academic Tests": page_academic_tests,
         "Data Quality": page_data_quality,
         "FX Desk Command Center": page_fx_desk_command_center,

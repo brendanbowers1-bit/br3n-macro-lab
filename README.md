@@ -134,6 +134,22 @@ Forecasting exchange rates remains extremely difficult, but FX decisions may sti
 Full document: `reports/FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md`  
 Public page: `reports/publication/history.html` (build via `python scripts/build_site.py`)
 
+## Open Source FX AI Model Lab
+
+**Borrow. Benchmark. Improve. Explain.**
+
+Catalog of open-source FX forecasting baselines, RL frameworks, and time-series foundation models for disciplined benchmarking against BR3N models. Not trading systems — research baselines only.
+
+- Registry: `src/models/model_registry.py`
+- Full doc: `reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md`
+- Public page: `reports/publication/open-source-ai.html`
+- Research notes: `reports/research/benchmark_standard.md`, `reports/research/research_questions_os_models.md`
+
+```bash
+python -c "from src.models.model_registry import models_dataframe; print(models_dataframe())"
+python scripts/build_site.py
+```
+
 ## Research ladder (Levels 1–6)
 
 | Level | Module | Question |

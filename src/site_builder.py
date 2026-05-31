@@ -31,6 +31,7 @@ HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
     ("lab-status.html", "Lab Status", "Nightly health snapshot and pipeline gaps", "Ops"),
     ("unanswered-fx.html", "Unanswered FX Questions", "Major research questions and flagship lane", "Research"),
     ("history.html", "FX History & Foundations", "300 years of exchange-rate research", "Foundations"),
+    ("open-source-ai.html", "Open Source FX AI Model Lab", "Borrow, benchmark, and improve OSS FX models", "Models"),
     ("ladder.html", "Evidence Ladder", "Eight-level evidence framework", "Methods"),
     ("memo.html", "Full Research Note", "Methods, tables, limitations", "Deep dive"),
     ("corridor.html", "Corridor Roadmap", "Multi-corridor payment research", "Corridors"),
@@ -647,6 +648,256 @@ def _inline(s: str) -> str:
     return s
 
 
+def _os_model_cards_html() -> str:
+    """Render model registry entries as dark-theme cards."""
+    from .models.model_registry import CATEGORY_LABELS, MODEL_REGISTRY
+
+    parts: list[str] = []
+    for cat_key, cat_label in CATEGORY_LABELS.items():
+        parts.append(f"<h3>{html.escape(cat_label)}</h3>")
+        parts.append('<div class="os-card-grid">')
+        for mid, meta in MODEL_REGISTRY.items():
+            if meta.get("category") != cat_key:
+                continue
+            improvements = meta.get("br3n_improvement", [])
+            imp_html = (
+                "<ul>"
+                + "".join(f"<li>{html.escape(i)}</li>" for i in improvements)
+                + "</ul>"
+                if improvements
+                else ""
+            )
+            parts.append(
+                f"""<div class="os-card">
+  <div class="meta">{html.escape(meta.get("type", ""))} · {html.escape(meta.get("status", ""))}</div>
+  <h4>{html.escape(meta.get("title", mid))}</h4>
+  <p>{html.escape(meta.get("description", ""))}</p>
+  <p><span class="label">Use case:</span> {html.escape(meta.get("use_case", ""))}</p>
+  <p><span class="label">Source:</span> {html.escape(meta.get("source", ""))}</p>
+  <p><span class="label">BR3N improvements:</span></p>{imp_html}
+</div>"""
+            )
+        parts.append("</div>")
+    return "\n".join(parts)
+
+
+def _open_source_ai_body(out_dir: Path) -> str:
+    page_md = _read_md(out_dir / "OPEN_SOURCE_FX_AI_MODEL_LAB_PAGE.md") or _read_md(
+        ROOT / "reports/publication/OPEN_SOURCE_FX_AI_MODEL_LAB_PAGE.md"
+    )
+    full_md = _read_md(ROOT / "reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md")
+    arch = """BR3N FX Lab v1
+├── Baselines
+│   ├── EUR/USD LSTM
+│   ├── EUR/USD TimeSeriesTransformer
+│   ├── TimesFM
+│   ├── Lag-Llama
+│   └── FinRL / TensorTrade
+│
+├── Data Layer
+│   ├── OHLCV
+│   ├── interest-rate differentials
+│   ├── forward points / carry
+│   ├── DXY / VIX / yields
+│   ├── macro indicators
+│   └── news sentiment
+│
+├── Signal Engine
+│   ├── direction probability
+│   ├── expected return
+│   ├── volatility forecast
+│   ├── carry score
+│   └── confidence score
+│
+├── Trading Layer
+│   ├── long / short / flat
+│   ├── position sizing
+│   ├── stop-loss logic
+│   ├── drawdown controls
+│   └── transaction costs
+│
+└── Research Dashboard
+    ├── accuracy · Sharpe · Sortino · max drawdown
+    ├── win rate · avg win/loss · profit factor
+    └── regime performance"""
+    return f"""
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="warning-box">
+  <p><strong>Warning:</strong> These models are not trading systems by themselves. They are research baselines.
+  Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias
+  before any trading use.</p>
+</div>
+<div class="conclusion-box">
+  <p><strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a disciplined
+  research pipeline that proves when a model works, when it fails, and why.</p>
+</div>
+{_md_to_html(page_md) if page_md else ""}
+<h2>Model Registry</h2>
+{_os_model_cards_html()}
+<h2>Architecture</h2>
+<pre class="arch-tree">{html.escape(arch)}</pre>
+<hr/>
+<h2>Full Documentation</h2>
+{_md_to_html(full_md) if full_md else "<p><em>Missing reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md</em></p>"}
+"""
+
+
+def _css_os_lab() -> str:
+    """Dark institutional theme for the Open Source FX AI Model Lab page."""
+    return (
+        _css()
+        + """
+body.os-lab-page {
+  --bg: #0a0e14;
+  --surface: #121a28;
+  --surface2: #1a2436;
+  --border: #2a3548;
+  --text: #e8edf4;
+  --text2: #94a3b8;
+  --accent: #5b9fd4;
+  --accent2: #3d9970;
+  --warn-bg: #1a2436;
+  --warn-border: #5b9fd4;
+}
+body.os-lab-page {
+  background: var(--bg);
+  background-image:
+    linear-gradient(rgba(91, 159, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 159, 212, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--text);
+}
+body.os-lab-page header {
+  background: linear-gradient(180deg, #0d1219 0%, #121a28 100%);
+  border-bottom: 1px solid var(--border);
+}
+body.os-lab-page header .brand,
+body.os-lab-page header .title { color: var(--text); }
+body.os-lab-page header .subtitle { color: var(--text2); }
+body.os-lab-page footer {
+  background: #0d1219;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+}
+body.os-lab-page h2, body.os-lab-page h3 { color: var(--text); border-color: var(--border); }
+body.os-lab-page a { color: var(--accent); }
+body.os-lab-page .principle-box,
+body.os-lab-page .warning-box {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 4px;
+}
+body.os-lab-page .conclusion-box {
+  background: var(--surface2);
+  border: 1px solid var(--accent2);
+  border-left: 4px solid var(--accent2);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 4px;
+}
+body.os-lab-page .os-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+body.os-lab-page .os-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+}
+body.os-lab-page .os-card h4 {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 1rem;
+}
+body.os-lab-page .os-card .meta {
+  font-size: 0.78rem;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+body.os-lab-page .os-card p { margin: 0.35rem 0; font-size: 0.92rem; color: var(--text2); }
+body.os-lab-page .os-card .label { color: var(--text); font-weight: 600; font-size: 0.85rem; }
+body.os-lab-page pre.arch-tree {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--accent);
+}
+body.os-lab-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.88rem;
+}
+body.os-lab-page th, body.os-lab-page td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+body.os-lab-page th { background: var(--surface2); color: var(--accent); }
+body.os-lab-page td { color: var(--text2); }
+body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
+"""
+    )
+
+
+def _shell_os_lab(
+    title: str,
+    body: str,
+    *,
+    wide: bool = True,
+    nav_active: str = "open_source_ai",
+    subtitle: str = "Borrow. Benchmark. Improve. Explain.",
+    nav_html: str | None = None,
+) -> str:
+    main_class = "wide" if wide else ""
+    nav = nav_html if nav_html is not None else _nav_fx(nav_active)
+    foot_disclaimer = (
+        "These models are not trading systems by themselves. They are research baselines. "
+        "Every model must be tested out-of-sample with realistic transaction costs, "
+        "drawdown controls, and no look-ahead bias before any trading use."
+    )
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="{html.escape(LAB_NAME)} — Open Source FX AI Model Lab"/>
+  <title>{html.escape(title)} — {html.escape(LAB_NAME)}</title>
+  <style>{_css_os_lab()}</style>
+</head>
+<body class="os-lab-page">
+  <header>
+    <div class="header-inner">
+      <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo-sm"/></div>
+      <div class="brand">{html.escape(LAB_NAME_DISPLAY)} · FX LAB</div>
+      <h1 class="title">{html.escape(title)}</h1>
+      <p class="subtitle">{html.escape(subtitle)} · Research only · Not investment advice</p>
+      {nav}
+    </div>
+  </header>
+  <main class="{main_class}">
+    {body}
+  </main>
+  <footer>
+    <p>{html.escape(LAB_NAME)} · Prepared by Brendan Bowers · {datetime.now():%Y-%m-%d}</p>
+    <div class="disclaimer">{html.escape(foot_disclaimer)}</div>
+  </footer>
+</body>
+</html>"""
+
+
 def _nav_fx(active: str = "home") -> str:
     links = [
         ("index.html", "Home", "home"),
@@ -661,6 +912,7 @@ def _nav_fx(active: str = "home") -> str:
         ("lab-status.html", "Lab Status", "lab_status"),
         ("unanswered-fx.html", "Unanswered FX", "unanswered_fx"),
         ("history.html", "History", "history"),
+        ("open-source-ai.html", "OSS AI Lab", "open_source_ai"),
     ]
     parts = ['<nav class="top">']
     for href, label, key in links:
@@ -1111,6 +1363,17 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
+    os_ai_path = out_dir / "open-source-ai.html"
+    os_ai_path.write_text(
+        _shell_os_lab(
+            "Open Source FX AI Model Lab",
+            _open_source_ai_body(out_dir),
+            nav_html=_nav_fx("open_source_ai"),
+            subtitle="Borrow. Benchmark. Improve. Explain.",
+        ),
+        encoding="utf-8",
+    )
+
     return {
         "index": cover_path,
         "fx_lab": fx_lab_path,
@@ -1124,4 +1387,5 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         "lab_status": lab_status_path,
         "unanswered_fx": unanswered_path,
         "history": history_path,
+        "open_source_ai": os_ai_path,
     }

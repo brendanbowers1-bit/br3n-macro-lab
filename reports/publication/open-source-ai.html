@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="BR3N Macro Labs — Open Source FX AI Model Lab"/>
+  <title>Open Source FX AI Model Lab — BR3N Macro Labs</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --surface-alt: #f0ede6;
+  --border: #d4dce8;
+  --border-strong: #b8c4d4;
+  --text: #1a2744;
+  --muted: #5c6578;
+  --accent: #1e3a5f;
+  --accent-dim: #152a45;
+  --good: #1f6b4a;
+  --warn: #9a6700;
+  --font: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --mono: "SF Mono", ui-monospace, Menlo, monospace;
+  --max: 720px;
+  --wide: 960px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-dim); text-decoration: underline; }
+header {
+  border-bottom: 2px solid var(--border-strong);
+  background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
+  padding: 2rem 1.5rem 1.75rem;
+}
+.header-inner { max-width: var(--wide); margin: 0 auto; }
+.brand {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+h1.title {
+  font-family: var(--serif);
+  font-size: 2.15rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.subtitle { color: var(--muted); font-size: 1.02rem; max-width: 42rem; line-height: 1.55; }
+nav.top {
+  max-width: var(--wide);
+  margin: 1.25rem auto 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+nav.top a {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--surface);
+  color: var(--accent);
+}
+nav.top a:hover { background: var(--surface-alt); text-decoration: none; }
+nav.top a.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+main.wide { max-width: var(--wide); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
+}
+.card h3 { margin-top: 0; font-size: 1rem; color: var(--accent); font-family: var(--serif); }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem;
+}
+.stat .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.stat .value { font-family: var(--serif); font-size: 1.45rem; font-weight: 700; margin-top: 0.25rem; color: var(--text); }
+.stat .value.good { color: var(--good); }
+.stat .value.warn { color: var(--warn); }
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.35rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-alt);
+  border-radius: 0 4px 4px 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-style: italic;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin: 2.25rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-strong);
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+p { margin: 0.75rem 0; }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+th { background: var(--surface-alt); color: var(--accent); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+table.data-table th.num,
+table.data-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table { margin: 0; }
+.conclusion-box {
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.claim-discipline {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text);
+}
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+}
+code { padding: 0.15rem 0.4rem; }
+pre { padding: 1rem; overflow-x: auto; }
+pre code { border: none; padding: 0; background: none; }
+footer {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  border-top: 2px solid var(--border-strong);
+  color: var(--muted);
+  font-size: 0.85rem;
+  background: var(--surface-alt);
+}
+.disclaimer {
+  background: #fff8ee;
+  border: 1px solid #e8d5b0;
+  color: #6b5344;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  margin-top: 1rem;
+}
+/* Cover page */
+body.cover-page {
+  background: var(--bg);
+}
+body.cover-page header.hero-cover {
+  border-bottom: 2px solid var(--border-strong);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(30, 58, 95, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+}
+.hero-cover .lab-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+  line-height: 1.1;
+  color: var(--text);
+}
+.hero-cover .tagline {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  max-width: 40rem;
+  margin: 0 auto 0.5rem;
+  line-height: 1.55;
+}
+.hero-cover .motto {
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0.75rem auto 1.5rem;
+  font-weight: 600;
+}
+.hero-cover .author {
+  color: var(--accent);
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.5rem;
+}
+.logo-frame {
+  display: inline-block;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 24px rgba(26, 39, 68, 0.08);
+}
+.fx-lab-logo {
+  display: block;
+  max-width: min(340px, 88vw);
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.fx-lab-logo-sm {
+  display: block;
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+}
+.cta-row {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+.cta-row a {
+  padding: 0.6rem 1.15rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.cta-row a.primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+.cta-row a.secondary {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--accent);
+}
+.principle-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  font-size: 1.02rem;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
+}
+.principle-box p { margin: 0.5rem 0; color: var(--text); }
+.cover-main { max-width: var(--wide); }
+.cover-main h2:first-child { margin-top: 0; }
+.vertical-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.vertical-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
+}
+.vertical-card:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(26, 39, 68, 0.08); }
+.vertical-card .tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.vertical-card h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.vertical-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+}
+.vertical-card a.btn {
+  display: inline-block;
+  padding: 0.5rem 0.95rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent);
+}
+.vertical-card a.btn:hover { text-decoration: none; opacity: 0.92; }
+.research-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+.research-link-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.35rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
+}
+.research-link-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(26, 39, 68, 0.08);
+}
+.research-link-card .tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+  font-weight: 600;
+}
+.research-link-card h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.research-link-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  h1.title { font-size: 1.55rem; }
+  body { font-size: 16px; }
+  .hero-cover .lab-title { letter-spacing: 0.05em; }
+}
+
+body.os-lab-page {
+  --bg: #0a0e14;
+  --surface: #121a28;
+  --surface2: #1a2436;
+  --border: #2a3548;
+  --text: #e8edf4;
+  --text2: #94a3b8;
+  --accent: #5b9fd4;
+  --accent2: #3d9970;
+  --warn-bg: #1a2436;
+  --warn-border: #5b9fd4;
+}
+body.os-lab-page {
+  background: var(--bg);
+  background-image:
+    linear-gradient(rgba(91, 159, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 159, 212, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--text);
+}
+body.os-lab-page header {
+  background: linear-gradient(180deg, #0d1219 0%, #121a28 100%);
+  border-bottom: 1px solid var(--border);
+}
+body.os-lab-page header .brand,
+body.os-lab-page header .title { color: var(--text); }
+body.os-lab-page header .subtitle { color: var(--text2); }
+body.os-lab-page footer {
+  background: #0d1219;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+}
+body.os-lab-page h2, body.os-lab-page h3 { color: var(--text); border-color: var(--border); }
+body.os-lab-page a { color: var(--accent); }
+body.os-lab-page .principle-box,
+body.os-lab-page .warning-box {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 4px;
+}
+body.os-lab-page .conclusion-box {
+  background: var(--surface2);
+  border: 1px solid var(--accent2);
+  border-left: 4px solid var(--accent2);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 4px;
+}
+body.os-lab-page .os-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+body.os-lab-page .os-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+}
+body.os-lab-page .os-card h4 {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 1rem;
+}
+body.os-lab-page .os-card .meta {
+  font-size: 0.78rem;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+body.os-lab-page .os-card p { margin: 0.35rem 0; font-size: 0.92rem; color: var(--text2); }
+body.os-lab-page .os-card .label { color: var(--text); font-weight: 600; font-size: 0.85rem; }
+body.os-lab-page pre.arch-tree {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--accent);
+}
+body.os-lab-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.88rem;
+}
+body.os-lab-page th, body.os-lab-page td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+body.os-lab-page th { background: var(--surface2); color: var(--accent); }
+body.os-lab-page td { color: var(--text2); }
+body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
+</style>
+</head>
+<body class="os-lab-page">
+  <header>
+    <div class="header-inner">
+      <div class="logo-frame"><img src="assets/br3n_macro_labs_logo.png" alt="BR3N MACRO LABS" class="fx-lab-logo-sm"/></div>
+      <div class="brand">BR3N MACRO LABS · FX LAB</div>
+      <h1 class="title">Open Source FX AI Model Lab</h1>
+      <p class="subtitle">Borrow. Benchmark. Improve. Explain. · Research only · Not investment advice</p>
+      <nav class="top">
+  <a href="index.html">Home</a>
+  <a href="fx-lab.html">FX Lab</a>
+  <a href="research.html">Research</a>
+  <a href="corridor.html">Corridor</a>
+  <a href="fx_desk.html">FX Desk</a>
+  <a href="memo.html">Memo</a>
+  <a href="ladder.html">Ladder</a>
+  <a href="hedge-governance.html">Hedge Gov</a>
+  <a href="model-zoo.html">Model Zoo</a>
+  <a href="lab-status.html">Lab Status</a>
+  <a href="unanswered-fx.html">Unanswered FX</a>
+  <a href="history.html">History</a>
+  <a href="open-source-ai.html" class="primary">OSS AI Lab</a>
+</nav>
+    </div>
+  </header>
+  <main class="wide">
+    
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="warning-box">
+  <p><strong>Warning:</strong> These models are not trading systems by themselves. They are research baselines.
+  Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias
+  before any trading use.</p>
+</div>
+<div class="conclusion-box">
+  <p><strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a disciplined
+  research pipeline that proves when a model works, when it fails, and why.</p>
+</div>
+<h1>Open Source FX AI Model Lab</h1>
+<h2 id="borrow-benchmark-improve-explain">Borrow. Benchmark. Improve. Explain.</h2>
+<div class="principle-box"><p>Research-only. Not investment advice. No live trading.</p></div>
+<hr/>
+<h2 id="core-thesis">Core Thesis</h2>
+<p>Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. BR3N FX Lab improves on them by adding <strong>carry</strong>, <strong>macro</strong>, <strong>volatility regimes</strong>, <strong>news sentiment</strong>, <strong>better labels</strong>, <strong>transaction costs</strong>, and <strong>proper walk-forward backtesting</strong>.</p>
+<div class="principle-box"><p><strong>Warning:</strong> These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.</p></div>
+<div class="principle-box"><p><strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a disciplined research pipeline that proves when a model works, when it fails, and why.</p></div>
+<hr/>
+<h2 id="1-baseline-fx-forecasting-models">1. Baseline FX Forecasting Models</h2>
+<h3>EUR/USD TimeSeriesTransformer</h3>
+<p>Transformer-based ML for EUR/USD short-term forecasting. <strong>Use:</strong> modern deep-learning benchmark vs BR3N models. <strong>Improve:</strong> macro, carry, news, regimes, cost-aware labels.</p>
+<h3>EUR/USD LSTM Model</h3>
+<p>Classic LSTM for EUR/USD. <strong>Use:</strong> traditional neural benchmark. <strong>Improve:</strong> compare LSTM vs Transformer vs foundation models on same splits and costs.</p>
+<h3>Rogendo Forex LSTM Models</h3>
+<p>Hugging Face collection of pair/timeframe LSTMs. <strong>Use:</strong> test pair-specific vs generalized models. <strong>Improve:</strong> evaluate major pairs; retrain on BR3N feature set.</p>
+<hr/>
+<h2 id="2-reinforcement-learning-frameworks">2. Reinforcement Learning Frameworks</h2>
+<h3>FinRL / FinRL-X</h3>
+<p>Financial RL (PPO, A2C, DDPG, SAC, TD3). <strong>Use:</strong> decision layer after forecasts. <strong>Improve:</strong> feed confidence, vol, carry, spread, drawdown — not raw candles alone.</p>
+<h3>TensorTrade</h3>
+<p>Custom trading environments, actions, rewards. <strong>Use:</strong> FX envs with spreads and slippage. <strong>Improve:</strong> BR3N reward = risk-adjusted return, drawdown control, Sharpe.</p>
+<hr/>
+<h2 id="3-time-series-foundation-models">3. Time-Series Foundation Models</h2>
+<h3>Google TimesFM</h3>
+<p>General-purpose TS foundation model. <strong>Use:</strong> zero-shot / fine-tuned FX benchmark. <strong>Improve:</strong> fine-tune on FX + macro + carry; compare to LSTM/Transformer.</p>
+<h3>Lag-Llama</h3>
+<p>Probabilistic foundation model with uncertainty. <strong>Use:</strong> confidence intervals and vol-aware signals. <strong>Improve:</strong> size down when confidence is low.</p>
+<h3>Chronos / TS Transformer Foundations</h3>
+<p>Pretrained time-series models adaptable to FX. <strong>Use:</strong> benchmark large pretrained vs small FX-specific models. <strong>Improve:</strong> fine-tune on OHLC, rates, macro, news.</p>
+<hr/>
+<h2 id="4-br3n-improvement-layer">4. BR3N Improvement Layer</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>Layer</th><th>Features</th></tr></thead>
+<tbody>
+<tr><td><strong>Carry</strong></td><td>rate differentials, forward points, policy rates, yield spreads</td></tr>
+<tr><td><strong>Macro</strong></td><td>inflation, unemployment, GDP, PMI, trade balance, fiscal stress</td></tr>
+<tr><td><strong>Regime</strong></td><td>VIX, DXY, yields, oil, gold, equity risk, realized vol, trend/range/crisis</td></tr>
+<tr><td><strong>News</strong></td><td>central bank tone, geopolitical risk, inflation language, political risk</td></tr>
+<tr><td><strong>Labels</strong></td><td>multi-horizon returns, cost-adjusted returns, no-trade when edge < cost</td></tr>
+<tr><td><strong>Backtest</strong></td><td>walk-forward, OOS, no look-ahead, spreads, slippage, regime metrics</td></tr>
+</tbody></table></div>
+<hr/>
+<h2 id="5-architecture-br3n-fx-lab-v1">5. Architecture — BR3N FX Lab v1</h2>
+<pre><code class="">
+BR3N FX Lab v1
+├── Baselines
+│   ├── EUR/USD LSTM
+│   ├── EUR/USD TimeSeriesTransformer
+│   ├── TimesFM
+│   ├── Lag-Llama
+│   └── FinRL / TensorTrade
+├── Data Layer
+│   ├── OHLCV
+│   ├── interest-rate differentials
+│   ├── forward points / carry
+│   ├── DXY / VIX / yields
+│   ├── macro indicators
+│   └── news sentiment
+├── Signal Engine
+│   ├── direction probability
+│   ├── expected return
+│   ├── volatility forecast
+│   ├── carry score
+│   └── confidence score
+├── Trading Layer
+│   ├── long / short / flat
+│   ├── position sizing
+│   ├── stop-loss logic
+│   ├── drawdown controls
+│   └── transaction costs
+└── Research Dashboard
+    ├── accuracy · Sharpe · Sortino · max drawdown
+    ├── win rate · avg win/loss · profit factor
+    └── regime performance
+</code></pre>
+<hr/>
+<h2 id="6-research-questions">6. Research Questions</h2>
+<ul><li>Do foundation models beat LSTM and Transformer in FX?</li><li>Does carry improve directional accuracy?</li><li>Does news help after central bank events?</li><li>Trend continuation vs mean reversion — which is more predictable?</li><li>Most predictable pair: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, USD/INR?</li><li>Does edge survive transaction costs?</li><li>Can a model know when <strong>not</strong> to trade?</li><li>Can BR3N explain <strong>why</strong> a trade works?</li></ul>
+<hr/>
+<h2 id="7-benchmarking-standard">7. Benchmarking Standard</h2>
+<p>Same pair · timeframe · train/test split · costs · dates · risk limits · walk-forward method.</p>
+<p>Metrics: directional accuracy, precision/recall on signals, Sharpe, Sortino, max drawdown, win rate, profit factor, turnover, cost drag, performance by regime.</p>
+<hr/>
+<h2 id="8-build-roadmap">8. Build Roadmap</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th class="num">Phase</th><th>Deliverable</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>Model registry + documentation (this page)</td></tr>
+<tr><td class="num">2</td><td>LSTM + Transformer wrappers</td></tr>
+<tr><td class="num">3</td><td>TimesFM + Lag-Llama adapters</td></tr>
+<tr><td class="num">4</td><td>Macro / carry / news feature pipeline</td></tr>
+<tr><td class="num">5</td><td>Walk-forward backtesting engine</td></tr>
+<tr><td class="num">6</td><td>Model comparison dashboard</td></tr>
+<tr><td class="num">7</td><td>Trade explanation engine</td></tr>
+<tr><td class="num">8</td><td>Published research notes</td></tr>
+</tbody></table></div>
+<hr/>
+<h2 id="9-project-structure">9. Project Structure</h2>
+<pre><code class="">
+src/models/          — registry, baselines, adapters, RL stubs
+src/backtesting/     — walk-forward, costs, risk metrics, regimes
+src/carry_features.py
+src/news_features.py
+src/features.py      — volatility / regime features
+reports/research/    — benchmark standard, research questions
+</code></pre>
+<p>See <code>src/models/model_registry.py</code> for the live registry.</p>
+<h2>Model Registry</h2>
+<h3>Baseline FX Forecasting</h3>
+<div class="os-card-grid">
+<div class="os-card">
+  <div class="meta">LSTM · baseline candidate</div>
+  <h4>EUR/USD LSTM Model</h4>
+  <p>Classic LSTM time-series model for EUR/USD short-horizon forecasting.</p>
+  <p><span class="label">Use case:</span> Traditional neural-network benchmark under BR3N walk-forward splits.</p>
+  <p><span class="label">Source:</span> open-source baseline</p>
+  <p><span class="label">BR3N improvements:</span></p><ul><li>add carry features</li><li>add macro features</li><li>add news sentiment</li><li>use transaction-cost-aware labels</li><li>walk-forward validation</li></ul>
+</div>
+<div class="os-card">
+  <div class="meta">Transformer · baseline candidate</div>
+  <h4>EUR/USD TimeSeriesTransformer</h4>
+  <p>Transformer-based ML model for EUR/USD short-term forecasting.</p>
+  <p><span class="label">Use case:</span> Modern deep-learning benchmark vs BR3N regime models.</p>
+  <p><span class="label">Source:</span> open-source baseline</p>
+  <p><span class="label">BR3N improvements:</span></p><ul><li>add macro features, rate differentials, carry</li><li>add news sentiment and volatility regimes</li><li>transaction-cost-aware labels</li><li>compare against LSTM under same splits</li></ul>
+</div>
+<div class="os-card">
+  <div class="meta">LSTM collection · baseline candidate</div>
+  <h4>Rogendo Forex LSTM Models</h4>
+  <p>Collection of pair-specific LSTM forex models on Hugging Face.</p>
+  <p><span class="label">Use case:</span> Test whether pair-specific models beat generalized FX models.</p>
+  <p><span class="label">Source:</span> Hugging Face — pair/timeframe-specific LSTMs</p>
+  <p><span class="label">BR3N improvements:</span></p><ul><li>evaluate across major pairs</li><li>retrain with BR3N cleaner feature set</li><li>same cost and walk-forward standard</li></ul>
+</div>
+</div>
+<h3>Reinforcement Learning Frameworks</h3>
+<div class="os-card-grid">
+<div class="os-card">
+  <div class="meta">RL framework · future trading-layer candidate</div>
+  <h4>FinRL / FinRL-X</h4>
+  <p>Open-source financial RL framework for portfolio and trading decisions.</p>
+  <p><span class="label">Use case:</span> Decision layer after forecast models — long/short/flat/sized positions.</p>
+  <p><span class="label">Source:</span> AI4Finance</p>
+  <p><span class="label">BR3N improvements:</span></p><ul><li>feed forecast confidence, volatility, carry, spread</li><li>include drawdown and macro regime in state</li><li>optimize risk-adjusted return not raw PnL</li></ul>
+</div>
+<div class="os-card">
+  <div class="meta">RL trading framework · future environment candidate</div>
+  <h4>TensorTrade</h4>
+  <p>Flexible RL framework for custom actions, rewards, and data feeds.</p>
+  <p><span class="label">Use case:</span> FX environments with spreads, slippage, and position sizing.</p>
+  <p><span class="label">Source:</span> open-source</p>
+  <p><span class="label">BR3N improvements:</span></p><ul><li>build custom FX environment</li><li>add realistic costs</li><li>custom BR3N reward function (Sharpe, drawdown control)</li></ul>
+</div>
+</div>
+<h3>Time-Series Foundation Models</h3>
+<div class="os-card-grid">
+<div class="os-card">
+  <div class="meta">time-series foundation model · experiment candidate</div>
+  <h4>Google TimesFM</h4>
+  <p>General-purpose open-source time-series foundation model.</p>
+  <p><span class="label">Use case:</span> Zero-shot / fine-tuned benchmark on major FX pairs.</p>
+  <p><span class="label">Source:</span> Google Research</p>
+  <p><span class="label">BR3N improvements:</span></p><ul><li>fine-tune on FX + macro + carry</li><li>compare against LSTM and Transformer baselines</li></ul>
+</div>
+<div class="os-card">
+  <div class="meta">probabilistic foundation model · experiment candidate</div>
+  <h4>Lag-Llama</h4>
+  <p>Probabilistic time-series foundation model with uncertainty estimates.</p>
+  <p><span class="label">Use case:</span> Confidence intervals and volatility-aware position sizing.</p>
+  <p><span class="label">Source:</span> open-source foundation model</p>
+  <p><span class="label">BR3N improvements:</span></p><ul><li>use uncertainty for position sizing</li><li>reduce trades when confidence is low</li></ul>
+</div>
+<div class="os-card">
+  <div class="meta">Transformer foundation model · experiment candidate</div>
+  <h4>Chronos / TS Transformer Foundations</h4>
+  <p>Foundation-model approaches for time-series that may adapt to currency markets.</p>
+  <p><span class="label">Use case:</span> Benchmark large pretrained TS models vs smaller FX-specific models.</p>
+  <p><span class="label">Source:</span> open-source / Amazon Chronos family</p>
+  <p><span class="label">BR3N improvements:</span></p><ul><li>fine-tune on FX OHLC, rates, macro, news-derived features</li><li>walk-forward OOS with cost drag</li></ul>
+</div>
+</div>
+<h2>Architecture</h2>
+<pre class="arch-tree">BR3N FX Lab v1
+├── Baselines
+│   ├── EUR/USD LSTM
+│   ├── EUR/USD TimeSeriesTransformer
+│   ├── TimesFM
+│   ├── Lag-Llama
+│   └── FinRL / TensorTrade
+│
+├── Data Layer
+│   ├── OHLCV
+│   ├── interest-rate differentials
+│   ├── forward points / carry
+│   ├── DXY / VIX / yields
+│   ├── macro indicators
+│   └── news sentiment
+│
+├── Signal Engine
+│   ├── direction probability
+│   ├── expected return
+│   ├── volatility forecast
+│   ├── carry score
+│   └── confidence score
+│
+├── Trading Layer
+│   ├── long / short / flat
+│   ├── position sizing
+│   ├── stop-loss logic
+│   ├── drawdown controls
+│   └── transaction costs
+│
+└── Research Dashboard
+    ├── accuracy · Sharpe · Sortino · max drawdown
+    ├── win rate · avg win/loss · profit factor
+    └── regime performance</pre>
+<hr/>
+<h2>Full Documentation</h2>
+<h1>Open Source FX AI Model Lab</h1>
+<p><strong>Borrow. Benchmark. Improve. Explain.</strong></p>
+<div class="principle-box"><p>Research-only. Not investment advice. No live trading.</p></div>
+<hr/>
+<h2 id="core-thesis">Core Thesis</h2>
+<p>Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. BR3N FX Lab should improve on them by adding carry, macro, volatility regimes, news sentiment, better labels, transaction costs, and proper walk-forward backtesting.</p>
+<div class="principle-box"><p><strong>Warning:</strong> These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.</p></div>
+<div class="principle-box"><p><strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a disciplined research pipeline that proves when a model works, when it fails, and why.</p></div>
+<hr/>
+<h2 id="1-baseline-fx-forecasting-models">1. Baseline FX Forecasting Models</h2>
+<h3>A. EUR/USD TimeSeriesTransformer</h3>
+<p><strong>Description:</strong> A transformer-based machine learning model for EUR/USD short-term forecasting, useful as a modern deep-learning benchmark.</p>
+<p><strong>Use case:</strong> Benchmark BR3N's own FX models against a direct transformer baseline.</p>
+<p><strong>Improvement idea:</strong> Add macro features, rate differentials, carry, news sentiment, volatility regimes, and transaction-cost-aware labels.</p>
+<h3>B. EUR/USD LSTM Model</h3>
+<p><strong>Description:</strong> A classic deep-learning time-series model for EUR/USD forecasting using LSTM architecture.</p>
+<p><strong>Use case:</strong> Use as a traditional neural-network benchmark.</p>
+<p><strong>Improvement idea:</strong> Compare LSTM vs Transformer vs foundation models under the same train/test split and trading-cost assumptions.</p>
+<h3>C. Rogendo Forex LSTM Models</h3>
+<p><strong>Description:</strong> A Hugging Face collection of multiple pair/timeframe-specific LSTM forex models.</p>
+<p><strong>Use case:</strong> Test whether pair-specific models outperform generalized FX models.</p>
+<p><strong>Improvement idea:</strong> Evaluate model quality across major pairs, then retrain using BR3N's cleaner feature set.</p>
+<hr/>
+<h2 id="2-reinforcement-learning-trading-frameworks">2. Reinforcement Learning Trading Frameworks</h2>
+<h3>A. FinRL / FinRL-X</h3>
+<p><strong>Description:</strong> An open-source financial reinforcement-learning framework using algorithms such as PPO, A2C, DDPG, SAC, and TD3.</p>
+<p><strong>Use case:</strong> Use after forecasting models are built, as a decision layer that chooses long, short, flat, or reduced-size positions.</p>
+<p><strong>Improvement idea:</strong> Do not let the RL agent blindly trade price candles. Feed it forecast confidence, volatility, carry, spread, drawdown, and macro regime.</p>
+<h3>B. TensorTrade</h3>
+<p><strong>Description:</strong> A flexible open-source reinforcement-learning framework for custom trading environments, actions, rewards, and data feeds.</p>
+<p><strong>Use case:</strong> Build custom FX trading environments with realistic spreads, slippage, and position sizing.</p>
+<p><strong>Improvement idea:</strong> Create BR3N-specific reward functions based on risk-adjusted return, drawdown control, Sharpe ratio, and capital preservation.</p>
+<hr/>
+<h2 id="3-time-series-foundation-models">3. Time-Series Foundation Models</h2>
+<h3>A. Google TimesFM</h3>
+<p><strong>Description:</strong> A general-purpose open-source time-series foundation model that can be tested on FX forecasting tasks.</p>
+<p><strong>Use case:</strong> Zero-shot or fine-tuned FX forecasting benchmark.</p>
+<p><strong>Improvement idea:</strong> Compare TimesFM against LSTM and Transformer baselines on major FX pairs.</p>
+<h3>B. Lag-Llama</h3>
+<p><strong>Description:</strong> An open-source probabilistic time-series foundation model for forecasting with uncertainty estimates.</p>
+<p><strong>Use case:</strong> Generate probabilistic forecasts, confidence intervals, and volatility-aware trading signals.</p>
+<p><strong>Improvement idea:</strong> Use forecast uncertainty to reduce position size when model confidence is low.</p>
+<h3>C. Chronos / Time-Series Transformer Foundation Models</h3>
+<p><strong>Description:</strong> General foundation-model approaches for time-series forecasting that may be adapted to currency markets.</p>
+<p><strong>Use case:</strong> Benchmark whether large pretrained time-series models beat smaller FX-specific models.</p>
+<p><strong>Improvement idea:</strong> Fine-tune on FX OHLC, rates, macro, and news-derived features.</p>
+<hr/>
+<h2 id="4-br3n-improvement-layer">4. BR3N Improvement Layer</h2>
+<p>What BR3N FX Lab adds beyond open-source models:</p>
+<h3>A. Carry Features</h3>
+<ul><li>interest-rate differentials</li><li>forward points</li><li>central bank policy rates</li><li>yield spreads</li><li>positive or negative carry</li></ul>
+<h3>B. Macro Features</h3>
+<ul><li>inflation</li><li>unemployment</li><li>GDP</li><li>PMI</li><li>trade balance</li><li>fiscal stress</li><li>central bank policy expectations</li></ul>
+<h3>C. Market Regime Features</h3>
+<ul><li>VIX</li><li>DXY</li><li>US 10-year yield</li><li>oil</li><li>gold</li><li>equity risk sentiment</li><li>realized volatility</li><li>trend regime</li><li>mean-reversion regime</li><li>crisis regime</li></ul>
+<h3>D. News and Sentiment Features</h3>
+<ul><li>central bank speeches</li><li>FOMC / ECB / BOJ tone</li><li>geopolitical risk</li><li>inflation surprise language</li><li>rate-cut / rate-hike expectations</li><li>crisis headlines</li><li>country-specific political risk</li></ul>
+<h3>E. Better Labels</h3>
+<p>Instead of predicting next close, label trades using:</p>
+<ul><li>next 1-hour return</li><li>next 4-hour return</li><li>next 1-day return</li><li>risk-adjusted return</li><li>return after spread and slippage</li><li>direction only when move exceeds cost threshold</li><li>no-trade label when edge is too small</li></ul>
+<h3>F. Better Backtesting</h3>
+<ul><li>walk-forward validation</li><li>out-of-sample testing</li><li>no look-ahead bias</li><li>realistic spreads</li><li>slippage</li><li>max drawdown</li><li>Sharpe ratio</li><li>Sortino ratio</li><li>win rate</li><li>average win/loss</li><li>profit factor</li><li>regime-specific performance</li><li>pair-specific performance</li></ul>
+<hr/>
+<h2 id="5-architecture-br3n-fx-lab-v1">5. Architecture — BR3N FX Lab v1</h2>
+<pre><code class="">
+BR3N FX Lab v1
+├── Baselines
+│   ├── EUR/USD LSTM
+│   ├── EUR/USD TimeSeriesTransformer
+│   ├── TimesFM
+│   ├── Lag-Llama
+│   └── FinRL / TensorTrade
+│
+├── Data Layer
+│   ├── OHLCV
+│   ├── interest-rate differentials
+│   ├── forward points / carry
+│   ├── DXY / VIX / yields
+│   ├── macro indicators
+│   └── news sentiment
+│
+├── Signal Engine
+│   ├── direction probability
+│   ├── expected return
+│   ├── volatility forecast
+│   ├── carry score
+│   └── confidence score
+│
+├── Trading Layer
+│   ├── long / short / flat
+│   ├── position sizing
+│   ├── stop-loss logic
+│   ├── drawdown controls
+│   └── transaction costs
+│
+└── Research Dashboard
+    ├── accuracy
+    ├── Sharpe
+    ├── Sortino
+    ├── max drawdown
+    ├── win rate
+    ├── average win/loss
+    ├── profit factor
+    └── regime performance
+</code></pre>
+<hr/>
+<h2 id="6-research-questions">6. Research Questions</h2>
+<ul><li>Do time-series foundation models outperform traditional LSTM and Transformer models in FX?</li><li>Does adding interest-rate carry improve directional accuracy?</li><li>Does news sentiment improve short-term FX prediction after central bank events?</li><li>Are models better at predicting trend continuation or mean reversion?</li><li>Which pairs are most predictable: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, or USD/INR?</li><li>Does the model still work after transaction costs?</li><li>Can a model know when not to trade?</li><li>Can BR3N FX Lab explain why a trade works instead of only predicting direction?</li></ul>
+<hr/>
+<h2 id="7-benchmarking-standard">7. Benchmarking Standard</h2>
+<p>Every model must be judged by:</p>
+<ul><li>same currency pair</li><li>same timeframe</li><li>same train/test split</li><li>same transaction cost assumptions</li><li>same evaluation dates</li><li>same risk limits</li><li>same walk-forward testing method</li></ul>
+<p><strong>Metrics:</strong> directional accuracy, precision on trade signals, recall on trade signals, Sharpe ratio, Sortino ratio, max drawdown, average win, average loss, win rate, profit factor, turnover, transaction cost drag, performance by regime.</p>
+<hr/>
+<h2 id="8-practical-build-roadmap">8. Practical Build Roadmap</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>Phase</th><th>Deliverable</th></tr></thead>
+<tbody>
+<tr><td><strong>Phase 1</strong></td><td>Add model registry and documentation page</td></tr>
+<tr><td><strong>Phase 2</strong></td><td>Implement baseline LSTM and Transformer model wrappers</td></tr>
+<tr><td><strong>Phase 3</strong></td><td>Add TimesFM and Lag-Llama experiment notebooks or placeholder adapters</td></tr>
+<tr><td><strong>Phase 4</strong></td><td>Add macro/carry/news feature pipeline</td></tr>
+<tr><td><strong>Phase 5</strong></td><td>Build walk-forward backtesting engine</td></tr>
+<tr><td><strong>Phase 6</strong></td><td>Add model comparison dashboard</td></tr>
+<tr><td><strong>Phase 7</strong></td><td>Add trade explanation engine</td></tr>
+<tr><td><strong>Phase 8</strong></td><td>Publish BR3N FX Lab research notes</td></tr>
+</tbody></table></div>
+<hr/>
+<h2 id="9-project-folder-structure">9. Project Folder Structure</h2>
+<pre><code class="">
+src/
+  data/                    (via data/ at repo root)
+    raw/
+    processed/
+    macro/
+    news/
+  features/
+    carry_features.py      → src/carry_features.py (existing)
+    macro_features.py
+    volatility_features.py → src/features.py (regime/vol)
+    news_sentiment_features.py → src/news_features.py (existing)
+  models/
+    model_registry.py
+    lstm_baseline.py
+    transformer_baseline.py
+    timesfm_adapter.py
+    lag_llama_adapter.py
+    finrl_agent.py
+    tensortrade_env.py
+  backtesting/
+    walk_forward.py
+    transaction_costs.py
+    risk_metrics.py
+    regime_analysis.py
+  dashboard/
+    model_comparison.py
+    trade_explainer.py
+  research/                → reports/research/
+    open_source_model_registry.md
+    benchmark_standard.md
+    research_questions_os_models.md
+</code></pre>
+<p>Registry: <code>src/models/model_registry.py</code></p>
+
+  </main>
+  <footer>
+    <p>BR3N Macro Labs · Prepared by Brendan Bowers · 2026-05-30</p>
+    <div class="disclaimer">These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.</div>
+  </footer>
+</body>
+</html>
