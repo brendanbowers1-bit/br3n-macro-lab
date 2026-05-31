@@ -219,8 +219,6 @@ def calculate_vsi_for_corridors(
     out = pd.concat([df, components], axis=1)
 
     out["original_value_sent_usd"] = out.get("send_amount_usd", 100.0)
-    out["data_quality_score"] = 0.3 if mock_data_flag else 0.85
-    out["mock_data_flag"] = bool(mock_data_flag)
     out["source"] = out.get("source", "vsi_pipeline")
     out["rank"] = rank_series(out["total_value_loss_pct"])
 
@@ -232,7 +230,7 @@ def calculate_vsi_for_corridors(
         "dollar_dependency_drag_pct", "trust_discount_pct",
         "total_value_loss_pct", "real_usable_value_delivered_pct",
         "value_survival_index", "value_loss_usd_per_100",
-        "interpretation", "data_quality_score", "mock_data_flag",
-    ]
+    "interpretation", "data_quality_score", "mock_data_flag", "data_mode", "limitations",
+]
     existing = [c for c in cols if c in out.columns]
     return out[existing + [c for c in out.columns if c not in existing]]

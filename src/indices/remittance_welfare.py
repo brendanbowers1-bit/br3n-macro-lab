@@ -10,6 +10,11 @@ import pandas as pd
 
 from src.indices._utils import normalize_index, rank_series
 
+REMITTANCE_WELFARE_LIMITATIONS = (
+    "Aggregate USD losses multiply VSI estimates by KNOMAD-style flow volumes. "
+    "Flows and loss rates are research estimates — not official household survey data."
+)
+
 
 def calculate_aggregate_value_loss(
     annual_remittance_usd: float,

@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 import pandas as pd
 
 from src.data.build_dataset import build_value_survival_dataset, save_vsi_outputs
+from src.data.vsi_quality import assess_dataset_provenance
 from src.indices.hidden_fx_tax import calculate_hidden_fx_tax_table, rank_corridors_by_hidden_fx_tax
 from src.indices.remittance_welfare import calculate_remittance_welfare_table, rank_corridors_by_welfare_loss
 
@@ -24,6 +25,12 @@ def main() -> None:
     dataset = build_value_survival_dataset()
     vsi = dataset["value_survival_outputs"]
     out_path = save_vsi_outputs(vsi)
+    prov = assess_dataset_provenance(dataset)
+
+    print(f"Data mode: {prov.data_mode} · quality score: {prov.overall_quality_score:.0%}")
+    for note in prov.notes:
+        print(f"  · {note}")
+    print()
 
     hft = calculate_hidden_fx_tax_table(
         dataset["corridor_prices"],

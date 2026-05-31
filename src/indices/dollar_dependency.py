@@ -11,6 +11,12 @@ from src.indices._utils import normalize_index
 from src.indices.value_survival import calculate_dollar_dependency_drag
 
 
+DOLLAR_DEPENDENCY_LIMITATIONS = (
+    "USD debt share, invoicing, and sanctions exposure use manual research estimates where noted. "
+    "Drag formula is a transparent placeholder — not a measured payment rail cost."
+)
+
+
 def calculate_dollar_dependency_drag_from_score(score: float) -> float:
     """VSI drag component from dollar dependency score 0–100."""
     return calculate_dollar_dependency_drag(score)

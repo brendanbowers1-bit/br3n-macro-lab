@@ -21,6 +21,12 @@ from src.indices.value_survival import (
 )
 
 
+HIDDEN_FX_TAX_LIMITATIONS = (
+    "Sub-index of VSI — excludes inflation, trust, and dollar drag. "
+    "Timing and volatility penalties use starter formulas. Not a trading signal."
+)
+
+
 def calculate_timing_risk(transfer_speed_days: float, fx_daily_volatility: float) -> float:
     """Timing risk grows with transfer delay and FX volatility (legacy helper)."""
     return calculate_timing_loss(transfer_speed_days, fx_daily_volatility)

@@ -24,9 +24,14 @@ def main() -> None:
         print(f"  {name}: {p}")
     print("\nValidation:")
     print(validation.to_string(index=False))
+    if "_provenance_report" in dataset:
+        print("\nData provenance:")
+        print(dataset["_provenance_report"].to_string(index=False))
+    prov_mode = dataset["value_survival_outputs"]["data_mode"].iloc[0] if "data_mode" in dataset["value_survival_outputs"].columns else "unknown"
     mock = dataset["value_survival_outputs"]["mock_data_flag"].any()
+    print(f"\nData mode: {prov_mode} · mock={mock}")
     if mock:
-        print("\n⚠️  Demo mode: mock/synthetic data active.")
+        print("⚠️  Demo mode: mock/synthetic data active.")
 
 
 if __name__ == "__main__":

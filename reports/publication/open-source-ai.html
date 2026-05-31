@@ -420,12 +420,18 @@ body.cover-page header.hero-cover {
 body.os-lab-page {
   --bg: #0a0e14;
   --surface: #121a28;
+  --surface-alt: #1a2436;
   --surface2: #1a2436;
   --border: #2a3548;
+  --border-strong: #3d4f66;
   --text: #e8edf4;
+  --muted: #94a3b8;
   --text2: #94a3b8;
   --accent: #5b9fd4;
+  --accent-dim: #7eb8e0;
   --accent2: #3d9970;
+  --good: #3d9970;
+  --warn: #ca8a04;
   --warn-bg: #1a2436;
   --warn-border: #5b9fd4;
 }
@@ -459,6 +465,13 @@ body.os-lab-page .warning-box {
   padding: 1rem 1.25rem;
   margin: 1.25rem 0;
   border-radius: 4px;
+  color: var(--text);
+}
+body.os-lab-page .principle-box p,
+body.os-lab-page .warning-box p,
+body.os-lab-page .conclusion-box p {
+  color: var(--text);
+  margin: 0.35rem 0;
 }
 body.os-lab-page .conclusion-box {
   background: var(--surface2);
@@ -467,6 +480,64 @@ body.os-lab-page .conclusion-box {
   padding: 1rem 1.25rem;
   margin: 1.25rem 0;
   border-radius: 4px;
+  color: var(--text);
+}
+body.os-lab-page h1 { color: var(--text); }
+body.os-lab-page p,
+body.os-lab-page li,
+body.os-lab-page td,
+body.os-lab-page th {
+  color: var(--text);
+}
+body.os-lab-page blockquote {
+  background: var(--surface-alt);
+  border-left: 3px solid var(--accent);
+  color: var(--text2);
+}
+body.os-lab-page code,
+body.os-lab-page pre {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+body.os-lab-page pre code {
+  background: transparent;
+  color: var(--text);
+}
+body.os-lab-page .data-table th,
+body.os-lab-page .table-wrap th {
+  background: var(--surface2);
+  color: var(--accent);
+}
+body.os-lab-page .data-table td,
+body.os-lab-page .table-wrap td {
+  background: var(--surface);
+  color: var(--text2);
+}
+body.os-lab-page .disclaimer {
+  background: #1a2436;
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
+body.os-lab-page .meta {
+  color: var(--text2);
+  font-size: 0.85rem;
+}
+body.os-lab-page nav.top a {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+body.os-lab-page nav.top a:hover {
+  background: var(--surface-alt);
+  color: var(--accent);
+}
+body.os-lab-page nav.top a.primary {
+  background: var(--accent);
+  color: #0a0e14;
+}
+body.os-lab-page hr {
+  border-color: var(--border);
 }
 body.os-lab-page .os-card-grid {
   display: grid;
@@ -542,6 +613,7 @@ body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
   <a href="history.html">History</a>
   <a href="open-source-ai.html" class="primary">OSS AI Lab</a>
   <a href="global-fx-lab.html">Global FX</a>
+  <a href="value-survival-index.html">VSI</a>
 </nav>
     </div>
   </header>

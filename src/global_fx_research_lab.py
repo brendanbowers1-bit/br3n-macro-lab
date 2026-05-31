@@ -34,11 +34,16 @@ DISCLAIMER = (
 CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Source+Sans+3:wght@400;600&display=swap');
+.stApp, [data-testid="stAppViewContainer"] { background-color: #0a0e14 !important; color: #e8edf4 !important; }
+[data-testid="stSidebar"] { background-color: #121a28 !important; }
+[data-testid="stSidebar"] *, h1, h2, h3, p, li, label { color: #e8edf4; }
+[data-testid="stMetricValue"], [data-testid="stMetricLabel"] { color: #e8edf4 !important; }
+[data-testid="stAlert"] { background-color: #1a2436 !important; color: #e8edf4 !important; border: 1px solid #5b9fd4 !important; }
 .gfx-header{background:linear-gradient(180deg,#0d1219,#121a28);border:1px solid #2a3548;border-radius:8px;padding:1.5rem;margin-bottom:1rem}
 .gfx-title{font-family:'Cormorant Garamond',serif;color:#e8edf4;font-size:1.75rem;font-weight:600}
 .gfx-sub{color:#5b9fd4;font-size:0.95rem;margin-top:0.35rem}
 .gfx-q{color:#94a3b8;font-style:italic;margin-top:0.75rem;font-size:1rem}
-.warn{background:#1a2436;border-left:4px solid #5b9fd4;padding:0.75rem 1rem;border-radius:4px;color:#94a3b8;margin:1rem 0}
+.warn{background:#1a2436;border-left:4px solid #5b9fd4;padding:0.75rem 1rem;border-radius:4px;color:#94a3b8 !important;margin:1rem 0}
 </style>
 """
 

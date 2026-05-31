@@ -62,6 +62,8 @@ VALUE_SURVIVAL_OUTPUTS_COLUMNS = [
     "interpretation",
     "data_quality_score",
     "mock_data_flag",
+    "data_mode",
+    "limitations",
     "source",
 ]
 

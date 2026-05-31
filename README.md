@@ -4,24 +4,49 @@
 
 ---
 
-## BR3N Value Survival Index (VSI) — Flagship Research Product
+## BR3N Value Survival Index: Measuring How Much Value Survives When Money Crosses Borders
 
-**When value crosses a border, how much of it survives?**
+**Core thesis:** Foreign exchange is the daily auction of global trust. The Value Survival Index measures how much economic value survives when it crosses from one monetary trust system into another.
 
-The Value Survival Index measures how much economic value survives cross-border translation into usable purchasing power. Research-only — not investment advice, not a trading signal.
+**Main formula:**
+
+```
+VSI = 100 × Real Usable Value Delivered / Original Value Sent
+```
+
+**Cross-border value loss** = explicit fees + FX spread + timing loss + volatility loss + inflation erosion + payout friction + dollar dependency drag + trust discount
+
+Research-only. **Not investment advice.** Not a trading signal. Not a price forecast.
+
+### Quick start
 
 ```bash
 cd ~/fx_regime_lab
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python scripts/smoke_test.py
-python scripts/run_vsi.py
+
+python scripts/smoke_test.py       # production readiness checks
+python scripts/build_dataset.py  # processed tables → data/processed/
+python scripts/run_vsi.py          # VSI outputs → data/outputs/
+python scripts/make_visuals.py     # charts → reports/figures/
 streamlit run src/dashboard/app.py
 ```
 
-**Data:** Drop real files in `data/raw/world_bank_rpw/`, `world_bank_knomad/`, `imf/`, `bis/`, `manual/` — see [DATA_SOURCES.md](DATA_SOURCES.md) and [VALUE_SURVIVAL_INDEX.md](VALUE_SURVIVAL_INDEX.md).
+### Data modes
 
-**Docs:** [METHODOLOGY.md](METHODOLOGY.md) | [VALUE_SURVIVAL_INDEX.md](VALUE_SURVIVAL_INDEX.md)
+| Mode | Meaning |
+|------|---------|
+| `real` | Public RPW/KNOMAD/IMF/WB files loaded; formula placeholders remain |
+| `mixed` | Some demo + some real tables |
+| `demo` | All synthetic seed data — dashboard shows red banner |
+
+Drop official files in `data/raw/` — see [DATA_SOURCES.md](DATA_SOURCES.md).
+
+### Documentation
+
+- [VALUE_SURVIVAL_INDEX.md](VALUE_SURVIVAL_INDEX.md) — index definition
+- [METHODOLOGY.md](METHODOLOGY.md) — formulas and limitations
+- [Live publication page](https://brendanbowers1-bit.github.io/br3n-macro-lab/value-survival-index.html)
 
 ---
 

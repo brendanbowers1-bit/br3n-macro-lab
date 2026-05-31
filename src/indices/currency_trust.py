@@ -12,6 +12,12 @@ import pandas as pd
 from src.data.sovereignty import sovereignty_lookup
 
 
+CURRENCY_TRUST_LIMITATIONS = (
+    "Institutional trust and crisis history use research placeholders from sovereignty manual file. "
+    "Not a sovereign credit rating. Not investment advice."
+)
+
+
 def score_inflation_stability(inflation_yoy: float) -> float:
     infl = float(inflation_yoy or 0.05)
     return float(np.clip((0.15 - infl) / 0.13 * 100, 0, 100))

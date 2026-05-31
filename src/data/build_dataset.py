@@ -20,6 +20,7 @@ from .file_discovery import discover_all_sources
 from .loaders import load_all_canonical_tables, data_provenance_summary
 from .mock_data import create_mock_dataset, is_using_mock_data
 from .validators import validate_all_tables
+from .vsi_quality import annotate_vsi_outputs, provenance_summary_df
 
 
 def _using_mock(tables: dict[str, pd.DataFrame]) -> bool:
@@ -63,6 +64,7 @@ def build_value_survival_dataset(use_mock_fallback: bool = True) -> dict[str, pd
         dollar_dep,
         mock_data_flag=mock_flag,
     )
+    vsi = annotate_vsi_outputs(vsi, tables)
 
     out = {
         **tables,
@@ -70,6 +72,7 @@ def build_value_survival_dataset(use_mock_fallback: bool = True) -> dict[str, pd
         "dollar_dependency": dollar_dep,
         "value_survival_outputs": vsi,
     }
+    out["_provenance_report"] = provenance_summary_df(tables)
     return out
 
 
