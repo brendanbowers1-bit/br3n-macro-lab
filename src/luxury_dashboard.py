@@ -99,6 +99,7 @@ PAGES = [
     "Unanswered FX Questions",
     "FX History",
     "Open Source FX AI Lab",
+    "FX Research Terminal",
     "Academic Tests",
     "Data Quality",
     "FX Desk Command Center",
@@ -2199,6 +2200,44 @@ def page_open_source_fx_ai_lab() -> None:
             st.warning("Missing reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md")
 
 
+def page_fx_research_terminal() -> None:
+    """Embed FX Research Terminal overview; full app runs standalone."""
+    st.markdown(
+        '<div class="hero-title">FX Research Terminal</div>'
+        '<div class="hero-subtitle">Statistical models · Regime analysis · Risk engine · Local LLM research layer</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="warning-box"><strong>Research only.</strong> Not investment advice. '
+        "Launch the full terminal for pair detail, corridors, model lab, and Ollama tools.</div>",
+        unsafe_allow_html=True,
+    )
+    st.code("streamlit run src/fx_research_terminal.py", language="bash")
+    st.markdown("Pipeline: `python scripts/run_fx_research_terminal.py`")
+    st.markdown("Docs: `docs/FX_RESEARCH_TERMINAL.md` · LLM: `LOCAL_LLM_SETUP.md`")
+
+    try:
+        from src.data.pipeline import build_terminal_data_bundle
+        from src.features.fx_terminal_features import build_multi_pair_feature_table
+        from src.data.constants import CORE_FX_PAIRS, pair_label
+
+        bundle = build_terminal_data_bundle(use_mock_on_failure=True)
+        features = build_multi_pair_feature_table(
+            bundle.market, bundle.macro, bundle.rates, bundle.sentiment, pairs=CORE_FX_PAIRS[:5]
+        )
+        latest = features.sort_values("date").groupby("pair").tail(1)
+        if not latest.empty:
+            st.dataframe(
+                latest[["pair", "spot", "ret_20d", "vol_20d", "carry_score"]].assign(
+                    pair=latest["pair"].map(pair_label)
+                ),
+                use_container_width=True,
+                hide_index=True,
+            )
+    except Exception as exc:
+        st.warning(f"Terminal preview unavailable: {exc}")
+
+
 def page_research_questions() -> None:
     page_unanswered_fx_questions()
 
@@ -2347,6 +2386,7 @@ def main() -> None:
         "Unanswered FX Questions": page_unanswered_fx_questions,
         "FX History": page_fx_history,
         "Open Source FX AI Lab": page_open_source_fx_ai_lab,
+        "FX Research Terminal": page_fx_research_terminal,
         "Academic Tests": page_academic_tests,
         "Data Quality": page_data_quality,
         "FX Desk Command Center": page_fx_desk_command_center,

@@ -134,6 +134,18 @@ Forecasting exchange rates remains extremely difficult, but FX decisions may sti
 Full document: `reports/FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md`  
 Public page: `reports/publication/history.html` (build via `python scripts/build_site.py`)
 
+## FX Research Terminal
+
+Local-first institutional FX research dashboard: statistical models, regime analysis, risk engine, and Ollama LLM layer for memos and news classification.
+
+```bash
+python scripts/run_fx_research_terminal.py
+streamlit run src/fx_research_terminal.py
+pytest tests/test_fx_terminal_smoke.py -q
+```
+
+Full docs: [docs/FX_RESEARCH_TERMINAL.md](docs/FX_RESEARCH_TERMINAL.md) · LLM setup: [LOCAL_LLM_SETUP.md](LOCAL_LLM_SETUP.md)
+
 ## Open Source FX AI Model Lab
 
 **Borrow. Benchmark. Improve. Explain.**
