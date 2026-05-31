@@ -1,0 +1,5 @@
+regime,avg_bps_day_flat_range,sharpe_flat_range,max_dd_pct_flat_range
+R1_trend_high_vol,0.03,0.005,-44.91
+R2_trend_low_vol,1.11,0.344,-30.75
+R3_range_high_vol,-0.59,-10.271,-0.84
+R4_range_low_vol,-0.22,-5.633,-1.43

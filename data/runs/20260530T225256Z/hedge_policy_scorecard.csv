@@ -1,0 +1,8 @@
+policy,exposure,total_unhedged_volatility,hedged_volatility,volatility_reduction,max_drawdown_unhedged,max_drawdown_hedged,hedge_turnover,total_hedge_cost_pct,regret_proxy,cost_adjusted_risk_reduction
+never_hedged,us_entity_long_mxn,11.39,11.39,0.0,-71.451,-71.451,0.0,0.0,0.0,0.0
+half_hedged,us_entity_long_mxn,11.39,5.695,5.695,-71.451,-45.019,0.5,0.01,5.695,5.685
+mostly_hedged,us_entity_long_mxn,11.39,2.847,8.542,-71.451,-25.322,0.75,0.015,8.542,8.527
+fully_hedged,us_entity_long_mxn,11.39,0.004,11.385,-71.451,0.0,1.0,0.02,11.385,11.365
+regime_based,us_entity_long_mxn,11.39,4.168,7.221,-71.451,-33.106,98.4,1.968,7.221,5.253
+r2_active_policy,us_entity_long_mxn,11.39,6.116,5.273,-71.451,-53.14,118.9,2.378,5.273,2.895
+volatility_based,us_entity_long_mxn,11.39,3.966,7.423,-71.451,-20.285,126.331,2.5266,7.423,4.897

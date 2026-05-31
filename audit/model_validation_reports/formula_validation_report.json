@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-05-31T21:00:18.392979+00:00",
+  "title": "Formula Validation Report",
+  "summary": {
+    "pass": 2,
+    "fail": 0
+  },
+  "rows": [
+    {
+      "formula": "VSI baseline",
+      "status": "PASS",
+      "detail": "vsi=94.52607644674845"
+    },
+    {
+      "formula": "Hidden FX tax",
+      "status": "PASS",
+      "detail": "0.054574851970871786"
+    },
+    {
+      "formula": "SDI",
+      "status": "SKIPPED",
+      "detail": "No module named 'src.indices.settlement_drag'"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+model_name,hedge_turnover,total_hedge_cost,average_hedge_ratio,unhedged_volatility,hedged_volatility,volatility_reduction,max_drawdown_unhedged,max_drawdown_hedged,cost_adjusted_risk_reduction,regret_proxy,source,data_tier,currency_pair,sample_start,sample_end,observations,run_timestamp,config_hash,model_version,price_convention,frequency
+carry_fragility_risk_off_model,69.5,1.39,0.568,11.39,4.725,6.665,-71.451,-31.078,5.275,3.293,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:47+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
+carry_adjusted_hedge_model,115.05,2.301,0.68,11.39,3.292,8.098,-71.451,-25.429,5.797,2.293,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:47+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
+conservative_hedge_model,106.1,2.122,0.614,11.39,4.579,6.81,-71.451,-40.78,4.688,3.05,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:47+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
+no_change_in_range_model,26.9,0.538,0.66,11.39,4.226,7.163,-71.451,-37.488,6.625,2.781,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:47+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
+r1_news_escalation_model,193.0,3.86,0.534,11.39,4.849,6.541,-71.451,-37.551,2.681,3.49,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:47+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily

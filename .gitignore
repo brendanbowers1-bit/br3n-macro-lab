@@ -19,3 +19,5 @@ data/outputs/*.csv
 !data/processed/.gitkeep
 !data/outputs/.gitkeep
 research_snapshots/**/data/
+_snapshots/
+.time_tracker_session.json

@@ -1,0 +1,4 @@
+strategy,total_return_pct,ann_return_pct,ann_vol_pct,sharpe,max_drawdown_pct,win_rate_pct,sample,period
+flat_range,6.01,4.36,8.95,0.522,-6.52,45.3,holdout,2025-01-01..2026-12-31
+legacy,8.2,5.94,9.47,0.657,-7.79,51.7,holdout,2025-01-01..2026-12-31
+random_walk,0.0,0.0,0.0,0.0,0.0,0.0,holdout,2025-01-01..2026-12-31

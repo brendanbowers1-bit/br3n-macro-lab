@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-05-31T21:01:06.213580+00:00",
+  "title": "Full Quality Report",
+  "summary": {
+    "pass": 4,
+    "fail": 2,
+    "warning": 0,
+    "skipped": 5,
+    "timestamp": "2026-05-31T21:01:06.148383+00:00",
+    "python": "3.9.6 (default, Apr 30 2025, 02:07:17) \n[Clang 17.0.0 (clang-1700.0.13.5)]",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "git_commit": "3d77ef33493a6e1a48e9074d29ad61511391ab79"
+  },
+  "rows": [
+    {
+      "step": "pre_run_snapshot",
+      "status": "SKIPPED",
+      "detail": "skip_snapshot=True"
+    },
+    {
+      "step": "project_metrics",
+      "status": "PASS",
+      "detail": "files=522"
+    },
+    {
+      "step": "data_validation",
+      "status": "FAIL",
+      "detail": "{\"pass\": 6, \"fail\": 20, \"warning\": 0, \"total\": 26}"
+    },
+    {
+      "step": "formula_validation",
+      "status": "PASS",
+      "detail": "{\"pass\": 2, \"fail\": 0}"
+    },
+    {
+      "step": "model_validation",
+      "status": "FAIL",
+      "detail": "{\"pass\": 3, \"fail\": 2, \"skipped\": 0}"
+    },
+    {
+      "step": "pytest_quality",
+      "status": "PASS",
+      "detail": "_lab_smoke.py:15: UserWarning: Using MOCK DATA for Global FX Research Lab. Place real files in data/raw/world_bank_rpw/, imf/, bis/, etc.\n    tables = create_mock_dataset()\n\ntests/test_global_fx_lab_smoke.py::test_all_indices\n  /Users/brendanbowers/fx_regime_lab/tests/test_global_fx_lab_smoke.py:24: UserWarning: Using MOCK DATA for Global FX Research Lab. Place real files in data/raw/world_bank_rpw/, imf/, bis/, etc.\n    idx = run_all_indices(create_mock_dataset())\n\ntests/test_global_fx_lab_smoke.py::test_panel_regression_fe\n  /Users/brendanbowers/fx_regime_lab/tests/test_global_fx_lab_smoke.py:49: UserWarning: Using MOCK DATA for Global FX Research Lab. Place real files in data/raw/world_bank_rpw/, imf/, bis/, etc.\n    tables = create_mock_dataset()\n\ntests/test_global_fx_lab_smoke.py::test_event_study_runs\n  /Users/brendanbowers/fx_regime_lab/tests/test_global_fx_lab_smoke.py:61: UserWarning: Using MOCK DATA for Global FX Research Lab. Place real files in data/raw/world_bank_rpw/, imf/, bis/, etc.\n    idx = run_all_indices(create_mock_dataset())\n\ntests/test_global_fx_lab_smoke.py::test_fetch_public_builds_files\n  /Users/brendanbowers/fx_regime_lab/src/data/fetch_public.py:368: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.\n    df[\"dxy_return\"] = df[\"dxy_broad\"].pct_change()\n\ntests/test_global_fx_lab_smoke.py::test_fetch_public_builds_files\n  /Users/brendanbowers/fx_regime_lab/src/data/fetch_public.py:369: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.\n    df[\"dxy_return_20d\"] = df[\"dxy_broad\"].pct_change(20)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n"
+    },
+    {
+      "step": "pytest_settlement",
+      "status": "PASS",
+      "detail": "gs.py::test_mock_source_id\nsettlement_lab/tests/test_mock_data_flags.py::test_mock_grade\n  /Users/brendanbowers/fx_regime_lab/settlement_lab/src/data/mock_data.py:216: UserWarning: \u26a0\ufe0f DEMO MODE: Synthetic settlement data only. Do not use for research conclusions or operational decisions.\n    \"fx_settlement_exposure\": create_fx_settlement_exposure(),\n\nsettlement_lab/tests/test_data_quality.py::test_quality_score_range\nsettlement_lab/tests/test_data_quality.py::test_mock_quality_cap\nsettlement_lab/tests/test_mock_data_flags.py::test_mock_source_id\nsettlement_lab/tests/test_mock_data_flags.py::test_mock_grade\n  /Users/brendanbowers/fx_regime_lab/settlement_lab/src/data/mock_data.py:217: UserWarning: \u26a0\ufe0f DEMO MODE: Synthetic settlement data only. Do not use for research conclusions or operational decisions.\n    \"finality_characteristics\": create_finality_characteristics(),\n\nsettlement_lab/tests/test_data_quality.py::test_quality_score_range\nsettlement_lab/tests/test_data_quality.py::test_mock_quality_cap\nsettlement_lab/tests/test_mock_data_flags.py::test_mock_source_id\nsettlement_lab/tests/test_mock_data_flags.py::test_mock_grade\n  /Users/brendanbowers/fx_regime_lab/settlement_lab/src/data/mock_data.py:218: UserWarning: \u26a0\ufe0f DEMO MODE: Synthetic settlement data only. Do not use for research conclusions or operational decisions.\n    \"payment_access_and_inclusion\": create_payment_access(),\n\nsettlement_lab/tests/test_data_quality.py::test_quality_score_range\nsettlement_lab/tests/test_data_quality.py::test_mock_quality_cap\nsettlement_lab/tests/test_mock_data_flags.py::test_mock_source_id\nsettlement_lab/tests/test_mock_data_flags.py::test_mock_grade\n  /Users/brendanbowers/fx_regime_lab/settlement_lab/src/data/mock_data.py:219: UserWarning: \u26a0\ufe0f DEMO MODE: Synthetic settlement data only. Do not use for research conclusions or operational decisions.\n    \"payment_network_stress_events\": create_stress_events(),\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n"
+    },
+    {
+      "step": "smoke_vsi",
+      "status": "SKIPPED",
+      "detail": "run scripts/smoke_test.py manually (slow)"
+    },
+    {
+      "step": "smoke_settlement",
+      "status": "SKIPPED",
+      "detail": "run scripts/smoke_test.py manually (slow)"
+    },
+    {
+      "step": "reproduce_vsi",
+      "status": "SKIPPED",
+      "detail": "run scripts/reproduce_all.py separately"
+    },
+    {
+      "step": "reproduce_settlement",
+      "status": "SKIPPED",
+      "detail": "run settlement_lab/scripts/reproduce_settlement_lab.py separately"
+    }
+  ]
+}

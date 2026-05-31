@@ -1,0 +1,4 @@
+test,dm_stat,p_value,mean_loss_diff,interpretation,best_strategy,best_performance_diff,bootstrap_p_value,n_boot,rejects_data_mining_5pct
+diebold_mariano_rmse,0.7008,0.4834,1e-07,No statistically significant difference in forecast accuracy.,,,,,
+white_reality_check,,,,,r2_only,0.2676,0.598,500.0,False
+white_rc_warning,,,,Simplified educational bootstrap only — not a full White Reality Check. Do not treat p-value as publication-grade evidence.,,,,,

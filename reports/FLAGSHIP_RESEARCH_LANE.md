@@ -1,6 +1,6 @@
 # Flagship Research Lane — Forecast Failure and Hedge Usefulness
 
-*Generated: 2026-05-30 17:30*
+*Generated: 2026-05-31 06:30*
 
 ## Thesis
 

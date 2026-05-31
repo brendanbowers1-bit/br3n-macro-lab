@@ -1,0 +1,2 @@
+fred_observations,yfinance_observations,fred_start,fred_end,yfinance_start,yfinance_end,fred_missing,yfinance_missing,fred_latest_price,yfinance_latest_price,overlap_days,daily_return_correlation,max_abs_daily_return_diff,agree_closely,fred_loaded,yfinance_loaded,generated_at
+6267,5857,2001-05-22,2026-05-22,2003-12-01,2026-05-29,0,0,17.3241,17.337999,5625,0.482037,0.155195,False,True,True,2026-05-30T22:35:54+00:00

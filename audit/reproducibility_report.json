@@ -1,0 +1,109 @@
+{
+  "summary": {
+    "timestamp": "2026-05-31T20:59:47.131858+00:00",
+    "python": "3.9.6 (default, Apr 30 2025, 02:07:17) \n[Clang 17.0.0 (clang-1700.0.13.5)]",
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "git_commit": "3d77ef33493a6e1a48e9074d29ad61511391ab79",
+    "packages": {
+      "pandas": "2.3.3",
+      "numpy": "2.0.2",
+      "streamlit": "1.50.0",
+      "pytest": "8.4.2",
+      "requests": "2.32.5"
+    },
+    "snapshot": null,
+    "steps_pass": 10,
+    "steps_fail": 0,
+    "tests_returncode": 0,
+    "line_count": {
+      "files": 520,
+      "total_lines": 102858,
+      "code_lines": 93249,
+      "comment_lines": 356,
+      "blank_lines": 9253
+    },
+    "validation": [
+      {
+        "check": "data",
+        "status": "FAIL",
+        "summary": {
+          "pass": 6,
+          "fail": 20,
+          "warning": 0,
+          "total": 26
+        }
+      },
+      {
+        "check": "model",
+        "status": "FAIL",
+        "summary": {
+          "pass": 3,
+          "fail": 2,
+          "skipped": 0
+        }
+      }
+    ]
+  },
+  "rows": [
+    {
+      "module": "vsi",
+      "step": "build_dataset.py",
+      "status": "PASS",
+      "detail": "Build processed datasets"
+    },
+    {
+      "module": "vsi",
+      "step": "run_vsi.py",
+      "status": "PASS",
+      "detail": "Compute Value Survival Index"
+    },
+    {
+      "module": "vsi",
+      "step": "run_sensitivity.py",
+      "status": "PASS",
+      "detail": "Sensitivity analysis"
+    },
+    {
+      "module": "vsi",
+      "step": "run_robustness.py",
+      "status": "PASS",
+      "detail": "Robustness checks"
+    },
+    {
+      "module": "vsi",
+      "step": "make_visuals.py",
+      "status": "PASS",
+      "detail": "Generate figures"
+    },
+    {
+      "module": "settlement",
+      "step": "build_settlement_dataset.py",
+      "status": "PASS",
+      "detail": "Build settlement dataset"
+    },
+    {
+      "module": "settlement",
+      "step": "run_settlement_indices.py",
+      "status": "PASS",
+      "detail": "Settlement indices"
+    },
+    {
+      "module": "settlement",
+      "step": "run_settlement_sensitivity.py",
+      "status": "PASS",
+      "detail": "Settlement sensitivity"
+    },
+    {
+      "module": "settlement",
+      "step": "run_settlement_robustness.py",
+      "status": "PASS",
+      "detail": "Settlement robustness"
+    },
+    {
+      "module": "settlement",
+      "step": "make_settlement_visuals.py",
+      "status": "PASS",
+      "detail": "Settlement visuals"
+    }
+  ]
+}

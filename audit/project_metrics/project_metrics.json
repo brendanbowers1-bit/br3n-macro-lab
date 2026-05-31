@@ -1,0 +1,4994 @@
+{
+  "timestamp": "2026-05-31T21:00:18.181776+00:00",
+  "totals": {
+    "files": 522,
+    "total_lines": 102971,
+    "code_lines": 93368,
+    "comment_lines": 356,
+    "blank_lines": 9247
+  },
+  "by_category": {
+    "documentation": {
+      "files": 114,
+      "lines": 10125,
+      "code": 6950,
+      "comments": 0,
+      "blank": 3175
+    },
+    "config": {
+      "files": 11,
+      "lines": 5791,
+      "code": 5758,
+      "comments": 0,
+      "blank": 33
+    },
+    "other": {
+      "files": 51,
+      "lines": 40710,
+      "code": 40251,
+      "comments": 0,
+      "blank": 459
+    },
+    "code": {
+      "files": 249,
+      "lines": 33103,
+      "code": 27712,
+      "comments": 337,
+      "blank": 5054
+    },
+    "test_code": {
+      "files": 43,
+      "lines": 2449,
+      "code": 1939,
+      "comments": 19,
+      "blank": 491
+    },
+    "generated_report": {
+      "files": 43,
+      "lines": 10622,
+      "code": 10587,
+      "comments": 0,
+      "blank": 35
+    },
+    "notebook": {
+      "files": 11,
+      "lines": 171,
+      "code": 171,
+      "comments": 0,
+      "blank": 0
+    }
+  },
+  "test_to_code_ratio": 0.0208,
+  "largest_files": [
+    {
+      "path": "data/features/terminal_feature_table.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 12104,
+      "code_lines": 12104,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level8_hedge_oos_scorecard.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 8291,
+      "code_lines": 8291,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/charts/usdmxn_equity_comparison.png",
+      "category": "other",
+      "extension": ".png",
+      "total_lines": 5153,
+      "code_lines": 4984,
+      "comment_lines": 0,
+      "blank_lines": 169
+    },
+    {
+      "path": "audit/project_metrics/project_metrics.json",
+      "category": "config",
+      "extension": ".json",
+      "total_lines": 4976,
+      "code_lines": 4976,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/charts/equity_curves.png",
+      "category": "other",
+      "extension": ".png",
+      "total_lines": 3528,
+      "code_lines": 3428,
+      "comment_lines": 0,
+      "blank_lines": 100
+    },
+    {
+      "path": "reports/research_ladder/level8_hedge_oos_static_comparison.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3317,
+      "code_lines": 3317,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/publication/assets/br3n_macro_labs_logo.png",
+      "category": "other",
+      "extension": ".png",
+      "total_lines": 2706,
+      "code_lines": 2631,
+      "comment_lines": 0,
+      "blank_lines": 75
+    },
+    {
+      "path": "reports/publication/assets/fx_lab_logo.png",
+      "category": "other",
+      "extension": ".png",
+      "total_lines": 2706,
+      "code_lines": 2631,
+      "comment_lines": 0,
+      "blank_lines": 75
+    },
+    {
+      "path": "src/luxury_dashboard.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 2434,
+      "code_lines": 2133,
+      "comment_lines": 10,
+      "blank_lines": 291
+    },
+    {
+      "path": "src/site_builder.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1682,
+      "code_lines": 1569,
+      "comment_lines": 3,
+      "blank_lines": 110
+    },
+    {
+      "path": "reports/research_ladder/level8_hedge_oos_comparison.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 1659,
+      "code_lines": 1659,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/publication/open-source-ai.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 1022,
+      "code_lines": 1019,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/publication/history.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 882,
+      "code_lines": 880,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "reports/publication/ladder.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 770,
+      "code_lines": 770,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/publication/unanswered-fx.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 737,
+      "code_lines": 735,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "reports/FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 710,
+      "code_lines": 388,
+      "comment_lines": 0,
+      "blank_lines": 322
+    },
+    {
+      "path": "README.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 697,
+      "code_lines": 505,
+      "comment_lines": 0,
+      "blank_lines": 192
+    },
+    {
+      "path": "reports/publication/value-survival-index.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 697,
+      "code_lines": 692,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "reports/publication/settlement-economics-lab.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 689,
+      "code_lines": 684,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "reports/publication/global-fx-lab.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 675,
+      "code_lines": 672,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/publication/hedge-governance.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 642,
+      "code_lines": 638,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "reports/publication/memo.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 636,
+      "code_lines": 636,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/model_zoo.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 634,
+      "code_lines": 515,
+      "comment_lines": 10,
+      "blank_lines": 109
+    },
+    {
+      "path": "reports/publication/model-zoo.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 629,
+      "code_lines": 625,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "reports/publication/corridor.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 578,
+      "code_lines": 578,
+      "comment_lines": 0,
+      "blank_lines": 0
+    }
+  ],
+  "per_file": [
+    {
+      "path": "REPLICATION.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 123,
+      "code_lines": 83,
+      "comment_lines": 0,
+      "blank_lines": 40
+    },
+    {
+      "path": "DATA_SOURCES.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 114,
+      "code_lines": 74,
+      "comment_lines": 0,
+      "blank_lines": 40
+    },
+    {
+      "path": "pytest.ini",
+      "category": "config",
+      "extension": ".ini",
+      "total_lines": 10,
+      "code_lines": 10,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "requirements.txt",
+      "category": "documentation",
+      "extension": ".txt",
+      "total_lines": 14,
+      "code_lines": 14,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "VALUE_SURVIVAL_INDEX.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 92,
+      "code_lines": 65,
+      "comment_lines": 0,
+      "blank_lines": 27
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "category": "config",
+      "extension": ".yaml",
+      "total_lines": 16,
+      "code_lines": 16,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "Makefile",
+      "category": "other",
+      "extension": "",
+      "total_lines": 34,
+      "code_lines": 23,
+      "comment_lines": 0,
+      "blank_lines": 11
+    },
+    {
+      "path": "METHODOLOGY.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 98,
+      "code_lines": 72,
+      "comment_lines": 0,
+      "blank_lines": 26
+    },
+    {
+      "path": "config.yaml",
+      "category": "config",
+      "extension": ".yaml",
+      "total_lines": 291,
+      "code_lines": 268,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "streamlit_app.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "README.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 697,
+      "code_lines": 505,
+      "comment_lines": 0,
+      "blank_lines": 192
+    },
+    {
+      "path": ".gitignore",
+      "category": "other",
+      "extension": "",
+      "total_lines": 21,
+      "code_lines": 21,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "LITERATURE_MAP.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 110,
+      "code_lines": 58,
+      "comment_lines": 0,
+      "blank_lines": 52
+    },
+    {
+      "path": ".snapshotignore",
+      "category": "other",
+      "extension": "",
+      "total_lines": 22,
+      "code_lines": 22,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "CHANGELOG_RESEARCH.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 7,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "LOCAL_LLM_SETUP.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 97,
+      "code_lines": 72,
+      "comment_lines": 0,
+      "blank_lines": 25
+    },
+    {
+      "path": "openclaw/skills/fx-lab/SKILL.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 91,
+      "code_lines": 67,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": ".streamlit/config.toml",
+      "category": "config",
+      "extension": ".toml",
+      "total_lines": 10,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 1
+    },
+    {
+      "path": "projects/fx_lab/README.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 43,
+      "code_lines": 30,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/EXPERIMENTAL_ROADMAP.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 71,
+      "code_lines": 50,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/PROJECT_OVERVIEW.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 53,
+      "code_lines": 35,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/MODEL_CARD.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 76,
+      "code_lines": 55,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/TECHNICAL_BRIEF.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 79,
+      "code_lines": 50,
+      "comment_lines": 0,
+      "blank_lines": 29
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/SAFETY_AND_REPLICATION.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 57,
+      "code_lines": 41,
+      "comment_lines": 0,
+      "blank_lines": 16
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/COMPUTATIONAL_WORKFLOW.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 94,
+      "code_lines": 75,
+      "comment_lines": 0,
+      "blank_lines": 19
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/README.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 50,
+      "code_lines": 35,
+      "comment_lines": 0,
+      "blank_lines": 15
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/OUTREACH_TEMPLATES.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 73,
+      "code_lines": 44,
+      "comment_lines": 0,
+      "blank_lines": 29
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/LITERATURE_MAP.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 97,
+      "code_lines": 69,
+      "comment_lines": 0,
+      "blank_lines": 28
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/FUNDRAISING_BRIEF.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 65,
+      "code_lines": 44,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/TARGET_LABS.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 82,
+      "code_lines": 58,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/simulations/phonons/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/simulations/ase/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/simulations/neb/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/simulations/qe/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/scripts/generate_qe_inputs.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 23,
+      "code_lines": 15,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/scripts/run_screening_summary.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 39,
+      "code_lines": 27,
+      "comment_lines": 1,
+      "blank_lines": 11
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/scripts/build_candidate_structure.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 24,
+      "code_lines": 16,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/data/structures/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/data/references/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/data/results/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/notebooks/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/metastable_hydride_superconductor_initiative/reports/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "projects/br3n_photography/README.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 30,
+      "code_lines": 19,
+      "comment_lines": 0,
+      "blank_lines": 11
+    },
+    {
+      "path": "tests/test_currency_trust.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "tests/test_quality_runner.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "tests/test_dollar_dependency.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "tests/test_data_validation.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 45,
+      "code_lines": 37,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "tests/test_value_survival_index.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 24,
+      "code_lines": 19,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "tests/test_data_cleaning.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 24,
+      "code_lines": 18,
+      "comment_lines": 1,
+      "blank_lines": 5
+    },
+    {
+      "path": "tests/test_hidden_fx_tax.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 12,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "tests/__init__.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "tests/test_model_validation.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "tests/test_regimes.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 38,
+      "code_lines": 32,
+      "comment_lines": 0,
+      "blank_lines": 6
+    },
+    {
+      "path": "tests/test_fx_terminal_smoke.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 80,
+      "code_lines": 60,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "tests/test_project_metrics.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 11,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "tests/test_snapshot_system.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 12,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "tests/test_remittance_welfare.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 7,
+      "code_lines": 5,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "tests/test_global_fx_lab_smoke.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 74,
+      "code_lines": 49,
+      "comment_lines": 0,
+      "blank_lines": 25
+    },
+    {
+      "path": "tests/test_time_tracker.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 17,
+      "code_lines": 14,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "docs/FX_RESEARCH_TERMINAL.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 114,
+      "code_lines": 80,
+      "comment_lines": 0,
+      "blank_lines": 34
+    },
+    {
+      "path": "docs/OPENCLAW_INTEGRATION.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 100,
+      "code_lines": 69,
+      "comment_lines": 0,
+      "blank_lines": 31
+    },
+    {
+      "path": "docs/SHARING.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 120,
+      "code_lines": 79,
+      "comment_lines": 0,
+      "blank_lines": 41
+    },
+    {
+      "path": "docs/BLOOMBERG_SETUP.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 101,
+      "code_lines": 66,
+      "comment_lines": 0,
+      "blank_lines": 35
+    },
+    {
+      "path": "settlement_lab/METHODOLOGY_SETTLEMENT_ECONOMICS.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 44,
+      "code_lines": 28,
+      "comment_lines": 0,
+      "blank_lines": 16
+    },
+    {
+      "path": "settlement_lab/DATA_GOVERNANCE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 41,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "settlement_lab/requirements.txt",
+      "category": "documentation",
+      "extension": ".txt",
+      "total_lines": 11,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/REPLICATION_SETTLEMENT_LAB.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 37,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/README_SETTLEMENT_LAB.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 67,
+      "code_lines": 47,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "settlement_lab/tests/test_settlement_drag.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 22,
+      "code_lines": 15,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "settlement_lab/tests/conftest.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 8,
+      "code_lines": 6,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "settlement_lab/tests/test_data_quality.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 25,
+      "code_lines": 18,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "settlement_lab/tests/test_fragility_model.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 23,
+      "code_lines": 16,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "settlement_lab/tests/test_reproduce_pipeline.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 20,
+      "code_lines": 15,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "settlement_lab/tests/test_finality_quality.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 16,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "settlement_lab/tests/test_mock_data_flags.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 24,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "settlement_lab/tests/test_operational_liquidity.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 22,
+      "code_lines": 15,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "settlement_lab/scripts/run_settlement_robustness.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 41,
+      "code_lines": 31,
+      "comment_lines": 1,
+      "blank_lines": 9
+    },
+    {
+      "path": "settlement_lab/scripts/validate_settlement_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 27,
+      "code_lines": 18,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/scripts/fetch_settlement_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 119,
+      "code_lines": 93,
+      "comment_lines": 2,
+      "blank_lines": 24
+    },
+    {
+      "path": "settlement_lab/scripts/run_settlement_models.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 36,
+      "code_lines": 26,
+      "comment_lines": 1,
+      "blank_lines": 9
+    },
+    {
+      "path": "settlement_lab/scripts/smoke_test_settlement_lab.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 99,
+      "code_lines": 72,
+      "comment_lines": 1,
+      "blank_lines": 26
+    },
+    {
+      "path": "settlement_lab/scripts/make_settlement_visuals.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 114,
+      "code_lines": 90,
+      "comment_lines": 1,
+      "blank_lines": 23
+    },
+    {
+      "path": "settlement_lab/scripts/reproduce_settlement_lab.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 38,
+      "code_lines": 30,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "settlement_lab/scripts/run_settlement_indices.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 30,
+      "code_lines": 21,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/scripts/run_settlement_sensitivity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 30,
+      "code_lines": 21,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/scripts/build_settlement_dataset.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 28,
+      "code_lines": 19,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/data/metadata/file_checksums.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 20,
+      "code_lines": 20,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/memos/assumption_impact_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 8,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 1
+    },
+    {
+      "path": "settlement_lab/reports/figures/data_quality_heatmap.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/operational_liquidity_cost_per_100.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/settlement_drag_ranked.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/robustness_rank_stability.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/finality_quality_by_rail.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/finality_component_breakdown.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/settlement_drag_components.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/fragility_scenario_impacts.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/source_coverage_chart.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/liquidity_burden_frontier.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/payment_fragility_scores.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/figures/friction_incidence_stacked.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/model_results.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 27,
+      "code_lines": 14,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/next_steps.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 21,
+      "code_lines": 15,
+      "comment_lines": 0,
+      "blank_lines": 6
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/limitations.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 7,
+      "code_lines": 6,
+      "comment_lines": 0,
+      "blank_lines": 1
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/settlement_working_paper_outline.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 5,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/methodology.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 15,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/data.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 24,
+      "code_lines": 16,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/introduction.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 5,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/literature_map.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 12,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "settlement_lab/reports/working_paper/abstract.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 7,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "settlement_lab/src/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/src/research/hypotheses.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 55,
+      "code_lines": 47,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/src/indices/operational_liquidity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 61,
+      "code_lines": 50,
+      "comment_lines": 0,
+      "blank_lines": 11
+    },
+    {
+      "path": "settlement_lab/src/indices/settlement_drag.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 120,
+      "code_lines": 102,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "settlement_lab/src/indices/finality_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 86,
+      "code_lines": 71,
+      "comment_lines": 0,
+      "blank_lines": 15
+    },
+    {
+      "path": "settlement_lab/src/quality/data_validation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 14,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "settlement_lab/src/quality/model_validation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 8,
+      "code_lines": 6,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "settlement_lab/src/quality/lineage.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 83,
+      "code_lines": 71,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "settlement_lab/src/quality/data_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 112,
+      "code_lines": 89,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "settlement_lab/src/quality/validation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 103,
+      "code_lines": 85,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "settlement_lab/src/config/research_settings.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 56,
+      "code_lines": 43,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "settlement_lab/src/config/data_sources.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 185,
+      "code_lines": 173,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "settlement_lab/src/features/build_features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 62,
+      "code_lines": 53,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "settlement_lab/src/utils/paths.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 21,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "settlement_lab/src/utils/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "settlement_lab/src/models/stress_scenarios.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 50,
+      "code_lines": 42,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/src/models/sensitivity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 49,
+      "code_lines": 41,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/src/models/robustness.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 63,
+      "code_lines": 46,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "settlement_lab/src/models/payment_network_fragility.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 116,
+      "code_lines": 95,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "settlement_lab/src/models/empirical_tests.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 53,
+      "code_lines": 47,
+      "comment_lines": 0,
+      "blank_lines": 6
+    },
+    {
+      "path": "settlement_lab/src/models/payment_friction_incidence.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 80,
+      "code_lines": 67,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "settlement_lab/src/dashboard/app.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 226,
+      "code_lines": 181,
+      "comment_lines": 0,
+      "blank_lines": 45
+    },
+    {
+      "path": "settlement_lab/src/data/file_discovery.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 23,
+      "code_lines": 16,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "settlement_lab/src/data/curated_bridge.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 413,
+      "code_lines": 378,
+      "comment_lines": 2,
+      "blank_lines": 33
+    },
+    {
+      "path": "settlement_lab/src/data/loaders.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 286,
+      "code_lines": 227,
+      "comment_lines": 0,
+      "blank_lines": 59
+    },
+    {
+      "path": "settlement_lab/src/data/official_fetchers.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 520,
+      "code_lines": 471,
+      "comment_lines": 4,
+      "blank_lines": 45
+    },
+    {
+      "path": "settlement_lab/src/data/mock_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 220,
+      "code_lines": 197,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "settlement_lab/src/data/cleaners.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 26,
+      "code_lines": 18,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "settlement_lab/src/data/build_dataset.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 111,
+      "code_lines": 96,
+      "comment_lines": 0,
+      "blank_lines": 15
+    },
+    {
+      "path": "settlement_lab/src/data/finality_reference.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 133,
+      "code_lines": 123,
+      "comment_lines": 1,
+      "blank_lines": 9
+    },
+    {
+      "path": "settlement_lab/src/data/schema.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 69,
+      "code_lines": 60,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "audit/reproducibility_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 82,
+      "code_lines": 66,
+      "comment_lines": 0,
+      "blank_lines": 16
+    },
+    {
+      "path": "audit/research_credibility_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 36,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "audit/reproducibility_report.json",
+      "category": "config",
+      "extension": ".json",
+      "total_lines": 109,
+      "code_lines": 109,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/data_quality_reports/data_validation_report.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 27,
+      "code_lines": 27,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/data_quality_reports/data_validation_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 41,
+      "code_lines": 36,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "audit/data_quality_reports/data_validation_report.json",
+      "category": "config",
+      "extension": ".json",
+      "total_lines": 194,
+      "code_lines": 194,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/project_metrics/project_metrics.json",
+      "category": "config",
+      "extension": ".json",
+      "total_lines": 4976,
+      "code_lines": 4976,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/project_metrics/time_log.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 28,
+      "code_lines": 28,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/project_metrics/line_count_report.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 521,
+      "code_lines": 521,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/project_metrics/line_count_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 42,
+      "code_lines": 35,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "audit/change_logs/snapshot_log.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 66,
+      "code_lines": 66,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/test_reports/full_quality_report.json",
+      "category": "config",
+      "extension": ".json",
+      "total_lines": 71,
+      "code_lines": 71,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/test_reports/full_quality_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 40,
+      "code_lines": 35,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "audit/test_reports/full_quality_report.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 21,
+      "code_lines": 21,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/test_reports/known_failures.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 38,
+      "code_lines": 21,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "audit/model_validation_reports/model_validation_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 19,
+      "code_lines": 14,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "audit/model_validation_reports/formula_validation_report.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 4,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/model_validation_reports/model_validation_report.json",
+      "category": "config",
+      "extension": ".json",
+      "total_lines": 41,
+      "code_lines": 41,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/model_validation_reports/formula_validation_report.json",
+      "category": "config",
+      "extension": ".json",
+      "total_lines": 25,
+      "code_lines": 25,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/model_validation_reports/model_validation_report.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 6,
+      "code_lines": 6,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "audit/model_validation_reports/formula_validation_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 16,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "scripts/generate_flagship_memo.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 22,
+      "code_lines": 14,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/git_checkpoint.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 35,
+      "code_lines": 29,
+      "comment_lines": 1,
+      "blank_lines": 5
+    },
+    {
+      "path": "scripts/run_full_expansion.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 55,
+      "code_lines": 42,
+      "comment_lines": 1,
+      "blank_lines": 12
+    },
+    {
+      "path": "scripts/run_fx_desk_framework.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 188,
+      "code_lines": 150,
+      "comment_lines": 1,
+      "blank_lines": 37
+    },
+    {
+      "path": "scripts/publish_github.sh",
+      "category": "other",
+      "extension": ".sh",
+      "total_lines": 48,
+      "code_lines": 40,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "scripts/smoke_test.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 189,
+      "code_lines": 143,
+      "comment_lines": 1,
+      "blank_lines": 45
+    },
+    {
+      "path": "scripts/run_under_tested_research.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 95,
+      "code_lines": 76,
+      "comment_lines": 2,
+      "blank_lines": 17
+    },
+    {
+      "path": "scripts/generate_lab_status.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 21,
+      "code_lines": 12,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "scripts/time_tracker.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 29,
+      "code_lines": 26,
+      "comment_lines": 1,
+      "blank_lines": 2
+    },
+    {
+      "path": "scripts/build_publication.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 21,
+      "code_lines": 13,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/generate_corridor_report.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 19,
+      "code_lines": 11,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/list_snapshots.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 18,
+      "code_lines": 15,
+      "comment_lines": 1,
+      "blank_lines": 2
+    },
+    {
+      "path": "scripts/run_research_ladder.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 25,
+      "code_lines": 17,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/project_metrics.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 17,
+      "code_lines": 14,
+      "comment_lines": 1,
+      "blank_lines": 2
+    },
+    {
+      "path": "scripts/run_hedge_policy_tests.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 32,
+      "code_lines": 23,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "scripts/run_all_quality_checks.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 181,
+      "code_lines": 147,
+      "comment_lines": 4,
+      "blank_lines": 30
+    },
+    {
+      "path": "scripts/run_sensitivity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 62,
+      "code_lines": 46,
+      "comment_lines": 1,
+      "blank_lines": 15
+    },
+    {
+      "path": "scripts/run_self_improvement.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 35,
+      "code_lines": 25,
+      "comment_lines": 1,
+      "blank_lines": 9
+    },
+    {
+      "path": "scripts/run_data_upgrade_report.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 207,
+      "code_lines": 177,
+      "comment_lines": 1,
+      "blank_lines": 29
+    },
+    {
+      "path": "scripts/run_fx_research_terminal.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 82,
+      "code_lines": 64,
+      "comment_lines": 2,
+      "blank_lines": 16
+    },
+    {
+      "path": "scripts/make_visuals.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 99,
+      "code_lines": 81,
+      "comment_lines": 1,
+      "blank_lines": 17
+    },
+    {
+      "path": "scripts/run_full_lab_pipeline.sh",
+      "category": "other",
+      "extension": ".sh",
+      "total_lines": 71,
+      "code_lines": 57,
+      "comment_lines": 0,
+      "blank_lines": 14
+    },
+    {
+      "path": "scripts/generate_fx_lab_one_pager.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 149,
+      "code_lines": 90,
+      "comment_lines": 9,
+      "blank_lines": 50
+    },
+    {
+      "path": "scripts/run_multipair_hedge_oos.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 67,
+      "code_lines": 53,
+      "comment_lines": 1,
+      "blank_lines": 13
+    },
+    {
+      "path": "scripts/run_model_zoo.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 145,
+      "code_lines": 116,
+      "comment_lines": 1,
+      "blank_lines": 28
+    },
+    {
+      "path": "scripts/reproduce_all.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 178,
+      "code_lines": 151,
+      "comment_lines": 1,
+      "blank_lines": 26
+    },
+    {
+      "path": "scripts/run_data_quality_layer.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 22,
+      "code_lines": 14,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/generate_model_zoo_report.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 19,
+      "code_lines": 11,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/run_flagship_research_lane.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 58,
+      "code_lines": 47,
+      "comment_lines": 1,
+      "blank_lines": 10
+    },
+    {
+      "path": "scripts/update_change_log.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 121,
+      "code_lines": 104,
+      "comment_lines": 1,
+      "blank_lines": 16
+    },
+    {
+      "path": "scripts/restore_snapshot.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 24,
+      "code_lines": 21,
+      "comment_lines": 1,
+      "blank_lines": 2
+    },
+    {
+      "path": "scripts/run_global_fx_lab.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 34,
+      "code_lines": 25,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "scripts/validate_all_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 9,
+      "code_lines": 7,
+      "comment_lines": 1,
+      "blank_lines": 1
+    },
+    {
+      "path": "scripts/estimate_time_from_git.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 80,
+      "code_lines": 63,
+      "comment_lines": 1,
+      "blank_lines": 16
+    },
+    {
+      "path": "scripts/generate_report.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 26,
+      "code_lines": 19,
+      "comment_lines": 1,
+      "blank_lines": 6
+    },
+    {
+      "path": "scripts/run_news_layer.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 91,
+      "code_lines": 71,
+      "comment_lines": 1,
+      "blank_lines": 19
+    },
+    {
+      "path": "scripts/install_auto_improve_launchd.sh",
+      "category": "other",
+      "extension": ".sh",
+      "total_lines": 54,
+      "code_lines": 49,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "scripts/fetch_global_fx_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 38,
+      "code_lines": 27,
+      "comment_lines": 1,
+      "blank_lines": 10
+    },
+    {
+      "path": "scripts/openclaw_fx_lab_snapshot.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 134,
+      "code_lines": 109,
+      "comment_lines": 1,
+      "blank_lines": 24
+    },
+    {
+      "path": "scripts/create_snapshot.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 17,
+      "code_lines": 14,
+      "comment_lines": 1,
+      "blank_lines": 2
+    },
+    {
+      "path": "scripts/build_site.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 38,
+      "code_lines": 25,
+      "comment_lines": 1,
+      "blank_lines": 12
+    },
+    {
+      "path": "scripts/run_corridor_roadmap.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 30,
+      "code_lines": 21,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "scripts/pre_change_backup.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 16,
+      "code_lines": 13,
+      "comment_lines": 1,
+      "blank_lines": 2
+    },
+    {
+      "path": "scripts/run_carry_layer.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 112,
+      "code_lines": 88,
+      "comment_lines": 1,
+      "blank_lines": 23
+    },
+    {
+      "path": "scripts/run_usdmxn_backtest.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 112,
+      "code_lines": 86,
+      "comment_lines": 2,
+      "blank_lines": 24
+    },
+    {
+      "path": "scripts/run_multi_pair_backtest.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 36,
+      "code_lines": 30,
+      "comment_lines": 1,
+      "blank_lines": 5
+    },
+    {
+      "path": "scripts/run_robustness.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 44,
+      "code_lines": 32,
+      "comment_lines": 1,
+      "blank_lines": 11
+    },
+    {
+      "path": "scripts/build_dataset.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 38,
+      "code_lines": 29,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "scripts/create_research_snapshot.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 199,
+      "code_lines": 149,
+      "comment_lines": 6,
+      "blank_lines": 44
+    },
+    {
+      "path": "scripts/fetch_tier1_official.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 41,
+      "code_lines": 30,
+      "comment_lines": 1,
+      "blank_lines": 10
+    },
+    {
+      "path": "scripts/run_data_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 65,
+      "code_lines": 50,
+      "comment_lines": 1,
+      "blank_lines": 14
+    },
+    {
+      "path": "scripts/export_data_sources.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 21,
+      "code_lines": 13,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/validate_models.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 9,
+      "code_lines": 7,
+      "comment_lines": 1,
+      "blank_lines": 1
+    },
+    {
+      "path": "scripts/run_research_models.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 23,
+      "code_lines": 15,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/run_vsi.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 75,
+      "code_lines": 56,
+      "comment_lines": 1,
+      "blank_lines": 18
+    },
+    {
+      "path": "scripts/run_settlement_lab.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 25,
+      "code_lines": 17,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "scripts/auto_improve_daily.sh",
+      "category": "other",
+      "extension": ".sh",
+      "total_lines": 19,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "scripts/serve_publication.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 38,
+      "code_lines": 28,
+      "comment_lines": 1,
+      "blank_lines": 9
+    },
+    {
+      "path": "scripts/fetch_bloomberg_spot.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 79,
+      "code_lines": 63,
+      "comment_lines": 1,
+      "blank_lines": 15
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "category": "config",
+      "extension": ".yml",
+      "total_lines": 48,
+      "code_lines": 39,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "data/features/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data/features/terminal_feature_table.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 12104,
+      "code_lines": 12104,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/05_labor_conversion_index.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 9,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/03_hidden_fx_tax_components.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 12,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/01_data_audit.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 9,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/01_value_survival_data_audit.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 12,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/02_hidden_fx_tax_index.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 9,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/04_vsi_research_models.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 12,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/fx_research_starter.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 69,
+      "code_lines": 69,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/03_currency_credibility_index.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 9,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/02_remittance_value_survival_index.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 12,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/06_research_questions.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 9,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "notebooks/04_dollar_dependency_index.ipynb",
+      "category": "notebook",
+      "extension": ".ipynb",
+      "total_lines": 9,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 296,
+      "code_lines": 217,
+      "comment_lines": 0,
+      "blank_lines": 79
+    },
+    {
+      "path": "reports/UNANSWERED_FX_QUESTIONS.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 497,
+      "code_lines": 327,
+      "comment_lines": 0,
+      "blank_lines": 170
+    },
+    {
+      "path": "reports/LAB_STATUS.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 94,
+      "code_lines": 71,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "reports/LAB_PORTFOLIO.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 113,
+      "code_lines": 77,
+      "comment_lines": 0,
+      "blank_lines": 36
+    },
+    {
+      "path": "reports/DATA_STRATEGY.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 169,
+      "code_lines": 111,
+      "comment_lines": 0,
+      "blank_lines": 58
+    },
+    {
+      "path": "reports/research_questions.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 220,
+      "code_lines": 151,
+      "comment_lines": 0,
+      "blank_lines": 69
+    },
+    {
+      "path": "reports/USDMXN_X_report_20260530.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 85,
+      "code_lines": 60,
+      "comment_lines": 0,
+      "blank_lines": 25
+    },
+    {
+      "path": "reports/USDMXN_FLAGSHIP_MEMO.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 131,
+      "code_lines": 90,
+      "comment_lines": 0,
+      "blank_lines": 41
+    },
+    {
+      "path": "reports/model_zoo_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 204,
+      "code_lines": 166,
+      "comment_lines": 0,
+      "blank_lines": 38
+    },
+    {
+      "path": "reports/DATA_ARCHITECTURE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 135,
+      "code_lines": 106,
+      "comment_lines": 0,
+      "blank_lines": 29
+    },
+    {
+      "path": "reports/FLAGSHIP_RESEARCH_LANE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 201,
+      "code_lines": 158,
+      "comment_lines": 0,
+      "blank_lines": 43
+    },
+    {
+      "path": "reports/corridor_roadmap_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 150,
+      "code_lines": 122,
+      "comment_lines": 0,
+      "blank_lines": 28
+    },
+    {
+      "path": "reports/usdmxn_regime_report.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 151,
+      "code_lines": 131,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "reports/SELF_IMPROVEMENT.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 80,
+      "code_lines": 57,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "reports/USDMXN_INVESTOR_ONE_PAGER.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 77,
+      "code_lines": 48,
+      "comment_lines": 0,
+      "blank_lines": 29
+    },
+    {
+      "path": "reports/DATA_UPGRADE_REPORT.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 48,
+      "code_lines": 33,
+      "comment_lines": 0,
+      "blank_lines": 15
+    },
+    {
+      "path": "reports/USDMXN_WORKING_PAPER_OUTLINE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 95,
+      "code_lines": 62,
+      "comment_lines": 0,
+      "blank_lines": 33
+    },
+    {
+      "path": "reports/CARRY_RESEARCH_FRAMEWORK.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 114,
+      "code_lines": 70,
+      "comment_lines": 0,
+      "blank_lines": 44
+    },
+    {
+      "path": "reports/FX_DESK_DECISION_FRAMEWORK.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 174,
+      "code_lines": 118,
+      "comment_lines": 0,
+      "blank_lines": 56
+    },
+    {
+      "path": "reports/NEWS_DATA_STRATEGY.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 107,
+      "code_lines": 77,
+      "comment_lines": 0,
+      "blank_lines": 30
+    },
+    {
+      "path": "reports/DATA_QUALITY_LAYER.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 25,
+      "code_lines": 16,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "reports/FX_RESEARCH_ROADMAP.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 134,
+      "code_lines": 101,
+      "comment_lines": 0,
+      "blank_lines": 33
+    },
+    {
+      "path": "reports/FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 710,
+      "code_lines": 388,
+      "comment_lines": 0,
+      "blank_lines": 322
+    },
+    {
+      "path": "reports/research/benchmark_standard.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 30,
+      "code_lines": 24,
+      "comment_lines": 0,
+      "blank_lines": 6
+    },
+    {
+      "path": "reports/research/open_source_model_registry.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 19,
+      "code_lines": 10,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "reports/research/research_questions_os_models.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 10,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 1
+    },
+    {
+      "path": "reports/memos/currency_stress_methodology.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 11,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/memos/remittance_welfare_loss_methodology.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 12,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/memos/dollar_dependency_methodology.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/memos/labor_conversion_methodology.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 8,
+      "code_lines": 6,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "reports/memos/hidden_fx_tax_methodology.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 16,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "reports/memos/currency_credibility_methodology.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 11,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/publication/hedge-governance.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 642,
+      "code_lines": 638,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "reports/publication/corridor.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 578,
+      "code_lines": 578,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/publication/HEDGE_GOVERNANCE_MEMO.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 190,
+      "code_lines": 125,
+      "comment_lines": 0,
+      "blank_lines": 65
+    },
+    {
+      "path": "reports/publication/model-zoo.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 629,
+      "code_lines": 625,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "reports/publication/index.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 468,
+      "code_lines": 467,
+      "comment_lines": 0,
+      "blank_lines": 1
+    },
+    {
+      "path": "reports/publication/OPEN_SOURCE_FX_AI_MODEL_LAB_PAGE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 152,
+      "code_lines": 111,
+      "comment_lines": 0,
+      "blank_lines": 41
+    },
+    {
+      "path": "reports/publication/unanswered-fx.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 737,
+      "code_lines": 735,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "reports/publication/lab-status.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 513,
+      "code_lines": 511,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "reports/publication/FX_REGIME_RESEARCH_NOTE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 238,
+      "code_lines": 170,
+      "comment_lines": 0,
+      "blank_lines": 68
+    },
+    {
+      "path": "reports/publication/settlement-economics-lab.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 689,
+      "code_lines": 684,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "reports/publication/open-source-ai.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 1022,
+      "code_lines": 1019,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/publication/research.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 502,
+      "code_lines": 498,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "reports/publication/fx-lab.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 480,
+      "code_lines": 480,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/publication/LAB_COVER.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 41,
+      "code_lines": 21,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "reports/publication/global-fx-lab.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 675,
+      "code_lines": 672,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/publication/fx_desk.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 513,
+      "code_lines": 513,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/publication/ladder.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 770,
+      "code_lines": 770,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/publication/CARRY_UIP_MEMO.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 78,
+      "code_lines": 49,
+      "comment_lines": 0,
+      "blank_lines": 29
+    },
+    {
+      "path": "reports/publication/FX_HISTORY_PAGE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 168,
+      "code_lines": 90,
+      "comment_lines": 0,
+      "blank_lines": 78
+    },
+    {
+      "path": "reports/publication/history.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 882,
+      "code_lines": 880,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "reports/publication/FX_LAB_COVER_PAGE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 13,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 6
+    },
+    {
+      "path": "reports/publication/VALUE_SURVIVAL_INDEX_PAGE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 69,
+      "code_lines": 45,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": "reports/publication/MODEL_ZOO_SUMMARY.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 34,
+      "code_lines": 23,
+      "comment_lines": 0,
+      "blank_lines": 11
+    },
+    {
+      "path": "reports/publication/FX_LAB_ONE_PAGER.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 90,
+      "code_lines": 55,
+      "comment_lines": 0,
+      "blank_lines": 35
+    },
+    {
+      "path": "reports/publication/value-survival-index.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 697,
+      "code_lines": 692,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "reports/publication/memo.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 636,
+      "code_lines": 636,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/publication/GLOBAL_FX_RESEARCH_LAB_PAGE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 58,
+      "code_lines": 37,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "reports/publication/ONE_PAGER.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 39,
+      "code_lines": 28,
+      "comment_lines": 0,
+      "blank_lines": 11
+    },
+    {
+      "path": "reports/publication/SETTLEMENT_ECONOMICS_LAB_PAGE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 64,
+      "code_lines": 39,
+      "comment_lines": 0,
+      "blank_lines": 25
+    },
+    {
+      "path": "reports/publication/UNANSWERED_FX_QUESTIONS_SUMMARY.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 44,
+      "code_lines": 27,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "reports/publication/LAB_COVER_PAGE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 51,
+      "code_lines": 26,
+      "comment_lines": 0,
+      "blank_lines": 25
+    },
+    {
+      "path": "reports/publication/assets/br3n_macro_labs_logo.png",
+      "category": "other",
+      "extension": ".png",
+      "total_lines": 2706,
+      "code_lines": 2631,
+      "comment_lines": 0,
+      "blank_lines": 75
+    },
+    {
+      "path": "reports/publication/assets/fx_lab_logo.png",
+      "category": "other",
+      "extension": ".png",
+      "total_lines": 2706,
+      "code_lines": 2631,
+      "comment_lines": 0,
+      "blank_lines": 75
+    },
+    {
+      "path": "reports/publication/verticals/FX_LAB_LANDING.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 53,
+      "code_lines": 30,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "reports/publication/verticals/MHSI_LANDING.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 69,
+      "code_lines": 43,
+      "comment_lines": 0,
+      "blank_lines": 26
+    },
+    {
+      "path": "reports/publication/verticals/PHOTOGRAPHY_LANDING.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 44,
+      "code_lines": 26,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "reports/charts/usdmxn_equity_comparison.png",
+      "category": "other",
+      "extension": ".png",
+      "total_lines": 5153,
+      "code_lines": 4984,
+      "comment_lines": 0,
+      "blank_lines": 169
+    },
+    {
+      "path": "reports/charts/equity_curves.png",
+      "category": "other",
+      "extension": ".png",
+      "total_lines": 3528,
+      "code_lines": 3428,
+      "comment_lines": 0,
+      "blank_lines": 100
+    },
+    {
+      "path": "reports/research_log/PRE_REGISTRATION_LOG.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 192,
+      "code_lines": 113,
+      "comment_lines": 0,
+      "blank_lines": 79
+    },
+    {
+      "path": "reports/model_cards/usdmxn_regime_model.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 36,
+      "code_lines": 26,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "reports/fx_desk_memos/US_MX_fx_desk_memo.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 46,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "reports/fx_desk_memos/US_PH_fx_desk_memo.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 46,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "reports/fx_desk_memos/US_IN_fx_desk_memo.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 46,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "reports/fx_desk_memos/US_CO_fx_desk_memo.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 46,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "reports/fx_desk_memos/US_BR_fx_desk_memo.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 46,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "reports/research_ladder/level3_multipair_oos.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 58,
+      "code_lines": 58,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level3_multipair.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 96,
+      "code_lines": 96,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level8_hedge_oos_scorecard.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 8291,
+      "code_lines": 8291,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level8_hedge_white_rc.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 25,
+      "code_lines": 25,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level6_holdout.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 4,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level5_economic.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level8_hedge_oos_comparison.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 1659,
+      "code_lines": 1659,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level1_spot_by_regime.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 5,
+      "code_lines": 5,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level6_white_reality_check.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 5,
+      "code_lines": 5,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level8_hedge_oos_static_comparison.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3317,
+      "code_lines": 3317,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/RESEARCH_LADDER.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 420,
+      "code_lines": 321,
+      "comment_lines": 0,
+      "blank_lines": 99
+    },
+    {
+      "path": "reports/research_ladder/level1_strategy_by_regime.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 5,
+      "code_lines": 5,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level4_forecast_errors.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 4,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level2_oos_splits.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 13,
+      "code_lines": 13,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level8_hedge_oos_summary.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level3_oos_by_pair.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 20,
+      "code_lines": 20,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level5_multipair_economic.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 20,
+      "code_lines": 20,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level8_institutional_proof.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 10,
+      "code_lines": 10,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/research_ladder/level3_oos_summary.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 2,
+      "code_lines": 2,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_extended_ranked_bar.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_component_breakdown_stacked.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/rank_stability_heatmap.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_loss_per_100.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_ranked_corridors.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_component_breakdown.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_sensitivity_ranges.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_leakage_vs_volume.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/official_vs_assumed_components.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/aggregate_welfare_loss_by_corridor.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/value_lost_per_100.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_risk_adjusted_ranked_bar.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_core_ranked_bar.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/data_quality_score_by_corridor.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_corridor_summary.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 11,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/figures/vsi_rank_stability.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "reports/working_paper/limitations_section.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 32,
+      "code_lines": 20,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "reports/working_paper/working_paper_outline.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 34,
+      "code_lines": 23,
+      "comment_lines": 0,
+      "blank_lines": 11
+    },
+    {
+      "path": "reports/working_paper/value_survival_working_paper_outline.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 44,
+      "code_lines": 35,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "reports/working_paper/abstract.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 7,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "reports/working_paper/methodology_section.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 53,
+      "code_lines": 33,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "reports/working_paper/data_section.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 52,
+      "code_lines": 39,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "src/hedge_backtest.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 161,
+      "code_lines": 131,
+      "comment_lines": 4,
+      "blank_lines": 26
+    },
+    {
+      "path": "src/economic.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 20,
+      "code_lines": 16,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "src/data_schema.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 108,
+      "code_lines": 89,
+      "comment_lines": 0,
+      "blank_lines": 19
+    },
+    {
+      "path": "src/fx_desk_memo.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 85,
+      "code_lines": 76,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "src/metrics.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 34,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "src/model_evaluation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 214,
+      "code_lines": 172,
+      "comment_lines": 2,
+      "blank_lines": 40
+    },
+    {
+      "path": "src/research_runner.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 175,
+      "code_lines": 136,
+      "comment_lines": 6,
+      "blank_lines": 33
+    },
+    {
+      "path": "src/model_zoo_reporting.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 242,
+      "code_lines": 172,
+      "comment_lines": 12,
+      "blank_lines": 58
+    },
+    {
+      "path": "src/model_walk_forward.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 118,
+      "code_lines": 97,
+      "comment_lines": 1,
+      "blank_lines": 20
+    },
+    {
+      "path": "src/models.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 15,
+      "code_lines": 10,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "src/hedging.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 49,
+      "code_lines": 39,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "src/research_models.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 144,
+      "code_lines": 116,
+      "comment_lines": 1,
+      "blank_lines": 27
+    },
+    {
+      "path": "src/gdelt_news_loader.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 144,
+      "code_lines": 117,
+      "comment_lines": 1,
+      "blank_lines": 26
+    },
+    {
+      "path": "src/luxury_dashboard.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 2434,
+      "code_lines": 2133,
+      "comment_lines": 10,
+      "blank_lines": 291
+    },
+    {
+      "path": "src/carry_hedge_governance.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 153,
+      "code_lines": 127,
+      "comment_lines": 0,
+      "blank_lines": 26
+    },
+    {
+      "path": "src/flagship_research_lane.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 425,
+      "code_lines": 364,
+      "comment_lines": 0,
+      "blank_lines": 61
+    },
+    {
+      "path": "src/model_zoo.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 634,
+      "code_lines": 515,
+      "comment_lines": 10,
+      "blank_lines": 109
+    },
+    {
+      "path": "src/data_quality_layer.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 244,
+      "code_lines": 211,
+      "comment_lines": 3,
+      "blank_lines": 30
+    },
+    {
+      "path": "src/r1_r2_trend_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 163,
+      "code_lines": 134,
+      "comment_lines": 0,
+      "blank_lines": 29
+    },
+    {
+      "path": "src/flow_pressure_tests.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 102,
+      "code_lines": 84,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "src/data_loader.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 506,
+      "code_lines": 436,
+      "comment_lines": 2,
+      "blank_lines": 68
+    },
+    {
+      "path": "src/carry_features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 293,
+      "code_lines": 235,
+      "comment_lines": 0,
+      "blank_lines": 58
+    },
+    {
+      "path": "src/official_data_loader.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 99,
+      "code_lines": 80,
+      "comment_lines": 1,
+      "blank_lines": 18
+    },
+    {
+      "path": "src/regimes.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 40,
+      "code_lines": 33,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "src/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 6,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "src/corridors.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 189,
+      "code_lines": 176,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "src/features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 46,
+      "code_lines": 36,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "src/site_builder.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1682,
+      "code_lines": 1569,
+      "comment_lines": 3,
+      "blank_lines": 110
+    },
+    {
+      "path": "src/bloomberg_loader.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 240,
+      "code_lines": 194,
+      "comment_lines": 3,
+      "blank_lines": 43
+    },
+    {
+      "path": "src/carry_models.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 200,
+      "code_lines": 162,
+      "comment_lines": 2,
+      "blank_lines": 36
+    },
+    {
+      "path": "src/forward_points.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 159,
+      "code_lines": 131,
+      "comment_lines": 0,
+      "blank_lines": 28
+    },
+    {
+      "path": "src/data_cleaning.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 120,
+      "code_lines": 95,
+      "comment_lines": 2,
+      "blank_lines": 23
+    },
+    {
+      "path": "src/fx_desk_decisions.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 357,
+      "code_lines": 342,
+      "comment_lines": 0,
+      "blank_lines": 15
+    },
+    {
+      "path": "src/dashboard.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 399,
+      "code_lines": 358,
+      "comment_lines": 0,
+      "blank_lines": 41
+    },
+    {
+      "path": "src/lab_status.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 212,
+      "code_lines": 177,
+      "comment_lines": 1,
+      "blank_lines": 34
+    },
+    {
+      "path": "src/forecast_tests.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 126,
+      "code_lines": 103,
+      "comment_lines": 1,
+      "blank_lines": 22
+    },
+    {
+      "path": "src/flow_proxies.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 149,
+      "code_lines": 115,
+      "comment_lines": 1,
+      "blank_lines": 33
+    },
+    {
+      "path": "src/hedge_costs.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 61,
+      "code_lines": 50,
+      "comment_lines": 0,
+      "blank_lines": 11
+    },
+    {
+      "path": "src/carry_tests.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 189,
+      "code_lines": 159,
+      "comment_lines": 5,
+      "blank_lines": 25
+    },
+    {
+      "path": "src/flagship_memo.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 419,
+      "code_lines": 252,
+      "comment_lines": 34,
+      "blank_lines": 133
+    },
+    {
+      "path": "src/fx_research_terminal.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 312,
+      "code_lines": 279,
+      "comment_lines": 0,
+      "blank_lines": 33
+    },
+    {
+      "path": "src/news_tests.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 139,
+      "code_lines": 114,
+      "comment_lines": 0,
+      "blank_lines": 25
+    },
+    {
+      "path": "src/fx_desk_scorecard.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 222,
+      "code_lines": 190,
+      "comment_lines": 0,
+      "blank_lines": 32
+    },
+    {
+      "path": "src/research_roadmap_reporting.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 126,
+      "code_lines": 109,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "src/publication.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 361,
+      "code_lines": 231,
+      "comment_lines": 22,
+      "blank_lines": 108
+    },
+    {
+      "path": "src/bis_loader.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 105,
+      "code_lines": 84,
+      "comment_lines": 2,
+      "blank_lines": 19
+    },
+    {
+      "path": "src/data_provenance.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 144,
+      "code_lines": 122,
+      "comment_lines": 0,
+      "blank_lines": 22
+    },
+    {
+      "path": "src/data_sources.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 548,
+      "code_lines": 504,
+      "comment_lines": 4,
+      "blank_lines": 40
+    },
+    {
+      "path": "src/random_walk_validity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 102,
+      "code_lines": 82,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "src/macro_loader.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 160,
+      "code_lines": 129,
+      "comment_lines": 1,
+      "blank_lines": 30
+    },
+    {
+      "path": "src/global_fx_research_lab.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 258,
+      "code_lines": 225,
+      "comment_lines": 0,
+      "blank_lines": 33
+    },
+    {
+      "path": "src/hedge_governance.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 234,
+      "code_lines": 192,
+      "comment_lines": 2,
+      "blank_lines": 40
+    },
+    {
+      "path": "src/news_features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 252,
+      "code_lines": 208,
+      "comment_lines": 0,
+      "blank_lines": 44
+    },
+    {
+      "path": "src/corridor_runner.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 244,
+      "code_lines": 207,
+      "comment_lines": 1,
+      "blank_lines": 36
+    },
+    {
+      "path": "src/backtest.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 194,
+      "code_lines": 156,
+      "comment_lines": 0,
+      "blank_lines": 38
+    },
+    {
+      "path": "src/academic_tests.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 126,
+      "code_lines": 105,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "src/data_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 206,
+      "code_lines": 176,
+      "comment_lines": 1,
+      "blank_lines": 29
+    },
+    {
+      "path": "src/research_questions.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 409,
+      "code_lines": 391,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "src/official_loaders.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 144,
+      "code_lines": 122,
+      "comment_lines": 0,
+      "blank_lines": 22
+    },
+    {
+      "path": "src/corridor_reporting.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 348,
+      "code_lines": 306,
+      "comment_lines": 10,
+      "blank_lines": 32
+    },
+    {
+      "path": "src/reporting.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 108,
+      "code_lines": 72,
+      "comment_lines": 8,
+      "blank_lines": 28
+    },
+    {
+      "path": "src/research/questions.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 161,
+      "code_lines": 149,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/research/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/research/hypotheses.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 134,
+      "code_lines": 124,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "src/research/report_generator.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 138,
+      "code_lines": 71,
+      "comment_lines": 29,
+      "blank_lines": 38
+    },
+    {
+      "path": "src/indices/remittance_welfare.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 153,
+      "code_lines": 135,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "src/indices/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 19,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "src/indices/hidden_fx_tax.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 135,
+      "code_lines": 111,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": "src/indices/currency_credibility.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 95,
+      "code_lines": 79,
+      "comment_lines": 0,
+      "blank_lines": 16
+    },
+    {
+      "path": "src/indices/pipeline.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 65,
+      "code_lines": 56,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "src/indices/dollar_dependency.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 123,
+      "code_lines": 102,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "src/indices/currency_trust.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 111,
+      "code_lines": 87,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": "src/indices/value_survival.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 287,
+      "code_lines": 233,
+      "comment_lines": 1,
+      "blank_lines": 53
+    },
+    {
+      "path": "src/indices/currency_stress.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 84,
+      "code_lines": 72,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/indices/labor_conversion.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 81,
+      "code_lines": 68,
+      "comment_lines": 1,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/indices/_utils.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 50,
+      "code_lines": 38,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/self_improve/runner.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 345,
+      "code_lines": 298,
+      "comment_lines": 1,
+      "blank_lines": 46
+    },
+    {
+      "path": "src/self_improve/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/self_improve/scorer.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 306,
+      "code_lines": 242,
+      "comment_lines": 1,
+      "blank_lines": 63
+    },
+    {
+      "path": "src/llm/ollama_client.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 73,
+      "code_lines": 64,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "src/llm/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 13,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "src/llm/prompts.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 83,
+      "code_lines": 71,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/llm/classifiers.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 35,
+      "code_lines": 27,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "src/llm/memo_generator.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 52,
+      "code_lines": 45,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "src/backtesting/risk_metrics.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 51,
+      "code_lines": 38,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "src/backtesting/regime_analysis.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 7,
+      "code_lines": 5,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "src/backtesting/transaction_costs.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 9,
+      "code_lines": 6,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "src/backtesting/__init__.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/backtesting/walk_forward.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 183,
+      "code_lines": 158,
+      "comment_lines": 0,
+      "blank_lines": 25
+    },
+    {
+      "path": "src/quality/formula_validation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 70,
+      "code_lines": 56,
+      "comment_lines": 0,
+      "blank_lines": 14
+    },
+    {
+      "path": "src/quality/validation_rules.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 127,
+      "code_lines": 107,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "src/quality/data_validation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 132,
+      "code_lines": 108,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": "src/quality/model_validation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 103,
+      "code_lines": 85,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "src/config/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/config/research_settings.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 61,
+      "code_lines": 43,
+      "comment_lines": 2,
+      "blank_lines": 16
+    },
+    {
+      "path": "src/config/data_sources.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 228,
+      "code_lines": 216,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/features/macro_features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 25,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "src/features/news_sentiment_features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 25,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "src/features/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/features/volatility_features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 25,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "src/features/fx_terminal_features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 214,
+      "code_lines": 185,
+      "comment_lines": 2,
+      "blank_lines": 27
+    },
+    {
+      "path": "src/ladder/runner.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 411,
+      "code_lines": 276,
+      "comment_lines": 35,
+      "blank_lines": 100
+    },
+    {
+      "path": "src/ladder/level6_snooping.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 91,
+      "code_lines": 76,
+      "comment_lines": 1,
+      "blank_lines": 14
+    },
+    {
+      "path": "src/ladder/white_rc.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 93,
+      "code_lines": 77,
+      "comment_lines": 1,
+      "blank_lines": 15
+    },
+    {
+      "path": "src/ladder/level8_institutional.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 327,
+      "code_lines": 283,
+      "comment_lines": 1,
+      "blank_lines": 43
+    },
+    {
+      "path": "src/ladder/level8_hedge_white_rc.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 188,
+      "code_lines": 160,
+      "comment_lines": 0,
+      "blank_lines": 28
+    },
+    {
+      "path": "src/ladder/level3_multipair.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 141,
+      "code_lines": 123,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "src/ladder/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/ladder/level1_descriptive.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 71,
+      "code_lines": 59,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/ladder/level4_forecast.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 133,
+      "code_lines": 111,
+      "comment_lines": 3,
+      "blank_lines": 19
+    },
+    {
+      "path": "src/ladder/level8_hedge_oos.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 489,
+      "code_lines": 423,
+      "comment_lines": 0,
+      "blank_lines": 66
+    },
+    {
+      "path": "src/ladder/level5_economic.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 83,
+      "code_lines": 71,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/ladder/level2_oos.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 83,
+      "code_lines": 68,
+      "comment_lines": 1,
+      "blank_lines": 14
+    },
+    {
+      "path": "src/utils/config.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 28,
+      "code_lines": 21,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "src/utils/paths.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 20,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "src/utils/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 14,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "src/models/global_fx_models.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 205,
+      "code_lines": 185,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "src/models/baselines.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 281,
+      "code_lines": 239,
+      "comment_lines": 0,
+      "blank_lines": 42
+    },
+    {
+      "path": "src/models/timesfm_adapter.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "src/models/transformer_baseline.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 14,
+      "code_lines": 9,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "src/models/correlation_analysis.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 95,
+      "code_lines": 81,
+      "comment_lines": 0,
+      "blank_lines": 14
+    },
+    {
+      "path": "src/models/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "src/models/event_study.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 189,
+      "code_lines": 166,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "src/models/sensitivity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 95,
+      "code_lines": 81,
+      "comment_lines": 0,
+      "blank_lines": 14
+    },
+    {
+      "path": "src/models/panel_regression.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 207,
+      "code_lines": 175,
+      "comment_lines": 0,
+      "blank_lines": 32
+    },
+    {
+      "path": "src/models/robustness.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 150,
+      "code_lines": 122,
+      "comment_lines": 7,
+      "blank_lines": 21
+    },
+    {
+      "path": "src/models/lstm_baseline.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 16,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "src/models/lag_llama_adapter.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "src/models/tensortrade_env.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "src/models/finrl_agent.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "src/models/model_registry.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 185,
+      "code_lines": 171,
+      "comment_lines": 0,
+      "blank_lines": 14
+    },
+    {
+      "path": "src/dashboard/trade_explainer.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 25,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "src/dashboard/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/dashboard/app.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 427,
+      "code_lines": 368,
+      "comment_lines": 0,
+      "blank_lines": 59
+    },
+    {
+      "path": "src/dashboard/model_comparison.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 32,
+      "code_lines": 21,
+      "comment_lines": 0,
+      "blank_lines": 11
+    },
+    {
+      "path": "src/audit/metrics.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 153,
+      "code_lines": 124,
+      "comment_lines": 2,
+      "blank_lines": 27
+    },
+    {
+      "path": "src/audit/snapshots.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 149,
+      "code_lines": 128,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "src/audit/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 14,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "src/audit/git_utils.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 84,
+      "code_lines": 72,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/audit/time_tracking.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 112,
+      "code_lines": 100,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/audit/reporting.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 58,
+      "code_lines": 50,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "src/visuals/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "src/visuals/vsi_charts.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 265,
+      "code_lines": 230,
+      "comment_lines": 1,
+      "blank_lines": 34
+    },
+    {
+      "path": "src/data/rpw_parser.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 72,
+      "code_lines": 56,
+      "comment_lines": 0,
+      "blank_lines": 16
+    },
+    {
+      "path": "src/data/vsi_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 149,
+      "code_lines": 122,
+      "comment_lines": 1,
+      "blank_lines": 26
+    },
+    {
+      "path": "src/data/file_discovery.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 34,
+      "code_lines": 27,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "src/data/market.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 71,
+      "code_lines": 59,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/data/validators.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 69,
+      "code_lines": 52,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "src/data/wages.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 23,
+      "code_lines": 15,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "src/data/constants.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 132,
+      "code_lines": 120,
+      "comment_lines": 2,
+      "blank_lines": 10
+    },
+    {
+      "path": "src/data/loaders.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 196,
+      "code_lines": 162,
+      "comment_lines": 0,
+      "blank_lines": 34
+    },
+    {
+      "path": "src/data/vsi_loader.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 47,
+      "code_lines": 37,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "src/data/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 22,
+      "code_lines": 19,
+      "comment_lines": 0,
+      "blank_lines": 3
+    },
+    {
+      "path": "src/data/mock_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 213,
+      "code_lines": 192,
+      "comment_lines": 5,
+      "blank_lines": 16
+    },
+    {
+      "path": "src/data/sovereignty.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 28,
+      "code_lines": 19,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "src/data/pipeline.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 58,
+      "code_lines": 46,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "src/data/cleaners.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 55,
+      "code_lines": 39,
+      "comment_lines": 0,
+      "blank_lines": 16
+    },
+    {
+      "path": "src/data/world_bank_api.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 146,
+      "code_lines": 130,
+      "comment_lines": 1,
+      "blank_lines": 15
+    },
+    {
+      "path": "src/data/fetch_public.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 436,
+      "code_lines": 386,
+      "comment_lines": 6,
+      "blank_lines": 44
+    },
+    {
+      "path": "src/data/build_dataset.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 108,
+      "code_lines": 88,
+      "comment_lines": 0,
+      "blank_lines": 20
+    },
+    {
+      "path": "src/data/macro.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 34,
+      "code_lines": 24,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "src/data/schema.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 115,
+      "code_lines": 107,
+      "comment_lines": 0,
+      "blank_lines": 8
+    },
+    {
+      "path": "src/data/data_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 167,
+      "code_lines": 138,
+      "comment_lines": 0,
+      "blank_lines": 29
+    },
+    {
+      "path": "src/data/mock.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 113,
+      "code_lines": 98,
+      "comment_lines": 0,
+      "blank_lines": 15
+    },
+    {
+      "path": "src/pages/1_Research_Note.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 62,
+      "code_lines": 48,
+      "comment_lines": 0,
+      "blank_lines": 14
+    },
+    {
+      "path": "src/risk/regime.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 118,
+      "code_lines": 94,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": "src/risk/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 14,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "src/risk/position_risk.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 130,
+      "code_lines": 112,
+      "comment_lines": 0,
+      "blank_lines": 18
+    }
+  ],
+  "git_diff_since_head": {
+    "lines_added": 2254,
+    "lines_removed": 579,
+    "files_changed": 53
+  }
+}

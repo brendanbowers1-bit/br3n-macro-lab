@@ -1,0 +1,10 @@
+requirement,pass_threshold,evidence_status,current_state,design_notes
+Many currency pairs,>= 10 pairs with hedge scorecards published,Partial,19 pairs with hedge OOS scorecards (target 10),Trading ladder covers ~19 pairs; hedge governance is USD/MXN only
+Multiple decades,>= 20 years per pair without survivorship gaps,Partial,25y configured; multi-pair decades not validated,USD/MXN ~20–25y; not validated across full pair panel
+Official data,Tier-1 spot (FRED H.10 or licensed feed) for all pairs in results,Partial,Tier-1 preferred; not enforced across full hedge panel,FRED H.10 for USD/MXN when available; Yahoo fallback still in stack
+Real or realistic forward costs,Forward points + roll in static vs dynamic hedge comparisons,Partial,Forward roll + carry layer run; H8d fail,Turnover bps + spread/slippage/roll/carry assumptions only; no forward curve
+Static vs dynamic hedge policies,Static benchmarks vs dynamic policies on same exposure and cost model,Partial,Static vs dynamic tested OOS on 19 pairs,"Tested on USD/MXN: never/half/mostly/fully vs regime_based, no_change_in_range"
+Transaction costs,All hedge and trading metrics net of explicit costs,Partial,Costs included but simplified (bps on hedge turnover),2 bps turnover + Level 5 frictions for trading; simplified hedge turnover charge
+Out-of-sample tests,"Walk-forward OOS for hedge policies, not only trading signals",Partial,Hedge OOS (forward_full) on 19 pairs; H8a pass (84.21%) but H8d fail,Trading OOS (3 splits) exists; hedge headline result is full-sample USD/MXN
+Data-snooping controls,Pre-registered hypotheses; White RC / SPA on policy set at p < 0.05,Not met,Hedge policy White RC p = 0.6630 — does not reject snooping,White RC p ≈ 0.61 on trading strategies — does not reject data-mining
+Multiple corporate exposure types,>= 3 exposure types with published scorecards,Partial,3 exposure types in hedge OOS panel (19 pairs),Code supports receiver / US-long-MXN / USD-liability; published table is mostly one type

@@ -1,7 +1,7 @@
 # When Should You Hedge? A Simple Regime Test on USD/MXN
 
 **Author:** Brendan Bowers  
-**Date:** 2026-05-30  
+**Date:** 2026-05-31  
 **Type:** Research note (not investment advice)
 
 ---

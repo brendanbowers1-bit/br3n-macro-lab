@@ -1,0 +1,3 @@
+cost_layer,pairs_tested,min_pairs_target,exposure_types_tested,comparison_cells,pairs_no_change_wins_h8a,pct_pairs_h8a,h8a_pass,median_turnover_reduction_pct,h8b_pass,pct_pairs_h8d,h8d_pass,exposures_pass,pairs_panel_pass
+base,19,10,3,829,19,100.0,True,74.07,True,100.0,True,True,True
+forward_full,19,10,3,829,16,84.21,True,74.07,True,31.58,False,True,True

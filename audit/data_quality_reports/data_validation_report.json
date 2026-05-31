@@ -1,0 +1,194 @@
+{
+  "timestamp": "2026-05-31T21:00:20.552249+00:00",
+  "title": "Data Validation Report",
+  "summary": {
+    "pass": 6,
+    "fail": 20,
+    "warning": 0,
+    "total": 26
+  },
+  "rows": [
+    {
+      "file": "data/outputs/value_survival_outputs.csv",
+      "status": "PASS",
+      "issues": "",
+      "rows": 144,
+      "module": "VSI"
+    },
+    {
+      "file": "data/outputs/vsi_rank_stability.csv",
+      "status": "PASS",
+      "issues": "",
+      "rows": 10,
+      "module": "VSI"
+    },
+    {
+      "file": "data/outputs/vsi_sensitivity_results.csv",
+      "status": "PASS",
+      "issues": "",
+      "rows": 432,
+      "module": "VSI"
+    },
+    {
+      "file": "data/processed/value_survival_outputs.csv",
+      "status": "PASS",
+      "issues": "",
+      "rows": 144,
+      "module": "VSI"
+    },
+    {
+      "file": "settlement_lab/data/outputs/features.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/outputs/features.csv: prefunding_ratio all NaN; settlement_lab/data/outputs/features.csv: liquidity_buffer_ratio all NaN; settlement_lab/data/outputs/features.csv: avg_settlement_usd all NaN; settlement_lab/data/outputs/features.csv: rows with unlabeled mock_data_flag: 137; Settlement/features rows with unlabeled mock_data_flag: 137; Settlement/features prefunding_ratio all NaN; Settlement/features liquidity_buffer_ratio all NaN; Settlement/features avg_settlement_usd all NaN",
+      "rows": 149,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/finality_quality_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/outputs/finality_quality_outputs.csv: source_url_or_reference all NaN; settlement_lab/data/outputs/finality_quality_outputs.csv: publication_date all NaN; settlement_lab/data/outputs/finality_quality_outputs.csv: vintage_date all NaN; Settlement/finality_quality_outputs source_url_or_reference all NaN; Settlement/finality_quality_outputs publication_date all NaN; Settlement/finality_quality_outputs vintage_date all NaN",
+      "rows": 21,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/friction_incidence_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/outputs/friction_incidence_outputs.csv: rows with unlabeled mock_data_flag: 137; Settlement/friction_incidence_outputs rows with unlabeled mock_data_flag: 137",
+      "rows": 149,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/operational_liquidity_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/outputs/operational_liquidity_outputs.csv: interest_rate_pct all NaN; settlement_lab/data/outputs/operational_liquidity_outputs.csv: opportunity_cost_usd all NaN; settlement_lab/data/outputs/operational_liquidity_outputs.csv: publication_date all NaN; settlement_lab/data/outputs/operational_liquidity_outputs.csv: vintage_date all NaN; Settlement/operational_liquidity_outputs interest_rate_pct all NaN; Settlement/operational_liquidity_outputs opportunity_cost_usd all NaN; Settlement/operational_liquidity_outputs publication_date all NaN; Settlement/operational_liquidity_outputs vintage_date all NaN",
+      "rows": 50,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/payment_fragility_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/outputs/payment_fragility_outputs.csv: rows with unlabeled mock_data_flag: 137; Settlement/payment_fragility_outputs rows with unlabeled mock_data_flag: 137",
+      "rows": 147,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/rank_stability.csv",
+      "status": "PASS",
+      "issues": "",
+      "rows": 147,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/robustness_results.csv",
+      "status": "PASS",
+      "issues": "",
+      "rows": 5,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/sensitivity_results.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/outputs/sensitivity_results.csv: rows with unlabeled mock_data_flag: 822; Settlement/sensitivity_results rows with unlabeled mock_data_flag: 822",
+      "rows": 894,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/settlement_drag_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/outputs/settlement_drag_outputs.csv: rows with unlabeled mock_data_flag: 137; Settlement/settlement_drag_outputs rows with unlabeled mock_data_flag: 137",
+      "rows": 149,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/outputs/stress_scenario_results.csv",
+      "status": "FAIL",
+      "issues": "Settlement/stress_scenario_results delta_score has values below 0 (min=-32.80112581713554)",
+      "rows": 882,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/features.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/features.csv: prefunding_ratio all NaN; settlement_lab/data/processed/features.csv: liquidity_buffer_ratio all NaN; settlement_lab/data/processed/features.csv: avg_settlement_usd all NaN; settlement_lab/data/processed/features.csv: rows with unlabeled mock_data_flag: 137; Settlement/features rows with unlabeled mock_data_flag: 137; Settlement/features prefunding_ratio all NaN; Settlement/features liquidity_buffer_ratio all NaN; Settlement/features avg_settlement_usd all NaN",
+      "rows": 149,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/finality_characteristics.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/finality_characteristics.csv: source_url_or_reference all NaN; settlement_lab/data/processed/finality_characteristics.csv: publication_date all NaN; settlement_lab/data/processed/finality_characteristics.csv: vintage_date all NaN; Settlement/finality_characteristics source_url_or_reference all NaN; Settlement/finality_characteristics publication_date all NaN; Settlement/finality_characteristics vintage_date all NaN",
+      "rows": 21,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/finality_quality_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/finality_quality_outputs.csv: source_url_or_reference all NaN; settlement_lab/data/processed/finality_quality_outputs.csv: publication_date all NaN; settlement_lab/data/processed/finality_quality_outputs.csv: vintage_date all NaN; Settlement/finality_quality_outputs source_url_or_reference all NaN; Settlement/finality_quality_outputs publication_date all NaN; Settlement/finality_quality_outputs vintage_date all NaN",
+      "rows": 21,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/friction_incidence_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/friction_incidence_outputs.csv: rows with unlabeled mock_data_flag: 137; Settlement/friction_incidence_outputs rows with unlabeled mock_data_flag: 137",
+      "rows": 149,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/fx_settlement_exposure.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/fx_settlement_exposure.csv: publication_date all NaN; settlement_lab/data/processed/fx_settlement_exposure.csv: vintage_date all NaN; settlement_lab/data/processed/fx_settlement_exposure.csv: raw_file_name all NaN; settlement_lab/data/processed/fx_settlement_exposure.csv: raw_file_hash_sha256 all NaN; Settlement/fx_settlement_exposure publication_date all NaN; Settlement/fx_settlement_exposure vintage_date all NaN; Settlement/fx_settlement_exposure raw_file_name all NaN; Settlement/fx_settlement_exposure raw_file_hash_sha256 all NaN",
+      "rows": 8,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/operational_liquidity_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/operational_liquidity_outputs.csv: interest_rate_pct all NaN; settlement_lab/data/processed/operational_liquidity_outputs.csv: opportunity_cost_usd all NaN; settlement_lab/data/processed/operational_liquidity_outputs.csv: publication_date all NaN; settlement_lab/data/processed/operational_liquidity_outputs.csv: vintage_date all NaN; Settlement/operational_liquidity_outputs interest_rate_pct all NaN; Settlement/operational_liquidity_outputs opportunity_cost_usd all NaN; Settlement/operational_liquidity_outputs publication_date all NaN; Settlement/operational_liquidity_outputs vintage_date all NaN",
+      "rows": 50,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/payment_access_and_inclusion.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/payment_access_and_inclusion.csv: formal_savings_pct all NaN; settlement_lab/data/processed/payment_access_and_inclusion.csv: publication_date all NaN; settlement_lab/data/processed/payment_access_and_inclusion.csv: vintage_date all NaN; Settlement/payment_access_and_inclusion findex_year exceeds 100 (max=2024); Settlement/payment_access_and_inclusion formal_savings_pct all NaN; Settlement/payment_access_and_inclusion publication_date all NaN; Settlement/payment_access_and_inclusion vintage_date all NaN",
+      "rows": 14,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/payment_flow_observations.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/payment_flow_observations.csv: publication_date all NaN; settlement_lab/data/processed/payment_flow_observations.csv: vintage_date all NaN; settlement_lab/data/processed/payment_flow_observations.csv: rows with unlabeled mock_data_flag: 137; Settlement/payment_flow_observations rows with unlabeled mock_data_flag: 137; Settlement/payment_flow_observations publication_date all NaN; Settlement/payment_flow_observations vintage_date all NaN",
+      "rows": 881,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/payment_fragility_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/payment_fragility_outputs.csv: rows with unlabeled mock_data_flag: 137; Settlement/payment_fragility_outputs rows with unlabeled mock_data_flag: 137",
+      "rows": 147,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/payment_network_stress_events.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/payment_network_stress_events.csv: publication_date all NaN; settlement_lab/data/processed/payment_network_stress_events.csv: vintage_date all NaN; Settlement/payment_network_stress_events publication_date all NaN; Settlement/payment_network_stress_events vintage_date all NaN",
+      "rows": 4,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/settlement_drag_outputs.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/settlement_drag_outputs.csv: rows with unlabeled mock_data_flag: 137; Settlement/settlement_drag_outputs rows with unlabeled mock_data_flag: 137",
+      "rows": 149,
+      "module": "Settlement"
+    },
+    {
+      "file": "settlement_lab/data/processed/settlement_liquidity_table.csv",
+      "status": "FAIL",
+      "issues": "settlement_lab/data/processed/settlement_liquidity_table.csv: interest_rate_pct all NaN; settlement_lab/data/processed/settlement_liquidity_table.csv: opportunity_cost_usd all NaN; settlement_lab/data/processed/settlement_liquidity_table.csv: publication_date all NaN; settlement_lab/data/processed/settlement_liquidity_table.csv: vintage_date all NaN; Settlement/settlement_liquidity_table interest_rate_pct all NaN; Settlement/settlement_liquidity_table opportunity_cost_usd all NaN; Settlement/settlement_liquidity_table publication_date all NaN; Settlement/settlement_liquidity_table vintage_date all NaN",
+      "rows": 50,
+      "module": "Settlement"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+corridor_id,policy_name,exposure_type,total_return_proxy,unhedged_volatility,hedged_volatility,volatility_reduction,max_drawdown_unhedged,max_drawdown_hedged,hedge_turnover,total_hedge_cost,hedge_trade_cost_pct,forward_roll_cost_pct,forward_carry_cost_pct,cost_layer,average_hedge_ratio,number_of_hedge_changes,cost_adjusted_risk_reduction,regret_proxy,carry_cost_proxy,total_cost_proxy
+,static_50,us_entity_long_mxn,-60.377,11.39,5.695,5.695,-71.451,-63.543,0.5,50.3282,0.03,7.3607,42.9375,forward_full,0.5,1,-44.633,3.937,42.9375,50.3282
+,regime_only,us_entity_long_mxn,-59.414,11.39,4.169,7.22,-71.451,-61.755,98.4,66.3725,5.904,8.849,51.6194,forward_full,0.601,501,-59.152,2.966,51.6194,66.3725
+,carry_adjusted_regime,us_entity_long_mxn,-59.423,11.39,3.485,7.905,-71.451,-61.067,87.85,72.2816,5.271,9.8064,57.2042,forward_full,0.666,979,-64.377,2.464,57.2042,72.2816
+,no_change_in_range_carry_aware,us_entity_long_mxn,-58.796,11.39,2.291,9.099,-71.451,-59.159,66.138,82.2084,3.9683,11.4498,66.7904,forward_full,0.778,816,-73.11,1.576,66.7904,82.2084

@@ -1,6 +1,6 @@
 # FX Lab Data Upgrade Report
 
-_Generated: 2026-05-30T22:35:54+00:00 UTC_
+_Generated: 2026-05-31T12:30:14+00:00 UTC_
 
 ## Source load status
 
@@ -11,11 +11,11 @@ _Generated: 2026-05-30T22:35:54+00:00 UTC_
 
 | Metric | FRED H.10 | yfinance |
 |--------|-----------|----------|
-| Observations | 6267 | 5857 |
+| Observations | 6267 | 5858 |
 | Start | 2001-05-22 | 2003-12-01 |
-| End | 2026-05-22 | 2026-05-29 |
+| End | 2026-05-22 | 2026-05-31 |
 | Missing values | 0 | 0 |
-| Latest price | 17.3241 | 17.337999 |
+| Latest price | 17.3241 | 17.285 |
 
 - **Overlap days:** 5625
 - **Daily return correlation:** 0.482037

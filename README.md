@@ -74,6 +74,63 @@ streamlit run src/dashboard/app.py
 
 ---
 
+## Research Quality, Testing, and Audit Trail
+
+Project-wide quality infrastructure covers **both** the Value Survival Index and Settlement Economics Lab.
+
+### Run all quality checks
+
+```bash
+python scripts/run_all_quality_checks.py
+```
+
+Reports land in `audit/test_reports/`, `audit/data_quality_reports/`, and `audit/model_validation_reports/`.
+
+### Version Control and Backup Workflow
+
+Recommended workflow:
+
+1. `python scripts/create_snapshot.py --reason "before change"`
+2. Make edits
+3. `python scripts/run_all_quality_checks.py`
+4. `python scripts/git_checkpoint.py --message "describe change"`
+
+Snapshots: `_snapshots/YYYYMMDD_HHMMSS_project_snapshot.zip`  
+Log: `audit/change_logs/snapshot_log.csv`
+
+```bash
+python scripts/create_snapshot.py --reason "before major validation upgrade"
+python scripts/list_snapshots.py
+python scripts/restore_snapshot.py --snapshot _snapshots/<file>.zip --target restored_project
+```
+
+### Time Tracking
+
+```bash
+python scripts/time_tracker.py start --task "Value Survival Index validation"
+python scripts/time_tracker.py status
+python scripts/time_tracker.py stop
+python scripts/time_tracker.py report
+python scripts/estimate_time_from_git.py   # git-based estimate (labeled)
+```
+
+Historical time before the tracker was installed cannot be measured exactly; git-based estimates are labeled as such in `audit/project_metrics/time_report.md`.
+
+### Other quality commands
+
+```bash
+python scripts/project_metrics.py          # line counts → audit/project_metrics/
+python scripts/validate_all_data.py
+python scripts/validate_models.py
+python scripts/reproduce_all.py            # full replication + audit/reproducibility_report.md
+python scripts/update_change_log.py --type "model validation" --reason "added checks"
+make quality                               # Makefile wrapper
+```
+
+Dashboard **Quality Command Center** page: `streamlit run src/dashboard/app.py`
+
+---
+
 FX Lab is the flagship research program of BR3N Macro Labs — an independent AI-assisted research lab studying **when currency markets become conditionally forecastable** by regime.
 
 **Not investment advice.** No live trading. No broker API.

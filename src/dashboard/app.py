@@ -351,6 +351,39 @@ def page_data_sources():
     st.markdown("See [DATA_SOURCES.md](../DATA_SOURCES.md) for methodology notes and traceability fields.")
 
 
+def page_quality_command_center(ds):
+    st.markdown("### Quality Command Center")
+    root = Path(__file__).resolve().parents[2]
+    reports = {
+        "Full quality": root / "audit/test_reports/full_quality_report.md",
+        "Data validation": root / "audit/data_quality_reports/data_validation_report.md",
+        "Model validation": root / "audit/model_validation_reports/model_validation_report.md",
+        "Line count": root / "audit/project_metrics/line_count_report.md",
+        "Credibility": root / "audit/research_credibility_report.md",
+    }
+    for name, path in reports.items():
+        if path.exists():
+            with st.expander(name):
+                st.markdown(path.read_text()[:8000])
+        else:
+            st.caption(f"{name}: not generated — run `python scripts/run_all_quality_checks.py`")
+
+    snaps = root / "audit/change_logs/snapshot_log.csv"
+    if snaps.exists():
+        st.markdown("**Latest snapshots**")
+        st.dataframe(pd.read_csv(snaps).tail(5), hide_index=True, use_container_width=True)
+
+    checklist = [
+        ("No mock data in final outputs", ds["value_survival_outputs"]["mock_data_flag"].any() == False),  # noqa: E712
+        ("Sensitivity analysis completed", (root / "data/outputs/sensitivity_results.csv").exists()),
+        ("Robustness checks completed", (root / "data/outputs/robustness_results.csv").exists()),
+        ("Data quality scores present", "data_quality_score" in ds["value_survival_outputs"].columns),
+    ]
+    st.markdown("**Publication-grade checklist (auto-check partial)**")
+    for label, ok in checklist:
+        st.write(f"{'✅' if ok else '⚠️'} {label}")
+
+
 def page_limitations():
     st.markdown("### Limitations")
     path = Path(__file__).resolve().parents[2] / "reports" / "working_paper" / "limitations_section.md"
@@ -382,6 +415,7 @@ def main():
         "Research Hypotheses": lambda: page_hypotheses(ds),
         "Methodology": lambda: page_methodology(ds),
         "Data Sources": page_data_sources,
+        "Quality Command Center": lambda: page_quality_command_center(ds),
         "Limitations": page_limitations,
     }
     page = st.sidebar.radio("VSI Research Platform", list(pages.keys()))

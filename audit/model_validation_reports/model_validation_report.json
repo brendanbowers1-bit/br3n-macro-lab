@@ -1,0 +1,41 @@
+{
+  "timestamp": "2026-05-31T21:00:25.655844+00:00",
+  "title": "Model Validation Report",
+  "summary": {
+    "pass": 3,
+    "fail": 2,
+    "skipped": 0
+  },
+  "rows": [
+    {
+      "model": "value_survival_outputs.csv",
+      "module": "VSI",
+      "status": "FAIL",
+      "issues": "VSI: sensitivity_results.csv missing"
+    },
+    {
+      "model": "value_survival_outputs.csv",
+      "module": "VSI",
+      "status": "FAIL",
+      "issues": "VSI: sensitivity_results.csv missing"
+    },
+    {
+      "model": "settlement_drag_outputs.csv",
+      "module": "Settlement",
+      "status": "PASS",
+      "issues": ""
+    },
+    {
+      "model": "finality_quality_outputs.csv",
+      "module": "Settlement",
+      "status": "PASS",
+      "issues": ""
+    },
+    {
+      "model": "payment_fragility_outputs.csv",
+      "module": "Settlement",
+      "status": "PASS",
+      "issues": ""
+    }
+  ]
+}

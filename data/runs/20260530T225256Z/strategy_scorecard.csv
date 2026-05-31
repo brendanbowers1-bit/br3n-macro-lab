@@ -1,0 +1,6 @@
+strategy,total_return_pct,ann_return_pct,ann_vol_pct,sharpe,max_drawdown_pct,win_rate_pct,trades,pct_flat,total_cost_pct,source,data_tier,currency_pair,sample_start,sample_end,observations,run_timestamp,config_hash,model_version,price_convention,frequency
+buy_and_hold,82.87,2.49,11.39,0.273,-35.04,48.0,1,0.0,0.02,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:35+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
+legacy,34.01,1.2,11.39,0.162,-39.88,51.2,118,0.0,4.7,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:35+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
+flat_range,20.36,0.76,10.87,0.124,-44.27,43.7,231,14.7,4.62,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:35+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
+r2_only,39.69,1.37,5.7,0.268,-33.12,24.5,327,52.9,6.54,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:35+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
+random_walk,0.0,0.0,0.0,0.0,0.0,0.0,0,100.0,0.0,fred_h10,official,USD/MXN,2001-05-22,2026-05-22,6267,2026-05-30T22:46:35+00:00,b4bb57219399,fx_lab_v1,DEXMXUS,daily
