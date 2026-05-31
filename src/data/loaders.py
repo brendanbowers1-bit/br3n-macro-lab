@@ -47,12 +47,37 @@ def _read_any(path: Path) -> pd.DataFrame:
     return pd.read_csv(path)
 
 
+def _resolve_rpw_path() -> Path | None:
+    """Prefer bulk parsed panel, then historical multi-quarter, then curated snapshot."""
+    d = ROOT_RAW / "world_bank_rpw"
+    if not d.exists():
+        return None
+    for name in (
+        "rpw_parsed.csv",
+        "rpw_historical_panel.csv",
+        "rpw_corridors_curated.csv",
+    ):
+        p = d / name
+        if p.exists():
+            return p
+    from .rpw_parser import find_rpw_bulk_file
+
+    bulk = find_rpw_bulk_file()
+    if bulk is not None and bulk.stat().st_size > 100_000:
+        return bulk
+    return _find_file("world_bank_rpw")
+
+
 def load_world_bank_rpw(path: Path | str | None = None) -> pd.DataFrame:
     """Load Remittance Prices Worldwide corridor pricing table."""
-    p = Path(path) if path else _find_file("world_bank_rpw")
+    p = Path(path) if path else _resolve_rpw_path()
     if p is None or not p.exists():
         warnings.warn("World Bank RPW file not found — using mock corridor_prices.", stacklevel=2)
         return create_mock_dataset()["corridor_prices"]
+    if p.suffix.lower() in (".xlsx", ".xls") and p.stat().st_size > 100_000:
+        from .rpw_parser import parse_rpw_bulk
+
+        return parse_rpw_bulk(p)
     df = _read_any(p)
     df = standardize_columns(
         df,
@@ -107,8 +132,15 @@ def load_imf_exchange_rates(path: Path | str | None = None) -> pd.DataFrame:
     return enforce_schema(df, "fx_rates", fill_missing=True)
 
 
+def load_country_sovereignty(path: Path | str | None = None) -> pd.DataFrame:
+    from .sovereignty import load_country_sovereignty
+
+    p = Path(path) if path else None
+    return load_country_sovereignty(p)
+
+
 def load_macro_indicators(path: Path | str | None = None) -> pd.DataFrame:
-    p = Path(path) if path else _find_named("imf", ["macro_indicators.csv"])
+    p = Path(path) if path else _find_named("imf", ["macro_indicators.csv", "macro_indicators_wb_api.csv"])
     if p is None:
         p = _find_file("manual")
     if p is None or not p.exists():
@@ -138,13 +170,16 @@ def load_all_canonical_tables(use_mock_fallback: bool = True) -> dict[str, pd.Da
         "fx_rates": load_imf_exchange_rates,
         "macro_country_panel": load_macro_indicators,
         "currency_market_structure": load_bis_fx_turnover,
+        "country_sovereignty": load_country_sovereignty,
     }
     out = {}
     for name, fn in loaders.items():
         try:
             out[name] = fn()
         except Exception:
-            if use_mock_fallback:
+            if name == "country_sovereignty":
+                out[name] = pd.DataFrame()
+            elif use_mock_fallback:
                 out[name] = create_mock_dataset()[name]
             else:
                 raise

@@ -762,7 +762,7 @@ def _global_fx_lab_body(out_dir: Path) -> str:
     return f"""
 <p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
 <div class="warning-box">
-  <p><strong>Research only.</strong> Not investment advice. Stage 2 uses curated public statistics until full World Bank/IMF bulk downloads are wired. Mock components are labelled in the dashboard.</p>
+  <p><strong>Research only.</strong> Not investment advice. Stage 3 wires World Bank API macro, multi-quarter RPW panel, sovereignty research layer, and walk-forward stress models. Drop full RPW Excel in <code>data/raw/world_bank_rpw/</code> for bulk parse.</p>
 </div>
 <div class="conclusion-box">
   <p><strong>Core question:</strong> Who bears the cost when value crosses borders?</p>

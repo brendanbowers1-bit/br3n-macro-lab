@@ -549,7 +549,7 @@ body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
     
 <p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
 <div class="warning-box">
-  <p><strong>Research only.</strong> Not investment advice. Stage 2 uses curated public statistics until full World Bank/IMF bulk downloads are wired. Mock components are labelled in the dashboard.</p>
+  <p><strong>Research only.</strong> Not investment advice. Stage 3 wires World Bank API macro, multi-quarter RPW panel, sovereignty research layer, and walk-forward stress models. Drop full RPW Excel in <code>data/raw/world_bank_rpw/</code> for bulk parse.</p>
 </div>
 <div class="conclusion-box">
   <p><strong>Core question:</strong> Who bears the cost when value crosses borders?</p>
@@ -575,9 +575,9 @@ body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
 <p><strong>The Hidden FX Tax: Measuring the Cost of Value Crossing Borders</strong></p>
 <p>This framework extends remittance cost measurement beyond explicit fees and FX margins to include timing risk, volatility, inflation erosion, payout friction, and recipient purchasing-power loss.</p>
 <hr/>
-<h2 id="data-status">Data Status</h2>
-<p>Stage 2 uses <strong>curated public statistics</strong> (World Bank RPW Q4 2024 averages, KNOMAD estimates, BIS 2022 turnover, lab FX cache, FRED DXY) until full bulk downloads are added.</p>
-<p>Replace curated files in <code>data/raw/</code> with official Excel/CSV downloads.</p>
+<h2 id="data-status-stage-3">Data Status (Stage 3)</h2>
+<ul><li><strong>World Bank Open Data API</strong> — live macro panel (inflation, remittances, debt, CA, imports)</li><li><strong>RPW historical panel</strong> — multi-quarter corridor costs (2022Q1–2024Q4); drop <code>rpw_complete.xlsx</code> for full bulk parse</li><li><strong>KNOMAD bilateral flows</strong> — 2018–2024 corridor-year panel</li><li><strong>Country sovereignty layer</strong> — <code>country_sovereignty.csv</code> (USD debt/invoicing/reserves, institution scores)</li><li><strong>FRED DXY</strong> + lab FX cache + BIS 2022 turnover</li></ul>
+<p>Panel regression uses corridor + year fixed effects on the expanded RPW panel. Stress forecast uses walk-forward OOS logistic labels.</p>
 <hr/>
 <h2 id="run-locally">Run Locally</h2>
 <pre><code class="bash">

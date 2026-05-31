@@ -142,7 +142,7 @@ def page_dollar(idx):
         hide_index=True,
         use_container_width=True,
     )
-    st.caption("Several components marked `_ph` are placeholders pending manual/BIS data.")
+    st.caption("Dollar exposure uses `data/raw/manual/country_sovereignty.csv` research estimates where available.")
 
 
 def page_labor(idx):
@@ -188,8 +188,10 @@ def page_model_lab(idx):
     cl = pd.DataFrame(report["clustering"])
     if not cl.empty:
         st.dataframe(cl, use_container_width=True, hide_index=True)
-    st.markdown("#### Stress forecast (research placeholder)")
+    st.markdown("#### Stress forecast (walk-forward OOS)")
     st.json(report["stress_forecast"])
+    with st.expander("In-sample logistic (reference only)"):
+        st.json(report["stress_forecast_in_sample"])
     st.markdown("**Limitations:** Mixed/curated data; in-sample models; not for trading or policy without validation.")
 
 
@@ -206,7 +208,7 @@ def page_data(idx):
 | `data/raw/imf/` | IMF exchange rates & IFS/WEO |
 | `data/raw/bis/` | BIS triennial FX turnover |
 | `data/raw/fred/` | FRED exports (optional) |
-| `data/raw/manual/` | Wages, policy rates, country risk |
+| `data/raw/manual/` | Wages, policy rates, sovereignty / dollar exposure |
 """
     )
     st.info("⚠️ Mock data active unless files found in folders above.")

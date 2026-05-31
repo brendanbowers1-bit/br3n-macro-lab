@@ -4,6 +4,7 @@ Currency Stress Index — detect when currency belief is under stress.
 
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
 from src.indices._utils import interpret_stress, normalize_index
@@ -22,7 +23,8 @@ def calculate_currency_stress_row(
     infl = float(macro_row.get("inflation_yoy") or 0.05) if macro_row is not None else 0.05
     ca = float(macro_row.get("current_account_gdp") or -0.03) if macro_row is not None else -0.03
     remit = float(macro_row.get("remittances_gdp") or 0) if macro_row is not None else 0
-    reserves_ph = 0.5  # placeholder decline signal
+    reserves_m = float(macro_row.get("reserves_months_imports") or 5) if macro_row is not None else 5
+    reserves_stress = float(np.clip((6 - reserves_m) / 6, 0, 1))
 
     stress = (
         dep30 * 200 * 0.15
@@ -33,7 +35,7 @@ def calculate_currency_stress_row(
         + max(-ca, 0) * 100 * 0.10
         + remit * 50 * 0.05
         + abs(dxy_shock) * 50 * 0.05
-        + reserves_ph * 0.05 * 100
+        + reserves_stress * 5
     )
     stress = min(stress, 100)
 

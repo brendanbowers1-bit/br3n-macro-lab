@@ -70,6 +70,79 @@ def corridor_clustering_features(indices: dict[str, pd.DataFrame]) -> pd.DataFra
     return df
 
 
+def stress_forecast_walk_forward(
+    stress: pd.DataFrame,
+    fx_rates: pd.DataFrame,
+    min_train: int = 252,
+    test_size: int = 63,
+) -> dict:
+    """Walk-forward logistic: high stress today → large move next 90d (OOS)."""
+    try:
+        from sklearn.linear_model import LogisticRegression
+        from sklearn.metrics import accuracy_score, roc_auc_score
+        from sklearn.preprocessing import StandardScaler
+    except ImportError:
+        return {"error": "scikit-learn required"}
+
+    fx = fx_rates.sort_values(["currency", "date"]).copy()
+    fx["stress_next_90d"] = (
+        fx.groupby("currency")["usd_fx_rate"].pct_change(63).shift(-63).abs() > 0.05
+    ).astype(int)
+    latest_stress = stress.set_index("currency")["stress_score"].to_dict()
+    fx["stress_score"] = fx["currency"].map(latest_stress).fillna(50)
+    fx["volatility_30d"] = fx.get("volatility_30d", 0.12).fillna(0.12)
+    use = fx.dropna(subset=["stress_next_90d"]).sort_values("date")
+    if len(use) < min_train + test_size:
+        return {
+            "status": "insufficient_data",
+            "n": len(use),
+            "limitation": "Need longer FX history for walk-forward stress forecast.",
+        }
+
+    dates = use["date"].drop_duplicates().sort_values()
+    oos_preds, oos_true = [], []
+    fold = 0
+    start = 0
+    while start + min_train + test_size <= len(dates):
+        train_end = dates.iloc[start + min_train - 1]
+        test_end = dates.iloc[min(start + min_train + test_size - 1, len(dates) - 1)]
+        train = use[use["date"] <= train_end]
+        test = use[(use["date"] > train_end) & (use["date"] <= test_end)]
+        if test.empty or train["stress_next_90d"].nunique() < 2:
+            start += test_size
+            continue
+        X_tr = train[["stress_score", "volatility_30d"]].astype(float)
+        y_tr = train["stress_next_90d"].astype(int)
+        X_te = test[["stress_score", "volatility_30d"]].astype(float)
+        y_te = test["stress_next_90d"].astype(int)
+        scaler = StandardScaler()
+        model = LogisticRegression(max_iter=500)
+        model.fit(scaler.fit_transform(X_tr), y_tr)
+        pred = model.predict(scaler.transform(X_te))
+        oos_preds.extend(pred.tolist())
+        oos_true.extend(y_te.tolist())
+        fold += 1
+        start += test_size
+
+    if not oos_true or len(set(oos_true)) < 2:
+        return {"status": "single_class_oos", "folds": fold, "limitation": "Not enough stress events OOS."}
+
+    acc = float(accuracy_score(oos_true, oos_preds))
+    try:
+        auc = float(roc_auc_score(oos_true, oos_preds))
+    except ValueError:
+        auc = None
+    return {
+        "method": "walk_forward_logistic",
+        "folds": fold,
+        "n_oos": len(oos_true),
+        "oos_accuracy": acc,
+        "oos_auc": auc,
+        "interpretation": "OOS walk-forward: stress score + vol → large 90d move indicator.",
+        "limitation": "Research only; binary label threshold arbitrary; not for trading.",
+    }
+
+
 def stress_forecast_logistic(stress: pd.DataFrame, fx_rates: pd.DataFrame) -> dict:
     """Simple logistic model: high stress today → depreciation stress next 90d."""
     try:
@@ -121,7 +194,11 @@ def full_model_lab_report(indices: dict[str, pd.DataFrame]) -> dict:
             indices["remittance_welfare"],
         ),
         "clustering": corridor_clustering_features(indices).to_dict(orient="records"),
-        "stress_forecast": stress_forecast_logistic(
+        "stress_forecast": stress_forecast_walk_forward(
+            indices["currency_stress"],
+            indices.get("fx_rates", pd.DataFrame()),
+        ),
+        "stress_forecast_in_sample": stress_forecast_logistic(
             indices["currency_stress"],
             indices.get("fx_rates", pd.DataFrame()),
         ),

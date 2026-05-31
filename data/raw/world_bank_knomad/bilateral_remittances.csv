@@ -1,4 +1,12 @@
 year,sender_country,receiver_country,corridor,remittance_usd,receiver_gdp,remittance_share_gdp,source,corridor_weight
+2018,United States,Mexico,United States→Mexico,36000000000.0,540000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.3956043956043956
+2019,United States,Mexico,United States→Mexico,42000000000.0,630000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.38181818181818183
+2020,United States,Mexico,United States→Mexico,43000000000.0,645000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.3739130434782609
+2021,United States,Mexico,United States→Mexico,55000000000.0,825000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.4074074074074074
+2018,United States,India,United States→India,55000000000.0,825000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.6043956043956044
+2019,United States,India,United States→India,68000000000.0,1020000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.6181818181818182
+2020,United States,India,United States→India,72000000000.0,1080000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.6260869565217392
+2021,United States,India,United States→India,80000000000.0,1200000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.5925925925925926
 2022,United States,Mexico,United States→Mexico,61000000000.0,915000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.3105906313645621
 2023,United States,Mexico,United States→Mexico,63000000000.0,945000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.30912659470068693
 2022,United States,India,United States→India,89000000000.0,1335000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.4531568228105906
@@ -15,3 +23,8 @@ year,sender_country,receiver_country,corridor,remittance_usd,receiver_gdp,remitt
 2023,Germany,Nigeria,Germany→Nigeria,1300000000.0,19500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.006378802747791953
 2022,United Arab Emirates,Pakistan,United Arab Emirates→Pakistan,7000000000.0,105000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.035641547861507125
 2023,United Arab Emirates,Pakistan,United Arab Emirates→Pakistan,7500000000.0,112500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.03680078508341511
+2024,United States,Mexico,United States→Mexico,65000000000.0,975000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.3415659485023647
+2024,United States,India,United States→India,95000000000.0,1425000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.49921177088807145
+2024,United States,Philippines,United States→Philippines,15000000000.0,225000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.0788229111928534
+2024,United States,Colombia,United States→Colombia,10500000000.0,157500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.055176037834997374
+2024,United States,Brazil,United States→Brazil,4800000000.0,72000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.025223331581713086

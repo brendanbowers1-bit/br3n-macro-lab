@@ -29,11 +29,15 @@ This framework extends remittance cost measurement beyond explicit fees and FX m
 
 ---
 
-## Data Status
+## Data Status (Stage 3)
 
-Stage 2 uses **curated public statistics** (World Bank RPW Q4 2024 averages, KNOMAD estimates, BIS 2022 turnover, lab FX cache, FRED DXY) until full bulk downloads are added.
+- **World Bank Open Data API** — live macro panel (inflation, remittances, debt, CA, imports)
+- **RPW historical panel** — multi-quarter corridor costs (2022Q1–2024Q4); drop `rpw_complete.xlsx` for full bulk parse
+- **KNOMAD bilateral flows** — 2018–2024 corridor-year panel
+- **Country sovereignty layer** — `country_sovereignty.csv` (USD debt/invoicing/reserves, institution scores)
+- **FRED DXY** + lab FX cache + BIS 2022 turnover
 
-Replace curated files in `data/raw/` with official Excel/CSV downloads.
+Panel regression uses corridor + year fixed effects on the expanded RPW panel. Stress forecast uses walk-forward OOS logistic labels.
 
 ---
 

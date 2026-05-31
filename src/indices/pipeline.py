@@ -23,13 +23,17 @@ def run_all_indices(tables: dict[str, pd.DataFrame] | None = None) -> dict[str, 
         tables["corridor_prices"], tables["fx_rates"], tables["macro_country_panel"]
     )
     welfare = calculate_remittance_welfare_table(hft, tables["remittance_flows"])
+    sovereignty = tables.get("country_sovereignty")
     credibility = calculate_currency_credibility_table(
-        tables["macro_country_panel"], tables["fx_rates"]
+        tables["macro_country_panel"],
+        tables["fx_rates"],
+        sovereignty,
     )
     dollar_dep = calculate_dollar_dependency_table(
         tables["macro_country_panel"],
         tables["currency_market_structure"],
         tables["remittance_flows"],
+        sovereignty,
     )
     labor = calculate_labor_conversion_table(
         tables["macro_country_panel"], tables["fx_rates"], hft

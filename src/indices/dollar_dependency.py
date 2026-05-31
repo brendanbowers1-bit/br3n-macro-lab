@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import pandas as pd
 
+from src.data.sovereignty import sovereignty_lookup
 from src.indices._utils import normalize_index
 
 
@@ -13,6 +14,7 @@ def calculate_dollar_dependency_row(
     macro_row: pd.Series,
     market_row: pd.Series | None = None,
     flow_weight: float = 0.0,
+    sovereignty: dict | None = None,
 ) -> dict:
     imports = float(macro_row.get("imports_gdp") or 0.3)
     remit = float(macro_row.get("remittances_gdp") or 0)
@@ -20,15 +22,14 @@ def calculate_dollar_dependency_row(
     ca = float(macro_row.get("current_account_gdp") or -0.03)
 
     dollar_pair = float(market_row.get("dollar_pair_share") if market_row is not None else 0.7)
-    turnover_share = float(market_row.get("global_turnover_share") if market_row is not None else 0.01)
     liquidity = float(market_row.get("liquidity_score") if market_row is not None else 30)
 
-    # Placeholders — wire manual data later
-    usd_debt_share = min(debt * 0.6, 1.0)
-    usd_invoicing = min(imports * 0.7, 1.0)
-    reserves_usd = 0.65
-    stablecoin = 0.05
-    sanctions_exposure = 0.1
+    sov = sovereignty or {}
+    usd_debt_share = float(sov.get("usd_debt_share") or min(debt * 0.6, 1.0))
+    usd_invoicing = float(sov.get("usd_invoicing_share") or min(imports * 0.7, 1.0))
+    reserves_usd = float(sov.get("reserves_usd_share") or 0.65)
+    stablecoin = float(sov.get("stablecoin_exposure") or 0.05)
+    sanctions_exposure = float(sov.get("sanctions_exposure") or 0.1)
 
     score = (
         usd_debt_share * 15
@@ -53,14 +54,14 @@ def calculate_dollar_dependency_row(
         interp = "dollar constrained"
 
     return {
-        "dollar_debt_share_ph": usd_debt_share,
-        "usd_invoicing_ph": usd_invoicing,
+        "dollar_debt_share": usd_debt_share,
+        "usd_invoicing_share": usd_invoicing,
         "dollar_pair_share": dollar_pair,
-        "reserves_usd_ph": reserves_usd,
+        "reserves_usd_share": reserves_usd,
         "remittance_dependence": remit,
         "import_dependency": imports,
-        "stablecoin_ph": stablecoin,
-        "sanctions_exposure_ph": sanctions_exposure,
+        "stablecoin_exposure": stablecoin,
+        "sanctions_exposure": sanctions_exposure,
         "dollar_dependency_score": score,
         "interpretation": interp,
     }
@@ -70,7 +71,12 @@ def calculate_dollar_dependency_table(
     macro: pd.DataFrame,
     market_structure: pd.DataFrame,
     remittance_flows: pd.DataFrame | None = None,
+    sovereignty_df: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
+    sov_map = sovereignty_lookup() if sovereignty_df is None else {
+        str(r["country"]): r.to_dict() for _, r in sovereignty_df.iterrows()
+    }
+
     latest_macro = macro.sort_values("date").groupby("country", as_index=False).tail(1)
     latest_mkt = market_structure.sort_values("year").groupby("currency", as_index=False).tail(1).set_index("currency")
 
@@ -83,7 +89,8 @@ def calculate_dollar_dependency_table(
     for _, row in latest_macro.iterrows():
         mkt = latest_mkt.loc[row["currency"]] if row["currency"] in latest_mkt.index else None
         fw = flow_dep.get(row["country"], 0)
-        scores = calculate_dollar_dependency_row(row, mkt, fw)
+        sov = sov_map.get(row["country"], {})
+        scores = calculate_dollar_dependency_row(row, mkt, fw, sov)
         rows.append({**row.to_dict(), **scores})
     out = pd.DataFrame(rows)
     out["dollar_dependency_index"] = normalize_index(out["dollar_dependency_score"], invert=False)

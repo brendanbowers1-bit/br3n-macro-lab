@@ -9,6 +9,9 @@ data/raw/*.csv
 !data/raw/imf/macro_indicators.csv
 !data/raw/bis/fx_turnover_2022.csv
 !data/raw/manual/hourly_wages.csv
+!data/raw/manual/country_sovereignty.csv
+!data/raw/world_bank_rpw/rpw_historical_panel.csv
+!data/raw/imf/macro_indicators_wb_api.csv
 !data/raw/fred/dxy_daily.csv
 data/processed/*.csv
 data/outputs/*.csv
