@@ -22,6 +22,8 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 
 **[Open Source FX AI Model Lab](open-source-ai.html)** — borrow, benchmark, and improve open-source FX AI baselines.
 
+**[Global FX Research Lab](global-fx-lab.html)** — who bears the cost when value crosses borders? Six flagship indices.
+
 ---
 
 ## Explore FX Lab Research

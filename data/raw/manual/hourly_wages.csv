@@ -1,0 +1,11 @@
+country,currency,local_hourly_wage,source
+Mexico,MXN,85.0,ilo_curated_estimate
+India,INR,220.0,ilo_curated_estimate
+Philippines,PHP,130.0,ilo_curated_estimate
+Colombia,COP,16000.0,ilo_curated_estimate
+Brazil,BRL,38.0,ilo_curated_estimate
+Nigeria,NGN,2800.0,ilo_curated_estimate
+Pakistan,PKR,900.0,ilo_curated_estimate
+United States,USD,28.0,bls_approx
+Germany,EUR,22.0,eurostat_approx
+United Arab Emirates,AED,45.0,estimate

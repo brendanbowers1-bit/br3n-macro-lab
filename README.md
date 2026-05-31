@@ -146,6 +146,20 @@ pytest tests/test_fx_terminal_smoke.py -q
 
 Full docs: [docs/FX_RESEARCH_TERMINAL.md](docs/FX_RESEARCH_TERMINAL.md) · LLM setup: [LOCAL_LLM_SETUP.md](LOCAL_LLM_SETUP.md)
 
+## Global FX & Remittance Research Lab
+
+**Who bears the cost when value crosses borders?**
+
+Six flagship indices: Hidden FX Tax, Remittance Welfare Loss, Currency Credibility, Dollar Dependency, Labor Conversion, Currency Stress.
+
+```bash
+python scripts/run_global_fx_lab.py
+streamlit run src/global_fx_research_lab.py
+pytest tests/test_global_fx_lab_smoke.py -q
+```
+
+Data guide: [DATA_SOURCES.md](DATA_SOURCES.md)
+
 ## Open Source FX AI Model Lab
 
 **Borrow. Benchmark. Improve. Explain.**

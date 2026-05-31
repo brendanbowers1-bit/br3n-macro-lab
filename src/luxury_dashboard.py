@@ -100,6 +100,7 @@ PAGES = [
     "FX History",
     "Open Source FX AI Lab",
     "FX Research Terminal",
+    "Global FX Research Lab",
     "Academic Tests",
     "Data Quality",
     "FX Desk Command Center",
@@ -2200,6 +2201,37 @@ def page_open_source_fx_ai_lab() -> None:
             st.warning("Missing reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md")
 
 
+def page_global_fx_research_lab() -> None:
+    st.markdown(
+        '<div class="hero-title">Global FX & Remittance Research Lab</div>'
+        '<div class="hero-subtitle">Who bears the cost when value crosses borders?</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<div class="warning-box">Research only. Mock data used until World Bank/IMF/BIS files are added. '
+        'See DATA_SOURCES.md for drop folders.</div>',
+        unsafe_allow_html=True,
+    )
+    st.code("streamlit run src/global_fx_research_lab.py", language="bash")
+    st.markdown("Pipeline: `python scripts/run_global_fx_lab.py`")
+    try:
+        from src.indices.pipeline import run_all_indices
+        from src.research.questions import questions_dataframe
+
+        idx = run_all_indices()
+        st.markdown("**Latest Hidden FX Tax — top corridors**")
+        h = idx["hidden_fx_tax"].sort_values("hidden_fx_tax_pct", ascending=False)
+        st.dataframe(
+            h.groupby("corridor", as_index=False)["hidden_fx_tax_pct"].mean().head(5),
+            hide_index=True,
+            use_container_width=True,
+        )
+        with st.expander("Research questions"):
+            st.dataframe(questions_dataframe(), hide_index=True, use_container_width=True)
+    except Exception as exc:
+        st.warning(str(exc))
+
+
 def page_fx_research_terminal() -> None:
     """Embed FX Research Terminal overview; full app runs standalone."""
     st.markdown(
@@ -2387,6 +2419,7 @@ def main() -> None:
         "FX History": page_fx_history,
         "Open Source FX AI Lab": page_open_source_fx_ai_lab,
         "FX Research Terminal": page_fx_research_terminal,
+        "Global FX Research Lab": page_global_fx_research_lab,
         "Academic Tests": page_academic_tests,
         "Data Quality": page_data_quality,
         "FX Desk Command Center": page_fx_desk_command_center,

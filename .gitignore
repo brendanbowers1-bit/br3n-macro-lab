@@ -3,6 +3,13 @@ __pycache__/
 *.pyc
 .DS_Store
 data/raw/*.csv
+!data/raw/world_bank_rpw/rpw_corridors_curated.csv
+!data/raw/world_bank_knomad/bilateral_remittances.csv
+!data/raw/imf/fx_rates_from_lab.csv
+!data/raw/imf/macro_indicators.csv
+!data/raw/bis/fx_turnover_2022.csv
+!data/raw/manual/hourly_wages.csv
+!data/raw/fred/dxy_daily.csv
 data/processed/*.csv
 data/outputs/*.csv
 !data/raw/.gitkeep

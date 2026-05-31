@@ -1,0 +1,12 @@
+year,currency,fx_turnover_usd,global_turnover_share,liquidity_score,dollar_pair_share,source
+2022,USD,3330000000000.0,0.444,88.8,1.0,bis_triennial_2022_curated
+2022,EUR,1162500000000.0,0.155,31.0,0.88,bis_triennial_2022_curated
+2022,JPY,637500000000.0,0.085,17.0,0.9,bis_triennial_2022_curated
+2022,GBP,472500000000.0,0.063,12.6,0.87,bis_triennial_2022_curated
+2022,MXN,90000000000.0,0.012,2.4,0.85,bis_triennial_2022_curated
+2022,INR,82500000000.0,0.011,2.1999999999999997,0.8,bis_triennial_2022_curated
+2022,BRL,67499999999.99999,0.009,1.7999999999999998,0.82,bis_triennial_2022_curated
+2022,PHP,30000000000.0,0.004,0.8,0.78,bis_triennial_2022_curated
+2022,COP,22500000000.0,0.003,0.6,0.75,bis_triennial_2022_curated
+2022,NGN,15000000000.0,0.002,0.4,0.7,bis_triennial_2022_curated
+2022,PKR,15000000000.0,0.002,0.4,0.72,bis_triennial_2022_curated

@@ -32,6 +32,7 @@ HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
     ("unanswered-fx.html", "Unanswered FX Questions", "Major research questions and flagship lane", "Research"),
     ("history.html", "FX History & Foundations", "300 years of exchange-rate research", "Foundations"),
     ("open-source-ai.html", "Open Source FX AI Model Lab", "Borrow, benchmark, and improve OSS FX models", "Models"),
+    ("global-fx-lab.html", "Global FX Research Lab", "Who bears the cost when value crosses borders?", "Research"),
     ("ladder.html", "Evidence Ladder", "Eight-level evidence framework", "Methods"),
     ("memo.html", "Full Research Note", "Methods, tables, limitations", "Deep dive"),
     ("corridor.html", "Corridor Roadmap", "Multi-corridor payment research", "Corridors"),
@@ -742,6 +743,37 @@ def _open_source_ai_body(out_dir: Path) -> str:
 """
 
 
+def _global_fx_lab_body(out_dir: Path) -> str:
+    page_md = _read_md(out_dir / "GLOBAL_FX_RESEARCH_LAB_PAGE.md") or _read_md(
+        ROOT / "reports/publication/GLOBAL_FX_RESEARCH_LAB_PAGE.md"
+    )
+    indices = [
+        ("Hidden FX Tax Index", "Full cross-border conversion burden beyond visible fees"),
+        ("Remittance Welfare Loss Index", "Purchasing power destroyed between sender and recipient"),
+        ("Currency Credibility Index", "FX as market price of national credibility"),
+        ("Dollar Dependency Index", "Reliance on USD financial infrastructure"),
+        ("Labor Conversion Index", "How FX reprices human labor globally"),
+        ("Currency Stress Index", "Early warning when currency belief is under stress"),
+    ]
+    cards = "".join(
+        f'<div class="os-card"><h4>{html.escape(t)}</h4><p>{html.escape(d)}</p></div>'
+        for t, d in indices
+    )
+    return f"""
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="warning-box">
+  <p><strong>Research only.</strong> Not investment advice. Stage 2 uses curated public statistics until full World Bank/IMF bulk downloads are wired. Mock components are labelled in the dashboard.</p>
+</div>
+<div class="conclusion-box">
+  <p><strong>Core question:</strong> Who bears the cost when value crosses borders?</p>
+</div>
+{_md_to_html(page_md) if page_md else ""}
+<h2>Flagship Indices</h2>
+<div class="os-card-grid">{cards}</div>
+<p><em>Interactive dashboard runs locally: <code>streamlit run src/global_fx_research_lab.py</code></em></p>
+"""
+
+
 def _css_os_lab() -> str:
     """Dark institutional theme for the Open Source FX AI Model Lab page."""
     return (
@@ -913,6 +945,7 @@ def _nav_fx(active: str = "home") -> str:
         ("unanswered-fx.html", "Unanswered FX", "unanswered_fx"),
         ("history.html", "History", "history"),
         ("open-source-ai.html", "OSS AI Lab", "open_source_ai"),
+        ("global-fx-lab.html", "Global FX", "global_fx_lab"),
     ]
     parts = ['<nav class="top">']
     for href, label, key in links:
@@ -1374,6 +1407,17 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
+    global_fx_path = out_dir / "global-fx-lab.html"
+    global_fx_path.write_text(
+        _shell_os_lab(
+            "Global FX & Remittance Research Lab",
+            _global_fx_lab_body(out_dir),
+            nav_html=_nav_fx("global_fx_lab"),
+            subtitle="Who bears the cost when value crosses borders?",
+        ),
+        encoding="utf-8",
+    )
+
     return {
         "index": cover_path,
         "fx_lab": fx_lab_path,
@@ -1388,4 +1432,5 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         "unanswered_fx": unanswered_path,
         "history": history_path,
         "open_source_ai": os_ai_path,
+        "global_fx_lab": global_fx_path,
     }

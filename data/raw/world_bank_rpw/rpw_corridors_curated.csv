@@ -1,0 +1,13 @@
+date,quarter,sender_country,receiver_country,sender_currency,receiver_currency,corridor,provider,provider_type,send_amount_usd,total_cost_pct,fee_pct,fx_margin_pct,transfer_speed_days,payout_method,transparency_flag,source
+2024-10-01,2024Q4,United States,Mexico,USD,MXN,United States→Mexico,RPW_curated_bank_0,bank,200,0.041,0.012,0.022,1,bank,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,Mexico,USD,MXN,United States→Mexico,RPW_curated_mto_1,mto,200,0.055,0.018,0.028,0,cash,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,India,USD,INR,United States→India,RPW_curated_bank_2,bank,200,0.048,0.01,0.03,1,bank,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,India,USD,INR,United States→India,RPW_curated_mto_3,mto,200,0.052,0.008,0.035,0,cash,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,Philippines,USD,PHP,United States→Philippines,RPW_curated_bank_4,bank,200,0.044,0.009,0.028,1,bank,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,Colombia,USD,COP,United States→Colombia,RPW_curated_mto_5,mto,200,0.058,0.015,0.032,2,cash,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,Brazil,USD,BRL,United States→Brazil,RPW_curated_bank_6,bank,200,0.062,0.016,0.034,2,bank,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,Guatemala,USD,GTQ,United States→Guatemala,RPW_curated_mto_7,mto,200,0.051,0.014,0.029,1,cash,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,El Salvador,USD,USD,United States→El Salvador,RPW_curated_mto_8,mto,200,0.038,0.01,0.02,0,cash,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United States,Dominican Republic,USD,DOP,United States→Dominican Republic,RPW_curated_mto_9,mto,200,0.049,0.012,0.027,1,cash,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,Germany,Nigeria,EUR,NGN,Germany→Nigeria,RPW_curated_bank_10,bank,200,0.071,0.018,0.04,2,bank,True,world_bank_rpw_curated_q424
+2024-10-01,2024Q4,United Arab Emirates,Pakistan,AED,PKR,United Arab Emirates→Pakistan,RPW_curated_mto_11,mto,200,0.039,0.008,0.024,1,cash,True,world_bank_rpw_curated_q424

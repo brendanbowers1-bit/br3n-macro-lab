@@ -1,0 +1,17 @@
+year,sender_country,receiver_country,corridor,remittance_usd,receiver_gdp,remittance_share_gdp,source,corridor_weight
+2022,United States,Mexico,United States→Mexico,61000000000.0,915000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.3105906313645621
+2023,United States,Mexico,United States→Mexico,63000000000.0,945000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.30912659470068693
+2022,United States,India,United States→India,89000000000.0,1335000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.4531568228105906
+2023,United States,India,United States→India,92000000000.0,1380000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.45142296368989204
+2022,United States,Philippines,United States→Philippines,13500000000.0,202500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.06873727087576374
+2023,United States,Philippines,United States→Philippines,14000000000.0,210000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.06869479882237488
+2022,United States,Colombia,United States→Colombia,9500000000.0,142500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.04837067209775967
+2023,United States,Colombia,United States→Colombia,10000000000.0,150000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.04906771344455348
+2022,United States,Brazil,United States→Brazil,4200000000.0,63000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.021384928716904276
+2023,United States,Brazil,United States→Brazil,4500000000.0,67500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.022080471050049066
+2022,United States,Guatemala,United States→Guatemala,11000000000.0,165000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.0560081466395112
+2023,United States,Guatemala,United States→Guatemala,11500000000.0,172500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.056427870461236505
+2022,Germany,Nigeria,Germany→Nigeria,1200000000.0,18000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.006109979633401222
+2023,Germany,Nigeria,Germany→Nigeria,1300000000.0,19500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.006378802747791953
+2022,United Arab Emirates,Pakistan,United Arab Emirates→Pakistan,7000000000.0,105000000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.035641547861507125
+2023,United Arab Emirates,Pakistan,United Arab Emirates→Pakistan,7500000000.0,112500000000.0,0.06666666666666667,knomad_curated_wb_estimates,0.03680078508341511
