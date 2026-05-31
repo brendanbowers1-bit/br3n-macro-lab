@@ -1,22 +1,49 @@
-# Data Sources — BR3N Global FX & Remittance Research Lab
+# Data Sources — BR3N Value Survival Index (VSI)
 
 See also `src/config/data_sources.py` for the machine-readable registry.
 
 ## Mission
 
-**Who bears the cost when value crosses borders?**
+**When value crosses a border, how much of it survives?**
 
 ## Primary Sources
 
-| Source | Folder | Indices | Ingestion |
-|--------|--------|---------|-----------|
-| World Bank RPW | `data/raw/world_bank_rpw/` | Hidden FX Tax, Welfare Loss | Manual CSV/Excel |
-| KNOMAD remittances | `data/raw/world_bank_knomad/` | Welfare Loss, Dollar Dependency | Manual |
-| IMF FX & macro | `data/raw/imf/` | Credibility, Stress, Labor | Manual |
-| World Bank WDI | `data/raw/manual/` or imf | Welfare, Labor | Manual |
-| FRED | `data/raw/fred/` + `macro_loader` | Stress, Dollar shock | Automated (lab) |
-| BIS FX turnover | `data/raw/bis/` | Dollar Dependency | Manual |
-| Manual research | `data/raw/manual/` | All (placeholders) | Manual |
+| Source | Folder | VSI Components | Ingestion |
+|--------|--------|----------------|-----------|
+| World Bank RPW | `data/raw/world_bank_rpw/` | Fee, FX spread, timing | Manual CSV/Excel |
+| KNOMAD remittances | `data/raw/world_bank_knomad/` | Corridor weighting, welfare | Manual |
+| IMF FX & macro | `data/raw/imf/` | Volatility, depreciation, inflation | Manual + lab cache |
+| World Bank WDI / API | `data/raw/world_bank_wdi/` or `imf/` | GDP, remittances % GDP, poverty | WB API automated |
+| FRED | `data/raw/fred/` | DXY shock context | Automated |
+| BIS FX turnover | `data/raw/bis/` | Dollar dependency, liquidity | Manual |
+| Manual research | `data/raw/manual/` | Payout friction, sovereignty, trust | Manual |
+| FX prices | `data/raw/fx_prices/` | Daily vol, returns | Lab cache |
+
+## VSI Component Mapping
+
+| Loss Component | Primary Source |
+|----------------|----------------|
+| Explicit fee | World Bank RPW |
+| FX spread | World Bank RPW |
+| Timing loss | RPW speed + IMF FX vol |
+| Volatility loss | IMF / fx_prices |
+| Inflation erosion | IMF / WB macro |
+| Payout friction | Manual defaults |
+| Dollar dependency drag | BIS + sovereignty manual |
+| Trust discount | Currency Trust sub-index |
+
+## Mock Data Warning
+
+If no file is found, the system uses **synthetic mock data** (`src/data/mock_data.py`) with `mock_data_flag=True`. Dashboard shows a demo banner.
+
+## Commands
+
+```bash
+python scripts/build_dataset.py
+python scripts/run_vsi.py
+python scripts/smoke_test.py
+streamlit run src/dashboard/app.py
+```
 
 ## License & Attribution
 
@@ -24,27 +51,3 @@ See also `src/config/data_sources.py` for the machine-readable registry.
 - **IMF:** IMF data terms of use.
 - **BIS:** BIS statistics terms.
 - **FRED:** Federal Reserve attribution required.
-
-## Mock Data Warning
-
-If no file is found in a source folder, the lab uses **synthetic mock data** (`src/data/mock_data.py`) and logs a warning. All dashboard outputs label mock mode when active.
-
-## Update Frequency
-
-| Source | Typical frequency |
-|--------|-------------------|
-| RPW | Quarterly |
-| KNOMAD | Annual |
-| IMF FX | Daily–monthly |
-| BIS | Triennial |
-| FRED | Daily |
-
-## Next Integration Steps
-
-1. Download RPW Excel → `data/raw/world_bank_rpw/rpw.xlsx`
-2. Download KNOMAD matrix → `data/raw/world_bank_knomad/remittances.csv`
-3. IMF Data API or bulk CSV → `data/raw/imf/`
-4. BIS turnover table → `data/raw/bis/turnover.csv`
-5. Wage table → `data/raw/manual/hourly_wages.csv`
-
-Run: `python scripts/run_global_fx_lab.py`

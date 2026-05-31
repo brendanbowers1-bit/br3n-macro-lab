@@ -24,6 +24,8 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 
 **[Global FX Research Lab](global-fx-lab.html)** — who bears the cost when value crosses borders? Six flagship indices.
 
+**[Value Survival Index (VSI)](value-survival-index.html)** — flagship research product: how much value survives when money crosses borders?
+
 ---
 
 ## Explore FX Lab Research

@@ -8,6 +8,24 @@ import pandas as pd
 
 from src.data.sovereignty import sovereignty_lookup
 from src.indices._utils import normalize_index
+from src.indices.value_survival import calculate_dollar_dependency_drag
+
+
+def calculate_dollar_dependency_drag_from_score(score: float) -> float:
+    """VSI drag component from dollar dependency score 0–100."""
+    return calculate_dollar_dependency_drag(score)
+
+
+def explain_dollar_dependency(row: pd.Series) -> str:
+    country = row.get("country", "Unknown")
+    score = float(row.get("dollar_dependency_score", 0))
+    drag = calculate_dollar_dependency_drag(score) * 100
+    interp = row.get("interpretation", "")
+    return (
+        f"{country}: dollar dependency score {score:.1f}/100 ({interp}). "
+        f"Estimated VSI drag ≈ {drag:.3f}% of cross-border value. "
+        "Higher USD infrastructure reliance increases friction for value survival."
+    )
 
 
 def calculate_dollar_dependency_row(
@@ -91,6 +109,8 @@ def calculate_dollar_dependency_table(
         fw = flow_dep.get(row["country"], 0)
         sov = sov_map.get(row["country"], {})
         scores = calculate_dollar_dependency_row(row, mkt, fw, sov)
+        scores["dollar_dependency_drag_pct"] = calculate_dollar_dependency_drag(scores["dollar_dependency_score"])
+        scores["explanation"] = explain_dollar_dependency(pd.Series({**row.to_dict(), **scores}))
         rows.append({**row.to_dict(), **scores})
     out = pd.DataFrame(rows)
     out["dollar_dependency_index"] = normalize_index(out["dollar_dependency_score"], invert=False)

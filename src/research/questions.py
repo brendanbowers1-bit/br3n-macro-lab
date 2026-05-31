@@ -25,6 +25,28 @@ class ResearchQuestion:
 
 RESEARCH_QUESTIONS: list[ResearchQuestion] = [
     ResearchQuestion(
+        question_id="master_value_survival",
+        title="Master Question — Value Survival",
+        hypothesis="When value crosses a border, a measurable fraction is destroyed by fees, spreads, timing, volatility, inflation, payout friction, dollar dependency, and trust discounts.",
+        required_data=["RPW", "KNOMAD", "IMF FX", "macro inflation", "BIS turnover", "sovereignty manual"],
+        measurable_variables=["value_survival_index", "total_value_loss_pct", "real_usable_value_delivered_pct"],
+        proposed_index="BR3N Value Survival Index (VSI)",
+        possible_chart="Stacked bar: all VSI loss components by corridor",
+        possible_regression="real_usable_value_delivered ~ trust_score + dollar_dependency + corridor FE",
+        interpretation="Who bears the cost when value crosses borders — the central question of BR3N Macro Lab.",
+    ),
+    ResearchQuestion(
+        question_id="value_survival_trust",
+        title="Value Survival & Trust",
+        hypothesis="Currencies with lower trust scores impose higher cross-border value losses via trust discount and volatility channels.",
+        required_data=["Currency Trust Score", "VSI outputs", "FX volatility"],
+        measurable_variables=["trust_discount_pct", "currency_trust_score", "value_survival_index"],
+        proposed_index="Value Survival Index + Currency Trust",
+        possible_chart="Scatter: trust score vs VSI by receiver country",
+        possible_regression="total_value_loss_pct ~ currency_trust_score + inflation + volatility",
+        interpretation="Tests whether monetary trust is priced into cross-border value survival.",
+    ),
+    ResearchQuestion(
         question_id="hidden_fx_tax",
         title="Hidden FX Tax",
         hypothesis="Explicit fees understate the true cost of cross-border value transfer; timing, volatility, and inflation impose a hidden tax borne disproportionately by recipients.",

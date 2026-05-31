@@ -2,6 +2,29 @@
 
 **Testing When Currency Markets Become Less Random**
 
+---
+
+## BR3N Value Survival Index (VSI) — Flagship Research Product
+
+**When value crosses a border, how much of it survives?**
+
+The Value Survival Index measures how much economic value survives cross-border translation into usable purchasing power. Research-only — not investment advice, not a trading signal.
+
+```bash
+cd ~/fx_regime_lab
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python scripts/smoke_test.py
+python scripts/run_vsi.py
+streamlit run src/dashboard/app.py
+```
+
+**Data:** Drop real files in `data/raw/world_bank_rpw/`, `world_bank_knomad/`, `imf/`, `bis/`, `manual/` — see [DATA_SOURCES.md](DATA_SOURCES.md) and [VALUE_SURVIVAL_INDEX.md](VALUE_SURVIVAL_INDEX.md).
+
+**Docs:** [METHODOLOGY.md](METHODOLOGY.md) | [VALUE_SURVIVAL_INDEX.md](VALUE_SURVIVAL_INDEX.md)
+
+---
+
 FX Lab is the flagship research program of BR3N Macro Labs — an independent AI-assisted research lab studying **when currency markets become conditionally forecastable** by regime.
 
 **Not investment advice.** No live trading. No broker API.

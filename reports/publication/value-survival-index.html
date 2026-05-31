@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="BR3N Macro Labs — Regime intelligence · Corridor research · Research only · Not investment advice"/>
-  <title>FX Lab — BR3N Macro Labs</title>
+  <meta name="description" content="BR3N Macro Labs — Open Source FX AI Model Lab"/>
+  <title>BR3N Value Survival Index — BR3N Macro Labs</title>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 :root {
@@ -416,18 +416,120 @@ body.cover-page header.hero-cover {
   body { font-size: 16px; }
   .hero-cover .lab-title { letter-spacing: 0.05em; }
 }
+
+body.os-lab-page {
+  --bg: #0a0e14;
+  --surface: #121a28;
+  --surface2: #1a2436;
+  --border: #2a3548;
+  --text: #e8edf4;
+  --text2: #94a3b8;
+  --accent: #5b9fd4;
+  --accent2: #3d9970;
+  --warn-bg: #1a2436;
+  --warn-border: #5b9fd4;
+}
+body.os-lab-page {
+  background: var(--bg);
+  background-image:
+    linear-gradient(rgba(91, 159, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 159, 212, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--text);
+}
+body.os-lab-page header {
+  background: linear-gradient(180deg, #0d1219 0%, #121a28 100%);
+  border-bottom: 1px solid var(--border);
+}
+body.os-lab-page header .brand,
+body.os-lab-page header .title { color: var(--text); }
+body.os-lab-page header .subtitle { color: var(--text2); }
+body.os-lab-page footer {
+  background: #0d1219;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+}
+body.os-lab-page h2, body.os-lab-page h3 { color: var(--text); border-color: var(--border); }
+body.os-lab-page a { color: var(--accent); }
+body.os-lab-page .principle-box,
+body.os-lab-page .warning-box {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 4px;
+}
+body.os-lab-page .conclusion-box {
+  background: var(--surface2);
+  border: 1px solid var(--accent2);
+  border-left: 4px solid var(--accent2);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 4px;
+}
+body.os-lab-page .os-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+body.os-lab-page .os-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+}
+body.os-lab-page .os-card h4 {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 1rem;
+}
+body.os-lab-page .os-card .meta {
+  font-size: 0.78rem;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+body.os-lab-page .os-card p { margin: 0.35rem 0; font-size: 0.92rem; color: var(--text2); }
+body.os-lab-page .os-card .label { color: var(--text); font-weight: 600; font-size: 0.85rem; }
+body.os-lab-page pre.arch-tree {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--accent);
+}
+body.os-lab-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.88rem;
+}
+body.os-lab-page th, body.os-lab-page td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+body.os-lab-page th { background: var(--surface2); color: var(--accent); }
+body.os-lab-page td { color: var(--text2); }
+body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
 </style>
 </head>
-<body>
+<body class="os-lab-page">
   <header>
     <div class="header-inner">
       <div class="logo-frame"><img src="assets/br3n_macro_labs_logo.png" alt="BR3N MACRO LABS" class="fx-lab-logo-sm"/></div>
       <div class="brand">BR3N MACRO LABS · FX LAB</div>
-      <h1 class="title">FX Lab</h1>
-      <p class="subtitle">Regime intelligence · Corridor research · Research only · Not investment advice</p>
+      <h1 class="title">BR3N Value Survival Index</h1>
+      <p class="subtitle">Measuring how much value survives when money crosses borders. · Research only · Not investment advice</p>
       <nav class="top">
   <a href="index.html">Home</a>
-  <a href="fx-lab.html" class="primary">FX Lab</a>
+  <a href="fx-lab.html">FX Lab</a>
   <a href="research.html">Research</a>
   <a href="corridor.html">Corridor</a>
   <a href="fx_desk.html">FX Desk</a>
@@ -440,40 +542,84 @@ body.cover-page header.hero-cover {
   <a href="history.html">History</a>
   <a href="open-source-ai.html">OSS AI Lab</a>
   <a href="global-fx-lab.html">Global FX</a>
-  <a href="value-survival-index.html">VSI</a>
+  <a href="value-survival-index.html" class="primary">VSI</a>
 </nav>
     </div>
   </header>
   <main class="wide">
-    <h1>FX Lab</h1>
-<p><strong>Markets · Currency regime intelligence</strong></p>
-<p>Part of <strong>BR3N Macro Labs · FX Lab</strong> · Prepared by Brendan Bowers</p>
+    
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="warning-box">
+  <p><strong>Research only.</strong> Not investment advice. VSI Stage 1 uses World Bank RPW historical panel, KNOMAD flows, IMF FX cache, WB API macro, and transparent formula placeholders. Not a trading signal.</p>
+</div>
+<div class="conclusion-box">
+  <p><strong>Core thesis:</strong> Foreign exchange is the daily auction of global trust. The Value Survival Index measures how much economic value survives when it crosses borders.</p>
+</div>
+<h1>BR3N Value Survival Index (VSI)</h1>
+<h2 id="when-value-crosses-a-border-how-much-of-it-survives">When value crosses a border, how much of it survives?</h2>
+<p>Foreign exchange is the daily auction of global trust. The <strong>Value Survival Index</strong> measures how much economic value survives that auction when money, labor, or value crosses from one monetary trust system into another.</p>
+<div class="principle-box"><p>Research and education only. Not investment advice. Not a trading signal.</p></div>
 <hr/>
-<h2 id="mission">Mission</h2>
-<p>Study when currency markets become less random and how regime intelligence can improve FX research, payment-corridor risk analysis, and treasury hedge governance.</p>
+<h2 id="master-formula">Master Formula</h2>
+<pre><code class="">
+VSI = 100 × Real Usable Value Delivered / Original Value Sent
+</code></pre>
+<p><strong>Version 1 question:</strong> For every $100 sent across a remittance corridor, how much survives as usable purchasing power for the recipient?</p>
 <hr/>
-<h2 id="research-questions">Research Questions</h2>
-<ul><li>When does random walk fail in FX?</li><li>When are currencies conditionally forecastable?</li><li>Can regime models improve hedge discipline even when forecasts are weak?</li><li>Do payment corridors show flow-pressure behavior?</li><li>When should a desk avoid hedge over-adjustment?</li></ul>
+<h2 id="flagship-paper">Flagship Paper</h2>
+<p><strong>The Value Survival Index: Measuring How Much Value Survives When Money Crosses Borders</strong></p>
+<p><em>Foreign Exchange, Trust, Remittance Frictions, and the Global Translation of Purchasing Power</em></p>
 <hr/>
-<h2 id="lab-operations">Lab Operations</h2>
-<p><strong><a href="lab-status.html">Lab Status</a></strong> — nightly pipeline health (data quality, provenance, model zoo, news/carry). Source: <code>reports/LAB_STATUS.md</code>.</p>
+<h2 id="loss-components">Loss Components</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>Component</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>Explicit transfer fee</td><td>World Bank RPW</td></tr>
+<tr><td>FX spread</td><td>World Bank RPW</td></tr>
+<tr><td>Timing loss</td><td>Transfer speed × FX vol (placeholder)</td></tr>
+<tr><td>Volatility loss</td><td>IMF FX / unhedged household exposure</td></tr>
+<tr><td>Inflation erosion</td><td>Macro CPI panel</td></tr>
+<tr><td>Payout friction</td><td>Manual defaults by payout method</td></tr>
+<tr><td>Dollar dependency drag</td><td>BIS + sovereignty layer</td></tr>
+<tr><td>Trust discount</td><td>Currency Trust sub-index</td></tr>
+</tbody></table></div>
 <hr/>
-<h2>Explore FX Lab Research</h2>
-<div class="research-link-grid"><a href="research.html" class="research-link-card"><span class="tag">Research</span><h3>USD/MXN Regime Research</h3><p>2-minute summary and key stats</p></a><a href="hedge-governance.html" class="research-link-card"><span class="tag">Flagship</span><h3>Hedge Governance Memo</h3><p>Forecast failure, hedge usefulness</p></a><a href="model-zoo.html" class="research-link-card"><span class="tag">Models</span><h3>Model Zoo</h3><p>Conditional forecastability tests</p></a><a href="lab-status.html" class="research-link-card"><span class="tag">Ops</span><h3>Lab Status</h3><p>Nightly health snapshot and pipeline gaps</p></a><a href="unanswered-fx.html" class="research-link-card"><span class="tag">Research</span><h3>Unanswered FX Questions</h3><p>Major research questions and flagship lane</p></a><a href="history.html" class="research-link-card"><span class="tag">Foundations</span><h3>FX History &amp; Foundations</h3><p>300 years of exchange-rate research</p></a><a href="open-source-ai.html" class="research-link-card"><span class="tag">Models</span><h3>Open Source FX AI Model Lab</h3><p>Borrow, benchmark, and improve OSS FX models</p></a><a href="global-fx-lab.html" class="research-link-card"><span class="tag">Research</span><h3>Global FX Research Lab</h3><p>Who bears the cost when value crosses borders?</p></a><a href="value-survival-index.html" class="research-link-card"><span class="tag">Flagship</span><h3>Value Survival Index</h3><p>How much value survives when money crosses borders?</p></a><a href="ladder.html" class="research-link-card"><span class="tag">Methods</span><h3>Evidence Ladder</h3><p>Eight-level evidence framework</p></a><a href="memo.html" class="research-link-card"><span class="tag">Deep dive</span><h3>Full Research Note</h3><p>Methods, tables, limitations</p></a><a href="corridor.html" class="research-link-card"><span class="tag">Corridors</span><h3>Corridor Roadmap</h3><p>Multi-corridor payment research</p></a><a href="fx_desk.html" class="research-link-card"><span class="tag">Desk</span><h3>FX Desk Framework</h3><p>Cross-border payments and treasury decisions</p></a></div>
+<h2 id="interpretation">Interpretation</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>VSI</th><th>Classification</th></tr></thead>
+<tbody>
+<tr><td>95–100</td><td>High value survival</td></tr>
+<tr><td>90–95</td><td>Moderate value leakage</td></tr>
+<tr><td>80–90</td><td>High value leakage</td></tr>
+<tr><td>below 80</td><td>Severe value destruction</td></tr>
+</tbody></table></div>
 <hr/>
-<h2 id="core-principle">Core Principle</h2>
-<div class="principle-box"><p>We do not use AI to claim certainty. We use AI to organize evidence, classify regimes, test hypotheses, and improve risk decisions.</p></div>
-<hr/>
-<h2 id="status">Status</h2>
-<p><strong>Active prototype and research platform.</strong></p>
+<h2 id="run-locally">Run Locally</h2>
+<pre><code class="bash">
+python scripts/smoke_test.py
+python scripts/run_vsi.py
+streamlit run src/dashboard/app.py
+</code></pre>
+<p>See <a href="https://github.com/brendanbowers1-bit/br3n-macro-lab/blob/main/METHODOLOGY.md">METHODOLOGY.md</a> and <a href="https://github.com/brendanbowers1-bit/br3n-macro-lab/blob/main/VALUE_SURVIVAL_INDEX.md">VALUE_SURVIVAL_INDEX.md</a>.</p>
 <hr/>
 <h2 id="disclaimer">Disclaimer</h2>
-<p>FX Lab research is for education, analysis, and risk-framing only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.</p>
-<p>BR3N Macro Labs is an independent research project — not affiliated with any employer, university, financial institution, or payment company unless explicitly stated.</p>
+<p>Transparent starting assumptions — refine with corridor microdata before policy conclusions. Mock data is clearly labelled in the dashboard.</p>
+<h2>Loss Components</h2>
+<div class="os-card-grid"><div class="os-card"><h4>Explicit Fee</h4><p>Visible remittance transfer fee</p></div><div class="os-card"><h4>FX Spread</h4><p>Exchange-rate margin on corridor</p></div><div class="os-card"><h4>Timing Loss</h4><p>FX exposure during transfer delay</p></div><div class="os-card"><h4>Volatility Loss</h4><p>Unhedged household FX risk</p></div><div class="os-card"><h4>Inflation Erosion</h4><p>Purchasing power while in transit</p></div><div class="os-card"><h4>Payout Friction</h4><p>Last-mile cash-out costs</p></div><div class="os-card"><h4>Dollar Dependency Drag</h4><p>USD infrastructure burden</p></div><div class="os-card"><h4>Trust Discount</h4><p>Lower currency trust → higher discount</p></div></div>
+
+<h2>Corridor Rankings (live pipeline)</h2>
+<table>
+<thead><tr><th>Corridor</th><th>VSI</th><th>Total loss</th><th>Lost per $100</th><th>Classification</th></tr></thead>
+<tbody><tr><td>United States→El Salvador</td><td class="num">94.2</td><td class="num">5.77%</td><td class="num">$5.77</td><td>Moderate value leakage</td></tr><tr><td>United States→Philippines</td><td class="num">94.2</td><td class="num">5.77%</td><td class="num">$5.77</td><td>Moderate value leakage</td></tr><tr><td>United States→Mexico</td><td class="num">94.1</td><td class="num">5.87%</td><td class="num">$5.87</td><td>Moderate value leakage</td></tr><tr><td>United Arab Emirates→Pakistan</td><td class="num">94.0</td><td class="num">5.99%</td><td class="num">$5.99</td><td>Moderate value leakage</td></tr><tr><td>United States→India</td><td class="num">93.8</td><td class="num">6.20%</td><td class="num">$6.20</td><td>Moderate value leakage</td></tr><tr><td>United States→Dominican Republic</td><td class="num">93.4</td><td class="num">6.60%</td><td class="num">$6.60</td><td>Moderate value leakage</td></tr><tr><td>United States→Guatemala</td><td class="num">92.9</td><td class="num">7.09%</td><td class="num">$7.09</td><td>Moderate value leakage</td></tr><tr><td>United States→Colombia</td><td class="num">92.2</td><td class="num">7.85%</td><td class="num">$7.85</td><td>Moderate value leakage</td></tr><tr><td>United States→Brazil</td><td class="num">92.1</td><td class="num">7.87%</td><td class="num">$7.87</td><td>Moderate value leakage</td></tr><tr><td>Germany→Nigeria</td><td class="num">91.4</td><td class="num">8.56%</td><td class="num">$8.56</td><td>Moderate value leakage</td></tr></tbody>
+</table>
+<p class="meta">Source: <code>data/outputs/value_survival_outputs.csv</code> · 144 observations · 10 corridors</p>
+
+<p><em>Interactive dashboard: <code>streamlit run src/dashboard/app.py</code></em></p>
+
   </main>
   <footer>
     <p>BR3N Macro Labs · Prepared by Brendan Bowers · 2026-05-31</p>
-    <div class="disclaimer">This site is for research and education only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.</div>
+    <div class="disclaimer">These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.</div>
   </footer>
 </body>
 </html>

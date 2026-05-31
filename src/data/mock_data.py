@@ -22,6 +22,7 @@ MOCK_CORRIDORS = [
     ("United States", "El Salvador", "USD", "USD"),
     ("United States", "Dominican Republic", "USD", "DOP"),
     ("Germany", "Nigeria", "EUR", "NGN"),
+    ("Saudi Arabia", "India", "SAR", "INR"),
     ("United Arab Emirates", "Pakistan", "AED", "PKR"),
 ]
 
@@ -31,12 +32,29 @@ MOCK_COUNTRIES = [
     ("Philippines", "PHP"),
     ("Colombia", "COP"),
     ("Brazil", "BRL"),
+    ("Guatemala", "GTQ"),
     ("Nigeria", "NGN"),
     ("Pakistan", "PKR"),
     ("United States", "USD"),
     ("Germany", "EUR"),
+    ("Saudi Arabia", "SAR"),
     ("United Arab Emirates", "AED"),
+    ("El Salvador", "USD"),
+    ("Dominican Republic", "DOP"),
 ]
+
+
+def is_using_mock_data(tables: dict) -> bool:
+    """Return True if any table is labelled mock/synthetic."""
+    for name, df in tables.items():
+        if name.startswith("_") or not hasattr(df, "columns"):
+            continue
+        if "mock_data_flag" in df.columns and df["mock_data_flag"].any():
+            return True
+        if "source" in df.columns and df["source"].notna().any():
+            if "mock" in str(df["source"].dropna().iloc[0]).lower():
+                return True
+    return False
 
 
 def create_mock_dataset(seed: int = 42) -> dict[str, pd.DataFrame]:
@@ -78,6 +96,7 @@ def create_mock_dataset(seed: int = 42) -> dict[str, pd.DataFrame]:
                         "transfer_speed_days": speed,
                         "payout_method": "bank" if rng.random() > 0.3 else "cash",
                         "transparency_flag": rng.random() > 0.25,
+                        "source": "mock_synthetic",
                     }
                 )
     corridor_prices = pd.DataFrame(cp_rows)
@@ -86,7 +105,8 @@ def create_mock_dataset(seed: int = 42) -> dict[str, pd.DataFrame]:
     fx_rows = []
     daily = pd.bdate_range("2022-01-01", "2025-01-01")
     rates_base = {"MXN": 18.0, "INR": 83.0, "PHP": 56.0, "COP": 4000.0, "BRL": 5.0,
-                  "NGN": 800.0, "PKR": 280.0, "EUR": 0.92, "AED": 3.67, "USD": 1.0}
+                  "NGN": 800.0, "PKR": 280.0, "EUR": 0.92, "AED": 3.67, "SAR": 3.75,
+                  "GTQ": 7.8, "DOP": 58.0, "USD": 1.0}
     for country, ccy in MOCK_COUNTRIES:
         if ccy == "USD":
             continue
@@ -135,6 +155,7 @@ def create_mock_dataset(seed: int = 42) -> dict[str, pd.DataFrame]:
                     "imports_gdp": float(rng.uniform(0.15, 0.45)),
                     "trade_openness": float(rng.uniform(0.3, 0.9)),
                     "unemployment": float(rng.uniform(0.04, 0.12)),
+                    "source": "mock_synthetic",
                 }
             )
     macro_country_panel = pd.DataFrame(macro_rows)

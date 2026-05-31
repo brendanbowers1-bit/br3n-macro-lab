@@ -33,6 +33,7 @@ HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
     ("history.html", "FX History & Foundations", "300 years of exchange-rate research", "Foundations"),
     ("open-source-ai.html", "Open Source FX AI Model Lab", "Borrow, benchmark, and improve OSS FX models", "Models"),
     ("global-fx-lab.html", "Global FX Research Lab", "Who bears the cost when value crosses borders?", "Research"),
+    ("value-survival-index.html", "Value Survival Index", "How much value survives when money crosses borders?", "Flagship"),
     ("ladder.html", "Evidence Ladder", "Eight-level evidence framework", "Methods"),
     ("memo.html", "Full Research Note", "Methods, tables, limitations", "Deep dive"),
     ("corridor.html", "Corridor Roadmap", "Multi-corridor payment research", "Corridors"),
@@ -774,6 +775,82 @@ def _global_fx_lab_body(out_dir: Path) -> str:
 """
 
 
+def _vsi_corridor_table_html() -> str:
+    """Build live corridor VSI summary table from pipeline outputs."""
+    import pandas as pd
+
+    vsi_path = ROOT / "data" / "outputs" / "value_survival_outputs.csv"
+    if not vsi_path.exists():
+        return "<p><em>Run <code>python scripts/run_vsi.py</code> to generate corridor rankings.</em></p>"
+    try:
+        df = pd.read_csv(vsi_path)
+        summary = (
+            df.groupby("corridor", as_index=False)
+            .agg(
+                vsi=("value_survival_index", "mean"),
+                loss_pct=("total_value_loss_pct", "mean"),
+                loss_per_100=("value_loss_usd_per_100", "mean"),
+                interpretation=("interpretation", "first"),
+                mock=("mock_data_flag", "first"),
+            )
+            .sort_values("vsi", ascending=False)
+        )
+        rows = []
+        for _, r in summary.iterrows():
+            mock_badge = ' <span class="tag">mock</span>' if r.get("mock") else ""
+            rows.append(
+                f"<tr><td>{html.escape(str(r['corridor']))}{mock_badge}</td>"
+                f'<td class="num">{r["vsi"]:.1f}</td>'
+                f'<td class="num">{r["loss_pct"]*100:.2f}%</td>'
+                f'<td class="num">${r["loss_per_100"]:.2f}</td>'
+                f"<td>{html.escape(str(r['interpretation']))}</td></tr>"
+            )
+        return f"""
+<h2>Corridor Rankings (live pipeline)</h2>
+<table>
+<thead><tr><th>Corridor</th><th>VSI</th><th>Total loss</th><th>Lost per $100</th><th>Classification</th></tr></thead>
+<tbody>{"".join(rows)}</tbody>
+</table>
+<p class="meta">Source: <code>data/outputs/value_survival_outputs.csv</code> · {len(df)} observations · {len(summary)} corridors</p>
+"""
+    except Exception as exc:
+        return f"<p><em>Could not load VSI outputs: {html.escape(str(exc))}</em></p>"
+
+
+def _value_survival_index_body(out_dir: Path) -> str:
+    page_md = _read_md(out_dir / "VALUE_SURVIVAL_INDEX_PAGE.md") or _read_md(
+        ROOT / "reports/publication/VALUE_SURVIVAL_INDEX_PAGE.md"
+    )
+    components = [
+        ("Explicit Fee", "Visible remittance transfer fee"),
+        ("FX Spread", "Exchange-rate margin on corridor"),
+        ("Timing Loss", "FX exposure during transfer delay"),
+        ("Volatility Loss", "Unhedged household FX risk"),
+        ("Inflation Erosion", "Purchasing power while in transit"),
+        ("Payout Friction", "Last-mile cash-out costs"),
+        ("Dollar Dependency Drag", "USD infrastructure burden"),
+        ("Trust Discount", "Lower currency trust → higher discount"),
+    ]
+    cards = "".join(
+        f'<div class="os-card"><h4>{html.escape(t)}</h4><p>{html.escape(d)}</p></div>'
+        for t, d in components
+    )
+    return f"""
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="warning-box">
+  <p><strong>Research only.</strong> Not investment advice. VSI Stage 1 uses World Bank RPW historical panel, KNOMAD flows, IMF FX cache, WB API macro, and transparent formula placeholders. Not a trading signal.</p>
+</div>
+<div class="conclusion-box">
+  <p><strong>Core thesis:</strong> Foreign exchange is the daily auction of global trust. The Value Survival Index measures how much economic value survives when it crosses borders.</p>
+</div>
+{_md_to_html(page_md) if page_md else ""}
+<h2>Loss Components</h2>
+<div class="os-card-grid">{cards}</div>
+{_vsi_corridor_table_html()}
+<p><em>Interactive dashboard: <code>streamlit run src/dashboard/app.py</code></em></p>
+"""
+
+
 def _css_os_lab() -> str:
     """Dark institutional theme for the Open Source FX AI Model Lab page."""
     return (
@@ -946,6 +1023,7 @@ def _nav_fx(active: str = "home") -> str:
         ("history.html", "History", "history"),
         ("open-source-ai.html", "OSS AI Lab", "open_source_ai"),
         ("global-fx-lab.html", "Global FX", "global_fx_lab"),
+        ("value-survival-index.html", "VSI", "value_survival_index"),
     ]
     parts = ['<nav class="top">']
     for href, label, key in links:
@@ -1418,6 +1496,17 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
+    vsi_path = out_dir / "value-survival-index.html"
+    vsi_path.write_text(
+        _shell_os_lab(
+            "BR3N Value Survival Index",
+            _value_survival_index_body(out_dir),
+            nav_html=_nav_fx("value_survival_index"),
+            subtitle="Measuring how much value survives when money crosses borders.",
+        ),
+        encoding="utf-8",
+    )
+
     return {
         "index": cover_path,
         "fx_lab": fx_lab_path,
@@ -1433,4 +1522,5 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         "history": history_path,
         "open_source_ai": os_ai_path,
         "global_fx_lab": global_fx_path,
+        "value_survival_index": vsi_path,
     }
