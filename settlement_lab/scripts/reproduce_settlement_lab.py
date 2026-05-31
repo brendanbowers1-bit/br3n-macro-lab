@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = [
+    "fetch_settlement_data.py",
     "validate_settlement_data.py",
     "build_settlement_dataset.py",
     "run_settlement_indices.py",

@@ -7,6 +7,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pandas as pd
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
@@ -57,9 +59,30 @@ def test_imports():
     import src.dashboard.app  # noqa: F401
 
 
+def test_curated_not_all_mock():
+    from src.data.loaders import parent_lab_has_data, load_all_tables
+    if not parent_lab_has_data():
+        return
+    tables = load_all_tables()
+    flows = tables["payment_flow_observations"]
+    assert not flows["mock_data_flag"].all(), "expected curated/bridged rows when parent lab has data"
+
+
+def test_pfi_validation_when_rpw():
+    from src.data.build_dataset import build_settlement_dataset
+    from src.data.loaders import parent_lab_has_data
+    if not parent_lab_has_data():
+        return
+    ds = build_settlement_dataset()
+    pfi_val = ds.get("_pfi_validation", pd.DataFrame())
+    if isinstance(pfi_val, pd.DataFrame) and not pfi_val.empty:
+        assert "observed_rpw_cost_pct" in pfi_val.columns
+
+
 def main() -> None:
     tests = [test_mock_flags, test_sdi_bounded, test_fqi_bounded, test_olb_zero_safe,
-             test_metadata_present, test_validation_passes, test_imports]
+             test_metadata_present, test_validation_passes, test_imports,
+             test_curated_not_all_mock, test_pfi_validation_when_rpw]
     passed = 0
     for t in tests:
         try:

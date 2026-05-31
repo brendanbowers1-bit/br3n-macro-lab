@@ -1,0 +1,3 @@
+payment_system,avg_daily_value_eur,avg_daily_transactions,year,source_note
+TARGET2,1720000000000.0,3500000.0,2023,ECB payment statistics curated proxy
+TIPS,8500000000.0,1200000.0,2023,ECB TIPS statistics curated proxy

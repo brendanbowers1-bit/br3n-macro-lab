@@ -39,9 +39,13 @@ def load_data():
 
 
 def _banner(ds):
-    mock = bool(ds["_mock_data_flag"]["mock_data_flag"].iloc[0])
+    flags = ds["_mock_data_flag"].iloc[0]
+    mock = bool(flags.get("mock_data_flag", True))
+    mixed = bool(flags.get("mixed_mode", False))
     if mock:
         st.markdown('<div class="demo-banner">⚠️ <strong>Demo mode:</strong> synthetic data. Do not use for research conclusions.</div>', unsafe_allow_html=True)
+    elif mixed:
+        st.markdown('<div class="demo-banner" style="background:#1f2d3d;border-color:#5b9fd4;color:#93c5fd;">ℹ️ <strong>Mixed mode:</strong> curated official/bridged data plus fallback tables. Associations only — not causal claims.</div>', unsafe_allow_html=True)
 
 
 def page_mission():
@@ -86,6 +90,12 @@ def page_pfi(ds):
     st.markdown("### Payment Friction Incidence")
     st.warning("Incidence estimates are model-based and require empirical validation.")
     st.dataframe(ds["friction_incidence_outputs"], use_container_width=True, hide_index=True)
+    pfi_val = ds.get("_pfi_validation", pd.DataFrame())
+    if isinstance(pfi_val, pd.DataFrame) and not pfi_val.empty:
+        st.markdown("#### RPW corridor validation")
+        st.dataframe(pfi_val, use_container_width=True, hide_index=True)
+        within = (pfi_val["validation_status"] == "within_2pp").mean()
+        st.metric("Corridors within 2pp of RPW", f"{within:.0%}")
 
 
 def page_quality(ds):
@@ -111,12 +121,51 @@ def page_sensitivity(ds):
 def page_hypotheses(ds):
     st.markdown("### Research Hypotheses")
     st.dataframe(hypotheses_dataframe(), use_container_width=True, hide_index=True)
-    mock = bool(ds["_mock_data_flag"]["mock_data_flag"].iloc[0])
-    emp = run_empirical_tests(ds.get("features", pd.DataFrame()), mock_flag=mock)
+    flags = ds["_mock_data_flag"].iloc[0]
+    mock = bool(flags.get("mock_data_flag", True))
+    pfi_val = ds.get("_pfi_validation", pd.DataFrame())
+    emp = run_empirical_tests(ds.get("features", pd.DataFrame()), mock_flag=mock, pfi_validation=pfi_val if isinstance(pfi_val, pd.DataFrame) else None)
     if emp.get("warning"):
         st.warning(emp["warning"])
+    if emp.get("pfi_validation_summary"):
+        st.info(emp["pfi_validation_summary"])
+    if isinstance(emp.get("pfi_validation"), pd.DataFrame) and not emp["pfi_validation"].empty:
+        st.markdown("#### PFI vs RPW validation")
+        st.dataframe(emp["pfi_validation"], use_container_width=True, hide_index=True)
     if not emp["tests"].empty:
         st.dataframe(emp["tests"], use_container_width=True, hide_index=True)
+
+
+def page_limitations():
+    st.markdown("### Limitations")
+    st.markdown(f'<div class="limit">{LAB_LIMITATIONS}</div>', unsafe_allow_html=True)
+    st.markdown("""
+**Data limitations**
+- Curated CPMI/ECB rows are public-report proxies until full BIS CPMI files are ingested.
+- Finality scores map legal frameworks to ordinal research proxies — not legal opinions.
+- PFI pass-through shares are model assumptions; RPW validation is descriptive only.
+
+**Method limitations**
+- Indices are associations, not causal estimates.
+- Sensitivity cases change weights — rankings may shift materially.
+- Mixed mode combines bridged official data with curated assumptions.
+    """)
+
+
+def page_glossary():
+    st.markdown("### Data Glossary")
+    glossary = [
+        ("SDI", "Settlement Drag Index — economic cost of delayed settlement per $100 moved"),
+        ("OLB", "Operational Liquidity Burden — capital trapped for settlement safety"),
+        ("FQI", "Finality Quality Index — legal/operational irreversibility of settlement"),
+        ("PNF", "Payment Network Fragility — stress sensitivity of payment rails"),
+        ("PFI", "Payment Friction Incidence — modeled cost pass-through by actor type"),
+        ("mock_data_flag", "True only for synthetic demo rows (tier 5)"),
+        ("data_quality_score", "0–100 rubric; mock capped at 30"),
+        ("observed_vs_estimated_flag", "Whether row is directly observed or derived"),
+        ("credibility_tier", "1=official … 5=mock/demo"),
+    ]
+    st.dataframe(pd.DataFrame(glossary, columns=["Term", "Definition"]), use_container_width=True, hide_index=True)
 
 
 def page_sources():
@@ -158,6 +207,8 @@ def main():
         "Research Hypotheses": lambda: page_hypotheses(ds),
         "Data Sources": page_sources,
         "Methodology": page_methodology,
+        "Limitations": page_limitations,
+        "Data Glossary": page_glossary,
         "Working Paper": page_working_paper,
     }
     choice = st.sidebar.radio("Navigation", list(pages.keys()))

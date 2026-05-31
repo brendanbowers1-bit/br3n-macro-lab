@@ -7,7 +7,8 @@ from pathlib import Path
 import pandas as pd
 
 from src.data.cleaners import standardize_countries, standardize_currencies, standardize_dates
-from src.data.loaders import load_all_tables
+from src.data.loaders import load_all_tables, load_world_bank_rpw_files
+from src.data.curated_bridge import validate_pfi_against_rpw
 from src.features.build_features import build_all_features
 from src.indices.finality_quality import calculate_finality_quality_table
 from src.indices.operational_liquidity import calculate_operational_liquidity_table
@@ -18,9 +19,18 @@ from src.quality.validation import validate_all_tables
 from src.utils.paths import FEATURES_DIR, OUTPUTS_DIR, PROCESSED_DIR
 
 
+def _build_pfi_validation(pfi: pd.DataFrame, flows: pd.DataFrame, tables: dict) -> pd.DataFrame:
+    rpw = load_world_bank_rpw_files()
+    if rpw.empty:
+        return pd.DataFrame()
+    return validate_pfi_against_rpw(pfi, rpw)
+
+
 def build_settlement_dataset(use_mock_fallback: bool = True) -> dict[str, pd.DataFrame]:
     tables = load_all_tables(use_mock_fallback=use_mock_fallback)
-    mock = tables["payment_flow_observations"]["mock_data_flag"].any()
+    flows = tables["payment_flow_observations"]
+    mock = bool(flows["mock_data_flag"].all()) if not flows.empty else True
+    mixed = bool(flows["mock_data_flag"].any() and not mock) if not flows.empty else False
 
     for name in list(tables.keys()):
         if isinstance(tables[name], pd.DataFrame) and "date" in tables[name].columns:
@@ -55,7 +65,8 @@ def build_settlement_dataset(use_mock_fallback: bool = True) -> dict[str, pd.Dat
         "finality_quality_outputs": fqi,
         "payment_fragility_outputs": pnf,
         "friction_incidence_outputs": pfi,
-        "_mock_data_flag": pd.DataFrame([{"mock_data_flag": mock}]),
+        "_mock_data_flag": pd.DataFrame([{"mock_data_flag": mock, "mixed_mode": mixed}]),
+        "_pfi_validation": _build_pfi_validation(pfi, tables.get("payment_flow_observations", pd.DataFrame()), tables),
     }
     out["_validation"] = validate_all_tables(out)
     return out
