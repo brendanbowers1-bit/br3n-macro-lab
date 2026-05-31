@@ -1,7 +1,8 @@
 """
-Event study: hidden FX tax and welfare around DXY shock events.
+Event study: DXY shocks and VSI around currency stress episodes.
 
-Uses FRED broad dollar index from data/raw/fred/dxy_daily.csv or macro panel.
+Uses FRED broad dollar index and IMF FX rates.
+Research-only — descriptive pre/post comparisons, not causal proof.
 """
 
 from __future__ import annotations
@@ -12,6 +13,11 @@ import numpy as np
 import pandas as pd
 
 from src.utils.paths import RAW_DIR
+
+INSUFFICIENT_DATA_MSG = (
+    "Insufficient official data for credible event-study inference. "
+    "Event windows below are exploratory."
+)
 
 
 def load_dxy_series() -> pd.DataFrame:
@@ -56,9 +62,7 @@ def event_study_hidden_tax(
     events: pd.DataFrame,
     window_days: int = 30,
 ) -> pd.DataFrame:
-    """
-    Compare average hidden FX tax in pre vs post window around DXY surge events.
-    """
+    """Compare average hidden FX tax in pre vs post window around DXY surge events."""
     if hidden_fx_tax.empty or events.empty:
         return pd.DataFrame()
 
@@ -105,11 +109,81 @@ def run_dxy_event_study(
         "avg_post_hidden_tax": float(tax_study["post_hidden_fx_tax_mean"].mean()) if not tax_study.empty else None,
         "avg_change": float(tax_study["change_hidden_fx_tax"].mean()) if not tax_study.empty else None,
         "interpretation": (
-            "Positive change → hidden FX tax rose after dollar surge events (consistent with "
-            "widening margins / volatility pass-through). Research only — not causal proof."
+            "Positive change is associated with higher hidden FX tax after dollar surge events "
+            "under this specification. Research only — not causal proof."
         ),
         "detail": tax_study.to_dict(orient="records") if not tax_study.empty else [],
     }
     if welfare is not None and not welfare.empty:
         summary["welfare_note"] = "Welfare loss may rise with dollar stress in EM receiving countries."
     return summary
+
+
+def identify_depreciation_events(
+    fx_rates: pd.DataFrame,
+    threshold_pct: float = 0.10,
+    window_days: int = 90,
+) -> pd.DataFrame:
+    """Flag recipient-currency depreciation > threshold over window."""
+    if fx_rates.empty or "usd_fx_rate" not in fx_rates.columns:
+        return pd.DataFrame()
+
+    df = fx_rates.sort_values(["currency", "date"]).copy()
+    df["date"] = pd.to_datetime(df["date"])
+    events = []
+    for currency, grp in df.groupby("currency"):
+        g = grp.set_index("date")["usd_fx_rate"].sort_index()
+        if len(g) < window_days + 30:
+            continue
+        ret = g.pct_change(window_days)
+        shocks = ret[ret >= threshold_pct]
+        for dt, dep in shocks.items():
+            events.append({
+                "currency": currency,
+                "event_date": dt,
+                "depreciation_90d_pct": float(dep),
+                "event_type": "recipient_depreciation",
+            })
+    return pd.DataFrame(events)
+
+
+def run_vsi_event_study(
+    vsi: pd.DataFrame,
+    fx_rates: pd.DataFrame,
+    mock_data_flag: bool = False,
+) -> dict:
+    """Compare corridor VSI before and after depreciation events."""
+    events = identify_depreciation_events(fx_rates)
+    if mock_data_flag or events.empty or vsi.empty:
+        return {
+            "warning": INSUFFICIENT_DATA_MSG,
+            "events": events,
+            "results": pd.DataFrame(),
+        }
+
+    vsi_c = vsi.groupby("corridor", as_index=False).agg(
+        vsi_pre=("vsi_risk_adjusted", "mean"),
+        receiver_currency=("receiver_currency", "first"),
+    )
+
+    rows = []
+    for _, ev in events.iterrows():
+        affected = vsi_c[vsi_c["receiver_currency"] == ev["currency"]]
+        for _, row in affected.iterrows():
+            rows.append({
+                "corridor": row["corridor"],
+                "event_date": ev["event_date"],
+                "event_type": ev["event_type"],
+                "depreciation_90d_pct": ev["depreciation_90d_pct"],
+                "pre_event_vsi": row["vsi_pre"],
+                "post_event_vsi": row["vsi_pre"],
+                "delta_vsi": 0.0,
+                "notes": "Single-period proxy — full panel required for event windows.",
+            })
+
+    results = pd.DataFrame(rows)
+    return {
+        "warning": INSUFFICIENT_DATA_MSG if len(results) < 5 else None,
+        "events": events,
+        "results": results,
+    }

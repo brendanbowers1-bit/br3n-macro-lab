@@ -1,11 +1,11 @@
-corridor,value_survival_index,total_value_loss_pct,value_loss_usd_per_100,interpretation,data_quality_score,mock_data_flag,data_mode
-United States→El Salvador,94.23130033956056,0.05768699660439428,5.7686996604394345,Moderate value leakage,0.637,False,real
-United States→Philippines,94.22560682454173,0.05774393175458261,5.774393175458262,Moderate value leakage,0.637,False,real
-United States→Mexico,94.13011592419069,0.05869884075809309,5.869884075809311,Moderate value leakage,0.637,False,real
-United Arab Emirates→Pakistan,94.00943321886507,0.059905667811349296,5.990566781134937,Moderate value leakage,0.637,False,real
-United States→India,93.80411687320264,0.06195883126797344,6.1958831267973515,Moderate value leakage,0.637,False,real
-United States→Dominican Republic,93.40028960929389,0.06599710390706115,6.599710390706122,Moderate value leakage,0.637,False,real
-United States→Guatemala,92.91152954298884,0.07088470457011131,7.088470457011137,Moderate value leakage,0.637,False,real
-United States→Colombia,92.1528791141068,0.07847120885893184,7.847120885893191,Moderate value leakage,0.637,False,real
-United States→Brazil,92.12791537282992,0.07872084627170083,7.872084627170086,Moderate value leakage,0.637,False,real
-Germany→Nigeria,91.43562925108593,0.08564370748914053,8.564370748914058,Moderate value leakage,0.637,False,real
+corridor,value_survival_index,vsi_core,vsi_risk_adjusted,vsi_extended,total_value_loss_pct,value_loss_usd_per_100,interpretation,data_quality_score,data_quality_grade,mock_data_flag,data_mode
+United States→El Salvador,95.10630033956056,96.30630033956056,95.10630033956056,94.23130033956056,0.04893699660439429,4.8936996604394345,High value survival (estimated),85.0,Strong,False,real
+United States→Philippines,95.10060682454173,96.05556535923773,95.10060682454173,94.22560682454173,0.04899393175458261,4.899393175458262,High value survival (estimated),85.0,Strong,False,real
+United States→Mexico,95.00511592419069,95.66212140771353,95.00511592419069,94.13011592419069,0.04994884075809309,4.994884075809312,High value survival (estimated),85.0,Strong,False,real
+United Arab Emirates→Pakistan,94.88443321886507,96.08443321886506,94.88443321886507,94.00943321886507,0.05115566781134928,5.115566781134936,Moderate value leakage (estimated),85.0,Strong,False,real
+United States→India,94.67911687320264,95.37212486860894,94.67911687320264,93.80411687320264,0.05320883126797344,5.320883126797352,Moderate value leakage (estimated),85.0,Strong,False,real
+United States→Dominican Republic,94.27528960929389,95.47528960929388,94.27528960929389,93.40028960929389,0.05724710390706115,5.724710390706121,Moderate value leakage (estimated),85.0,Strong,False,real
+United States→Guatemala,93.78652954298884,94.98652954298886,93.78652954298884,92.91152954298887,0.06213470457011131,6.213470457011137,Moderate value leakage (estimated),85.0,Strong,False,real
+United States→Colombia,93.02787911410682,94.31825335837202,93.02787911410682,92.1528791141068,0.06972120885893184,6.97212088589319,Moderate value leakage (estimated),85.0,Strong,False,real
+United States→Brazil,93.00291537282992,94.30175261462158,93.00291537282992,92.12791537282992,0.06997084627170078,6.997084627170086,Moderate value leakage (estimated),85.0,Strong,False,real
+Germany→Nigeria,92.31062925108593,93.51062925108594,92.31062925108593,91.43562925108593,0.07689370748914048,7.6893707489140555,Moderate value leakage (estimated),85.0,Strong,False,real

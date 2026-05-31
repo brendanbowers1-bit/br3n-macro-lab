@@ -65,6 +65,8 @@ def calculate_remittance_welfare_from_vsi(
         real_usable_value_delivered_pct=("real_usable_value_delivered_pct", "mean"),
         value_survival_index=("value_survival_index", "mean"),
         date=("date", "max"),
+        methodology_version=("methodology_version", "first"),
+        mock_data_flag=("mock_data_flag", "first"),
     )
     flows = remittance_flows.groupby(["corridor", "year"], as_index=False).agg(
         remittance_usd=("remittance_usd", "sum"),
@@ -87,6 +89,9 @@ def calculate_remittance_welfare_from_vsi(
                 "real_value_delivered_usd": calculate_real_value_delivered(annual, real_pct),
                 "real_usable_value_delivered_pct": real_pct,
                 "vsi_score": row.get("value_survival_index"),
+                "remittance_volume_source": "world_bank_knomad_curated",
+                "methodology_version": row.get("methodology_version", "vsi-credible-1.0"),
+                "mock_data_flag": row.get("mock_data_flag", False),
             }
         )
     out = pd.DataFrame(rows)

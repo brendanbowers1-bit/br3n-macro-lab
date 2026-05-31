@@ -50,8 +50,13 @@ def calculate_hidden_fx_tax(row: pd.Series) -> dict:
     margin = calculate_fx_spread_loss(row.get("fx_margin_pct"))
     timing = calculate_timing_loss(row.get("transfer_speed_days"), daily_vol)
     vol_loss = calculate_volatility_loss(vol_30d, row.get("hedge_access_score", 0))
-    payout = calculate_payout_friction(row.get("payout_method"), row.get("manual_payout_friction_pct"))
+    payout, payout_src = calculate_payout_friction(
+        row.get("payout_method"), row.get("manual_payout_friction_pct")
+    )
     total = fee + margin + timing + vol_loss + payout
+    from src.indices.value_survival import trace_sources
+
+    sources = trace_sources(row)
     return {
         "fee_pct": fee,
         "fx_margin_pct": margin,
@@ -59,6 +64,8 @@ def calculate_hidden_fx_tax(row: pd.Series) -> dict:
         "volatility_penalty_pct": vol_loss,
         "payout_friction_pct": payout,
         "hidden_fx_tax_pct": total,
+        "payout_friction_source": payout_src,
+        **sources,
     }
 
 

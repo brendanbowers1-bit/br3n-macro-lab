@@ -1,8 +1,7 @@
 """
-Data quality and provenance scoring for the BR3N Value Survival Index.
+Annotate VSI outputs with provenance, limitations, and data quality scores.
 
-Separates real ingested data from demo/seed data and formula placeholders.
-Research-only — scores reflect data availability, not forecast accuracy.
+Integrates research-grade 0–100 rubric from data_quality.py with legacy 0–1 scores.
 """
 
 from __future__ import annotations
@@ -12,28 +11,25 @@ from typing import Literal
 
 import pandas as pd
 
+from src.config.research_settings import METHODOLOGY_VERSION, is_credible_mode
+from src.data.data_quality import annotate_quality, grade_from_score
 from src.utils.paths import RAW_DIR
 
 DataMode = Literal["real", "mixed", "demo"]
 
-# Component-level max quality when source is fully real
-COMPONENT_QUALITY = {
-    "explicit_fee_loss_pct": {"real": 0.95, "curated": 0.75, "placeholder": 0.35, "mock": 0.15},
-    "fx_spread_loss_pct": {"real": 0.95, "curated": 0.75, "placeholder": 0.35, "mock": 0.15},
-    "timing_loss_pct": {"real": 0.50, "curated": 0.45, "placeholder": 0.40, "mock": 0.20},
-    "volatility_loss_pct": {"real": 0.80, "curated": 0.70, "placeholder": 0.45, "mock": 0.25},
-    "inflation_erosion_pct": {"real": 0.85, "curated": 0.65, "placeholder": 0.40, "mock": 0.20},
-    "payout_friction_pct": {"real": 0.70, "curated": 0.50, "placeholder": 0.35, "mock": 0.15},
-    "dollar_dependency_drag_pct": {"real": 0.60, "curated": 0.55, "placeholder": 0.40, "mock": 0.20},
-    "trust_discount_pct": {"real": 0.55, "curated": 0.50, "placeholder": 0.35, "mock": 0.20},
-}
-
 VSI_LIMITATIONS = (
-    "Measurement framework only — not investment advice, not a trading signal, "
-    "not a price forecast. Timing, volatility, payout, trust, and dollar-drag "
-    "components use transparent starter formulas pending corridor validation. "
-    "Causal claims require panel instruments or natural experiments."
+    "Measurement framework only — estimates cross-border value loss under stated assumptions. "
+    "Does not prove causal welfare effects without identification. "
+    "Not investment advice, not a trading signal, not a price forecast. "
+    "Extended specification components (dollar drag, trust discount) are model-based adjustments."
 )
+
+TRACEABILITY_COLS = [
+    "fee_source", "fx_margin_source", "inflation_source", "fx_volatility_source",
+    "remittance_volume_source", "payout_friction_source", "dollar_dependency_source",
+    "trust_score_source", "methodology_version", "data_quality_score", "data_quality_grade",
+    "real_data_coverage_pct", "mock_data_flag", "manual_assumption_flag",
+]
 
 
 @dataclass(frozen=True)
@@ -94,6 +90,9 @@ def assess_dataset_provenance(tables: dict[str, pd.DataFrame]) -> DataProvenance
 
     if not (RAW_DIR / "world_bank_rpw" / "rpw_complete.xlsx").exists():
         notes.append("Full RPW Excel not loaded — using historical/curated corridor panel.")
+    if is_credible_mode():
+        notes.append("RESEARCH_MODE=credible: conservative language and source traceability enforced.")
+
     if mode == "real":
         overall = 0.72 if mixed else 0.78
     elif mode == "mixed":
@@ -112,50 +111,25 @@ def assess_dataset_provenance(tables: dict[str, pd.DataFrame]) -> DataProvenance
     )
 
 
-def score_vsi_row(row: pd.Series, provenance: DataProvenanceReport) -> float:
-    """Row-level quality 0–1 from component source tiers."""
-    cp_tier = "mock" if provenance.mock_data_flag else _source_tier(row.get("source"))
-    if cp_tier == "mock":
-        cp_tier = "mock"
-    elif cp_tier == "real" and "curated" in str(row.get("source", "")).lower():
-        cp_tier = "curated"
-
-    weights = {
-        "explicit_fee_loss_pct": 0.20,
-        "fx_spread_loss_pct": 0.20,
-        "timing_loss_pct": 0.10,
-        "volatility_loss_pct": 0.15,
-        "inflation_erosion_pct": 0.10,
-        "payout_friction_pct": 0.08,
-        "dollar_dependency_drag_pct": 0.09,
-        "trust_discount_pct": 0.08,
-    }
-    score = 0.0
-    for comp, w in weights.items():
-        val = float(row.get(comp, 0) or 0)
-        if val <= 0:
-            tier = cp_tier
-        elif comp in ("timing_loss_pct", "payout_friction_pct", "trust_discount_pct", "dollar_dependency_drag_pct"):
-            tier = "placeholder"
-        elif comp in ("explicit_fee_loss_pct", "fx_spread_loss_pct"):
-            tier = cp_tier if cp_tier != "mock" else "mock"
-        else:
-            tier = "real" if provenance.data_mode == "real" and not provenance.mock_data_flag else cp_tier
-        score += w * COMPONENT_QUALITY[comp].get(tier, 0.4)
-    return round(min(max(score, 0.0), 1.0), 3)
-
-
 def annotate_vsi_outputs(vsi: pd.DataFrame, tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
-    """Add data_mode, limitations, and per-row quality scores."""
+    """Add data_mode, limitations, traceability, and per-row quality scores."""
     prov = assess_dataset_provenance(tables)
-    out = vsi.copy()
+    out = annotate_quality(vsi.copy(), tables)
     out["data_mode"] = prov.data_mode
-    out["mock_data_flag"] = prov.mock_data_flag or out.get("mock_data_flag", False)
-    out["data_quality_score"] = out.apply(lambda r: score_vsi_row(r, prov), axis=1)
+    out["mock_data_flag"] = prov.mock_data_flag or out.get("mock_data_flag", False).astype(bool)
+    out["methodology_version"] = out.get("methodology_version", METHODOLOGY_VERSION)
     out["limitations"] = VSI_LIMITATIONS
-    out["value_survival_index"] = out["value_survival_index"].clip(0, 100)
-    out["real_usable_value_delivered_pct"] = out["real_usable_value_delivered_pct"].clip(0, 1)
-    out["total_value_loss_pct"] = out["total_value_loss_pct"].clip(0, 0.5)
+
+    for col in ("value_survival_index", "vsi_core", "vsi_risk_adjusted", "vsi_extended"):
+        if col in out.columns:
+            out[col] = out[col].clip(0, 100)
+    if "real_usable_value_delivered_pct" in out.columns:
+        out["real_usable_value_delivered_pct"] = out["real_usable_value_delivered_pct"].clip(0, 1)
+    if "total_value_loss_pct" in out.columns:
+        out["total_value_loss_pct"] = out["total_value_loss_pct"].clip(0, 0.5)
+
+    # Legacy 0–1 score for backward compatibility in charts
+    out["data_quality_score_normalized"] = (out["data_quality_score"] / 100.0).round(3)
     return out
 
 
@@ -165,6 +139,7 @@ def provenance_summary_df(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
         {"metric": "data_mode", "value": prov.data_mode},
         {"metric": "overall_quality_score", "value": prov.overall_quality_score},
         {"metric": "mock_data_flag", "value": prov.mock_data_flag},
+        {"metric": "methodology_version", "value": METHODOLOGY_VERSION},
         {"metric": "tables_real", "value": ", ".join(prov.tables_real) or "none"},
         {"metric": "tables_demo", "value": ", ".join(prov.tables_demo) or "none"},
         {"metric": "tables_mixed", "value": ", ".join(prov.tables_mixed) or "none"},

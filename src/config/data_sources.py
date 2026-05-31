@@ -47,7 +47,11 @@ DATA_SOURCES: list[DataSourceSpec] = [
         indices_used=["Hidden FX Tax Index", "Remittance Welfare Loss Index", "Value Survival Index (VSI)"],
         ingestion="manual",
         raw_path="data/raw/world_bank_rpw/",
-        description="Corridor-level remittance costs, fees, FX margins, transfer speed.",
+        description=(
+            "Corridor-level remittance costs, fees, FX margins, transfer speed. "
+            "RPW measures cost of sending relatively small amounts; FX margin may not appear in quoted fee. "
+            "Excel data 2011–Q1 2025. Primary source for explicit fee and FX-spread loss."
+        ),
     ),
     DataSourceSpec(
         source_id="world_bank_knomad",
@@ -59,7 +63,10 @@ DATA_SOURCES: list[DataSourceSpec] = [
         indices_used=["Remittance Welfare Loss Index", "Dollar Dependency Index", "Value Survival Index (VSI)"],
         ingestion="manual",
         raw_path="data/raw/world_bank_knomad/",
-        description="Bilateral remittance flows for corridor weighting and welfare exposure.",
+        description=(
+            "Bilateral remittance flows for corridor weighting and welfare exposure. "
+            "Estimates allocate inflows using migrant stocks and income — treat as estimated flows."
+        ),
     ),
     DataSourceSpec(
         source_id="imf_fx",
@@ -76,7 +83,10 @@ DATA_SOURCES: list[DataSourceSpec] = [
         ],
         ingestion="manual",
         raw_path="data/raw/imf/",
-        description="Official historical FX rates for returns, volatility, depreciation.",
+        description=(
+            "Official historical FX rates for returns, volatility, depreciation. "
+            "IMF ER dataset includes USD, SDR, EUR, and national currency series."
+        ),
     ),
     DataSourceSpec(
         source_id="imf_ifs_weo",
@@ -147,7 +157,10 @@ DATA_SOURCES: list[DataSourceSpec] = [
         indices_used=["Dollar Dependency Index", "Currency Liquidity Score"],
         ingestion="manual",
         raw_path="data/raw/bis/",
-        description="FX market turnover, currency hierarchy, dollar dominance.",
+        description=(
+            "FX market turnover, currency hierarchy, dollar dominance. "
+            "BIS triennial methodology designed for cross-country comparability."
+        ),
     ),
     DataSourceSpec(
         source_id="manual",
@@ -169,7 +182,10 @@ DATA_SOURCES: list[DataSourceSpec] = [
         ],
         ingestion="manual",
         raw_path="data/raw/manual/",
-        description="Spreadsheets, central bank rates, wage data, payment rail notes.",
+        description=(
+            "Spreadsheets, central bank rates, wage data, payment rail notes. "
+            "Must be labeled manual; included in sensitivity analysis; not presented as official data."
+        ),
     ),
     DataSourceSpec(
         source_id="fx_prices",

@@ -1,13 +1,18 @@
 """
 Panel regression with corridor and time fixed effects.
 
-Research-only — tests whether hidden FX tax reduces real remittance value.
+Includes legacy hidden-FX-tax panel tools and VSI-specific estimation.
+Research-only — associations, not causal identification.
 """
 
 from __future__ import annotations
 
-import pandas as pd
 import numpy as np
+import pandas as pd
+
+INSUFFICIENT_DATA_MSG = (
+    "Insufficient official data for credible regression inference."
+)
 
 
 def build_panel_dataset(
@@ -48,9 +53,7 @@ def panel_regression_with_fe(
     panel: pd.DataFrame,
     dependent: str = "real_value_delivered_pct",
 ) -> dict:
-    """
-    OLS with corridor and year fixed effects (dummy variables).
-    """
+    """OLS with corridor and year fixed effects (dummy variables)."""
     try:
         import statsmodels.api as sm
     except ImportError:
@@ -92,15 +95,15 @@ def panel_regression_with_fe(
         "fixed_effects": fe_cols,
         "regressors": regressors,
         "interpretation": (
-            "Negative hidden_fx_tax coefficient supports hypothesis: higher hidden tax "
-            "→ lower real value delivered, conditional on corridor and year FE."
+            "Negative hidden_fx_tax coefficient is associated with lower real value delivered "
+            "under this specification, conditional on corridor and year FE."
         ),
         "limitation": "Curated/mixed data; causal claims require instrument or natural experiment.",
     }
 
 
 def remittance_growth_regression(panel: pd.DataFrame) -> dict:
-    """Test whether hidden FX tax predicts remittance growth (corridor-year panel)."""
+    """Test whether hidden FX tax is associated with remittance growth."""
     try:
         import statsmodels.api as sm
     except ImportError:
@@ -121,4 +124,84 @@ def remittance_growth_regression(panel: pd.DataFrame) -> dict:
         "hidden_fx_tax_coef_on_growth": float(model.params.get("hidden_fx_tax_pct", np.nan)),
         "pvalue": float(model.pvalues.get("hidden_fx_tax_pct", np.nan)),
         "interpretation": "Negative coef → higher hidden tax associated with slower remittance growth.",
+    }
+
+
+def build_vsi_panel(
+    vsi: pd.DataFrame,
+    macro: pd.DataFrame | None = None,
+) -> pd.DataFrame:
+    """Merge VSI outputs with macro controls for panel estimation."""
+    panel = vsi.copy()
+    if "year" not in panel.columns and "date" in panel.columns:
+        panel["year"] = pd.to_datetime(panel["date"]).dt.year
+
+    if macro is not None and not macro.empty:
+        m = macro.sort_values("date").groupby("country", as_index=False).tail(1)
+        panel = panel.merge(
+            m[["country", "inflation_yoy", "gdp_growth", "remittances_gdp"]],
+            left_on="receiver_country",
+            right_on="country",
+            how="left",
+            suffixes=("", "_macro"),
+        )
+    return panel
+
+
+def vsi_panel_regression(
+    panel: pd.DataFrame,
+    dependent: str = "vsi_risk_adjusted",
+    mock_data_flag: bool = False,
+    min_obs: int = 20,
+) -> dict:
+    """OLS with corridor and year fixed effects on VSI panel."""
+    if mock_data_flag or len(panel) < min_obs:
+        return {"error": INSUFFICIENT_DATA_MSG, "n": len(panel)}
+
+    try:
+        import statsmodels.api as sm
+    except ImportError:
+        return {"error": "statsmodels required"}
+
+    df = panel.dropna(subset=[dependent]).copy()
+    if len(df) < min_obs:
+        return {"error": INSUFFICIENT_DATA_MSG, "n": len(df)}
+
+    regressors = [c for c in [
+        "fee_pct", "fx_margin_pct", "inflation_yoy", "volatility_30d",
+        "transfer_speed_days", "remittances_gdp", "currency_trust_score",
+        "dollar_dependency_score",
+    ] if c in df.columns and df[c].notna().sum() >= min_obs // 2]
+
+    if not regressors:
+        return {"error": "no valid regressors", "n": len(df)}
+
+    X_parts = [df[regressors].astype(float)]
+    for fe in ("corridor", "year"):
+        if fe in df.columns and df[fe].nunique() > 1:
+            dummies = pd.get_dummies(df[fe].astype(str), prefix=fe, drop_first=True)
+            X_parts.append(dummies.astype(float))
+
+    X = sm.add_constant(pd.concat(X_parts, axis=1).astype(float))
+    y = df[dependent].astype(float)
+
+    try:
+        model = sm.OLS(y, X).fit(cov_type="HC1")
+    except Exception as exc:
+        return {"error": str(exc), "n": len(df)}
+
+    coefs = {
+        reg: {
+            "coef": float(model.params.get(reg, float("nan"))),
+            "pvalue": float(model.pvalues.get(reg, float("nan"))),
+        }
+        for reg in regressors
+    }
+    return {
+        "dependent": dependent,
+        "n": int(model.nobs),
+        "r_squared": float(model.rsquared),
+        "coefficients": coefs,
+        "interpretation": "Under this specification, coefficients are associations — not causal effects.",
+        "mock_data_flag": mock_data_flag,
     }

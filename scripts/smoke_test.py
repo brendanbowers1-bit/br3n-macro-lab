@@ -9,6 +9,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+TRACEABILITY_COLS = [
+    "fee_source", "fx_margin_source", "inflation_source", "fx_volatility_source",
+    "remittance_volume_source", "payout_friction_source", "methodology_version",
+    "data_quality_score", "data_quality_grade", "mock_data_flag",
+]
+
+VSI_TIER_COLS = ["vsi_core", "vsi_risk_adjusted", "vsi_extended"]
+
 
 def test_mock_data_creation():
     from src.data.mock_data import create_mock_dataset
@@ -27,6 +35,8 @@ def test_vsi_calculation():
     assert vsi["value_survival_index"].notna().any()
     assert (vsi["value_survival_index"] >= 0).all()
     assert (vsi["value_survival_index"] <= 100).all()
+    for col in VSI_TIER_COLS:
+        assert col in vsi.columns, f"Missing {col}"
 
 
 def test_no_negative_vsi():
@@ -45,6 +55,8 @@ def test_output_columns():
         "dollar_dependency_drag_pct", "trust_discount_pct", "total_value_loss_pct",
         "real_usable_value_delivered_pct", "value_survival_index", "value_loss_usd_per_100",
         "interpretation", "mock_data_flag", "data_mode", "data_quality_score", "limitations",
+        *VSI_TIER_COLS,
+        *TRACEABILITY_COLS,
     ]
     from src.data.build_dataset import build_value_survival_dataset
 
@@ -61,8 +73,40 @@ def test_data_quality_scoring():
     prov = assess_dataset_provenance(ds)
     assert prov.data_mode in ("real", "mixed", "demo")
     assert 0 <= prov.overall_quality_score <= 1
-    assert (ds["value_survival_outputs"]["data_quality_score"] >= 0).all()
-    assert (ds["value_survival_outputs"]["data_quality_score"] <= 1).all()
+    vsi = ds["value_survival_outputs"]
+    assert (vsi["data_quality_score"] >= 0).all()
+    assert (vsi["data_quality_score"] <= 100).all()
+    assert "data_quality_grade" in vsi.columns
+
+
+def test_sensitivity_module():
+    from src.data.build_dataset import build_value_survival_dataset
+    from src.models.sensitivity import run_sensitivity_analysis, sensitivity_summary
+
+    ds = build_value_survival_dataset()
+    mock = ds["value_survival_outputs"]["mock_data_flag"].any()
+    results = run_sensitivity_analysis(
+        ds["corridor_prices"], ds.get("fx_rates"), ds.get("macro_country_panel"),
+        ds.get("currency_trust"), ds.get("dollar_dependency"), mock_data_flag=bool(mock),
+    )
+    assert "sensitivity_case" in results.columns
+    assert len(results) >= len(ds["value_survival_outputs"])
+    summary = sensitivity_summary(results)
+    assert not summary.empty
+
+
+def test_robustness_module():
+    from src.data.build_dataset import build_value_survival_dataset
+    from src.models.robustness import run_robustness_checks
+
+    ds = build_value_survival_dataset()
+    mock = ds["value_survival_outputs"]["mock_data_flag"].any()
+    checks = run_robustness_checks(
+        ds["corridor_prices"], ds.get("fx_rates"), ds.get("macro_country_panel"),
+        ds.get("currency_trust"), ds.get("dollar_dependency"), mock_data_flag=bool(mock),
+    )
+    assert not checks.empty
+    assert "rank_stability_spearman" in checks.columns
 
 
 def test_hidden_fx_tax_subindex():
@@ -92,14 +136,12 @@ def test_dashboard_import():
     assert hasattr(mod, "main")
 
 
-def test_visuals_module():
-    from src.visuals.vsi_charts import chart_ranked_vsi, corridor_summary
-    from src.data.vsi_loader import load_vsi_dataset
+def test_hypotheses_module():
+    from src.research.hypotheses import HYPOTHESES, hypotheses_dataframe
 
-    ds = load_vsi_dataset(rebuild=False)
-    summary = corridor_summary(ds["value_survival_outputs"])
-    fig = chart_ranked_vsi(summary)
-    assert fig is not None
+    assert len(HYPOTHESES) >= 6
+    df = hypotheses_dataframe()
+    assert len(df) >= 6
 
 
 def test_make_visuals_script():
@@ -122,10 +164,12 @@ def main() -> None:
         test_no_negative_vsi,
         test_output_columns,
         test_data_quality_scoring,
+        test_sensitivity_module,
+        test_robustness_module,
         test_hidden_fx_tax_subindex,
         test_currency_trust,
         test_dashboard_import,
-        test_visuals_module,
+        test_hypotheses_module,
         test_make_visuals_script,
     ]
     passed = 0
