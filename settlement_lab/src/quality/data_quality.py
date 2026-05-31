@@ -42,7 +42,8 @@ def score_row(row: pd.Series, required_fields: list[str] | None = None) -> dict:
     req = required_fields or []
     pts = 0
     mock = bool(row.get("mock_data_flag", False))
-    tier = int(row.get("credibility_tier", row.get("source_credibility_tier", 5)))
+    tier_raw = row.get("credibility_tier", row.get("source_credibility_tier", 5))
+    tier = 5 if pd.isna(tier_raw) else int(tier_raw)
 
     if mock:
         score = min(MOCK_MAX_QUALITY_SCORE, 30)

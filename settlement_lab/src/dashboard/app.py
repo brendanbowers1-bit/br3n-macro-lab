@@ -90,12 +90,18 @@ def page_pfi(ds):
     st.markdown("### Payment Friction Incidence")
     st.warning("Incidence estimates are model-based and require empirical validation.")
     st.dataframe(ds["friction_incidence_outputs"], use_container_width=True, hide_index=True)
-    pfi_val = ds.get("_pfi_validation", pd.DataFrame())
     if isinstance(pfi_val, pd.DataFrame) and not pfi_val.empty:
-        st.markdown("#### RPW corridor validation")
+        st.markdown("#### PFI validation (RPW corridors + merchant interchange)")
         st.dataframe(pfi_val, use_container_width=True, hide_index=True)
-        within = (pfi_val["validation_status"] == "within_2pp").mean()
-        st.metric("Corridors within 2pp of RPW", f"{within:.0%}")
+        if "validation_type" in pfi_val.columns:
+            rpw_rows = pfi_val[pfi_val["validation_type"] == "rpw_corridor"]
+            if not rpw_rows.empty and "validation_status" in rpw_rows.columns:
+                within = (rpw_rows["validation_status"] == "within_2pp").mean()
+                st.metric("RPW corridors within 2pp", f"{within:.0%}")
+            merch_rows = pfi_val[pfi_val["validation_type"] == "merchant_interchange"]
+            if not merch_rows.empty and "validation_status" in merch_rows.columns:
+                within_m = (merch_rows["validation_status"] == "within_50bps").mean()
+                st.metric("Merchant categories within 50bps", f"{within_m:.0%}")
 
 
 def page_quality(ds):

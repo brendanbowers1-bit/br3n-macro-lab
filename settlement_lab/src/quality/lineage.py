@@ -78,4 +78,6 @@ def attach_lineage(df: pd.DataFrame, lineage: dict) -> pd.DataFrame:
     for k, v in lineage.items():
         if k not in out.columns:
             out[k] = v
+        elif out[k].isna().all():
+            out[k] = v
     return out

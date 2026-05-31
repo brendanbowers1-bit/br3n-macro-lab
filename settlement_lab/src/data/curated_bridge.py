@@ -351,6 +351,38 @@ def merge_payment_flows(cpmi_flows: pd.DataFrame, rpw_flows: pd.DataFrame) -> pd
     return pd.concat(parts, ignore_index=True)
 
 
+def validate_pfi_against_merchant_fees(
+    friction: pd.DataFrame,
+    merchant_fees: pd.DataFrame,
+) -> pd.DataFrame:
+    """Compare US card-rail model friction to observed merchant interchange fees."""
+    if friction.empty or merchant_fees.empty:
+        return pd.DataFrame()
+    us = friction[
+        friction["country"].astype(str).str.contains("United States", case=False, na=False)
+    ]
+    if us.empty:
+        return pd.DataFrame()
+    model_pct = us["total_friction_per_100"].mean() / 100
+
+    latest = merchant_fees[merchant_fees["year"] == merchant_fees["year"].max()]
+    rows = []
+    for cat in latest["merchant_category"].unique():
+        sub = latest[latest["merchant_category"] == cat]
+        obs_bps = sub["interchange_fee_bps"].median()
+        obs_pct = obs_bps / 10000.0
+        rows.append({
+            "merchant_category": cat,
+            "observed_interchange_bps": round(obs_bps, 1),
+            "observed_interchange_pct": round(obs_pct * 100, 3),
+            "model_friction_pct": round(model_pct * 100, 3),
+            "absolute_gap_pct": round(abs(obs_pct - model_pct) * 100, 3),
+            "validation_status": "within_50bps" if abs(obs_pct - model_pct) < 0.005 else "needs_calibration",
+            "source_id": "company_filings",
+        })
+    return pd.DataFrame(rows)
+
+
 def validate_pfi_against_rpw(
     friction: pd.DataFrame,
     rpw: pd.DataFrame,

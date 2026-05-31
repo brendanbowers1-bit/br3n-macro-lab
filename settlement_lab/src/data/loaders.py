@@ -67,7 +67,7 @@ def _load_or_empty(path: Path, source_id: str, observed: bool = True) -> pd.Data
 
 
 def load_bis_cpmi_files() -> pd.DataFrame:
-    for name in ("cpmi_payment_systems_curated.csv", "cpmi_payment_systems.csv"):
+    for name in ("cpmi_payment_systems.csv", "cpmi_payment_systems_curated.csv"):
         p = RAW_DIR / "bis_cpmi" / name
         if p.exists():
             return _load_or_empty(p, "bis_cpmi")
@@ -75,12 +75,20 @@ def load_bis_cpmi_files() -> pd.DataFrame:
 
 
 def load_settlement_liquidity_curated() -> pd.DataFrame:
-    p = RAW_DIR / "bis_cpmi" / "settlement_liquidity_curated.csv"
-    return _load_or_empty(p, "bis_triennial_fx")
+    for name in ("cpmi_settlement_liquidity.csv", "settlement_liquidity_curated.csv"):
+        p = RAW_DIR / "bis_cpmi" / name
+        if p.exists():
+            return _load_or_empty(p, "bis_cpmi" if name.startswith("cpmi") else "bis_triennial_fx")
+    return pd.DataFrame()
+
+
+def load_merchant_fee_panel() -> pd.DataFrame:
+    p = RAW_DIR / "federal_reserve" / "merchant_fee_panel.csv"
+    return _load_or_empty(p, "company_filings")
 
 
 def load_world_bank_findex_files() -> pd.DataFrame:
-    for name in ("findex_indicators_curated.csv", "findex_indicators.csv"):
+    for name in ("findex_indicators.csv", "findex_indicators_curated.csv"):
         p = RAW_DIR / "world_bank" / name
         if p.exists():
             return _load_or_empty(p, "world_bank_findex")
@@ -116,11 +124,16 @@ def load_bis_triennial_files() -> pd.DataFrame:
 
 
 def load_fred_files() -> pd.DataFrame:
-    for name in ("sofr_curated.csv", "sofr.csv"):
+    for name in ("sofr.csv", "sofr_curated.csv", "rates_daily.csv"):
         p = RAW_DIR / "fred" / name
         if p.exists():
             return _load_or_empty(p, "fred")
     p = _bridge(RAW_DIR / "fred" / "sofr.csv", PARENT_RAW / "fred" / "dxy_daily.csv")
+    return _load_or_empty(p, "fred")
+
+
+def load_fred_fed_funds() -> pd.DataFrame:
+    p = RAW_DIR / "fred" / "fedfunds.csv"
     return _load_or_empty(p, "fred")
 
 
@@ -176,7 +189,14 @@ def _build_fx_exposure_from_imf(imf: pd.DataFrame) -> pd.DataFrame:
 
 def _resolve_cost_of_capital(fred: pd.DataFrame, macro: pd.DataFrame) -> float:
     if not fred.empty and "value_pct" in fred.columns:
-        return float(fred["value_pct"].iloc[-1])
+        sub = fred
+        if "series" in fred.columns:
+            sofr_rows = fred[fred["series"].astype(str).str.upper() == "SOFR"]
+            if not sofr_rows.empty:
+                sub = sofr_rows
+        if "date" in sub.columns:
+            sub = sub.sort_values("date")
+        return float(sub["value_pct"].iloc[-1])
     if not fred.empty and "dxy_broad" in fred.columns:
         dxy = fred
     else:
@@ -232,7 +252,10 @@ def load_all_tables(use_mock_fallback: bool = True) -> dict[str, pd.DataFrame]:
         liquidity = _apply_cost_of_capital(liq_local, coc)
 
     findex_local = load_world_bank_findex_files()
-    access = findex_local if not findex_local.empty else build_access_from_macro(macro)
+    if not findex_local.empty:
+        access = findex_local
+    else:
+        access = build_access_from_macro(macro)
 
     finality = load_finality_reference_files()
     fx_exp = _build_fx_exposure_from_imf(imf)
@@ -258,5 +281,6 @@ def load_all_tables(use_mock_fallback: bool = True) -> dict[str, pd.DataFrame]:
             )
 
     tables["_manual_assumptions"] = load_manual_assumptions()
+    tables["_merchant_fee_panel"] = load_merchant_fee_panel()
     tables["_cost_of_capital"] = pd.DataFrame([{"cost_of_capital_pct": coc}])
     return tables

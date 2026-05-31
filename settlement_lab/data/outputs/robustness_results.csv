@@ -2,5 +2,5 @@ check_id,rank_stability_spearman,robust,notes
 core_only_sdi,1.0,True,Robust if Spearman rank correlation ≥ 0.85.
 risk_adjusted_sdi,1.0,True,Robust if Spearman rank correlation ≥ 0.85.
 tier1_sources_only,1.0,True,Robust if Spearman rank correlation ≥ 0.85.
-high_quality_rows_only,1.0,True,Robust if Spearman rank correlation ≥ 0.85.
+high_quality_rows_only,0.818,False,Robust if Spearman rank correlation ≥ 0.85.
 winsorized_outliers,1.0,True,Robust if Spearman rank correlation ≥ 0.85.

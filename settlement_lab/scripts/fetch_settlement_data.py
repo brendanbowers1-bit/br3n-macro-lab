@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Materialize curated settlement raw files from parent-lab official caches."""
+"""Materialize settlement raw files — official Tier-1 fetch plus curated supplements."""
 
 from __future__ import annotations
 
@@ -13,16 +13,12 @@ import pandas as pd
 
 from src.data.curated_bridge import (
     ECB_TARGET_STATS,
-    build_access_from_macro,
     build_documented_stress_events,
     build_finality_from_reference,
-    build_liquidity_from_bis,
-    build_liquidity_from_ecb,
-    build_payment_flows_from_cpmi,
     build_payment_flows_from_rpw,
-    estimate_cost_of_capital,
     merge_payment_flows,
 )
+from src.data.official_fetchers import fetch_all_official
 from src.quality.lineage import calculate_file_hash
 from src.utils.paths import METADATA_DIR, RAW_DIR
 
@@ -30,7 +26,7 @@ PARENT_RAW = ROOT.parent / "data" / "raw"
 
 
 def _ensure_dirs() -> None:
-    for sub in ("bis_cpmi", "world_bank", "imf", "fred", "ecb", "manual"):
+    for sub in ("bis_cpmi", "world_bank", "imf", "fred", "ecb", "manual", "federal_reserve"):
         (RAW_DIR / sub).mkdir(parents=True, exist_ok=True)
     METADATA_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -52,58 +48,61 @@ def _write(df: pd.DataFrame, path: Path) -> None:
 
 def build_checksum_registry() -> pd.DataFrame:
     rows = []
-    for p in sorted(RAW_DIR.rglob("*.csv")):
-        rows.append({
-            "file_path": str(p.relative_to(ROOT)),
-            "sha256": calculate_file_hash(p),
-            "bytes": p.stat().st_size,
-        })
+    for p in sorted(RAW_DIR.rglob("*")):
+        if p.is_file() and p.suffix in (".csv", ".xlsx"):
+            rows.append({
+                "file_path": str(p.relative_to(ROOT)),
+                "sha256": calculate_file_hash(p),
+                "bytes": p.stat().st_size,
+            })
     return pd.DataFrame(rows)
 
 
+def _supplement_rpw_corridors() -> None:
+    """Add RPW remittance corridors to official CPMI payment flows."""
+    official = RAW_DIR / "bis_cpmi" / "cpmi_payment_systems.csv"
+    rpw = _read_parent("world_bank_rpw/rpw_historical_panel.csv")
+    if rpw.empty:
+        return
+    rpw_flows = build_payment_flows_from_rpw(rpw)
+    if rpw_flows.empty:
+        return
+    if official.exists():
+        base = pd.read_csv(official)
+        combined = merge_payment_flows(base, rpw_flows)
+    else:
+        combined = rpw_flows
+    _write(combined, official if official.exists() else RAW_DIR / "bis_cpmi" / "cpmi_payment_systems.csv")
+
+
 def main() -> None:
-    print("BR3N Settlement Lab — fetch curated data")
+    print("BR3N Settlement Lab — fetch official + curated data")
     _ensure_dirs()
 
-    rpw = _read_parent("world_bank_rpw/rpw_historical_panel.csv")
-    bis = _read_parent("bis/fx_turnover_2022.csv")
-    macro = _read_parent("imf/macro_indicators_wb_api.csv")
-    dxy = _read_parent("fred/dxy_daily.csv")
+    print("\n▶ Tier-1 official sources (BIS CPMI, FRED, Findex, merchant fees)")
+    results = fetch_all_official(RAW_DIR)
+    for key, val in results.items():
+        if key not in ("errors", "fetched_at"):
+            print(f"  {key}: {val}")
+    if results.get("errors"):
+        print("  warnings:", results["errors"])
 
-    coc = estimate_cost_of_capital(macro, dxy)
-
-    cpmi_flows = build_payment_flows_from_cpmi()
-    rpw_flows = build_payment_flows_from_rpw(rpw)
-    flows = merge_payment_flows(cpmi_flows, rpw_flows)
-    _write(flows, RAW_DIR / "bis_cpmi" / "cpmi_payment_systems_curated.csv")
-
-    liq_bis = build_liquidity_from_bis(bis, cost_of_capital=coc)
-    liq_ecb = build_liquidity_from_ecb(cost_of_capital=max(0.03, coc - 0.01))
-    liq = pd.concat([liq_bis, liq_ecb], ignore_index=True) if not liq_bis.empty else liq_ecb
-    _write(liq, RAW_DIR / "bis_cpmi" / "settlement_liquidity_curated.csv")
-
+    print("\n▶ Supplements (RPW corridors, ECB, finality, stress events)")
+    _supplement_rpw_corridors()
     _write(pd.DataFrame(ECB_TARGET_STATS), RAW_DIR / "ecb" / "target_statistics_curated.csv")
+    _write(build_finality_from_reference(), RAW_DIR / "manual" / "finality_legal_reference.csv")
+    _write(build_documented_stress_events(), RAW_DIR / "bis_cpmi" / "documented_stress_events.csv")
 
-    finality = build_finality_from_reference()
-    _write(finality, RAW_DIR / "manual" / "finality_legal_reference.csv")
-
-    access = build_access_from_macro(macro)
-    _write(access, RAW_DIR / "world_bank" / "findex_indicators_curated.csv")
-
-    stress = build_documented_stress_events()
-    _write(stress, RAW_DIR / "bis_cpmi" / "documented_stress_events.csv")
-
-    sofr_rows = pd.DataFrame([{
-        "date": pd.Timestamp.today().strftime("%Y-%m-%d"),
-        "series": "SOFR_proxy",
-        "value_pct": coc,
-        "source": "imf_macro_policy_rate_or_dxy_stress_proxy",
-    }])
-    _write(sofr_rows, RAW_DIR / "fred" / "sofr_curated.csv")
-
+    # Cost-of-capital assumption from live SOFR when available.
+    sofr_path = RAW_DIR / "fred" / "sofr.csv"
+    coc = 0.05
+    if sofr_path.exists():
+        sofr = pd.read_csv(sofr_path)
+        if "value_pct" in sofr.columns and not sofr.empty:
+            coc = float(sofr["value_pct"].iloc[-1])
     assumptions = pd.DataFrame([
         {"assumption_id": "cost_of_capital_baseline", "value": coc, "unit": "annual_pct",
-         "source": "fred/imf_proxy", "notes": "Used in SDI/OLB capital cost component"},
+         "source": "fred/SOFR", "notes": "Latest SOFR from FRED; used in SDI/OLB"},
         {"assumption_id": "fx_exposure_haircut", "value": 0.1, "unit": "ratio",
          "source": "manual_assumptions", "notes": "FX exposure scaling for SDI risk-adjusted spec"},
     ])
@@ -112,8 +111,7 @@ def main() -> None:
     checksums = build_checksum_registry()
     checksum_path = METADATA_DIR / "file_checksums.csv"
     checksums.to_csv(checksum_path, index=False)
-    print(f"  wrote {checksum_path.relative_to(ROOT)} ({len(checksums)} files)")
-
+    print(f"\n  wrote {checksum_path.relative_to(ROOT)} ({len(checksums)} files)")
     print("\nFetch complete. Run reproduce_settlement_lab.py next.")
 
 

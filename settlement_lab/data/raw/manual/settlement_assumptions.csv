@@ -1,3 +1,3 @@
 assumption_id,value,unit,source,notes
-cost_of_capital_baseline,0.0525,annual_pct,fred/imf_proxy,Used in SDI/OLB capital cost component
+cost_of_capital_baseline,0.0362,annual_pct,fred/SOFR,Latest SOFR from FRED; used in SDI/OLB
 fx_exposure_haircut,0.1,ratio,manual_assumptions,FX exposure scaling for SDI risk-adjusted spec

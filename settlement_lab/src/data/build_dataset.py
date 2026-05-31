@@ -7,8 +7,8 @@ from pathlib import Path
 import pandas as pd
 
 from src.data.cleaners import standardize_countries, standardize_currencies, standardize_dates
-from src.data.loaders import load_all_tables, load_world_bank_rpw_files
-from src.data.curated_bridge import validate_pfi_against_rpw
+from src.data.loaders import load_all_tables, load_merchant_fee_panel, load_world_bank_rpw_files
+from src.data.curated_bridge import validate_pfi_against_merchant_fees, validate_pfi_against_rpw
 from src.features.build_features import build_all_features
 from src.indices.finality_quality import calculate_finality_quality_table
 from src.indices.operational_liquidity import calculate_operational_liquidity_table
@@ -20,10 +20,24 @@ from src.utils.paths import FEATURES_DIR, OUTPUTS_DIR, PROCESSED_DIR
 
 
 def _build_pfi_validation(pfi: pd.DataFrame, flows: pd.DataFrame, tables: dict) -> pd.DataFrame:
+    parts = []
     rpw = load_world_bank_rpw_files()
-    if rpw.empty:
+    if not rpw.empty:
+        rpw_val = validate_pfi_against_rpw(pfi, rpw)
+        if not rpw_val.empty:
+            rpw_val["validation_type"] = "rpw_corridor"
+            parts.append(rpw_val)
+    fees = tables.get("_merchant_fee_panel")
+    if fees is None or (isinstance(fees, pd.DataFrame) and fees.empty):
+        fees = load_merchant_fee_panel()
+    if isinstance(fees, pd.DataFrame) and not fees.empty:
+        merch_val = validate_pfi_against_merchant_fees(pfi, fees)
+        if not merch_val.empty:
+            merch_val["validation_type"] = "merchant_interchange"
+            parts.append(merch_val)
+    if not parts:
         return pd.DataFrame()
-    return validate_pfi_against_rpw(pfi, rpw)
+    return pd.concat(parts, ignore_index=True)
 
 
 def build_settlement_dataset(use_mock_fallback: bool = True) -> dict[str, pd.DataFrame]:
