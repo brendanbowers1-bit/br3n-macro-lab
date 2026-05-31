@@ -50,6 +50,30 @@ Drop official files in `data/raw/` — see [DATA_SOURCES.md](DATA_SOURCES.md).
 
 ---
 
+## BR3N Settlement Economics Lab
+
+**Core thesis:** Modern economies run on settlement — not just money.
+
+Measures **settlement drag (SDI)**, **operational liquidity burden (OLB)**, **finality quality (FQI)**, **payment-network fragility (PNF)**, and **friction incidence (PFI)**.
+
+Research-only. Not financial advice. Not operational payment guidance.
+
+### Quick start
+
+```bash
+cd ~/fx_regime_lab/settlement_lab
+source ../.venv/bin/activate
+export PYTHONPATH=.
+python scripts/smoke_test_settlement_lab.py
+python scripts/reproduce_settlement_lab.py
+streamlit run src/dashboard/app.py
+```
+
+- [README_SETTLEMENT_LAB.md](settlement_lab/README_SETTLEMENT_LAB.md)
+- [Live publication page](https://brendanbowers1-bit.github.io/br3n-macro-lab/settlement-economics-lab.html)
+
+---
+
 FX Lab is the flagship research program of BR3N Macro Labs — an independent AI-assisted research lab studying **when currency markets become conditionally forecastable** by regime.
 
 **Not investment advice.** No live trading. No broker API.

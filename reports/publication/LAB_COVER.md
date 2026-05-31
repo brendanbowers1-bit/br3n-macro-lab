@@ -26,6 +26,8 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 
 **[Value Survival Index (VSI)](value-survival-index.html)** — flagship research product: how much value survives when money crosses borders?
 
+**[Settlement Economics Lab](settlement-economics-lab.html)** — settlement drag, liquidity burden, finality quality, and payment-network fragility.
+
 ---
 
 ## Explore FX Lab Research

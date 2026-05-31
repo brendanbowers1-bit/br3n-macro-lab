@@ -34,6 +34,7 @@ HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
     ("open-source-ai.html", "Open Source FX AI Model Lab", "Borrow, benchmark, and improve OSS FX models", "Models"),
     ("global-fx-lab.html", "Global FX Research Lab", "Who bears the cost when value crosses borders?", "Research"),
     ("value-survival-index.html", "Value Survival Index", "How much value survives when money crosses borders?", "Flagship"),
+    ("settlement-economics-lab.html", "Settlement Economics Lab", "Settlement drag, liquidity burden, and finality", "Flagship"),
     ("ladder.html", "Evidence Ladder", "Eight-level evidence framework", "Methods"),
     ("memo.html", "Full Research Note", "Methods, tables, limitations", "Deep dive"),
     ("corridor.html", "Corridor Roadmap", "Multi-corridor payment research", "Corridors"),
@@ -851,6 +852,77 @@ def _value_survival_index_body(out_dir: Path) -> str:
 """
 
 
+def _settlement_sdi_table_html() -> str:
+    import pandas as pd
+
+    path = ROOT / "settlement_lab" / "data" / "outputs" / "settlement_drag_outputs.csv"
+    if not path.exists():
+        return "<p><em>Run <code>cd settlement_lab && python scripts/reproduce_settlement_lab.py</code> to generate SDI rankings.</em></p>"
+    try:
+        df = pd.read_csv(path)
+        summary = (
+            df.groupby("entity", as_index=False)
+            .agg(
+                sdi=("settlement_drag_index", "mean"),
+                drag_per_100=("settlement_drag_cost_per_100", "mean"),
+                interpretation=("interpretation", "first"),
+                mock=("mock_data_flag", "first"),
+            )
+            .sort_values("sdi", ascending=False)
+            .head(15)
+        )
+        rows = []
+        for _, r in summary.iterrows():
+            badge = ' <span class="tag">demo</span>' if r.get("mock") else ""
+            rows.append(
+                f"<tr><td>{html.escape(str(r['entity']))}{badge}</td>"
+                f'<td class="num">{r["sdi"]:.1f}</td>'
+                f'<td class="num">{r["drag_per_100"]:.2f}</td>'
+                f"<td>{html.escape(str(r['interpretation']))}</td></tr>"
+            )
+        return f"""
+<h2>Settlement Drag Rankings (live pipeline)</h2>
+<table>
+<thead><tr><th>Rail / Entity</th><th>SDI</th><th>Drag per $100</th><th>Classification</th></tr></thead>
+<tbody>{"".join(rows)}</tbody>
+</table>
+<p class="meta">Source: settlement_lab/data/outputs/settlement_drag_outputs.csv</p>
+"""
+    except Exception as exc:
+        return f"<p><em>Could not load SDI outputs: {html.escape(str(exc))}</em></p>"
+
+
+def _settlement_lab_body(out_dir: Path) -> str:
+    page_md = _read_md(out_dir / "SETTLEMENT_ECONOMICS_LAB_PAGE.md") or _read_md(
+        ROOT / "reports/publication/SETTLEMENT_ECONOMICS_LAB_PAGE.md"
+    )
+    models = [
+        ("Settlement Drag Index (SDI)", "Economic cost of delayed settlement"),
+        ("Operational Liquidity Burden (OLB)", "Capital trapped for settlement safety"),
+        ("Finality Quality Index (FQI)", "Proximity to final usable value"),
+        ("Payment Network Fragility (PNF)", "Settlement stress → disruption risk"),
+        ("Payment Friction Incidence (PFI)", "Who bears payment-system costs (model-based)"),
+    ]
+    cards = "".join(
+        f'<div class="os-card"><h4>{html.escape(t)}</h4><p>{html.escape(d)}</p></div>'
+        for t, d in models
+    )
+    return f"""
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="warning-box">
+  <p><strong>Research only.</strong> Not financial advice. Not operational payment guidance. Stage 1 uses strict data lineage (NO_UNLABELED_DATA). Demo settlement tables with bridged IMF/FRED/RPW where available.</p>
+</div>
+<div class="conclusion-box">
+  <p><strong>Core thesis:</strong> Modern economies do not run only on money; they run on settlement.</p>
+</div>
+{_md_to_html(page_md) if page_md else ""}
+<h2>Flagship Models</h2>
+<div class="os-card-grid">{cards}</div>
+{_settlement_sdi_table_html()}
+<p><em>Interactive dashboard: <code>cd settlement_lab && streamlit run src/dashboard/app.py</code></em></p>
+"""
+
+
 def _css_os_lab() -> str:
     """Dark institutional theme for the Open Source FX AI Model Lab page."""
     return (
@@ -1095,6 +1167,7 @@ def _nav_fx(active: str = "home") -> str:
         ("open-source-ai.html", "OSS AI Lab", "open_source_ai"),
         ("global-fx-lab.html", "Global FX", "global_fx_lab"),
         ("value-survival-index.html", "VSI", "value_survival_index"),
+        ("settlement-economics-lab.html", "Settlement", "settlement_lab"),
     ]
     parts = ['<nav class="top">']
     for href, label, key in links:
@@ -1578,6 +1651,17 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
+    settlement_path = out_dir / "settlement-economics-lab.html"
+    settlement_path.write_text(
+        _shell_os_lab(
+            "BR3N Settlement Economics Lab",
+            _settlement_lab_body(out_dir),
+            nav_html=_nav_fx("settlement_lab"),
+            subtitle="Settlement drag, liquidity burden, finality quality, and payment-network fragility.",
+        ),
+        encoding="utf-8",
+    )
+
     return {
         "index": cover_path,
         "fx_lab": fx_lab_path,
@@ -1594,4 +1678,5 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         "open_source_ai": os_ai_path,
         "global_fx_lab": global_fx_path,
         "value_survival_index": vsi_path,
+        "settlement_economics_lab": settlement_path,
     }
