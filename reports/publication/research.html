@@ -119,9 +119,11 @@ a:hover { color: #7dd3fc; }
 }
 .bfi-nav a:hover { color: #07182D; border-color: #c8cdd2; text-decoration: none; }
 .bfi-nav a.active {
-  color: #1e3a5f;
-  border-color: rgba(30, 58, 95, 0.35);
-  background: rgba(30, 58, 95, 0.06);
+  color: #07182D;
+  border: 1px solid transparent;
+  border-bottom: 2px solid rgba(7, 24, 45, 0.42);
+  background: transparent;
+  border-radius: 0;
 }
 .bfi-hero {
   background: #F7F6F2;
@@ -466,6 +468,158 @@ a:hover { color: #7dd3fc; }
 }
 .bfi-hub-list a { font-weight: 500; }
 .bfi-hub-list .meta { font-size: 0.82rem; color: var(--muted); }
+.bfi-page-light {
+  background: #F7F6F2;
+  color: var(--navy);
+}
+.bfi-page-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.page-hero {
+  padding: 96px 0 72px;
+  border-bottom: 1px solid rgba(7, 24, 45, 0.12);
+}
+.page-eyebrow {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(7, 24, 45, 0.62);
+  margin-bottom: 24px;
+}
+.page-hero h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(44px, 6vw, 86px);
+  line-height: 0.98;
+  letter-spacing: -2.5px;
+  color: var(--navy);
+  max-width: 1080px;
+  font-weight: 500;
+  margin: 0;
+}
+.page-subtitle {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 2.5vw, 34px);
+  color: rgba(7, 24, 45, 0.72);
+  max-width: 900px;
+  line-height: 1.3;
+  margin-top: 28px;
+  margin-bottom: 0;
+}
+.page-thesis {
+  max-width: 780px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(7, 24, 45, 0.68);
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+.bfi-page-main .section {
+  padding: 78px 0;
+  border-bottom: 1px solid rgba(7, 24, 45, 0.10);
+}
+.bfi-page-main .section:last-child {
+  border-bottom: none;
+  padding-bottom: 96px;
+}
+.section-kicker {
+  font-size: 12px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(7, 24, 45, 0.56);
+  margin-bottom: 18px;
+}
+.section-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -1.6px;
+  color: var(--navy);
+  margin: 0 0 20px;
+  font-weight: 500;
+}
+.section-intro {
+  max-width: 760px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(7, 24, 45, 0.68);
+  margin: 0;
+}
+.principle-grid,
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+.research-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+.research-domain {
+  margin-top: 56px;
+}
+.research-domain:first-of-type {
+  margin-top: 40px;
+}
+.domain-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  color: var(--navy);
+  margin: 0 0 18px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+.research-card,
+.principle-card {
+  border: 1px solid rgba(7, 24, 45, 0.14);
+  background: rgba(255, 255, 255, 0.26);
+  padding: 24px;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+}
+.card-label {
+  font-size: 11px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: rgba(7, 24, 45, 0.55);
+  margin-bottom: 18px;
+}
+.research-card h3,
+.principle-card h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  line-height: 1.12;
+  color: var(--navy);
+  margin: 0 0 14px;
+  font-weight: 500;
+}
+.research-card p,
+.principle-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(7, 24, 45, 0.68);
+  margin: 0;
+  flex: 1;
+}
+.research-card-link {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(7, 24, 45, 0.4);
+  padding-bottom: 4px;
+  align-self: flex-start;
+}
+.research-card-link:hover {
+  color: #0a2540;
+  border-bottom-color: rgba(7, 24, 45, 0.65);
+  text-decoration: none;
+}
 .bfi-parent-link {
   display: inline-block;
   margin-bottom: 1.25rem;
@@ -474,7 +628,27 @@ a:hover { color: #7dd3fc; }
   text-transform: uppercase;
   color: var(--gold);
 }
+@media (max-width: 980px) {
+  .principle-grid,
+  .research-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 @media (max-width: 640px) {
+  .page-hero {
+    padding: 72px 0 52px;
+  }
+  .bfi-page-main .section {
+    padding: 52px 0;
+  }
+  .principle-grid,
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+  .research-card,
+  .principle-card {
+    min-height: auto;
+  }
   .bfi-hero { padding-top: 3rem; }
   .bfi-card-grid { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
@@ -496,14 +670,32 @@ a:hover { color: #7dd3fc; }
     </div>
   </header>
   
-<section class="bfi-hero" style="padding-bottom:2rem;">
-  <p class="tagline">Research Library</p>
-  <h1>Research</h1>
-  <p class="lead">Published memos, indices, model outputs, and frontier questions from Bowers Frontier Institute labs. All work is research-grade, documented, and subject to stated limitations.</p>
+<div class="bfi-page-light">
+<section class="page-hero">
+  <div class="bfi-page-inner">
+    <div class="page-eyebrow">RESEARCH LIBRARY</div>
+    <h1>Open research on markets, machines, and monetary systems.</h1>
+    <p class="page-subtitle">Published memos, model notes, technical briefs, dashboards, and frontier questions from Bowers Frontier Institute labs.</p>
+    <p class="page-thesis">The library organizes BFI research across foreign exchange, settlement infrastructure, AI market intelligence, model validation, and the future architecture of global financial systems.</p>
+  </div>
 </section>
-<main class="bfi-main">
-  <ul class="bfi-hub-list"><li><a href="usdmxn-research.html">USD/MXN Regime Research</a><span class="meta">Macro Lab</span></li><li><a href="hedge-governance.html">Hedge Governance Memo</a><span class="meta">Macro Lab</span></li><li><a href="memo.html">Full Research Note</a><span class="meta">Macro Lab</span></li><li><a href="global-fx-lab.html">Global FX Research Lab</a><span class="meta">Macro Lab</span></li><li><a href="value-survival-index.html">Value Survival Index</a><span class="meta">Market Structure</span></li><li><a href="settlement-economics-lab.html">Settlement Economics Lab</a><span class="meta">Market Structure</span></li><li><a href="stablecoin-settlement-lab.html">Stablecoin Settlement Lab</a><span class="meta">Market Structure</span></li><li><a href="model-zoo.html">Model Zoo</a><span class="meta">Intelligence</span></li><li><a href="open-source-ai.html">Open Source FX AI Lab</a><span class="meta">Intelligence</span></li><li><a href="corridor.html">Corridor Roadmap</a><span class="meta">Macro Lab</span></li><li><a href="unanswered-fx.html">Unanswered FX Questions</a><span class="meta">Institute</span></li><li><a href="history.html">FX History &amp; Foundations</a><span class="meta">Foundations</span></li></ul>
+<main class="bfi-page-main">
+  <div class="bfi-page-inner">
+    <section class="section" id="research-standards">
+      <div class="section-kicker">Institute Standards</div>
+      <h2 class="section-title">Research Standards</h2>
+      <p class="section-intro">Bowers Frontier Institute treats research as infrastructure: documented, reproducible, clearly scoped, and open to challenge. Each memo, model output, and dashboard should make its assumptions visible, separate signal from speculation, and state its limitations.</p>
+      <div class="principle-grid"><div class="principle-card"><h3>Reproducibility</h3><p>Methods, inputs, and assumptions should be clear enough to review.</p></div><div class="principle-card"><h3>Model Discipline</h3><p>Outputs should be validated, stress-tested, and separated from narrative.</p></div><div class="principle-card"><h3>Market Structure First</h3><p>Research should explain systems, not just chase signals.</p></div><div class="principle-card"><h3>Stated Limitations</h3><p>Every claim should make uncertainty visible.</p></div></div>
+    </section>
+    <section class="section" id="research-index">
+      <div class="section-kicker">Working Index</div>
+      <h2 class="section-title">Research Index</h2>
+      <p class="section-intro">A working index of BFI research pages, labs, models, and technical notes.</p>
+      <div class="research-domain"><h3 class="domain-title">Macro Lab</h3><div class="research-grid"><article class="research-card"><div class="card-label">Macro Lab</div><h3>USD/MXN Regime Research</h3><p>Regime behavior, corridor dynamics, volatility context, and macro transmission.</p><a class="research-card-link" href="usdmxn-research.html">View Research</a></article><article class="research-card"><div class="card-label">Macro Lab</div><h3>Hedge Governance Memo</h3><p>Practical treasury governance, hedging process, controls, and risk framing.</p><a class="research-card-link" href="hedge-governance.html">View Research</a></article><article class="research-card"><div class="card-label">Macro Lab</div><h3>Full Research Note</h3><p>Long-form institutional research note and thesis documentation.</p><a class="research-card-link" href="memo.html">View Research</a></article><article class="research-card"><div class="card-label">Macro Lab</div><h3>Global FX Research Lab</h3><p>Core FX research environment for currencies, carry, forwards, volatility, and liquidity.</p><a class="research-card-link" href="global-fx-lab.html">View Research</a></article><article class="research-card"><div class="card-label">Macro Lab</div><h3>Corridor Roadmap</h3><p>Priority corridors, data expansion, model direction, and research sequencing.</p><a class="research-card-link" href="corridor.html">View Research</a></article></div></div><div class="research-domain"><h3 class="domain-title">Market Structure</h3><div class="research-grid"><article class="research-card"><div class="card-label">Market Structure</div><h3>Value Survival Index</h3><p>A framework for stress, durability, and relative value under changing market regimes.</p><a class="research-card-link" href="value-survival-index.html">View Research</a></article><article class="research-card"><div class="card-label">Market Structure</div><h3>Settlement Economics Lab</h3><p>Settlement timing, payment rails, liquidity windows, and operational risk.</p><a class="research-card-link" href="settlement-economics-lab.html">View Research</a></article><article class="research-card"><div class="card-label">Market Structure</div><h3>Stablecoin Settlement Lab</h3><p>Stablecoins, tokenized money, settlement architecture, and cross-border payment design.</p><a class="research-card-link" href="stablecoin-settlement-lab.html">View Research</a></article></div></div><div class="research-domain"><h3 class="domain-title">Intelligence</h3><div class="research-grid"><article class="research-card"><div class="card-label">Intelligence</div><h3>Model Zoo</h3><p>Inventory of models, experiments, validation approaches, and research workflows.</p><a class="research-card-link" href="model-zoo.html">View Research</a></article><article class="research-card"><div class="card-label">Intelligence</div><h3>Open Source FX AI Lab</h3><p>Open-source model development for FX classification, anomaly detection, and market intelligence.</p><a class="research-card-link" href="open-source-ai.html">View Research</a></article></div></div><div class="research-domain"><h3 class="domain-title">Foundations</h3><div class="research-grid"><article class="research-card"><div class="card-label">Foundations</div><h3>Unanswered FX Questions</h3><p>Frontier questions in foreign exchange, monetary infrastructure, and market behavior.</p><a class="research-card-link" href="unanswered-fx.html">View Research</a></article><article class="research-card"><div class="card-label">Foundations</div><h3>FX History &amp; Foundations</h3><p>Historical context, major milestones, academic foundations, and key research lineage.</p><a class="research-card-link" href="history.html">View Research</a></article></div></div>
+    </section>
+  </div>
 </main>
+</div>
 
   <footer class="bfi-footer">
     <div class="footer-brand"><div class="footer-brand-mark">BFI</div><div class="footer-brand-name">Bowers Frontier Institute</div><div class="footer-brand-tagline">Markets. Machines. Monetary Systems.</div></div>
