@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Activity, Database, Globe2, LayoutDashboard, LineChart, Shield, Coins } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { withBasePath } from "@/lib/base-path";
 
 const NAV = [
   { href: "/", label: "Home", icon: LayoutDashboard },
@@ -36,12 +37,22 @@ export function Shell({
         <div className={cn("mx-auto px-4 py-3", wide ? "max-w-[1400px]" : "max-w-7xl")}>
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div>
+              <a
+                href="/br3n-macro-lab/index.html"
+                className="inline-block mb-2 opacity-90 hover:opacity-100 transition-opacity"
+              >
+                <img
+                  src={withBasePath("/assets/brand/bfi-logo-horizontal-inverse.svg")}
+                  alt="Bowers Frontier Institute"
+                  className="h-7 w-auto rounded-sm"
+                />
+              </a>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="text-[0.62rem] uppercase tracking-[0.28em] text-accentGold font-semibold"
               >
-                BR3N Macro Lab
+                BR3N Macro Lab · Division
               </motion.div>
               <h1 className="text-lg md:text-xl font-semibold text-textPrimary">{title}</h1>
               {subtitle && <p className="text-xs md:text-sm text-textSecondary mt-0.5">{subtitle}</p>}

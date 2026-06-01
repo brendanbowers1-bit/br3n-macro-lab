@@ -11,7 +11,14 @@ from pathlib import Path
 from typing import Dict
 
 from . import LAB_NAME, LAB_NAME_DISPLAY
-from .bfi_site import ROOT_BRAND, build_bfi_pages
+from .bfi_site import (
+    BFI_LOGO_HORIZONTAL,
+    BFI_LOGO_HORIZONTAL_INVERSE,
+    ROOT_BRAND,
+    bfi_favicon_tags,
+    bfi_header_logo,
+    build_bfi_pages,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PUB_DIR = ROOT / "reports" / "publication"
@@ -317,6 +324,28 @@ body.cover-page header.hero-cover {
   height: auto;
   margin: 0 0 1rem;
 }
+.institute-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.institute-brand-link {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  text-decoration: none;
+}
+.institute-brand-link:hover { opacity: 0.9; text-decoration: none; }
+.institute-brand-sep {
+  color: var(--muted);
+  font-size: 0.85rem;
+  opacity: 0.5;
+  user-select: none;
+}
+.bfi-logo-header-sm { height: 32px; width: auto; border-radius: 3px; display: block; }
+.bfi-logo-header-sm-inv { height: 30px; width: auto; border-radius: 3px; display: block; }
 .cta-row {
   display: flex;
   gap: 0.65rem;
@@ -1536,13 +1565,14 @@ def _shell_os_lab(
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="{html.escape(LAB_NAME)} — Open Source FX AI Model Lab"/>
   <title>{html.escape(title)} — {html.escape(LAB_NAME)}</title>
+  {bfi_favicon_tags()}
   <style>{_css_os_lab()}</style>
 </head>
 <body class="os-lab-page">
   <header>
     <div class="header-inner">
-      <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo-sm"/></div>
-      <div class="brand">{html.escape(ROOT_BRAND)} · {html.escape(LAB_NAME_DISPLAY)}</div>
+      {_division_header_row()}
+      <div class="brand">{html.escape(LAB_NAME_DISPLAY)} · Division of {html.escape(ROOT_BRAND)}</div>
       <h1 class="title">{html.escape(title)}</h1>
       <p class="subtitle">{html.escape(subtitle)} · Research only · Not investment advice</p>
       {nav}
@@ -1557,6 +1587,22 @@ def _shell_os_lab(
   </footer>
 </body>
 </html>"""
+
+
+def _division_header_row(*, dark: bool = False) -> str:
+    """Parent BFI logo + BR3N Macro Lab division mark."""
+    bfi_src = BFI_LOGO_HORIZONTAL_INVERSE if dark else BFI_LOGO_HORIZONTAL
+    bfi_cls = "bfi-logo-header-sm-inv" if dark else "bfi-logo-header-sm"
+    return f"""
+<div class="institute-brand-row">
+  <a href="index.html" class="institute-brand-link" title="{html.escape(ROOT_BRAND)}">
+    <img src="{bfi_src}" alt="{html.escape(ROOT_BRAND)}" class="{bfi_cls}"/>
+  </a>
+  <span class="institute-brand-sep" aria-hidden="true">/</span>
+  <a href="macro-lab.html" class="institute-brand-link" title="{html.escape(LAB_NAME)}">
+    <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo-sm" style="max-width:140px;margin:0"/>
+  </a>
+</div>"""
 
 
 def _nav_fx(active: str = "home") -> str:
@@ -1620,13 +1666,14 @@ def _shell(
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="{html.escape(LAB_NAME)} — {html.escape(subtitle)}"/>
   <title>{html.escape(title)} — {html.escape(LAB_NAME)}</title>
+  {bfi_favicon_tags()}
   <style>{_css()}</style>
 </head>
 <body>
   <header>
     <div class="header-inner">
-      <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo-sm"/></div>
-      <div class="brand">{html.escape(ROOT_BRAND)} · {html.escape(LAB_NAME_DISPLAY)}</div>
+      {_division_header_row()}
+      <div class="brand">{html.escape(LAB_NAME_DISPLAY)} · Division of {html.escape(ROOT_BRAND)}</div>
       <h1 class="title">{html.escape(title)}</h1>
       <p class="subtitle">{html.escape(subtitle)}</p>
       {nav}
@@ -1699,7 +1746,7 @@ def _home_shell(body: str) -> str:
     hero = f"""
 <header class="hero-cover">
   <div class="header-inner">
-    <a href="index.html" class="bfi-parent-link" style="display:inline-block;margin-bottom:1rem;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#d4af37;text-decoration:none;">← {html.escape(ROOT_BRAND)}</a>
+    <div style="margin-bottom:1rem;">{bfi_header_logo(inverse=True)}</div>
     <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo"/></div>
     <h1 class="lab-title">{html.escape(LAB_NAME)}</h1>
     <p class="home-subtitle">Cross-Border Value Infrastructure Research</p>
@@ -1726,6 +1773,7 @@ def _home_shell(body: str) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="{html.escape(LAB_NAME)} — division of {html.escape(ROOT_BRAND)}"/>
   <title>{html.escape(LAB_NAME)} — {html.escape(ROOT_BRAND)}</title>
+  {bfi_favicon_tags()}
   <style>{_css_home()}</style>
 </head>
 <body class="cover-page home-page">

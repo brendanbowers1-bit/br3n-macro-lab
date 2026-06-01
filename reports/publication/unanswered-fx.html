@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="BR3N Macro Labs — Major research questions · Research only · Not investment advice"/>
   <title>Unanswered FX Questions — BR3N Macro Labs</title>
+  <link rel="icon" href="assets/brand/bfi-icon.svg" type="image/svg+xml"/><link rel="apple-touch-icon" href="assets/brand/bfi-icon.svg"/>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 :root {
@@ -272,6 +273,28 @@ body.cover-page header.hero-cover {
   height: auto;
   margin: 0 0 1rem;
 }
+.institute-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.institute-brand-link {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  text-decoration: none;
+}
+.institute-brand-link:hover { opacity: 0.9; text-decoration: none; }
+.institute-brand-sep {
+  color: var(--muted);
+  font-size: 0.85rem;
+  opacity: 0.5;
+  user-select: none;
+}
+.bfi-logo-header-sm { height: 32px; width: auto; border-radius: 3px; display: block; }
+.bfi-logo-header-sm-inv { height: 30px; width: auto; border-radius: 3px; display: block; }
 .cta-row {
   display: flex;
   gap: 0.65rem;
@@ -421,8 +444,17 @@ body.cover-page header.hero-cover {
 <body>
   <header>
     <div class="header-inner">
-      <div class="logo-frame"><img src="assets/br3n_macro_labs_logo.png" alt="BR3N MACRO LABS" class="fx-lab-logo-sm"/></div>
-      <div class="brand">Bowers Frontier Institute · BR3N MACRO LABS</div>
+      
+<div class="institute-brand-row">
+  <a href="index.html" class="institute-brand-link" title="Bowers Frontier Institute">
+    <img src="assets/brand/bfi-logo-horizontal.svg" alt="Bowers Frontier Institute" class="bfi-logo-header-sm"/>
+  </a>
+  <span class="institute-brand-sep" aria-hidden="true">/</span>
+  <a href="macro-lab.html" class="institute-brand-link" title="BR3N Macro Labs">
+    <img src="assets/br3n_macro_labs_logo.png" alt="BR3N MACRO LABS" class="fx-lab-logo-sm" style="max-width:140px;margin:0"/>
+  </a>
+</div>
+      <div class="brand">BR3N MACRO LABS · Division of Bowers Frontier Institute</div>
       <h1 class="title">Unanswered FX Questions</h1>
       <p class="subtitle">Major research questions · Research only · Not investment advice</p>
       <nav class="top">

@@ -12,6 +12,12 @@ ROOT_BRAND = "Bowers Frontier Institute"
 CORE_LINE = "Markets. Machines. Monetary Systems."
 TAGLINE = "Research for the financial frontier."
 
+BFI_BRAND_DIR = "assets/brand"
+BFI_LOGO_HORIZONTAL = f"{BFI_BRAND_DIR}/bfi-logo-horizontal.svg"
+BFI_LOGO_HORIZONTAL_INVERSE = f"{BFI_BRAND_DIR}/bfi-logo-horizontal-inverse.svg"
+BFI_LOGO_STACKED = f"{BFI_BRAND_DIR}/bfi-logo-stacked.svg"
+BFI_ICON = f"{BFI_BRAND_DIR}/bfi-icon.svg"
+
 BFI_NAV = [
     ("index.html", "Home", "home"),
     ("research.html", "Research", "research"),
@@ -169,6 +175,48 @@ a:hover { color: #7dd3fc; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+.bfi-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0;
+  flex-shrink: 0;
+}
+.bfi-logo-link:hover { opacity: 0.92; text-decoration: none; }
+.bfi-logo-h {
+  height: 40px;
+  width: auto;
+  display: block;
+  border-radius: 3px;
+}
+.bfi-header .bfi-logo-h { height: 36px; }
+.bfi-logo-h-inv { height: 34px; border-radius: 3px; }
+.bfi-logo-stacked {
+  width: min(300px, 82vw);
+  height: auto;
+  display: block;
+  margin: 0 auto 1.35rem;
+  border-radius: 4px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+.bfi-closing-logo {
+  width: min(260px, 72vw);
+  height: auto;
+  margin: 0 auto 1rem;
+  display: block;
+  border-radius: 4px;
+}
+.bfi-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .bfi-wordmark {
   font-family: var(--serif);
@@ -475,6 +523,36 @@ a:hover { color: #7dd3fc; }
 """
 
 
+def bfi_favicon_tags() -> str:
+    return (
+        f'<link rel="icon" href="{BFI_ICON}" type="image/svg+xml"/>'
+        f'<link rel="apple-touch-icon" href="{BFI_ICON}"/>'
+    )
+
+
+def bfi_header_logo(*, inverse: bool = False) -> str:
+    src = BFI_LOGO_HORIZONTAL_INVERSE if inverse else BFI_LOGO_HORIZONTAL
+    cls = "bfi-logo-h bfi-logo-h-inv" if inverse else "bfi-logo-h"
+    return (
+        f'<a href="index.html" class="bfi-logo-link">'
+        f'<img src="{src}" alt="{html.escape(ROOT_BRAND)}" class="{cls}"/>'
+        f"</a>"
+    )
+
+
+def bfi_stacked_logo(*, css_class: str = "bfi-logo-stacked") -> str:
+    return (
+        f'<img src="{BFI_LOGO_STACKED}" alt="{html.escape(ROOT_BRAND)}" class="{css_class}"/>'
+    )
+
+
+def bfi_closing_logo() -> str:
+    return (
+        f'<img src="{BFI_LOGO_HORIZONTAL_INVERSE}" alt="{html.escape(ROOT_BRAND)}" '
+        f'class="bfi-closing-logo"/>'
+    )
+
+
 def _nav_bfi(active: str) -> str:
     parts = ['<nav class="bfi-nav">']
     for href, label, key in BFI_NAV:
@@ -497,12 +575,13 @@ def _bfi_shell(body: str, *, active: str = "home", title: str | None = None) -> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="{html.escape(ROOT_BRAND)} — {html.escape(TAGLINE)}"/>
   <title>{html.escape(page_title)}</title>
+  {bfi_favicon_tags()}
   <style>{_css_bfi()}</style>
 </head>
 <body class="bfi">
   <header class="bfi-header">
     <div class="bfi-header-inner">
-      <a href="index.html" class="bfi-wordmark">{html.escape(ROOT_BRAND)}</a>
+      {bfi_header_logo()}
       {_nav_bfi(active)}
     </div>
   </header>
@@ -536,7 +615,8 @@ def bfi_index_body() -> str:
     )
     return f"""
 <section class="bfi-hero">
-  <h1>{html.escape(ROOT_BRAND)}</h1>
+  <h1 class="bfi-sr-only">{html.escape(ROOT_BRAND)}</h1>
+  {bfi_stacked_logo()}
   <p class="core-line">{html.escape(CORE_LINE)}</p>
   <p class="tagline">{html.escape(TAGLINE)}</p>
   <p class="lead">The world&rsquo;s financial systems move faster than the institutions built to understand them.</p>
@@ -614,7 +694,7 @@ def bfi_index_body() -> str:
   </section>
 
   <div class="bfi-closing">
-    <div class="brand">{html.escape(ROOT_BRAND)}</div>
+    {bfi_closing_logo()}
     <p class="core">{html.escape(CORE_LINE)}</p>
     <p class="tag">{html.escape(TAGLINE)}</p>
   </div>

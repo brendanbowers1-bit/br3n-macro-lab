@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="420" viewBox="0 0 1800 420">
+  <rect width="1800" height="420" fill="#F7F6F2"/>
+  <g transform="translate(110,72)">
+    <text x="0" y="176" font-family="Georgia, 'Times New Roman', serif" font-size="168" letter-spacing="-8" fill="#07182D">BFI</text>
+    <line x1="340" y1="36" x2="340" y2="230" stroke="#9AA3AD" stroke-width="2"/>
+    <text x="405" y="112" font-family="Georgia, 'Times New Roman', serif" font-size="54" letter-spacing="13" fill="#07182D">BOWERS FRONTIER INSTITUTE</text>
+    <text x="407" y="190" font-family="Arial, Helvetica, sans-serif" font-size="25" letter-spacing="9" fill="#46515C">MARKETS. MACHINES. MONETARY SYSTEMS.</text>
+    <line x1="405" y1="232" x2="1430" y2="232" stroke="#9AA3AD" stroke-width="1.4" opacity="0.7"/>
+  </g>
+</svg>
