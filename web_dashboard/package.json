@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/br3n-macro-lab/dashboard NEXT_STATIC_EXPORT=1 next build",
     "start": "next start",
     "lint": "next lint",
     "predev": "node -e \"const fs=require('fs'); if(!fs.existsSync('public/api/dashboard.json')) console.warn('Run: cd .. && python scripts/export_dashboard_api.py')\""

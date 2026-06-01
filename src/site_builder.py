@@ -36,6 +36,7 @@ HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
     ("value-survival-index.html", "Value Survival Index", "How much value survives when money crosses borders?", "Flagship"),
     ("settlement-economics-lab.html", "Settlement Economics Lab", "Settlement drag, liquidity burden, and finality", "Flagship"),
     ("stablecoin-settlement-lab.html", "Stablecoin Settlement Lab", "Finality, window compression, and digital run conditions", "Flagship"),
+    ("dashboard/index.html", "Interactive Web Dashboard", "Cinematic command center — Sankey, value flow map, finality matrix", "Dashboard"),
     ("ladder.html", "Evidence Ladder", "Eight-level evidence framework", "Methods"),
     ("memo.html", "Full Research Note", "Methods, tables, limitations", "Deep dive"),
     ("corridor.html", "Corridor Roadmap", "Multi-corridor payment research", "Corridors"),
@@ -1240,6 +1241,7 @@ def _nav_fx(active: str = "home") -> str:
         ("value-survival-index.html", "VSI", "value_survival_index"),
         ("settlement-economics-lab.html", "Settlement", "settlement_lab"),
         ("stablecoin-settlement-lab.html", "Stablecoin", "stablecoin_lab"),
+        ("dashboard/index.html", "Dashboard", "web_dashboard"),
     ]
     parts = ['<nav class="top">']
     for href, label, key in links:

@@ -79,6 +79,20 @@ npm run build
 npm start
 ```
 
+## GitHub Pages (static export)
+
+Deployed at **https://brendanbowers1-bit.github.io/br3n-macro-lab/dashboard/**
+
+From repo root:
+
+```bash
+make web-dashboard-pages
+# or
+bash scripts/build_web_dashboard_pages.sh
+```
+
+This exports to `reports/publication/dashboard/` and is merged into the main Pages deploy via CI.
+
 ## Research disclaimer
 
 All pages include credibility banners. Verify `mock_data_flag` before citing. Not investment advice.

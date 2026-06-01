@@ -23,5 +23,7 @@ _snapshots/
 .time_tracker_session.json
 web_dashboard/node_modules/
 web_dashboard/.next/
+web_dashboard/out/
+reports/publication/dashboard/
 data_lake/br3n_lake.duckdb
 data/runs/logs/

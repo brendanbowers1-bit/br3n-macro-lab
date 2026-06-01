@@ -22,6 +22,14 @@ def main() -> None:
     build_publication()
     paths = build_site()
 
+    # Static Next.js dashboard → reports/publication/dashboard/
+    import subprocess
+
+    dash_script = ROOT / "scripts" / "build_web_dashboard_pages.sh"
+    if dash_script.exists():
+        print("\n==> Building web dashboard for GitHub Pages...")
+        subprocess.run(["bash", str(dash_script)], check=False)
+
     print(f"\n{paths['index'].parent}\n")
     print("Site built:")
     for name, path in paths.items():

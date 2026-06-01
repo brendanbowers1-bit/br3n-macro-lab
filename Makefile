@@ -52,6 +52,9 @@ dashboard-all: data-lake-sync dashboard-export dashboard-visuals
 web-dashboard-dev:
 	cd web_dashboard && npm run dev
 
+web-dashboard-pages:
+	bash scripts/build_web_dashboard_pages.sh
+
 # Stablecoin Settlement Window Lab
 stablecoin-fetch:
 	cd stablecoin_lab && PYTHONPATH=. $(PYTHON) scripts/fetch_stablecoin_data.py
