@@ -37,7 +37,7 @@ def _save(fig, name: str) -> None:
 
 
 def main() -> None:
-    print("BR3N Settlement Economics Lab — make visuals")
+    print("Bowers Frontier Settlement Economics Lab — make visuals")
     ds = build_settlement_dataset()
     sdi = ds["settlement_drag_outputs"]
     olb = ds["operational_liquidity_outputs"]

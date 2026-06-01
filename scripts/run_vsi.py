@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run BR3N Value Survival Index pipeline."""
+"""Run Bowers Frontier Value Survival Index pipeline."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from src.indices.remittance_welfare import calculate_remittance_welfare_table, r
 
 
 def main() -> None:
-    print("BR3N Value Survival Index (VSI)")
+    print("Bowers Frontier Value Survival Index (VSI)")
     print("=" * 60)
     print("Question: For every $100 sent, how much survives as usable purchasing power?\n")
 

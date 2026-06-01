@@ -1,5 +1,5 @@
 """
-Project-wide research settings for BR3N Stablecoin Settlement Window Lab.
+Project-wide research settings for Bowers Frontier Stablecoin Settlement Window Lab.
 
 Research-only. Not financial advice. Not investment recommendation.
 """

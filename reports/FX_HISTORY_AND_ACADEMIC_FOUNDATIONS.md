@@ -2,7 +2,7 @@
 
 ## Why This Page Exists
 
-BR3N Macro Labs — FX Lab sits inside a long history of exchange-rate research.
+Bowers Frontier Macro Labs — FX Lab sits inside a long history of exchange-rate research.
 
 For more than 300 years, economists, policymakers, traders, and researchers have tried to understand how currencies adjust, why exchange rates move, why they are so difficult to forecast, and whether market behavior becomes more structured under certain conditions.
 

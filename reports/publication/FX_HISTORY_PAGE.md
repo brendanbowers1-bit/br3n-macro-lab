@@ -10,7 +10,7 @@
 
 For more than 300 years, economists, policymakers, traders, and researchers have tried to understand how currencies adjust, why exchange rates move, and why they are so difficult to forecast.
 
-BR3N Macro Labs — FX Lab does not claim to overturn this history. It builds on it.
+Bowers Frontier Macro Labs — FX Lab does not claim to overturn this history. It builds on it.
 
 The central question:
 

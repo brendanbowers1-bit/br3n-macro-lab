@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "generated_at": "2026-06-01T23:01:28.167484+00:00",
+    "lab": "Bowers Frontier Macro Labs",
+    "product": "USD/MXN Corridor Intelligence System",
+    "methodology_version": "us_mx_corridor_v1"
+  },
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      "Source marked as starter/research series \u2014 not operational Banxico feed"
+    ],
+    "row_count": 23,
+    "data_quality_score": 95.0
+  },
+  "risk_score": {
+    "corridor": "United States\u2192Mexico (USD/MXN)",
+    "as_of_month": "2025-11",
+    "score": 36.8,
+    "band": "Moderate",
+    "components": {
+      "momentum_stress": 69.54,
+      "volatility_stress": 36.42,
+      "drawdown_stress": 23.17,
+      "data_quality_gap": 5.0
+    },
+    "weights": {
+      "momentum_stress": 0.3,
+      "volatility_stress": 0.25,
+      "drawdown_stress": 0.25,
+      "data_quality_gap": 0.2
+    },
+    "metrics": {
+      "latest_flow_usd_millions": 5060.0,
+      "mom_pct": -0.2,
+      "yoy_pct": -7.82,
+      "peak_flow_usd_millions": 5723.0,
+      "drawdown_from_peak_pct": 11.58,
+      "data_quality_score": 95.0
+    },
+    "methodology_version": "us_mx_corridor_v1",
+    "disclaimer": "Corridor Risk Score measures structural flow stress from validated remittance data. Research only. Not investment advice. Not a price or FX prediction."
+  },
+  "series": {
+    "month_labels": [
+      "Jan 2024",
+      "Feb 2024",
+      "Mar 2024",
+      "Apr 2024",
+      "May 2024",
+      "Jun 2024",
+      "Jul 2024",
+      "Aug 2024",
+      "Sep 2024",
+      "Oct 2024",
+      "Nov 2024",
+      "Dec 2024",
+      "Jan 2025",
+      "Feb 2025",
+      "Mar 2025",
+      "Apr 2025",
+      "May 2025",
+      "Jun 2025",
+      "Jul 2025",
+      "Aug 2025",
+      "Sep 2025",
+      "Oct 2025",
+      "Nov 2025"
+    ],
+    "remittance_usd_millions": [
+      4575,
+      4510,
+      5120,
+      5422,
+      5624,
+      5578,
+      5614,
+      5579,
+      5360,
+      5723,
+      5489,
+      5228,
+      4761,
+      4459,
+      5145,
+      5130,
+      5360,
+      5201,
+      5330,
+      5085,
+      5050,
+      5070,
+      5060
+    ]
+  },
+  "kpis": {
+    "latest_flow": 5060.0,
+    "yoy_pct": -7.82,
+    "yoy_abs": -429,
+    "ytd_2025": 55651,
+    "peak_flow": 5723.0,
+    "peak_month": "Oct 2024",
+    "latest_month": "Nov 2025"
+  }
+}

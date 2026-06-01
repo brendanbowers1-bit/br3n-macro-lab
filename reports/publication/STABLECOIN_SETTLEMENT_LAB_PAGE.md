@@ -1,4 +1,4 @@
-# BR3N Stablecoin Settlement Window Lab
+# Bowers Frontier Stablecoin Settlement Window Lab
 
 ## When settlement windows collapse, risk relocates
 

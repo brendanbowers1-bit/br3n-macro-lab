@@ -1,0 +1,16 @@
+{
+  "name": "bowers-frontier-macro-labs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bowers Frontier Macro Labs — USD/MXN corridor intelligence research system",
+  "scripts": {
+    "install:all": "npm install --prefix web_dashboard && npm install --prefix model-lab",
+    "build": "npm run build --prefix web_dashboard",
+    "build:pages": "npm run build:pages --prefix web_dashboard",
+    "corridor:run": "python3 scripts/run_corridor_intelligence.py",
+    "model:smoke": "npm run model:smoke --prefix model-lab",
+    "model:brief": "npm run model:brief --prefix model-lab",
+    "model:eval": "npm run model:eval --prefix model-lab",
+    "model:test": "npm run model:test --prefix model-lab"
+  }
+}

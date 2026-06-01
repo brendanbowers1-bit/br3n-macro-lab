@@ -1,4 +1,4 @@
-"""Page renderers for BR3N Command Center."""
+"""Page renderers for Bowers Frontier Command Center."""
 
 from __future__ import annotations
 
@@ -92,7 +92,7 @@ def render_command_center(data: DashboardData, flt: dict) -> None:
                 fig,
                 "Corridor leakage ranking",
                 subtitle="Lower VSI = greater estimated value leakage",
-                source="World Bank RPW + BR3N VSI pipeline",
+                source="World Bank RPW + Bowers Frontier VSI pipeline",
                 source_id="world_bank_rpw",
                 tier=1,
                 quality_score=dq_mean,
@@ -139,7 +139,7 @@ def render_value_survival(data: DashboardData, flt: dict) -> None:
             chart_card(
                 fig, "Ranked VSI",
                 subtitle="Corridor-level value survival",
-                source="World Bank RPW + BR3N VSI",
+                source="World Bank RPW + Bowers Frontier VSI",
                 source_id="world_bank_rpw", tier=1,
                 methodology="vsi-credible-1.0",
                 mock_warning=bool(vsi["mock_data_flag"].any()) if "mock_data_flag" in vsi.columns else False,

@@ -2,7 +2,7 @@
 
 ## Regime-Based FX Hedge Governance Under Random-Walk Benchmarks
 
-**BR3N Macro Labs — FX Lab**  
+**Bowers Frontier Macro Labs — FX Lab**  
 **Generated:** 2026-05-30
 
 > Research and risk-framing only. Not investment advice. No live trading.
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-BR3N Macro Labs does **not** currently find robust evidence that the tested FX models forecast exchange rates better than random walk. However, the evidence suggests a more useful research direction: **regime labels may improve hedge governance** by reducing unnecessary hedge turnover, avoiding over-adjustment in noisy regimes, and supporting more disciplined hedge-ratio decisions.
+Bowers Frontier Macro Labs does **not** currently find robust evidence that the tested FX models forecast exchange rates better than random walk. However, the evidence suggests a more useful research direction: **regime labels may improve hedge governance** by reducing unnecessary hedge turnover, avoiding over-adjustment in noisy regimes, and supporting more disciplined hedge-ratio decisions.
 
 This memo separates **forecast accuracy**, **trading P&L**, and **hedge-governance usefulness**. A model may fail as a price forecast but still be useful for hedge discipline.
 
@@ -178,7 +178,7 @@ Full matrix: [Research Ladder — Level 8](ladder.html#level-8-institutional-pro
 
 Research and risk-framing only. Not investment advice. No guaranteed returns. No live trading.
 
-BR3N Macro Labs does not claim that the current model predicts FX or disproves random walk.
+Bowers Frontier Macro Labs does not claim that the current model predicts FX or disproves random walk.
 
 ---
 

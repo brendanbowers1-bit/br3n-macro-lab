@@ -316,7 +316,7 @@ def run_self_improvement(
 
 def print_summary(summary: dict) -> None:
     print("\n" + "=" * 60)
-    print("BR3N Macro Labs — Self-Improvement Loop")
+    print("Bowers Frontier Macro Labs — Self-Improvement Loop")
     print("=" * 60)
     print(f"Run ID:   {summary['run_id']}")
     print(f"Health:   {summary['health']}")

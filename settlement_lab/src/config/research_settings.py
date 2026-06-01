@@ -1,5 +1,5 @@
 """
-Project-wide research settings for BR3N Settlement Economics Lab.
+Project-wide research settings for Bowers Frontier Settlement Economics Lab.
 
 Research-only. Not financial advice. Not operational payment guidance.
 """

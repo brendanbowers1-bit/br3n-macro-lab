@@ -12,7 +12,7 @@ These models are not trading systems by themselves. They are research baselines.
 
 ## Core Thesis
 
-Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. BR3N FX Lab should improve on them by adding carry, macro, volatility regimes, news sentiment, better labels, transaction costs, and proper walk-forward backtesting.
+Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. Bowers Frontier FX Lab should improve on them by adding carry, macro, volatility regimes, news sentiment, better labels, transaction costs, and proper walk-forward backtesting.
 
 **Conclusion:** The edge is not copying an open-source FX model. The edge is building a disciplined research pipeline that proves when a model works, when it fails, and why.
 

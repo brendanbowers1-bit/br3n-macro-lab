@@ -15,7 +15,7 @@ from src.research.report_generator import generate_all_reports
 
 
 def main() -> None:
-    print("BR3N Global FX & Remittance Research Lab — Stage 3 pipeline")
+    print("Bowers Frontier Global FX & Remittance Research Lab — Stage 3 pipeline")
     print("=" * 60)
     print("Step 1: Build/fetch public data files…")
     build_all_public_data()

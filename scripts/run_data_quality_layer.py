@@ -12,7 +12,7 @@ from src.data_quality_layer import save_data_quality_layer
 
 def main() -> None:
     paths = save_data_quality_layer()
-    print("\nBR3N Macro Labs — Data Quality Layer")
+    print("\nBowers Frontier Macro Labs — Data Quality Layer")
     print("=" * 50)
     for key, path in paths.items():
         print(f"  {key}: {path}")

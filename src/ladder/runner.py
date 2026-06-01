@@ -257,7 +257,7 @@ def run_ladder(cfg: dict | None = None, refresh: bool = False) -> Path:
 
 ## Claim discipline
 
-BR3N Macro Labs does **not** claim that the current model predicts FX or disproves random walk. The current evidence suggests that regime labels may be useful for organizing risk, identifying noisy versus structured environments, and testing hedge-governance policies.
+Bowers Frontier Macro Labs does **not** claim that the current model predicts FX or disproves random walk. The current evidence suggests that regime labels may be useful for organizing risk, identifying noisy versus structured environments, and testing hedge-governance policies.
 
 ---
 

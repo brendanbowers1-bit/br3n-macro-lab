@@ -2,7 +2,7 @@
 
 **Snapshot date:** 2026-05-30  
 **Git commit:** `310efc523a9d0275a3817b4b79bc825d4c22546c`  
-**Project:** BR3N Macro Labs — FX Lab
+**Project:** Bowers Frontier Macro Labs — FX Lab
 
 > Research and risk-framing only. Not investment advice. No live trading.
 

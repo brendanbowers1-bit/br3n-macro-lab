@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="Run full BR3N Macro Labs expansion pipeline")
+    p = argparse.ArgumentParser(description="Run full Bowers Frontier Macro Labs expansion pipeline")
     p.add_argument("--refresh", action="store_true", help="Re-download FX pairs and macro data")
     p.add_argument("--push", action="store_true", help="Git commit and push publication after build")
     args = p.parse_args()

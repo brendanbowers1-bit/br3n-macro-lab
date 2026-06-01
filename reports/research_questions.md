@@ -1,4 +1,4 @@
-# BR3N Macro Labs — High-Level Research Questions
+# Bowers Frontier Macro Labs — High-Level Research Questions
 
 > Research and risk-framing only. Not investment advice.
 
@@ -91,7 +91,7 @@ We do not use AI to claim certainty. We use AI to organize evidence, classify re
 
 ---
 
-# Under-Tested Research Questions for BR3N Macro Labs
+# Under-Tested Research Questions for Bowers Frontier Macro Labs
 
 ## 1. Regime-Based Hedge Governance
 

@@ -30,10 +30,10 @@ RESEARCH_QUESTIONS: list[ResearchQuestion] = [
         hypothesis="When value crosses a border, a measurable fraction is destroyed by fees, spreads, timing, volatility, inflation, payout friction, dollar dependency, and trust discounts.",
         required_data=["RPW", "KNOMAD", "IMF FX", "macro inflation", "BIS turnover", "sovereignty manual"],
         measurable_variables=["value_survival_index", "total_value_loss_pct", "real_usable_value_delivered_pct"],
-        proposed_index="BR3N Value Survival Index (VSI)",
+        proposed_index="Bowers Frontier Value Survival Index (VSI)",
         possible_chart="Stacked bar: all VSI loss components by corridor",
         possible_regression="real_usable_value_delivered ~ trust_score + dollar_dependency + corridor FE",
-        interpretation="Who bears the cost when value crosses borders — the central question of BR3N Macro Lab.",
+        interpretation="Who bears the cost when value crosses borders — the central question of Bowers Frontier Macro Labs.",
     ),
     ResearchQuestion(
         question_id="value_survival_trust",

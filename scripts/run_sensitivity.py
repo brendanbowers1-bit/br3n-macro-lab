@@ -15,7 +15,7 @@ from src.utils.paths import OUTPUTS_DIR, FIGURES_DIR
 
 
 def main() -> None:
-    print("BR3N Value Survival Index — Sensitivity Analysis")
+    print("Bowers Frontier Value Survival Index — Sensitivity Analysis")
     print("=" * 60)
 
     dataset = build_value_survival_dataset()

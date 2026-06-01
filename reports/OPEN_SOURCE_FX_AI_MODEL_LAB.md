@@ -1,6 +1,8 @@
-# Open Source FX AI Model Lab
+# Bowers Frontier Model Lab
 
 **Borrow. Benchmark. Improve. Explain.**
+
+A model-agnostic AI research environment for testing local and hosted models against FX, treasury, settlement, and corridor-risk tasks.
 
 > Research-only. Not investment advice. No live trading.
 
@@ -8,7 +10,7 @@
 
 ## Core Thesis
 
-Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. BR3N FX Lab should improve on them by adding carry, macro, volatility regimes, news sentiment, better labels, transaction costs, and proper walk-forward backtesting.
+Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. Bowers Frontier FX Lab should improve on them by adding carry, macro, volatility regimes, news sentiment, better labels, transaction costs, and proper walk-forward backtesting.
 
 > **Warning:** These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.
 
@@ -22,7 +24,7 @@ Most open-source FX AI models are weak because they only predict the next candle
 
 **Description:** A transformer-based machine learning model for EUR/USD short-term forecasting, useful as a modern deep-learning benchmark.
 
-**Use case:** Benchmark BR3N's own FX models against a direct transformer baseline.
+**Use case:** Benchmark Bowers Frontier's own FX models against a direct transformer baseline.
 
 **Improvement idea:** Add macro features, rate differentials, carry, news sentiment, volatility regimes, and transaction-cost-aware labels.
 
@@ -40,7 +42,7 @@ Most open-source FX AI models are weak because they only predict the next candle
 
 **Use case:** Test whether pair-specific models outperform generalized FX models.
 
-**Improvement idea:** Evaluate model quality across major pairs, then retrain using BR3N's cleaner feature set.
+**Improvement idea:** Evaluate model quality across major pairs, then retrain using Bowers Frontier's cleaner feature set.
 
 ---
 
@@ -60,7 +62,7 @@ Most open-source FX AI models are weak because they only predict the next candle
 
 **Use case:** Build custom FX trading environments with realistic spreads, slippage, and position sizing.
 
-**Improvement idea:** Create BR3N-specific reward functions based on risk-adjusted return, drawdown control, Sharpe ratio, and capital preservation.
+**Improvement idea:** Create Bowers Frontier-specific reward functions based on risk-adjusted return, drawdown control, Sharpe ratio, and capital preservation.
 
 ---
 
@@ -92,9 +94,9 @@ Most open-source FX AI models are weak because they only predict the next candle
 
 ---
 
-## 4. BR3N Improvement Layer
+## 4. Bowers Frontier Improvement Layer
 
-What BR3N FX Lab adds beyond open-source models:
+What Bowers Frontier FX Lab adds beyond open-source models:
 
 ### A. Carry Features
 
@@ -167,10 +169,10 @@ Instead of predicting next close, label trades using:
 
 ---
 
-## 5. Architecture — BR3N FX Lab v1
+## 5. Architecture — Bowers Frontier FX Lab v1
 
 ```
-BR3N FX Lab v1
+Bowers Frontier FX Lab v1
 ├── Baselines
 │   ├── EUR/USD LSTM
 │   ├── EUR/USD TimeSeriesTransformer
@@ -222,7 +224,7 @@ BR3N FX Lab v1
 - Which pairs are most predictable: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, or USD/INR?
 - Does the model still work after transaction costs?
 - Can a model know when not to trade?
-- Can BR3N FX Lab explain why a trade works instead of only predicting direction?
+- Can Bowers Frontier FX Lab explain why a trade works instead of only predicting direction?
 
 ---
 
@@ -253,7 +255,7 @@ Every model must be judged by:
 | **Phase 5** | Build walk-forward backtesting engine |
 | **Phase 6** | Add model comparison dashboard |
 | **Phase 7** | Add trade explanation engine |
-| **Phase 8** | Publish BR3N FX Lab research notes |
+| **Phase 8** | Publish Bowers Frontier FX Lab research notes |
 
 ---
 

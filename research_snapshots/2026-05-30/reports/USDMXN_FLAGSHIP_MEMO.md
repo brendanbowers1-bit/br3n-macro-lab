@@ -1,6 +1,6 @@
 # USD/MXN Flagship Research Memo
 
-**BR3N Macro Labs · FX Lab**  
+**Bowers Frontier Macro Labs · FX Lab**  
 **Generated:** 2026-05-30 14:42  
 **Pair:** USD/MXN  
 **Latest observation:** 2026-05-22 · Price 17.2977 · Regime **R1_trend_high_vol**
@@ -12,7 +12,7 @@
 
 ## Executive Summary
 
-BR3N Macro Labs tests whether USD/MXN is **conditionally forecastable** across observable regimes — not uniformly predictable. The flagship memo integrates regime intelligence, random-walk benchmarks, hedge-governance scorecards, and explicit data-quality tiering.
+Bowers Frontier Macro Labs tests whether USD/MXN is **conditionally forecastable** across observable regimes — not uniformly predictable. The flagship memo integrates regime intelligence, random-walk benchmarks, hedge-governance scorecards, and explicit data-quality tiering.
 
 **Desk framing (US_MX corridor):** Overall desk risk level is High. Hedge timing posture: High-volatility trend. Forecast evidence is weak, but regime information may still be useful for hedge governance and risk framing. High-volatility trend: treat as stress framing, not blind trend-following.
 
@@ -128,4 +128,4 @@ High-risk noise: R4_range_low_vol; Potential structure: R1_trend_high_vol, R2_tr
 
 This memo is for education, analysis, and risk-framing only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.
 
-BR3N Macro Labs is an independent research project.
+Bowers Frontier Macro Labs is an independent research project.

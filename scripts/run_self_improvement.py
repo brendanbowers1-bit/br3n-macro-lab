@@ -18,7 +18,7 @@ from src.self_improve.runner import print_summary, run_self_improvement
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="BR3N Macro Labs self-improvement loop")
+    p = argparse.ArgumentParser(description="Bowers Frontier Macro Labs self-improvement loop")
     p.add_argument(
         "--rerun",
         action="store_true",

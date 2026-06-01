@@ -1,4 +1,4 @@
-# BR3N Macro Labs — FX Lab One-Pager
+# Bowers Frontier Macro Labs — FX Lab One-Pager
 
 **Generated:** 2026-05-30  
 **Flagship pair:** USD/MXN · **Latest regime:** R2_trend_low_vol
@@ -87,4 +87,4 @@ Prototype results must be rerun on Tier 1 before publication-grade claims.
 
 This is research and risk-framing only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.
 
-BR3N Macro Labs is an independent research project — not affiliated with any employer, bank, or payment company unless explicitly stated.
+Bowers Frontier Macro Labs is an independent research project — not affiliated with any employer, bank, or payment company unless explicitly stated.

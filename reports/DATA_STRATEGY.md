@@ -1,4 +1,4 @@
-# BR3N Macro Labs Data Strategy
+# Bowers Frontier Macro Labs Data Strategy
 
 > Research only — not investment advice.
 

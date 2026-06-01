@@ -1,4 +1,4 @@
-# BR3N Macro Labs — Research Ladder
+# Bowers Frontier Macro Labs — Research Ladder
 
 **Generated:** 2026-05-30 16:07  
 **Primary pair:** USDMXN=X  
@@ -51,7 +51,7 @@
 
 ## Claim discipline
 
-BR3N Macro Labs does **not** claim that the current model predicts FX or disproves random walk. The current evidence suggests that regime labels may be useful for organizing risk, identifying noisy versus structured environments, and testing hedge-governance policies.
+Bowers Frontier Macro Labs does **not** claim that the current model predicts FX or disproves random walk. The current evidence suggests that regime labels may be useful for organizing risk, identifying noisy versus structured environments, and testing hedge-governance policies.
 
 ---
 

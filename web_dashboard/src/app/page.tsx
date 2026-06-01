@@ -28,17 +28,17 @@ export default function HomePage() {
           className="max-w-4xl"
         >
           <Badge variant="gold" className="mb-5">
-            <Sparkles size={10} className="mr-1 inline" /> BR3N Macro Lab
+            <Sparkles size={10} className="mr-1 inline" /> Bowers Frontier Macro Labs
           </Badge>
           <h1 className="text-4xl md:text-6xl font-semibold text-textPrimary leading-[1.1] tracking-tight">
-            Cinematic Research
+            Domain-specific AI for
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accentCyan to-accentGold">
-              Intelligence Platform
+              FX &amp; Treasury Intelligence
             </span>
           </h1>
           <p className="mt-5 text-textSecondary text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Value Survival · Settlement Economics · Stablecoin Finality · Data Lineage.
-            Python computes. React visualizes.
+            Research systems combining market data, macro signals, corridor analytics, model evaluation,
+            and AI-assisted reporting. Value Survival · Settlement Economics · Stablecoin Finality · Data Lineage.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <Button asChild variant="gold" size="lg">

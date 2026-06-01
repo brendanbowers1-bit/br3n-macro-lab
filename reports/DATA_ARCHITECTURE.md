@@ -1,6 +1,6 @@
 # FX Lab Data Architecture
 
-BR3N Macro Labs — FX Lab data tier stack and publication rules.
+Bowers Frontier Macro Labs — FX Lab data tier stack and publication rules.
 
 ## Data Tiers
 

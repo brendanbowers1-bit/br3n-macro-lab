@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Smoke test BR3N Command Center imports and data loading."""
+"""Smoke test Bowers Frontier Command Center imports and data loading."""
 
 from __future__ import annotations
 

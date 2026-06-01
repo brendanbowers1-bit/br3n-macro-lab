@@ -1,5 +1,5 @@
 """
-Explicit data-quality layer — manifest of all series used in BR3N Macro Labs FX research.
+Explicit data-quality layer — manifest of all series used in Bowers Frontier Macro Labs FX research.
 
 Records source, tier, quality flag, and role for each dataset in the stack.
 """

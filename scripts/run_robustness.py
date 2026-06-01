@@ -15,7 +15,7 @@ from src.utils.paths import OUTPUTS_DIR
 
 
 def main() -> None:
-    print("BR3N Value Survival Index — Robustness Checks")
+    print("Bowers Frontier Value Survival Index — Robustness Checks")
     print("=" * 60)
     print("Results are robust if corridor rankings remain similar across specifications.\n")
 

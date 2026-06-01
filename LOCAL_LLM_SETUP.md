@@ -1,4 +1,4 @@
-# Local LLM Setup — BR3N FX Research Terminal
+# Local LLM Setup — Bowers Frontier FX Research Terminal
 
 The FX research terminal uses **Ollama** for local LLM tasks. LLMs do **not** generate trading signals directly. They:
 

@@ -35,7 +35,7 @@ def _save(fig, name: str) -> None:
 
 
 def main() -> None:
-    print("BR3N Stablecoin Settlement Window Lab — make visuals")
+    print("Bowers Frontier Stablecoin Settlement Window Lab — make visuals")
     ds = build_stablecoin_dataset()
     sfqi = ds["stablecoin_finality_quality_outputs"]
     swc = ds["settlement_window_compression_outputs"]

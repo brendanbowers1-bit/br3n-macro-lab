@@ -2,7 +2,7 @@
 
 **Markets · Currency regime intelligence**
 
-Part of **BR3N Macro Labs · FX Lab** · Prepared by Brendan Bowers
+Part of **Bowers Frontier Macro Labs · FX Lab** · Prepared by Brendan Bowers
 
 ---
 
@@ -50,4 +50,4 @@ Study when currency markets become less random and how regime intelligence can i
 
 FX Lab research is for education, analysis, and risk-framing only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.
 
-BR3N Macro Labs is an independent research project — not affiliated with any employer, university, financial institution, or payment company unless explicitly stated.
+Bowers Frontier Macro Labs is an independent research project — not affiliated with any employer, university, financial institution, or payment company unless explicitly stated.

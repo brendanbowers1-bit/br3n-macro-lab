@@ -1,5 +1,5 @@
 """
-Canonical FX market data schema for BR3N Macro Labs.
+Canonical FX market data schema for Bowers Frontier Macro Labs.
 
 Every standardized price series should carry provenance columns.
 """

@@ -1,4 +1,4 @@
-"""Data validation for BR3N Value Survival Index and shared outputs."""
+"""Data validation for Bowers Frontier Value Survival Index and shared outputs."""
 
 from __future__ import annotations
 

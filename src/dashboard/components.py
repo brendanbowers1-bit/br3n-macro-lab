@@ -1,4 +1,4 @@
-"""Premium Streamlit UI components — BR3N research intelligence terminal."""
+"""Premium Streamlit UI components — Bowers Frontier research intelligence terminal."""
 
 from __future__ import annotations
 
@@ -52,7 +52,7 @@ def page_header(
     meta_html = "".join(f'<span class="br3n-badge br3n-badge-{tone}">{_esc(lbl)}</span>' for lbl, tone in badges)
     st.markdown(
         f"""<div class="br3n-terminal-header">
-        <div class="br3n-terminal-eyebrow">BR3N Macro Lab · Research Intelligence Terminal</div>
+        <div class="br3n-terminal-eyebrow">Bowers Frontier Macro Labs · Research Intelligence Terminal</div>
         <div class="br3n-terminal-title-row">
           <h1>{_esc(title)}</h1>
           {tag_html}{live_pill}
@@ -305,7 +305,7 @@ def module_status_panel(modules: Any) -> None:
 def render_filters_sidebar(data: Any) -> dict[str, Any]:
     st.sidebar.markdown(
         """<div class="br3n-sidebar-brand">
-        <span class="br3n-badge br3n-badge-gold">BR3N MACRO LAB</span>
+        <span class="br3n-badge br3n-badge-gold">BOWERS FRONTIER MACRO LABS</span>
         <div style="margin-top:0.65rem;font-size:1rem;font-weight:600;color:#F8FAFC;">Command Center</div>
         <div style="font-size:0.72rem;color:#64748B;margin-top:0.2rem;">Research intelligence terminal</div>
         </div>""",
@@ -368,7 +368,7 @@ def sidebar_module_status(modules: Any) -> None:
 def terminal_footer() -> None:
     st.markdown(
         """<div class="br3n-footer">
-        BR3N MACRO LAB · Value Survival Index · Settlement Economics · Stablecoin Settlement Window Lab<br>
+        BOWERS FRONTIER MACRO LABS · Value Survival Index · Settlement Economics · Stablecoin Settlement Window Lab<br>
         Research intelligence only · Not investment advice · Verify mock_data_flag before citation
         </div>""",
         unsafe_allow_html=True,

@@ -25,7 +25,7 @@ from src.data.fetch_public import build_all_public_data  # noqa: E402
 
 
 def main() -> None:
-    print("BR3N Global FX Lab — fetching/building public data files")
+    print("Bowers Frontier Global FX Lab — fetching/building public data files")
     print("=" * 60)
     results = build_all_public_data()
     for name, path in results.items():

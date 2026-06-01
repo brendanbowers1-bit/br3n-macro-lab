@@ -10,7 +10,7 @@ cd "$LAB_ROOT"
 source .venv/bin/activate
 
 echo "============================================================"
-echo "BR3N Macro Labs — Full Lab Pipeline"
+echo "Bowers Frontier Macro Labs — Full Lab Pipeline"
 echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) UTC"
 echo "============================================================"
 

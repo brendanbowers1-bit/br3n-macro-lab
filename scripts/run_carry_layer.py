@@ -64,7 +64,7 @@ def main() -> None:
 
     latest = df_carry.iloc[-1]
     print("\n" + "=" * 55)
-    print("BR3N Macro Labs — Carry Layer Summary")
+    print("Bowers Frontier Macro Labs — Carry Layer Summary")
     print("Research only · Carry = regime/risk feature · Not price prediction")
     print("=" * 55)
     print(f"Carry data available:     {status.get('carry_data_available', False)}")

@@ -1,10 +1,10 @@
 # Flagship Research Lane — Forecast Failure and Hedge Usefulness
 
-*Generated: 2026-05-31 06:30*
+*Generated: 2026-06-01 06:41*
 
 ## Thesis
 
-BR3N Macro Labs does not need to prove that FX is predictable to create research value. The flagship lane tests whether regime intelligence improves hedge-governance decisions when price prediction fails.
+Bowers Frontier Macro Labs does not need to prove that FX is predictable to create research value. The flagship lane tests whether regime intelligence improves hedge-governance decisions when price prediction fails.
 
 ## Forecast Scorecard (separate object)
 
@@ -51,9 +51,9 @@ Interpretation: Most models still fail the forecast-accuracy benchmark. Hedge us
 ### split_3 (2025-01-01..2026-12-31)
 
 - **fully_hedged** [static]: cost-adj 9.488, turnover 0.0, efficiency 9.488
-- **no_change_in_range_carry_aware** [carry_aware]: cost-adj 7.354, turnover 2.25, efficiency 3.268
+- **no_change_in_range_carry_aware** [carry_aware]: cost-adj 7.366, turnover 2.625, efficiency 2.806
 - **mostly_hedged** [static]: cost-adj 7.116, turnover 0.0, efficiency 7.116
-- **carry_adjusted_regime** [carry_aware]: cost-adj 6.572, turnover 3.1, efficiency 2.12
+- **carry_adjusted_regime** [carry_aware]: cost-adj 6.65, turnover 3.3, efficiency 2.015
 - **no_change_in_range** [dynamic]: cost-adj 6.092, turnover 0.6, efficiency 10.153
 - **regime_based** [dynamic]: cost-adj 5.774, turnover 4.2, efficiency 1.375
 - **regime_only** [carry_aware]: cost-adj 5.774, turnover 4.2, efficiency 1.375
@@ -97,9 +97,9 @@ Interpretation: Most models still fail the forecast-accuracy benchmark. Hedge us
 ### split_3 (2025-01-01..2026-12-31)
 
 - **fully_hedged** [static]: cost-adj 3.891, turnover 0.0, efficiency 3.891
-- **no_change_in_range_carry_aware** [carry_aware]: cost-adj 2.987, turnover 2.25, efficiency 1.328
+- **no_change_in_range_carry_aware** [carry_aware]: cost-adj 2.974, turnover 2.625, efficiency 1.133
 - **mostly_hedged** [static]: cost-adj 2.918, turnover 0.0, efficiency 2.918
-- **carry_adjusted_regime** [carry_aware]: cost-adj 2.702, turnover 3.1, efficiency 0.872
+- **carry_adjusted_regime** [carry_aware]: cost-adj 2.703, turnover 3.3, efficiency 0.819
 - **no_change_in_range** [dynamic]: cost-adj 2.327, turnover 0.6, efficiency 3.878
 - **regime_based** [dynamic]: cost-adj 2.225, turnover 4.2, efficiency 0.53
 - **regime_only** [carry_aware]: cost-adj 2.225, turnover 4.2, efficiency 0.53
@@ -133,14 +133,14 @@ Interpretation: Most models still fail the forecast-accuracy benchmark. Hedge us
 - Continuation probability: 0.5068
 - Annualized vol: 15.221%
 - Max drawdown: -18.873%
-- Carry fragility rate: 0.2921
+- Carry fragility rate: 0.3021
 - Interpretation: High-volatility trend — often stress, liquidation, or unstable momentum; use caution rather than trend-following.
 
 ### R2_trend_low_vol (full)
 - Continuation probability: 0.5248
 - Annualized vol: 8.275%
 - Max drawdown: -37.246%
-- Carry fragility rate: 0.1747
+- Carry fragility rate: 0.176
 - Interpretation: Low-volatility trend — candidate information-diffusion regime; worth testing for structured hedge adjustment (OOS required).
 
 ## R1 vs R2 Trend Quality (OOS test windows only)
@@ -184,14 +184,14 @@ Interpretation: Most models still fail the forecast-accuracy benchmark. Hedge us
   - Continuation probability: 0.5238
   - Annualized vol: 12.453%
   - Max drawdown: -7.624%
-  - Carry fragility rate: 0.2476
+  - Carry fragility rate: 0.4667
   - Interpretation: High-volatility trend — often stress, liquidation, or unstable momentum; use caution rather than trend-following.
 
   ### R2_trend_low_vol (oos_test)
   - Continuation probability: 0.5072
   - Annualized vol: 7.798%
   - Max drawdown: -12.672%
-  - Carry fragility rate: 0.2029
+  - Carry fragility rate: 0.2222
   - Interpretation: Low-volatility trend — candidate information-diffusion regime; worth testing for structured hedge adjustment (OOS required).
 
   - R2 minus R1 continuation: **-0.0166**

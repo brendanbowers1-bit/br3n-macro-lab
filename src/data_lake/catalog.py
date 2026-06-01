@@ -1,4 +1,4 @@
-"""DuckDB medallion catalog for BR3N Macro Lab data lake."""
+"""DuckDB medallion catalog for Bowers Frontier Macro Labs data lake."""
 
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ CATALOG_PATH = LAKE / "catalog.json"
 # Module outputs → gold research folders
 GOLD_SYNC_MAP: list[tuple[Path, Path, str]] = [
     (ROOT / "data" / "outputs" / "value_survival_outputs.csv", LAKE / "gold_research" / "value_survival_index" / "value_survival_outputs.csv", "vsi"),
+    (ROOT / "data" / "outputs" / "us_mx_corridor_daily.json", LAKE / "gold_research" / "us_mx_corridor" / "corridor_daily.json", "corridor"),
     (ROOT / "settlement_lab" / "data" / "outputs" / "settlement_drag_outputs.csv", LAKE / "gold_research" / "settlement_drag" / "settlement_drag_outputs.csv", "settlement"),
     (ROOT / "settlement_lab" / "data" / "outputs" / "finality_quality_outputs.csv", LAKE / "gold_research" / "finality_quality" / "finality_quality_outputs.csv", "settlement"),
     (ROOT / "stablecoin_lab" / "data" / "outputs" / "stablecoin_finality_quality_outputs.csv", LAKE / "gold_research" / "stablecoin_finality_quality" / "stablecoin_finality_quality_outputs.csv", "stablecoin"),

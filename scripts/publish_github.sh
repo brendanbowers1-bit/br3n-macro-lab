@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Publish BR3N Macro Lab to GitHub Pages.
+# Publish Bowers Frontier Macro Labs to GitHub Pages.
 # Prerequisite: gh auth login (one time)
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -20,7 +20,7 @@ REPO="${1:-br3n-macro-lab}"
 
 if ! gh repo view "$USER/$REPO" &>/dev/null; then
   echo "==> Creating public repo $USER/$REPO ..."
-  gh repo create "$REPO" --public --source=. --remote=origin --description "BR3N Macro Lab — USD/MXN regime research"
+  gh repo create "$REPO" --public --source=. --remote=origin --description "Bowers Frontier Macro Labs — USD/MXN regime research"
 else
   if ! git remote get-url origin &>/dev/null; then
     git remote add origin "https://github.com/$USER/$REPO.git"
@@ -31,7 +31,7 @@ git add -A
 if git diff --staged --quiet; then
   echo "Nothing new to commit."
 else
-  git commit -m "Publish BR3N Macro Lab research site"
+  git commit -m "Publish Bowers Frontier Macro Labs research site"
 fi
 
 git branch -M main

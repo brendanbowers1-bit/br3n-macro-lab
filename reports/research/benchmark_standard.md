@@ -1,6 +1,6 @@
 # Open Source FX AI Model Lab — Benchmark Standard
 
-Every open-source model benchmarked in BR3N Macro Labs must use:
+Every open-source model benchmarked in Bowers Frontier Macro Labs must use:
 
 - Same currency pair
 - Same timeframe

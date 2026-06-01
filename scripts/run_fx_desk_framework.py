@@ -161,7 +161,7 @@ def run_fx_desk_framework() -> Path:
 
 
 def main() -> None:
-    print("\nBR3N Macro Labs — FX Desk Decision Framework")
+    print("\nBowers Frontier Macro Labs — FX Desk Decision Framework")
     print("=" * 55)
 
     path = run_fx_desk_framework()

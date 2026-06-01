@@ -1,6 +1,6 @@
 # Unanswered FX Questions
 
-## BR3N Macro Labs — FX Lab
+## Bowers Frontier Macro Labs — FX Lab
 
 FX Lab studies one of the hardest problems in finance:
 

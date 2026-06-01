@@ -1,5 +1,5 @@
 """
-Build processed datasets for the BR3N Value Survival Index.
+Build processed datasets for the Bowers Frontier Value Survival Index.
 
 Loads real data when available; falls back to mock with warnings.
 """

@@ -2,7 +2,7 @@
 
 ## When Yield Creates Structure and When Yield Hides Crash Risk
 
-BR3N Macro Labs — FX Lab publication memo (research draft).
+Bowers Frontier Macro Labs — FX Lab publication memo (research draft).
 
 **Carry is not treated as a magic predictor. It is treated as a regime-dependent risk and hedge-cost feature.**
 

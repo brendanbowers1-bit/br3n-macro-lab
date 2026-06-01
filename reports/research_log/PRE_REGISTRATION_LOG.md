@@ -1,6 +1,6 @@
 # Pre-Registration Log
 
-BR3N Macro Labs — FX Lab. Register hypotheses **before** tuning parameters or reading holdout results.
+Bowers Frontier Macro Labs — FX Lab. Register hypotheses **before** tuning parameters or reading holdout results.
 
 ---
 

@@ -48,7 +48,7 @@ def main() -> None:
     quality = dq.iloc[0].get("data_quality_flag", "—") if not dq.empty else "—"
     n_corridors = len(corridor) if not corridor.empty else 0
 
-    body = f"""# BR3N Macro Labs — FX Lab One-Pager
+    body = f"""# Bowers Frontier Macro Labs — FX Lab One-Pager
 
 **Generated:** {datetime.now():%Y-%m-%d}  
 **Flagship pair:** USD/MXN · **Latest regime:** {regime}
@@ -137,7 +137,7 @@ Prototype results must be rerun on Tier 1 before publication-grade claims.
 
 This is research and risk-framing only. It is not investment advice, does not guarantee returns, and is not intended for automated live trading.
 
-BR3N Macro Labs is an independent research project — not affiliated with any employer, bank, or payment company unless explicitly stated.
+Bowers Frontier Macro Labs is an independent research project — not affiliated with any employer, bank, or payment company unless explicitly stated.
 """
     path = ROOT / "reports" / "publication" / "FX_LAB_ONE_PAGER.md"
     path.write_text(body, encoding="utf-8")

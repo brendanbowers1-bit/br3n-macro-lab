@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Smoke tests for BR3N Stablecoin Settlement Window Lab."""
+"""Smoke tests for Bowers Frontier Stablecoin Settlement Window Lab."""
 
 from __future__ import annotations
 

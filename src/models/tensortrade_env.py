@@ -1,7 +1,7 @@
 """
 TensorTrade custom FX environment — research placeholder.
 
-TODO: FX environment with spreads, slippage, and BR3N reward function.
+TODO: FX environment with spreads, slippage, and Bowers Frontier reward function.
 Research-only. Not a trading system.
 """
 

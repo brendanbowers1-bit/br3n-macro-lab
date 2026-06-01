@@ -1,5 +1,5 @@
 """
-BR3N Value Survival Index — Streamlit dashboard (research-grade).
+Bowers Frontier Value Survival Index — Streamlit dashboard (research-grade).
 
 Run: streamlit run src/dashboard/app.py
 
@@ -118,14 +118,14 @@ def _source_note() -> None:
 
 def _footer() -> None:
     st.markdown(
-        '<p class="disclaimer">BR3N Value Survival Index · Research and education only · '
+        '<p class="disclaimer">Bowers Frontier Value Survival Index · Research and education only · '
         "Not investment advice · Not a trading signal · Not a price forecast</p>",
         unsafe_allow_html=True,
     )
 
 
 def page_mission():
-    st.markdown('<p class="vsi-header">BR3N Value Survival Index</p>', unsafe_allow_html=True)
+    st.markdown('<p class="vsi-header">Bowers Frontier Value Survival Index</p>', unsafe_allow_html=True)
     st.markdown('<p class="vsi-sub">Measuring how much value survives when money crosses borders.</p>', unsafe_allow_html=True)
     st.markdown(
         """
@@ -394,7 +394,7 @@ def page_limitations():
 
 
 def main():
-    st.set_page_config(page_title="BR3N Value Survival Index", layout="wide", page_icon="📊")
+    st.set_page_config(page_title="Bowers Frontier Value Survival Index", layout="wide", page_icon="📊")
     st.markdown(CSS, unsafe_allow_html=True)
     ds = load_vsi_data()
     _data_banner(ds)

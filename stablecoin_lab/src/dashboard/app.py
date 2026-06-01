@@ -1,5 +1,5 @@
 """
-BR3N Stablecoin Settlement Window Lab — Streamlit dashboard.
+Bowers Frontier Stablecoin Settlement Window Lab — Streamlit dashboard.
 
 Run from stablecoin_lab/: streamlit run src/dashboard/app.py
 Research and education only. Not financial advice.
@@ -72,7 +72,7 @@ def _show_table(df: pd.DataFrame, extra_limitation: str = "") -> None:
 
 
 def page_mission() -> None:
-    st.markdown('<p class="header">BR3N Stablecoin Settlement Window Lab</p>', unsafe_allow_html=True)
+    st.markdown('<p class="header">Bowers Frontier Stablecoin Settlement Window Lab</p>', unsafe_allow_html=True)
     st.markdown(
         '<p class="sub">When settlement windows collapse toward zero, where does risk go?</p>',
         unsafe_allow_html=True,

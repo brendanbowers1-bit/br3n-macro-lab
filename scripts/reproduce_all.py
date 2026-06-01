@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce full BR3N Macro Lab pipelines with audit trail."""
+"""Reproduce full Bowers Frontier Macro Labs pipelines with audit trail."""
 
 from __future__ import annotations
 

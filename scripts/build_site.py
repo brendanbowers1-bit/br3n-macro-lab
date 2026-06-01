@@ -15,11 +15,17 @@ from src.site_builder import build_site
 def main() -> None:
     import argparse
 
-    p = argparse.ArgumentParser(description="Build BR3N Macro Lab publication site")
+    p = argparse.ArgumentParser(description="Build Bowers Frontier Macro Labs publication site")
     p.add_argument("--open", action="store_true", help="Open index.html in default browser")
     args = p.parse_args()
 
     build_publication()
+    try:
+        from scripts.run_corridor_intelligence import run as run_corridor
+
+        run_corridor()
+    except Exception as exc:
+        print(f"Warning: corridor intelligence pipeline skipped: {exc}")
     paths = build_site()
 
     # Static Next.js dashboard → reports/publication/dashboard/

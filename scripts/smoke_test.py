@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Smoke tests for BR3N Value Survival Index — production readiness."""
+"""Smoke tests for Bowers Frontier Value Survival Index — production readiness."""
 
 from __future__ import annotations
 

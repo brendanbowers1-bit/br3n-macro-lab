@@ -47,7 +47,7 @@ def main() -> None:
     print(f"Saved: {test_path}")
 
     print("\n" + "=" * 55)
-    print("BR3N Macro Labs — News Layer Summary")
+    print("Bowers Frontier Macro Labs — News Layer Summary")
     print("Research only · News = regime/risk feature · Not price prediction")
     print("=" * 55)
     print(f"FRED uncertainty loaded:  {status.get('fred_loaded', False)}")

@@ -1,5 +1,5 @@
 """
-Project-wide research credibility settings for BR3N Value Survival Index.
+Project-wide research credibility settings for Bowers Frontier Value Survival Index.
 
 When RESEARCH_MODE = "credible", all outputs use conservative language,
 visible mock warnings, source traceability, and component breakdowns.

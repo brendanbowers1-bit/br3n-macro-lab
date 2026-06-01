@@ -15,7 +15,7 @@ from src.utils.paths import OUTPUTS_DIR, REPORTS_DIR
 
 
 def main() -> None:
-    print("BR3N Stablecoin Settlement Window Lab — robustness")
+    print("Bowers Frontier Stablecoin Settlement Window Lab — robustness")
     ds = build_stablecoin_dataset()
     results = run_robustness_checks(
         ds.get("stablecoin_finality_quality_outputs"),

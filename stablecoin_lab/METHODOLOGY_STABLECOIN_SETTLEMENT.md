@@ -56,7 +56,7 @@ compliance_drag_index = 100 − f(drag_ratio, compliance_drag_hours)
 
 ## Stablecoin Value Survival Index (SVSI)
 
-Extends BR3N value-survival logic to remittance corridors:
+Extends Bowers Frontier value-survival logic to remittance corridors:
 
 ```
 stablecoin_vsi = 100 × (1 − total_stablecoin_loss_pct)

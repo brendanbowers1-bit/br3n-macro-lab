@@ -54,7 +54,7 @@ def assess_trade_risk(
     min_rr: float = 2.0,
 ) -> RiskAssessment:
     """
-    Evaluate whether a research signal meets BR3N risk rules.
+    Evaluate whether a research signal meets Bowers Frontier risk rules.
 
     Default: 0.75% capital at risk, min 2:1 reward/risk, no trade in crisis.
     """

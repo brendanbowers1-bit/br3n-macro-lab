@@ -1,6 +1,6 @@
 # FX Research Terminal
 
-Institutional-grade local-first FX research system for BR3N Macro Labs.
+Institutional-grade local-first FX research system for Bowers Frontier Macro Labs.
 
 **Research and education only. Not investment advice. No live trading.**
 

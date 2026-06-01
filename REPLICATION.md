@@ -1,4 +1,4 @@
-# Replication Package — BR3N Value Survival Index
+# Replication Package — Bowers Frontier Value Survival Index
 
 Reproduce corridor-level Value Survival Index outputs from raw public data.
 

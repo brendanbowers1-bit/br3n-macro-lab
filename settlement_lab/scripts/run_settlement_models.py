@@ -18,7 +18,7 @@ from src.utils.paths import OUTPUTS_DIR
 
 
 def main() -> None:
-    print("BR3N Settlement Economics Lab — run models")
+    print("Bowers Frontier Settlement Economics Lab — run models")
     ds = build_settlement_dataset()
     mock = bool(ds["_mock_data_flag"]["mock_data_flag"].iloc[0])
     stress = run_stress_scenarios(ds["payment_fragility_outputs"])

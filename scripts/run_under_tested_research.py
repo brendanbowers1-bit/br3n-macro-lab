@@ -65,7 +65,7 @@ def main() -> None:
     ]
 
     print("\n" + "=" * 60)
-    print("BR3N Macro Labs — Under-Tested Research Summary")
+    print("Bowers Frontier Macro Labs — Under-Tested Research Summary")
     print("=" * 60)
     print(f"Best policy (cost-adj risk reduction): {best['policy_name']}")
     print(f"  Cost-adj risk reduction: {best['cost_adjusted_risk_reduction']}")

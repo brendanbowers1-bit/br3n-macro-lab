@@ -24,7 +24,7 @@ def main() -> None:
     report = run_data_quality_checks(df, source_name="fed_h10", price_col="price")
     report_path = save_data_quality_report(report, ROOT / "data" / "outputs" / "data_quality_report_tier1.csv")
 
-    print("\nBR3N Macro Labs — Tier 1 Official USD/MXN")
+    print("\nBowers Frontier Macro Labs — Tier 1 Official USD/MXN")
     print("=" * 50)
     print(f"Series:       {FRED_H10_USDMXN_SERIES} (H.10 via FRED)")
     print(f"Tier:         {report.get('tier_number')} — {report.get('tier_label')}")

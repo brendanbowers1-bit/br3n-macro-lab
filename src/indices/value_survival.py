@@ -1,5 +1,5 @@
 """
-BR3N Value Survival Index (VSI) — credible empirical measurement framework.
+Bowers Frontier Value Survival Index (VSI) — credible empirical measurement framework.
 
 VSI = 100 × Real Usable Value Delivered / Original Value Sent
 

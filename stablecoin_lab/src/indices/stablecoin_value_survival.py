@@ -1,7 +1,7 @@
 """
 Stablecoin Value Survival Index — usable local purchasing power on stablecoin rails.
 
-Extends BR3N VSI logic to stablecoin remittance corridors.
+Extends Bowers Frontier VSI logic to stablecoin remittance corridors.
 Research-only. Not investment advice.
 """
 

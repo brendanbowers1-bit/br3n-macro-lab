@@ -51,7 +51,7 @@ def build_checksum_registry() -> pd.DataFrame:
 
 
 def main() -> None:
-    print("BR3N Stablecoin Lab — fetch official data")
+    print("Bowers Frontier Stablecoin Lab — fetch official data")
     _ensure_dirs()
     fetched = fetch_all_official(RAW_DIR, PARENT_RAW)
 

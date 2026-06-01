@@ -5,8 +5,9 @@ import { readDashboardSync } from "@/lib/data.server";
 import { withBasePath } from "@/lib/base-path";
 
 export const metadata: Metadata = {
-  title: "BR3N Macro Lab — Bowers Frontier Institute",
-  description: "Division research dashboard · Value Survival · Settlement · Stablecoin Finality",
+  title: "Bowers Frontier Macro Labs — Bowers Frontier Institute",
+  description:
+    "Domain-specific AI for FX, treasury, settlement, and cross-border payment intelligence · Value Survival · Settlement · Stablecoin Finality",
   icons: {
     icon: [{ url: withBasePath("/assets/brand/bfi-icon.svg"), type: "image/svg+xml" }],
     apple: withBasePath("/assets/brand/bfi-icon.svg"),

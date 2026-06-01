@@ -14,7 +14,7 @@ from src.utils.paths import OUTPUTS_DIR
 
 
 def main() -> None:
-    print("BR3N Settlement Economics Lab — sensitivity")
+    print("Bowers Frontier Settlement Economics Lab — sensitivity")
     results = run_sensitivity_analysis()
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     path = OUTPUTS_DIR / "sensitivity_results.csv"

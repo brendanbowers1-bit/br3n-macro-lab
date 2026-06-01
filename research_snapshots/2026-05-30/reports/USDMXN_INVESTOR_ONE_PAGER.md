@@ -1,4 +1,4 @@
-# BR3N Macro Labs — FX Regime Intelligence
+# Bowers Frontier Macro Labs — FX Regime Intelligence
 
 ## Pilot / Research Partnership One-Pager
 
@@ -69,7 +69,7 @@ Cross-border payments and treasury teams face FX exposure across corridors (USD/
 
 ## Contact
 
-**Brendan Bowers · BR3N Macro Labs**  
+**Brendan Bowers · Bowers Frontier Macro Labs**  
 Public site: https://brendanbowers1-bit.github.io/br3n-macro-lab/fx-lab.html
 
 ---

@@ -30,7 +30,7 @@ from src.utils.paths import FEATURES_DIR, OUTPUTS_DIR
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="BR3N FX Research Terminal pipeline")
+    parser = argparse.ArgumentParser(description="Bowers Frontier FX Research Terminal pipeline")
     parser.add_argument("--pairs", nargs="*", default=CORE_FX_PAIRS[:4], help="Pairs to model")
     parser.add_argument("--horizon", type=int, default=5, choices=[5, 10, 20])
     parser.add_argument("--mock", action="store_true", help="Force mock data")

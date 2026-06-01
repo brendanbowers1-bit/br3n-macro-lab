@@ -1,6 +1,6 @@
 # Interest-Rate Carry Research Framework
 
-BR3N Macro Labs — FX Lab carry and UIP research layer.
+Bowers Frontier Macro Labs — FX Lab carry and UIP research layer.
 
 ## Purpose
 

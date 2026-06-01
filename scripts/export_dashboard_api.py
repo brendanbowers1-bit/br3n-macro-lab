@@ -13,6 +13,8 @@ sys.path.insert(0, str(ROOT))
 
 import pandas as pd
 
+from src import LAB_NAME
+
 from src.dashboard.data_loader import (
     load_all_dashboard_data,
     load_audit_reports,
@@ -265,7 +267,7 @@ def build_export() -> dict:
     payload = {
         "meta": {
             "generated_at": datetime.now(timezone.utc).isoformat(),
-            "lab": "BR3N Macro Lab",
+            "lab": LAB_NAME,
             "disclaimer": "Research only. Not investment advice.",
         },
         "modules": {

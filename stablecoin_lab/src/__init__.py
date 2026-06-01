@@ -1,1 +1,1 @@
-"""BR3N Stablecoin Settlement Window Lab package."""
+"""Bowers Frontier Stablecoin Settlement Window Lab package."""

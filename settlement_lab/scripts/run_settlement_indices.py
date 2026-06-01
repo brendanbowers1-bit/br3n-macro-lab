@@ -13,7 +13,7 @@ from src.data.build_dataset import build_settlement_dataset, save_outputs
 
 
 def main() -> None:
-    print("BR3N Settlement Economics Lab — run indices")
+    print("Bowers Frontier Settlement Economics Lab — run indices")
     ds = build_settlement_dataset()
     save_outputs(ds)
     for key in ("settlement_drag_outputs", "operational_liquidity_outputs",

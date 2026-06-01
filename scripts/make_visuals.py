@@ -34,7 +34,7 @@ from src.visuals.vsi_charts import (
 
 
 def main() -> None:
-    print("BR3N Value Survival Index — make visuals")
+    print("Bowers Frontier Value Survival Index — make visuals")
     print("=" * 60)
 
     ds = load_vsi_dataset(rebuild=False)

@@ -9,7 +9,7 @@ from __future__ import annotations
 from typing import Any, Dict, Optional
 
 DISCLAIMER = (
-    "BR3N Macro Labs is an independent research project. It is not affiliated with, endorsed by, "
+    "Bowers Frontier Macro Labs is an independent research project. It is not affiliated with, endorsed by, "
     "or sponsored by any employer, financial institution, payment company, trading platform, "
     "or data vendor. Research and risk-framing only. Not investment advice. Not a trading instruction. "
     "Requires human review, exposure systems, and policy controls."

@@ -1,7 +1,7 @@
 """
 EUR/USD LSTM baseline adapter — research placeholder.
 
-TODO: Wrap open-source LSTM baseline with BR3N feature pipeline and walk-forward splits.
+TODO: Wrap open-source LSTM baseline with Bowers Frontier feature pipeline and walk-forward splits.
 Research-only. Not a trading system.
 """
 

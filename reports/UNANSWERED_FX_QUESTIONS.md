@@ -4,7 +4,7 @@
 
 FX markets remain one of the hardest areas in finance and macroeconomics because exchange rates are difficult to forecast, random-walk benchmarks are hard to beat, and yet currencies sometimes appear structured under certain regimes.
 
-BR3N Macro Labs studies this tension.
+Bowers Frontier Macro Labs studies this tension.
 
 The lab does not assume that FX is predictable. It asks:
 
@@ -460,7 +460,7 @@ Measure whether the AI layer improves:
 
 ---
 
-# Priority Questions for BR3N Macro Labs
+# Priority Questions for Bowers Frontier Macro Labs
 
 The five best research lanes are:
 

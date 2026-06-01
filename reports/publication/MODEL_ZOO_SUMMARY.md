@@ -1,6 +1,6 @@
 # FX Lab Model Zoo
 
-BR3N Macro Labs tests multiple model families rather than relying on one rule.
+Bowers Frontier Macro Labs tests multiple model families rather than relying on one rule.
 
 ## Model families
 

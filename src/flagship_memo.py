@@ -121,7 +121,7 @@ def generate_flagship_usdmxn_memo() -> Path:
 
 ## Executive Summary
 
-BR3N Macro Labs tests whether USD/MXN is **conditionally forecastable** across observable regimes — not uniformly predictable. The flagship memo integrates regime intelligence, random-walk benchmarks, hedge-governance scorecards, and explicit data-quality tiering.
+Bowers Frontier Macro Labs tests whether USD/MXN is **conditionally forecastable** across observable regimes — not uniformly predictable. The flagship memo integrates regime intelligence, random-walk benchmarks, hedge-governance scorecards, and explicit data-quality tiering.
 
 **Desk framing (US_MX corridor):** {desk_summary}
 
@@ -299,7 +299,7 @@ We study whether USD/MXN exchange rate dynamics depart from a random-walk benchm
 
 ## Replication Package
 
-- Repository: BR3N Macro Labs FX Lab
+- Repository: Bowers Frontier Macro Labs FX Lab
 - Scripts: `run_usdmxn_backtest.py`, `run_under_tested_research.py`, `run_data_quality_layer.py`
 - Config: `config.yaml` with tier flags documented
 
@@ -328,7 +328,7 @@ def generate_investor_pilot_one_pager() -> Path:
 
     n_corridors = len(corridor) if not corridor.empty else 5
 
-    body = f"""# BR3N Macro Labs — FX Regime Intelligence
+    body = f"""# Bowers Frontier Macro Labs — FX Regime Intelligence
 
 ## Pilot / Research Partnership One-Pager
 
@@ -399,7 +399,7 @@ Cross-border payments and treasury teams face FX exposure across corridors (USD/
 
 ## Contact
 
-**Brendan Bowers · BR3N Macro Labs**  
+**Brendan Bowers · Bowers Frontier Macro Labs**  
 Public site: https://brendanbowers1-bit.github.io/br3n-macro-lab/fx-lab.html
 
 ---

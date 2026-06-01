@@ -1,8 +1,8 @@
-# BR3N MACRO LABS — FX LAB
+# BOWERS FRONTIER MACRO LABS — FX LAB
 
 ## Testing When Currency Markets Become Less Random
 
-FX Lab is the flagship research program of BR3N Macro Labs.
+FX Lab is the flagship research program of Bowers Frontier Macro Labs.
 
 It studies conditional forecastability in currency markets by testing whether observable regimes of trend, volatility, carry, liquidity stress, and payment-flow pressure can identify when FX behavior becomes more structured than random walk.
 
@@ -29,4 +29,4 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 
 Research and risk-framing only. Not investment advice. No live trading.
 
-BR3N Macro Labs is an independent research project — not affiliated with any employer, bank, or payment company unless explicitly stated.
+Bowers Frontier Macro Labs is an independent research project — not affiliated with any employer, bank, or payment company unless explicitly stated.

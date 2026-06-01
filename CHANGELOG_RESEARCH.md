@@ -1,6 +1,6 @@
 # Research Change Log
 
-Structured audit trail for BR3N Macro Lab research changes. Machine-readable log: `audit/change_logs/change_log.csv`.
+Structured audit trail for Bowers Frontier Macro Labs research changes. Machine-readable log: `audit/change_logs/change_log.csv`.
 
 ## Entries
 

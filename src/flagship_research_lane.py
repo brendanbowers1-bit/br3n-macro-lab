@@ -293,7 +293,7 @@ def generate_flagship_report(
         "",
         "## Thesis",
         "",
-        "BR3N Macro Labs does not need to prove that FX is predictable to create research value. "
+        "Bowers Frontier Macro Labs does not need to prove that FX is predictable to create research value. "
         "The flagship lane tests whether regime intelligence improves hedge-governance decisions "
         "when price prediction fails.",
         "",

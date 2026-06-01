@@ -76,7 +76,7 @@ def _supplement_rpw_corridors() -> None:
 
 
 def main() -> None:
-    print("BR3N Settlement Lab — fetch official + curated data")
+    print("Bowers Frontier Settlement Lab — fetch official + curated data")
     _ensure_dirs()
 
     print("\n▶ Tier-1 official sources (BIS CPMI, FRED, Findex, merchant fees)")

@@ -44,7 +44,7 @@ def main() -> None:
     wrc_path = save_hedge_white_rc(wrc_df)
 
     print("\n" + "=" * 60)
-    print("BR3N Macro Labs — Multi-Pair Hedge OOS (Level 8)")
+    print("Bowers Frontier Macro Labs — Multi-Pair Hedge OOS (Level 8)")
     print("=" * 60)
     print(hedge_oos_report_md(scorecard, comparison, summary))
     print(hedge_white_rc_report_md(wrc_df))

@@ -24,7 +24,7 @@ INDEX_KEYS = (
 
 
 def main() -> None:
-    print("BR3N Stablecoin Settlement Window Lab — run indices")
+    print("Bowers Frontier Stablecoin Settlement Window Lab — run indices")
     ds = build_stablecoin_dataset()
     save_outputs(ds)
     for key in INDEX_KEYS:

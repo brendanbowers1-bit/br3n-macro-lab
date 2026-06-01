@@ -1,4 +1,4 @@
-# BR3N Settlement Economics Lab
+# Bowers Frontier Settlement Economics Lab
 
 Research-grade measurement of settlement drag, operational liquidity burden, finality quality, payment-network fragility, and friction incidence.
 

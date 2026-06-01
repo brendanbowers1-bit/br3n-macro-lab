@@ -1,4 +1,4 @@
-"""Unified data loading for BR3N Command Center dashboard."""
+"""Unified data loading for Bowers Frontier Command Center dashboard."""
 
 from __future__ import annotations
 

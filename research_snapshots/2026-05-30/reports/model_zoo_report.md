@@ -1,4 +1,4 @@
-# BR3N Macro Labs — Model Zoo Report
+# Bowers Frontier Macro Labs — Model Zoo Report
 
 **Generated:** 2026-05-30 15:26
 

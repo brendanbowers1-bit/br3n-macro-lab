@@ -69,7 +69,7 @@ Before publishing, confirm:
 - "Markets. Machines. Monetary Systems." displays correctly
 - Mobile layout works
 - Nav does not crowd the logo
-- BR3N Macro Lab appears as a lab/division, not the parent brand
+- Bowers Frontier Macro Labs appears as a lab/division, not the parent brand
 - Site still has deep navy/off-white/graphite research-institute aesthetic
 - CTAs work
 - Dashboards and existing pages still load

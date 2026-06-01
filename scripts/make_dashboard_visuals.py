@@ -57,7 +57,7 @@ def _save(fig, name: str) -> Path:
 
 
 def main() -> int:
-    print("BR3N Dashboard visuals")
+    print("Bowers Frontier Dashboard visuals")
     data = load_all_dashboard_data()
     vsi_lr = load_value_survival_data()["value_survival"]
     vsi = vsi_lr.df

@@ -1,4 +1,4 @@
-# BR3N Value Survival Index (VSI)
+# Bowers Frontier Value Survival Index (VSI)
 
 ## Core Definition
 

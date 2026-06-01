@@ -1,6 +1,6 @@
 # News and Uncertainty Data Strategy
 
-BR3N Macro Labs uses news data as a **regime and risk feature**, not as a direct trading signal.
+Bowers Frontier Macro Labs uses news data as a **regime and risk feature**, not as a direct trading signal.
 
 The purpose is to test whether policy uncertainty, geopolitical stress, central-bank news, inflation news, commodity news, and country-specific news intensity help explain when FX behaves more or less randomly.
 

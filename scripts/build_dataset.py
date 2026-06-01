@@ -13,7 +13,7 @@ from src.data.build_dataset import build_and_validate, save_processed_dataset, s
 
 
 def main() -> None:
-    print("BR3N Value Survival Index — build dataset")
+    print("Bowers Frontier Value Survival Index — build dataset")
     print("=" * 60)
     dataset, validation = build_and_validate()
     paths = save_processed_dataset(dataset)

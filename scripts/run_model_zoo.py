@@ -61,7 +61,7 @@ def _print_summary(
     skipped = int((run_log["status"] == "skipped").sum())
 
     print("\n" + "=" * 60)
-    print("BR3N Macro Labs — Model Zoo Summary")
+    print("Bowers Frontier Macro Labs — Model Zoo Summary")
     print("Research only · Not investment advice · No live trading")
     print("=" * 60)
     print(f"Models attempted:  {attempted}")

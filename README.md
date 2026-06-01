@@ -1,10 +1,10 @@
-# BR3N Macro Labs — FX Lab
+# Bowers Frontier Macro Labs — FX Lab
 
 **Testing When Currency Markets Become Less Random**
 
 ---
 
-## BR3N Value Survival Index: Measuring How Much Value Survives When Money Crosses Borders
+## Bowers Frontier Value Survival Index: Measuring How Much Value Survives When Money Crosses Borders
 
 **Core thesis:** Foreign exchange is the daily auction of global trust. The Value Survival Index measures how much economic value survives when it crosses from one monetary trust system into another.
 
@@ -50,7 +50,7 @@ Drop official files in `data/raw/` — see [DATA_SOURCES.md](DATA_SOURCES.md).
 
 ---
 
-## BR3N Settlement Economics Lab
+## Bowers Frontier Settlement Economics Lab
 
 **Core thesis:** Modern economies run on settlement — not just money.
 
@@ -74,7 +74,7 @@ streamlit run src/dashboard/app.py
 
 ---
 
-## BR3N Stablecoin Settlement Window Lab
+## Bowers Frontier Stablecoin Settlement Window Lab
 
 **Core thesis:** Stablecoins do not eliminate settlement risk; they change its location, speed, and legal form.
 
@@ -156,7 +156,7 @@ make quality                               # Makefile wrapper
 
 Dashboard **Quality Command Center** page: `streamlit run src/dashboard/app.py`
 
-### BR3N Command Center (unified lab dashboard)
+### Bowers Frontier Command Center (unified lab dashboard)
 
 Premium institutional dashboard across **VSI · Settlement · Stablecoin · Data Lake · Audit**.
 
@@ -178,13 +178,13 @@ cd web_dashboard && npm install && npm run dev   # http://localhost:3000
 
 ---
 
-FX Lab is the flagship research program of BR3N Macro Labs — an independent AI-assisted research lab studying **when currency markets become conditionally forecastable** by regime.
+FX Lab is the flagship research program of Bowers Frontier Macro Labs — an independent AI-assisted research lab studying **when currency markets become conditionally forecastable** by regime.
 
 **Not investment advice.** No live trading. No broker API.
 
 FX Lab research is for education, analysis, and risk-framing only.
 
-BR3N Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, university, financial institution, payment company, data vendor, or research institution unless explicitly stated.
+Bowers Frontier Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, university, financial institution, payment company, data vendor, or research institution unless explicitly stated.
 
 ---
 
@@ -340,7 +340,7 @@ Data guide: [DATA_SOURCES.md](DATA_SOURCES.md)
 
 **Borrow. Benchmark. Improve. Explain.**
 
-Catalog of open-source FX forecasting baselines, RL frameworks, and time-series foundation models for disciplined benchmarking against BR3N models. Not trading systems — research baselines only.
+Catalog of open-source FX forecasting baselines, RL frameworks, and time-series foundation models for disciplined benchmarking against Bowers Frontier models. Not trading systems — research baselines only.
 
 - Registry: `src/models/model_registry.py`
 - Full doc: `reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md`
@@ -422,7 +422,7 @@ Quick GitHub Pages path:
 
 ```bash
 python scripts/build_site.py
-git add . && git commit -m "Publish BR3N Macro Lab"
+git add . && git commit -m "Publish Bowers Frontier Macro Labs"
 git push origin main
 # Settings → Pages → Source: GitHub Actions
 ```
@@ -440,7 +440,7 @@ python scripts/run_research_ladder.py --refresh
 
 ## Academic Research Layer
 
-BR3N Macro Labs tests five high-level questions (see `reports/research_questions.md`):
+Bowers Frontier Macro Labs tests five high-level questions (see `reports/research_questions.md`):
 
 1. When does random walk fail in FX?
 2. What creates conditional forecastability?
@@ -479,7 +479,7 @@ Outputs in `data/outputs/`:
 
 ## Under-Tested Research Layer
 
-BR3N Macro Labs is testing an applied question that is less saturated than pure FX forecasting:
+Bowers Frontier Macro Labs is testing an applied question that is less saturated than pure FX forecasting:
 
 **Can regime classification improve hedge governance even when exchange-rate forecasts fail to beat random walk?**
 
@@ -576,7 +576,7 @@ Outputs:
 
 ## Remittance Corridor Roadmap
 
-BR3N Macro Labs is expanding from USD/MXN into major remittance and payment corridors.
+Bowers Frontier Macro Labs is expanding from USD/MXN into major remittance and payment corridors.
 
 Initial priority corridors:
 
@@ -607,7 +607,7 @@ The corridor roadmap creates:
 
 ## Cross-Border Payments FX Desk Decision Framework
 
-BR3N Macro Labs is an independent research lab studying FX regime intelligence, conditional forecastability, payment-corridor risk, and treasury hedge governance.
+Bowers Frontier Macro Labs is an independent research lab studying FX regime intelligence, conditional forecastability, payment-corridor risk, and treasury hedge governance.
 
 The framework translates regime research into the core decisions faced by global payments and multi-currency treasury FX desks:
 
@@ -649,7 +649,7 @@ For publication-grade corridor research, upgrade from yfinance to:
 
 ## Data Strategy
 
-BR3N Macro Labs uses a **four-tier data stack** (Tier 1 = highest quality):
+Bowers Frontier Macro Labs uses a **four-tier data stack** (Tier 1 = highest quality):
 
 | Tier | Label | Examples |
 |------|-------|----------|

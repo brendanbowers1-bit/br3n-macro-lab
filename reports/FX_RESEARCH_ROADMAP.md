@@ -1,6 +1,6 @@
 # FX Research Roadmap
 
-*Generated: 2026-05-31 06:30*
+*Generated: 2026-06-01 06:41*
 
 ## Purpose
 
@@ -12,7 +12,7 @@ FX markets may be mostly random-walk-like as price processes, but not all FX dec
 
 The question is not only whether FX can be predicted. The question is whether FX decisions can be improved when prediction fails.
 
-BR3N Macro Labs does not need to prove that FX is predictable to create research value. The strongest current path is testing whether regime intelligence improves hedge-governance decisions when price prediction fails.
+Bowers Frontier Macro Labs does not need to prove that FX is predictable to create research value. The strongest current path is testing whether regime intelligence improves hedge-governance decisions when price prediction fails.
 
 ## Current Flagship Lane
 

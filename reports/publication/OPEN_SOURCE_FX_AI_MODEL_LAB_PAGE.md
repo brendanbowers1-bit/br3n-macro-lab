@@ -1,6 +1,8 @@
-# Open Source FX AI Model Lab
+# Bowers Frontier Model Lab
 
 ## Borrow. Benchmark. Improve. Explain.
+
+A model-agnostic AI research environment for testing local and hosted models against FX, treasury, settlement, and corridor-risk tasks.
 
 > Research-only. Not investment advice. No live trading.
 
@@ -8,7 +10,7 @@
 
 ## Core Thesis
 
-Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. BR3N FX Lab improves on them by adding **carry**, **macro**, **volatility regimes**, **news sentiment**, **better labels**, **transaction costs**, and **proper walk-forward backtesting**.
+Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. Bowers Frontier FX Lab improves on them by adding **carry**, **macro**, **volatility regimes**, **news sentiment**, **better labels**, **transaction costs**, and **proper walk-forward backtesting**.
 
 > **Warning:** These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.
 
@@ -19,13 +21,13 @@ Most open-source FX AI models are weak because they only predict the next candle
 ## 1. Baseline FX Forecasting Models
 
 ### EUR/USD TimeSeriesTransformer
-Transformer-based ML for EUR/USD short-term forecasting. **Use:** modern deep-learning benchmark vs BR3N models. **Improve:** macro, carry, news, regimes, cost-aware labels.
+Transformer-based ML for EUR/USD short-term forecasting. **Use:** modern deep-learning benchmark vs Bowers Frontier models. **Improve:** macro, carry, news, regimes, cost-aware labels.
 
 ### EUR/USD LSTM Model
 Classic LSTM for EUR/USD. **Use:** traditional neural benchmark. **Improve:** compare LSTM vs Transformer vs foundation models on same splits and costs.
 
 ### Rogendo Forex LSTM Models
-Hugging Face collection of pair/timeframe LSTMs. **Use:** test pair-specific vs generalized models. **Improve:** evaluate major pairs; retrain on BR3N feature set.
+Hugging Face collection of pair/timeframe LSTMs. **Use:** test pair-specific vs generalized models. **Improve:** evaluate major pairs; retrain on Bowers Frontier feature set.
 
 ---
 
@@ -35,7 +37,7 @@ Hugging Face collection of pair/timeframe LSTMs. **Use:** test pair-specific vs 
 Financial RL (PPO, A2C, DDPG, SAC, TD3). **Use:** decision layer after forecasts. **Improve:** feed confidence, vol, carry, spread, drawdown — not raw candles alone.
 
 ### TensorTrade
-Custom trading environments, actions, rewards. **Use:** FX envs with spreads and slippage. **Improve:** BR3N reward = risk-adjusted return, drawdown control, Sharpe.
+Custom trading environments, actions, rewards. **Use:** FX envs with spreads and slippage. **Improve:** Bowers Frontier reward = risk-adjusted return, drawdown control, Sharpe.
 
 ---
 
@@ -52,7 +54,7 @@ Pretrained time-series models adaptable to FX. **Use:** benchmark large pretrain
 
 ---
 
-## 4. BR3N Improvement Layer
+## 4. Bowers Frontier Improvement Layer
 
 | Layer | Features |
 |-------|----------|
@@ -65,10 +67,10 @@ Pretrained time-series models adaptable to FX. **Use:** benchmark large pretrain
 
 ---
 
-## 5. Architecture — BR3N FX Lab v1
+## 5. Architecture — Bowers Frontier FX Lab v1
 
 ```
-BR3N FX Lab v1
+Bowers Frontier FX Lab v1
 ├── Baselines
 │   ├── EUR/USD LSTM
 │   ├── EUR/USD TimeSeriesTransformer
@@ -111,7 +113,7 @@ BR3N FX Lab v1
 - Most predictable pair: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, USD/INR?
 - Does edge survive transaction costs?
 - Can a model know when **not** to trade?
-- Can BR3N explain **why** a trade works?
+- Can Bowers Frontier explain **why** a trade works?
 
 ---
 

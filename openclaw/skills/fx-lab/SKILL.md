@@ -1,6 +1,6 @@
 ---
 name: fx-lab
-description: "BR3N Macro Labs FX Lab — run research pipelines, read scorecards, summarize regime/ladder/model-zoo results. Research only, no live trading."
+description: "Bowers Frontier Macro Labs FX Lab — run research pipelines, read scorecards, summarize regime/ladder/model-zoo results. Research only, no live trading."
 metadata:
   {
     "openclaw":
@@ -11,7 +11,7 @@ metadata:
   }
 ---
 
-# FX Lab (BR3N Macro Labs)
+# FX Lab (Bowers Frontier Macro Labs)
 
 OpenClaw uses **OpenAI through the gateway** for reasoning and messaging. FX Lab itself is **not** an LLM — it is a local Python research repo. Your job: run scripts, read outputs, summarize honestly for Brendan.
 

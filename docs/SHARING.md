@@ -1,4 +1,4 @@
-# Sharing BR3N Macro Lab
+# Sharing Bowers Frontier Macro Labs
 
 How to give other people a link they can open in any browser.
 
@@ -21,7 +21,7 @@ How to give other people a link they can open in any browser.
 3. **Push the project**
    ```bash
    git add .
-   git commit -m "Initial BR3N Macro Lab"
+   git commit -m "Initial Bowers Frontier Macro Labs"
    git branch -M main
    git remote add origin https://github.com/YOUR_USERNAME/br3n-macro-lab.git
    git push -u origin main
@@ -117,4 +117,4 @@ Do not publish `config.yaml` secrets if you add any later. The default config ha
 
 ---
 
-*BR3N Macro Lab · Research only · Not investment advice*
+*Bowers Frontier Macro Labs · Research only · Not investment advice*

@@ -1,4 +1,4 @@
-# BR3N Value Survival Index — Methodology
+# Bowers Frontier Value Survival Index — Methodology
 
 ## Mission
 

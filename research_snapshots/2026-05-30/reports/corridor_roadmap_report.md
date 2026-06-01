@@ -1,10 +1,10 @@
 # Remittance Corridor Roadmap Report
 
-*BR3N Macro Labs — research only, not investment advice.*
+*Bowers Frontier Macro Labs — research only, not investment advice.*
 
 ## 1. Purpose
 
-The corridor roadmap expands BR3N Macro Labs from USD/MXN into major remittance and payment corridors. This is exploratory research that separates **forecast accuracy**, **trading P&L**, and **hedge-governance usefulness**. Public calendar proxies are **not** actual order-flow or payment-flow data.
+The corridor roadmap expands Bowers Frontier Macro Labs from USD/MXN into major remittance and payment corridors. This is exploratory research that separates **forecast accuracy**, **trading P&L**, and **hedge-governance usefulness**. Public calendar proxies are **not** actual order-flow or payment-flow data.
 
 ## 2. Corridor roadmap
 

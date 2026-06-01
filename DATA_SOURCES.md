@@ -1,4 +1,4 @@
-# BR3N Value Survival Index — Data Sources
+# Bowers Frontier Value Survival Index — Data Sources
 
 Official and manual inputs for corridor-level value survival measurement.  
 **Research-only. Not investment advice.**

@@ -10,7 +10,16 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict
 
-from . import LAB_NAME, LAB_NAME_DISPLAY
+from . import (
+    FX_LAB_NAME,
+    LAB_HERO_SUBTEXT,
+    LAB_NAME,
+    LAB_NAME_DISPLAY,
+    LAB_POSITIONING,
+    LAB_TAGLINE,
+    MODEL_LAB_NAME,
+    MODEL_LAB_SUBTITLE,
+)
 from .bfi_site import (
     ROOT_BRAND,
     bfi_brand_lockup,
@@ -505,7 +514,7 @@ body.cover-page header.hero-cover {
 
 
 def _css_home() -> str:
-    """Dark institutional theme for the BR3N Macro Labs homepage."""
+    """Dark institutional theme for the Bowers Frontier Macro Labs homepage."""
     return (
         _css()
         + """
@@ -1056,7 +1065,7 @@ def _os_model_cards_html() -> str:
   <p>{html.escape(meta.get("description", ""))}</p>
   <p><span class="label">Use case:</span> {html.escape(meta.get("use_case", ""))}</p>
   <p><span class="label">Source:</span> {html.escape(meta.get("source", ""))}</p>
-  <p><span class="label">BR3N improvements:</span></p>{imp_html}
+  <p><span class="label">Bowers Frontier improvements:</span></p>{imp_html}
 </div>"""
             )
         parts.append("</div>")
@@ -1068,7 +1077,7 @@ def _open_source_ai_body(out_dir: Path) -> str:
         ROOT / "reports/publication/OPEN_SOURCE_FX_AI_MODEL_LAB_PAGE.md"
     )
     full_md = _read_md(ROOT / "reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md")
-    arch = """BR3N FX Lab v1
+    arch = """Bowers Frontier FX Lab v1
 ├── Baselines
 │   ├── EUR/USD LSTM
 │   ├── EUR/USD TimeSeriesTransformer
@@ -1574,7 +1583,7 @@ def _shell_os_lab(
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="{html.escape(LAB_NAME)} — Open Source FX AI Model Lab"/>
+  <meta name="description" content="{html.escape(LAB_NAME)} — {html.escape(MODEL_LAB_SUBTITLE)}"/>
   <title>{html.escape(title)} — {html.escape(LAB_NAME)}</title>
   {bfi_favicon_tags()}
   <style>{_css_os_lab()}</style>
@@ -1601,7 +1610,7 @@ def _shell_os_lab(
 
 
 def _division_header_row(*, dark: bool = False) -> str:
-    """Parent BFI text lockup + BR3N Macro Lab division mark."""
+    """Parent BFI text lockup + Bowers Frontier Macro Labs division mark."""
     return f"""
 <div class="institute-brand-row">
   {bfi_brand_lockup(inverse=dark)}
@@ -1712,7 +1721,7 @@ def _home_body() -> str:
     questions = "".join(f"<li>{html.escape(q)}</li>" for q in HOME_CORE_QUESTIONS)
     return f"""
 <section class="home-section">
-  <p class="home-mission">BR3N Macro Labs studies how currencies, payment rails, liquidity systems, and settlement windows determine how value survives when it crosses borders. The lab combines FX research, remittance economics, settlement infrastructure, stablecoin finality analysis, and data-quality governance into one research platform.</p>
+  <p class="home-mission">{html.escape(LAB_POSITIONING)} The lab combines FX research, remittance economics, settlement infrastructure, stablecoin finality analysis, and data-quality governance into one research platform.</p>
 </section>
 
 <section class="home-section">
@@ -1725,7 +1734,7 @@ def _home_body() -> str:
   <div class="fx-spotlight">
     <h3>FX Lab</h3>
     <p class="fx-tagline">Testing When Currency Markets Become Less Random</p>
-    <p>FX Lab is a flagship research vertical within BR3N Macro Labs. It studies conditional forecastability in currency markets — whether observable regimes of trend, volatility, carry, liquidity stress, and payment-flow pressure can identify when FX behavior becomes more structured than a random walk. The lab separates forecast accuracy, trading P&amp;L, and hedge-governance usefulness.</p>
+    <p>FX Lab is a flagship research vertical within Bowers Frontier Macro Labs. It studies conditional forecastability in currency markets — whether observable regimes of trend, volatility, carry, liquidity stress, and payment-flow pressure can identify when FX behavior becomes more structured than a random walk. The lab separates forecast accuracy, trading P&amp;L, and hedge-governance usefulness.</p>
     <a href="fx-lab.html" class="btn">Enter FX Lab</a>
   </div>
 </section>
@@ -1753,12 +1762,11 @@ def _home_shell(body: str) -> str:
   <div class="header-inner">
     <div style="margin-bottom:1rem;">{bfi_brand_lockup(inverse=True)}</div>
     <div class="logo-frame" style="background:transparent;border:none;box-shadow:none;padding:0;">
-      <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo"/>
+      <div class="lab-title" style="font-size:0.95rem;letter-spacing:0.28em;margin-bottom:0.5rem;">{html.escape(LAB_NAME_DISPLAY)}</div>
     </div>
     <h1 class="lab-title">{html.escape(LAB_NAME)}</h1>
-    <p class="home-subtitle">Cross-Border Value Infrastructure Research</p>
-    <p class="motto">{html.escape(BRAND_MOTTO)}</p>
-    <p class="home-hero-line">FX prices trust. Settlement makes value real. Stablecoins move risk somewhere else.</p>
+    <p class="home-subtitle">{html.escape(LAB_TAGLINE)}</p>
+    <p class="home-hero-line">{html.escape(LAB_HERO_SUBTEXT)}</p>
     <p class="author">A division of {html.escape(ROOT_BRAND)} · Prepared by Brendan Bowers</p>
     <div class="cta-row">
       <a href="fx-lab.html" class="primary">FX Lab Overview</a>
@@ -1778,7 +1786,7 @@ def _home_shell(body: str) -> str:
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="{html.escape(LAB_NAME)} — division of {html.escape(ROOT_BRAND)}"/>
+  <meta name="description" content="{html.escape(LAB_POSITIONING)}"/>
   <title>{html.escape(LAB_NAME)} — {html.escape(ROOT_BRAND)}</title>
   {bfi_favicon_tags()}
   <style>{_css_home()}</style>
@@ -1893,7 +1901,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     # Bowers Frontier Institute — parent brand homepage + hub pages
     bfi_paths = build_bfi_pages(out_dir)
 
-    # BR3N Macro Lab division home (formerly site index)
+    # Bowers Frontier Macro Labs division home (formerly site index)
     macro_lab_path = out_dir / "macro-lab.html"
     macro_lab_path.write_text(_home_shell(_home_body()), encoding="utf-8")
 
@@ -2137,10 +2145,10 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     os_ai_path = out_dir / "open-source-ai.html"
     os_ai_path.write_text(
         _shell_os_lab(
-            "Open Source FX AI Model Lab",
+            MODEL_LAB_NAME,
             _open_source_ai_body(out_dir),
             nav_html=_nav_fx("open_source_ai"),
-            subtitle="Borrow. Benchmark. Improve. Explain.",
+            subtitle=MODEL_LAB_SUBTITLE,
         ),
         encoding="utf-8",
     )
@@ -2159,7 +2167,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     vsi_path = out_dir / "value-survival-index.html"
     vsi_path.write_text(
         _shell_os_lab(
-            "BR3N Value Survival Index",
+            "Bowers Frontier Value Survival Index",
             _value_survival_index_body(out_dir),
             nav_html=_nav_fx("value_survival_index"),
             subtitle="Measuring how much value survives when money crosses borders.",
@@ -2170,7 +2178,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     settlement_path = out_dir / "settlement-economics-lab.html"
     settlement_path.write_text(
         _shell_os_lab(
-            "BR3N Settlement Economics Lab",
+            "Bowers Frontier Settlement Economics Lab",
             _settlement_lab_body(out_dir),
             nav_html=_nav_fx("settlement_lab"),
             subtitle="Settlement drag, liquidity burden, finality quality, and payment-network fragility.",
@@ -2181,7 +2189,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     stablecoin_path = out_dir / "stablecoin-settlement-lab.html"
     stablecoin_path.write_text(
         _shell_os_lab(
-            "BR3N Stablecoin Settlement Window Lab",
+            "Bowers Frontier Stablecoin Settlement Window Lab",
             _stablecoin_lab_body(out_dir),
             nav_html=_nav_fx("stablecoin_lab"),
             subtitle="Finality quality, settlement window compression, liquidity transformation, and digital run conditions.",

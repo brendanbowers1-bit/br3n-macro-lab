@@ -52,7 +52,7 @@ export function Shell({
                 animate={{ opacity: 1 }}
                 className="text-[0.62rem] uppercase tracking-[0.28em] text-accentGold font-semibold"
               >
-                BR3N Macro Lab · Division
+                Bowers Frontier Macro Labs · Division
               </motion.div>
               <h1 className="text-lg md:text-xl font-semibold text-textPrimary">{title}</h1>
               {subtitle && <p className="text-xs md:text-sm text-textSecondary mt-0.5">{subtitle}</p>}

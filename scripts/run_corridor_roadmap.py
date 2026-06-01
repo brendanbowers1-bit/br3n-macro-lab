@@ -17,7 +17,7 @@ def main() -> None:
         print("Corridors disabled in config.yaml")
         sys.exit(0)
 
-    print("\nBR3N Macro Labs — Remittance Corridor Roadmap")
+    print("\nBowers Frontier Macro Labs — Remittance Corridor Roadmap")
     print("=" * 50)
     paths = run_corridor_roadmap(cfg)
     print("\nOutputs:")

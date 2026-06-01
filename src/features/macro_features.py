@@ -1,5 +1,5 @@
 """
-Macro economic feature engineering for BR3N FX models.
+Macro economic feature engineering for Bowers Frontier FX models.
 
 TODO: wire to FRED / OECD / national statistics feeds used by src/data_ingest.py.
 """

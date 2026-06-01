@@ -1,4 +1,4 @@
-"""Path constants for BR3N Stablecoin Settlement Window Lab."""
+"""Path constants for Bowers Frontier Stablecoin Settlement Window Lab."""
 
 from __future__ import annotations
 

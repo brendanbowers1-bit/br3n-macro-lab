@@ -1,7 +1,7 @@
 """
 EUR/USD TimeSeriesTransformer baseline adapter — research placeholder.
 
-TODO: Implement transformer baseline with shared BR3N train/test splits and cost-aware labels.
+TODO: Implement transformer baseline with shared Bowers Frontier train/test splits and cost-aware labels.
 Research-only. Not a trading system.
 """
 

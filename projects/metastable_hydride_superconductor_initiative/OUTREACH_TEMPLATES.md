@@ -6,7 +6,7 @@
 
 Dear Professor [Name],
 
-My name is Brendan Bowers, and I am developing an independent research initiative under BR3N Macro Labs focused on metastable hydride candidates and non-equilibrium hydrogen insertion pathways.
+My name is Brendan Bowers, and I am developing an independent research initiative under Bowers Frontier Macro Labs focused on metastable hydride candidates and non-equilibrium hydrogen insertion pathways.
 
 I am exploring a speculative proof-of-platform question:
 
@@ -25,7 +25,7 @@ If this is within your area of expertise, I would be grateful for any feedback o
 
 Best,  
 Brendan Bowers  
-BR3N Macro Labs
+Bowers Frontier Macro Labs
 
 ---
 

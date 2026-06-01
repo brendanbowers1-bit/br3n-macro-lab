@@ -1,5 +1,5 @@
 """
-BR3N Global FX & Remittance Research Lab — Streamlit Dashboard
+Bowers Frontier Global FX & Remittance Research Lab — Streamlit Dashboard
 
 Mission: Who bears the cost when value crosses borders?
 
@@ -57,7 +57,7 @@ def load_indices():
 
 def page_mission():
     st.markdown(
-        f'<div class="gfx-header"><div class="gfx-title">BR3N Global FX & Remittance Research Lab</div>'
+        f'<div class="gfx-header"><div class="gfx-title">Bowers Frontier Global FX & Remittance Research Lab</div>'
         f'<div class="gfx-sub">Foreign exchange as the global translation layer of value</div>'
         f'<div class="gfx-q">Who bears the cost when value crosses borders?</div></div>',
         unsafe_allow_html=True,
@@ -220,7 +220,7 @@ def page_data(idx):
 
 
 def main():
-    st.set_page_config(page_title="BR3N Global FX Lab", layout="wide")
+    st.set_page_config(page_title="Bowers Frontier Global FX Lab", layout="wide")
     st.markdown(CSS, unsafe_allow_html=True)
     idx = load_indices()
     page = st.sidebar.radio(

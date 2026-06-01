@@ -1,5 +1,5 @@
 """
-Side-by-side model comparison for BR3N walk-forward benchmarks.
+Side-by-side model comparison for Bowers Frontier walk-forward benchmarks.
 
 TODO: Phase 6 — wire to src/backtesting/ and model registry outputs.
 """
@@ -13,7 +13,7 @@ import pandas as pd
 
 def compare_models(scorecards: dict[str, pd.DataFrame]) -> pd.DataFrame:
     """
-    Merge per-model OOS scorecards under the BR3N benchmarking standard.
+    Merge per-model OOS scorecards under the Bowers Frontier benchmarking standard.
 
     Args:
         scorecards: model_id -> metrics DataFrame.

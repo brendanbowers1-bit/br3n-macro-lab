@@ -137,14 +137,14 @@ def generate_corridor_roadmap_report(root: Optional[Path] = None) -> Path:
     lines: list[str] = []
     lines.append("# Remittance Corridor Roadmap Report")
     lines.append("")
-    lines.append("*BR3N Macro Labs — research only, not investment advice.*")
+    lines.append("*Bowers Frontier Macro Labs — research only, not investment advice.*")
     lines.append("")
 
     # 1. Purpose
     lines.append("## 1. Purpose")
     lines.append("")
     lines.append(
-        "The corridor roadmap expands BR3N Macro Labs from USD/MXN into major remittance "
+        "The corridor roadmap expands Bowers Frontier Macro Labs from USD/MXN into major remittance "
         "and payment corridors. This is exploratory research that separates **forecast accuracy**, "
         "**trading P&L**, and **hedge-governance usefulness**. Public calendar proxies are "
         "**not** actual order-flow or payment-flow data."

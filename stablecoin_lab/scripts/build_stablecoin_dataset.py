@@ -13,7 +13,7 @@ from src.data.build_dataset import build_stablecoin_dataset, save_outputs, save_
 
 
 def main() -> None:
-    print("BR3N Stablecoin Settlement Window Lab — build dataset")
+    print("Bowers Frontier Stablecoin Settlement Window Lab — build dataset")
     ds = build_stablecoin_dataset()
     paths = save_processed(ds)
     save_outputs(ds)

@@ -1,4 +1,4 @@
-"""BR3N Macro Lab — institutional terminal design system."""
+"""Bowers Frontier Macro Labs — institutional terminal design system."""
 
 from __future__ import annotations
 

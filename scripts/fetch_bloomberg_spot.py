@@ -61,7 +61,7 @@ def main() -> None:
         report, ROOT / "data" / "outputs" / "data_quality_report_tier2_bloomberg.csv"
     )
 
-    print("\nBR3N Macro Labs — Tier 2 Bloomberg USD/MXN")
+    print("\nBowers Frontier Macro Labs — Tier 2 Bloomberg USD/MXN")
     print("=" * 50)
     print(f"Ticker:       {ticker}")
     print(f"Tier:         {report.get('tier_number')} — {report.get('tier_label')}")

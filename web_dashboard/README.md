@@ -1,4 +1,4 @@
-# BR3N Premium Web Dashboard
+# Bowers Frontier Premium Web Dashboard
 
 Next.js · TypeScript · Tailwind · Framer Motion · Apache ECharts · shadcn/ui · lucide-react
 

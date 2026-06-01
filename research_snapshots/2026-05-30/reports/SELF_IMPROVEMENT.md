@@ -1,4 +1,4 @@
-# BR3N Macro Labs — Self-Improvement Loop
+# Bowers Frontier Macro Labs — Self-Improvement Loop
 
 > Research-only. Not investment advice. No auto-tuning on holdout.
 

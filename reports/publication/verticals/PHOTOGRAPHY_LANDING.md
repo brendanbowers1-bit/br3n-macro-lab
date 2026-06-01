@@ -1,8 +1,8 @@
-# BR3N Photography
+# Bowers Frontier Photography
 
 **Images · Fine-art and visual systems**
 
-Part of [BR3N Macro Labs](../index.html) · Prepared by Brendan Bowers
+Part of [Bowers Frontier Macro Labs](../index.html) · Prepared by Brendan Bowers
 
 ---
 
@@ -16,7 +16,7 @@ Build a high-end visual research and fine-art photography studio focused on luxu
 
 - What makes a photograph feel timeless, expensive, and gallery-ready?
 - Can AI help generate visual themes from music, philosophy, markets, and emotion?
-- Can BR3N build a recognizable fine-art print style?
+- Can Bowers Frontier build a recognizable fine-art print style?
 - How do photography, abstraction, branding, and luxury interiors connect?
 
 ---
@@ -27,7 +27,7 @@ Build a high-end visual research and fine-art photography studio focused on luxu
 - Black-and-white architectural series (Denver urban abstraction, brutalist forms)
 - Artist statements and collection notes
 - Product mockups, Etsy / Printful product lines
-- BR3N visual identity system
+- Bowers Frontier visual identity system
 
 ---
 
@@ -39,6 +39,6 @@ Build a high-end visual research and fine-art photography studio focused on luxu
 
 ## Disclaimer
 
-BR3N Photography materials are creative works and visual research. Not affiliated with any gallery, employer, or commercial partner unless explicitly stated.
+Bowers Frontier Photography materials are creative works and visual research. Not affiliated with any gallery, employer, or commercial partner unless explicitly stated.
 
-BR3N Macro Labs is an independent creative project.
+Bowers Frontier Macro Labs is an independent creative project.

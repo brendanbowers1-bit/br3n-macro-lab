@@ -21,7 +21,7 @@ STEPS = [
 
 
 def main() -> None:
-    print("BR3N Settlement Economics Lab — reproduce all")
+    print("Bowers Frontier Settlement Economics Lab — reproduce all")
     failed = []
     for script in STEPS:
         print(f"\n▶ {script}")

@@ -1,5 +1,5 @@
 """
-BR3N Macro Labs — Luxury Research Terminal Dashboard
+Bowers Frontier Macro Labs — Luxury Research Terminal Dashboard
 
 Research-only. Not investment advice. No live trading.
 
@@ -394,7 +394,7 @@ def missing_section(script_cmd: str, description: str = "") -> None:
 def footer_disclaimer() -> None:
     st.markdown(
         '<div class="footer-disclaimer">'
-        "BR3N Macro Labs is an independent research project — not affiliated with, endorsed by, "
+        "Bowers Frontier Macro Labs is an independent research project — not affiliated with, endorsed by, "
         "or sponsored by any employer, financial institution, payment company, trading platform, "
         "or data vendor. Research and risk-framing only. Not investment advice. No live trading."
         "</div>",
@@ -725,7 +725,7 @@ def page_executive_overview() -> None:
         st.markdown("</div>", unsafe_allow_html=True)
     else:
         st.markdown(
-            '<div class="hero-title">BR3N MACRO LABS</div>'
+            '<div class="hero-title">BOWERS FRONTIER MACRO LABS</div>'
             '<div class="hero-subtitle">FX LAB</div>',
             unsafe_allow_html=True,
         )
@@ -852,7 +852,7 @@ def page_fx_desk_command_center() -> None:
                     f'<p><strong>Q:</strong> {mod["question"]}</p>'
                     f'<p><strong>Inputs:</strong> {inputs}…</p>'
                     f'<p><strong>Risks:</strong> {risks}…</p>'
-                    f'<p><strong>BR3N link:</strong> {mod["br3n_model_link"]}</p>'
+                    f'<p><strong>Bowers Frontier link:</strong> {mod["br3n_model_link"]}</p>'
                     f"</div>",
                     unsafe_allow_html=True,
                 )
@@ -1655,7 +1655,7 @@ def page_academic_tests() -> None:
         st.dataframe(wf, width="stretch")
 
     st.markdown(
-        '<div class="callout">BR3N Macro Labs does not treat backtest performance as proof. Models must be '
+        '<div class="callout">Bowers Frontier Macro Labs does not treat backtest performance as proof. Models must be '
         "tested against random-walk benchmarks, transaction costs, walk-forward validation, "
         "and data-snooping controls.</div>",
         unsafe_allow_html=True,
@@ -1977,7 +1977,7 @@ def page_fx_history() -> None:
 
     st.markdown(
         '<div class="info-card"><h4>Why This History Matters</h4>'
-        "<p>BR3N Macro Labs does not claim to ignore prior research. FX Lab builds on major exchange-rate theories "
+        "<p>Bowers Frontier Macro Labs does not claim to ignore prior research. FX Lab builds on major exchange-rate theories "
         "and puzzles. Random walk remains the benchmark. The strongest current thesis is not that FX can be predicted — "
         "it is that <strong>FX decisions may improve when prediction fails</strong>.</p></div>",
         unsafe_allow_html=True,
@@ -2106,7 +2106,7 @@ def page_open_source_fx_ai_lab() -> None:
         f'<div style="background:{OS["surface"]};border-left:4px solid {OS["green"]};'
         f'border:1px solid {OS["border"]};padding:1rem 1.25rem;border-radius:4px;margin-bottom:1.25rem">'
         "<strong>Core thesis:</strong> Most open-source FX AI models only predict the next candle from OHLC. "
-        "BR3N FX Lab adds carry, macro, volatility regimes, news sentiment, better labels, transaction costs, "
+        "Bowers Frontier FX Lab adds carry, macro, volatility regimes, news sentiment, better labels, transaction costs, "
         "and walk-forward backtesting.<br/><br/>"
         "<strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a "
         "disciplined research pipeline that proves when a model works, when it fails, and why.</div>",
@@ -2137,9 +2137,9 @@ def page_open_source_fx_ai_lab() -> None:
                 )
             idx += 1
 
-    section_header("Architecture — BR3N FX Lab v1")
+    section_header("Architecture — Bowers Frontier FX Lab v1")
     st.code(
-        """BR3N FX Lab v1
+        """Bowers Frontier FX Lab v1
 ├── Baselines (LSTM, Transformer, TimesFM, Lag-Llama, FinRL/TensorTrade)
 ├── Data Layer (OHLCV, carry, macro, DXY/VIX, news)
 ├── Signal Engine (direction, return, vol, carry, confidence)
@@ -2157,7 +2157,7 @@ def page_open_source_fx_ai_lab() -> None:
         "Most predictable pair: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, USD/INR?",
         "Does edge survive transaction costs?",
         "Can a model know when not to trade?",
-        "Can BR3N explain why a trade works?",
+        "Can Bowers Frontier explain why a trade works?",
     ]
     for q in questions:
         st.markdown(f"- {q}")
@@ -2369,7 +2369,7 @@ def ensure_dashboard_data() -> bool:
 
 def main() -> None:
     st.set_page_config(
-        page_title="BR3N Macro Labs — FX Lab",
+        page_title="Bowers Frontier Macro Labs — FX Lab",
         page_icon="📊",
         layout="wide",
         initial_sidebar_state="expanded",
@@ -2384,7 +2384,7 @@ def main() -> None:
             st.markdown('<div class="logo-frame">', unsafe_allow_html=True)
             st.image(str(FX_LOGO), width="stretch")
             st.markdown("</div>", unsafe_allow_html=True)
-        st.markdown('<div class="sidebar-brand">BR3N MACRO LABS</div>', unsafe_allow_html=True)
+        st.markdown('<div class="sidebar-brand">BOWERS FRONTIER MACRO LABS</div>', unsafe_allow_html=True)
         st.markdown('<div class="sidebar-tag">FX LAB</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="sidebar-motto">{BRAND_MOTTO}</div>', unsafe_allow_html=True)
         st.markdown(

@@ -43,4 +43,4 @@ Overall desk risk level is High. Hedge timing posture: High-volatility trend. Fo
 
 ## Disclaimer
 
-BR3N Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, financial institution, payment company, trading platform, or data vendor. Research and risk-framing only. Not investment advice. Not a trading instruction. Requires human review, exposure systems, and policy controls.
+Bowers Frontier Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, financial institution, payment company, trading platform, or data vendor. Research and risk-framing only. Not investment advice. Not a trading instruction. Requires human review, exposure systems, and policy controls.

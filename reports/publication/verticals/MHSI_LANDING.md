@@ -2,7 +2,7 @@
 
 **Short name:** MHSI · **Materials · Speculative hydride research**
 
-Part of [BR3N Macro Labs](../index.html) · Prepared by Brendan Bowers
+Part of [Bowers Frontier Macro Labs](../index.html) · Prepared by Brendan Bowers
 
 ---
 
@@ -66,4 +66,4 @@ This initiative is **speculative research planning**. It does not claim discover
 
 All candidate phases require computational validation, experimental feasibility review, safety review, and independent replication.
 
-BR3N Macro Labs is an independent research project — not affiliated with any university, laboratory, or research institution unless explicitly stated.
+Bowers Frontier Macro Labs is an independent research project — not affiliated with any university, laboratory, or research institution unless explicitly stated.

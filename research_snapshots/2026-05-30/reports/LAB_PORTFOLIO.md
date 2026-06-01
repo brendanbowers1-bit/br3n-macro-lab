@@ -1,8 +1,8 @@
-# BR3N Macro Labs Portfolio
+# Bowers Frontier Macro Labs Portfolio
 
 ## Umbrella Mission
 
-BR3N Macro Labs is an independent research and creative systems lab exploring markets, images, and materials through AI-assisted experimentation, evidence, and design.
+Bowers Frontier Macro Labs is an independent research and creative systems lab exploring markets, images, and materials through AI-assisted experimentation, evidence, and design.
 
 **Tagline:** Markets. Images. Materials. Systems.
 
@@ -38,7 +38,7 @@ Study when currency markets become less random and how regime intelligence can i
 
 ---
 
-## Project 2 — BR3N Photography
+## Project 2 — Bowers Frontier Photography
 
 **Mission:**  
 Build a high-end visual research and fine-art photography studio focused on luxury black-and-white imagery, urban abstraction, architectural forms, and AI-assisted visual systems.
@@ -47,7 +47,7 @@ Build a high-end visual research and fine-art photography studio focused on luxu
 
 - What makes a photograph feel timeless, expensive, and gallery-ready?
 - Can AI help generate visual themes from music, philosophy, markets, and emotion?
-- Can BR3N build a recognizable fine-art print style?
+- Can Bowers Frontier build a recognizable fine-art print style?
 - How do photography, abstraction, branding, and luxury interiors connect?
 
 **Current Outputs:**
@@ -104,10 +104,10 @@ Speculative research initiative and computational planning package. No experimen
 
 ## Disclaimer
 
-BR3N Macro Labs is an independent research and creative project. It is not affiliated with, endorsed by, or sponsored by any employer, university, financial institution, payment company, data vendor, laboratory, or research institution unless explicitly stated.
+Bowers Frontier Macro Labs is an independent research and creative project. It is not affiliated with, endorsed by, or sponsored by any employer, university, financial institution, payment company, data vendor, laboratory, or research institution unless explicitly stated.
 
 FX Lab research is for education, analysis, and risk-framing only. It is not investment advice and does not place trades.
 
 Metastable Hydride Superconductor Initiative materials are speculative research planning documents and do not represent verified experimental results.
 
-BR3N Photography materials are creative works and visual research.
+Bowers Frontier Photography materials are creative works and visual research.

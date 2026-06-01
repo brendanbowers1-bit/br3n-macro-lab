@@ -141,7 +141,7 @@ def run_full_research_pipeline(cfg: Optional[dict] = None) -> Dict[str, Path]:
 
 def _print_summary(fc_sc, dm, ml_sc, h_sc, wrc) -> None:
     print("\n" + "=" * 60)
-    print("BR3N Macro Labs — Research Pipeline Summary")
+    print("Bowers Frontier Macro Labs — Research Pipeline Summary")
     print("=" * 60)
 
     if not fc_sc.empty and "rmse_model" in fc_sc.columns:

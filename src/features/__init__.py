@@ -1,1 +1,1 @@
-"""Feature engineering package for BR3N FX Lab."""
+"""Feature engineering package for Bowers Frontier FX Lab."""

@@ -12,7 +12,7 @@ from src.flagship_memo import generate_all_flagship_documents
 
 def main() -> None:
     paths = generate_all_flagship_documents()
-    print("\nBR3N Macro Labs — Flagship Documents")
+    print("\nBowers Frontier Macro Labs — Flagship Documents")
     print("=" * 50)
     for key, path in paths.items():
         print(f"  {key}: {path}")

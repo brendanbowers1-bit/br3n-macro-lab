@@ -1,4 +1,4 @@
-# Bloomberg Setup for BR3N Macro Labs
+# Bloomberg Setup for Bowers Frontier Macro Labs
 
 > Tier 2 — professional market data. Research only.
 

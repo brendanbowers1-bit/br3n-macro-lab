@@ -320,7 +320,7 @@ with tabs[10]:
 
 with tabs[11]:
     st.info(
-        "The corridor roadmap expands BR3N Macro Labs from USD/MXN into major remittance "
+        "The corridor roadmap expands Bowers Frontier Macro Labs from USD/MXN into major remittance "
         "and payment corridors. These tests are exploratory and depend heavily on data quality. "
         "Public calendar proxies are not actual order-flow data."
     )

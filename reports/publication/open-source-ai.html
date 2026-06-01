@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="BR3N Macro Labs — Open Source FX AI Model Lab"/>
-  <title>Open Source FX AI Model Lab — BR3N Macro Labs</title>
+  <meta name="description" content="Bowers Frontier Macro Labs — A model-agnostic AI research environment for testing local and hosted models against FX, treasury, settlement, and corridor-risk tasks."/>
+  <title>Bowers Frontier Model Lab — Bowers Frontier Macro Labs</title>
   <link rel="icon" href="assets/brand/bfi-icon.svg" type="image/svg+xml"/><link rel="apple-touch-icon" href="assets/brand/bfi-icon.svg"/>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
@@ -668,11 +668,11 @@ body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
 <div class="institute-brand-row">
   <a class="brand-lockup" href="index.html" aria-label="Bowers Frontier Institute home"><span class="brand-mark">BFI</span><span class="brand-divider"></span><span class="brand-name">BOWERS FRONTIER INSTITUTE</span></a>
   <span class="institute-brand-sep" aria-hidden="true">/</span>
-  <a href="macro-lab.html" class="division-mark" title="BR3N Macro Labs">BR3N MACRO LABS</a>
+  <a href="macro-lab.html" class="division-mark" title="Bowers Frontier Macro Labs">BOWERS FRONTIER MACRO LABS</a>
 </div>
-      <div class="brand">BR3N MACRO LABS · Division of Bowers Frontier Institute</div>
-      <h1 class="title">Open Source FX AI Model Lab</h1>
-      <p class="subtitle">Borrow. Benchmark. Improve. Explain. · Research only · Not investment advice</p>
+      <div class="brand">BOWERS FRONTIER MACRO LABS · Division of Bowers Frontier Institute</div>
+      <h1 class="title">Bowers Frontier Model Lab</h1>
+      <p class="subtitle">A model-agnostic AI research environment for testing local and hosted models against FX, treasury, settlement, and corridor-risk tasks. · Research only · Not investment advice</p>
       <nav class="top">
   <a href="index.html">Institute</a>
   <a href="macro-lab.html">Macro Lab</a>
@@ -708,28 +708,29 @@ body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
   <p><strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a disciplined
   research pipeline that proves when a model works, when it fails, and why.</p>
 </div>
-<h1>Open Source FX AI Model Lab</h1>
+<h1>Bowers Frontier Model Lab</h1>
 <h2 id="borrow-benchmark-improve-explain">Borrow. Benchmark. Improve. Explain.</h2>
+<p>A model-agnostic AI research environment for testing local and hosted models against FX, treasury, settlement, and corridor-risk tasks.</p>
 <div class="principle-box"><p>Research-only. Not investment advice. No live trading.</p></div>
 <hr/>
 <h2 id="core-thesis">Core Thesis</h2>
-<p>Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. BR3N FX Lab improves on them by adding <strong>carry</strong>, <strong>macro</strong>, <strong>volatility regimes</strong>, <strong>news sentiment</strong>, <strong>better labels</strong>, <strong>transaction costs</strong>, and <strong>proper walk-forward backtesting</strong>.</p>
+<p>Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. Bowers Frontier FX Lab improves on them by adding <strong>carry</strong>, <strong>macro</strong>, <strong>volatility regimes</strong>, <strong>news sentiment</strong>, <strong>better labels</strong>, <strong>transaction costs</strong>, and <strong>proper walk-forward backtesting</strong>.</p>
 <div class="principle-box"><p><strong>Warning:</strong> These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.</p></div>
 <div class="principle-box"><p><strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a disciplined research pipeline that proves when a model works, when it fails, and why.</p></div>
 <hr/>
 <h2 id="1-baseline-fx-forecasting-models">1. Baseline FX Forecasting Models</h2>
 <h3>EUR/USD TimeSeriesTransformer</h3>
-<p>Transformer-based ML for EUR/USD short-term forecasting. <strong>Use:</strong> modern deep-learning benchmark vs BR3N models. <strong>Improve:</strong> macro, carry, news, regimes, cost-aware labels.</p>
+<p>Transformer-based ML for EUR/USD short-term forecasting. <strong>Use:</strong> modern deep-learning benchmark vs Bowers Frontier models. <strong>Improve:</strong> macro, carry, news, regimes, cost-aware labels.</p>
 <h3>EUR/USD LSTM Model</h3>
 <p>Classic LSTM for EUR/USD. <strong>Use:</strong> traditional neural benchmark. <strong>Improve:</strong> compare LSTM vs Transformer vs foundation models on same splits and costs.</p>
 <h3>Rogendo Forex LSTM Models</h3>
-<p>Hugging Face collection of pair/timeframe LSTMs. <strong>Use:</strong> test pair-specific vs generalized models. <strong>Improve:</strong> evaluate major pairs; retrain on BR3N feature set.</p>
+<p>Hugging Face collection of pair/timeframe LSTMs. <strong>Use:</strong> test pair-specific vs generalized models. <strong>Improve:</strong> evaluate major pairs; retrain on Bowers Frontier feature set.</p>
 <hr/>
 <h2 id="2-reinforcement-learning-frameworks">2. Reinforcement Learning Frameworks</h2>
 <h3>FinRL / FinRL-X</h3>
 <p>Financial RL (PPO, A2C, DDPG, SAC, TD3). <strong>Use:</strong> decision layer after forecasts. <strong>Improve:</strong> feed confidence, vol, carry, spread, drawdown — not raw candles alone.</p>
 <h3>TensorTrade</h3>
-<p>Custom trading environments, actions, rewards. <strong>Use:</strong> FX envs with spreads and slippage. <strong>Improve:</strong> BR3N reward = risk-adjusted return, drawdown control, Sharpe.</p>
+<p>Custom trading environments, actions, rewards. <strong>Use:</strong> FX envs with spreads and slippage. <strong>Improve:</strong> Bowers Frontier reward = risk-adjusted return, drawdown control, Sharpe.</p>
 <hr/>
 <h2 id="3-time-series-foundation-models">3. Time-Series Foundation Models</h2>
 <h3>Google TimesFM</h3>
@@ -739,7 +740,7 @@ body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
 <h3>Chronos / TS Transformer Foundations</h3>
 <p>Pretrained time-series models adaptable to FX. <strong>Use:</strong> benchmark large pretrained vs small FX-specific models. <strong>Improve:</strong> fine-tune on OHLC, rates, macro, news.</p>
 <hr/>
-<h2 id="4-br3n-improvement-layer">4. BR3N Improvement Layer</h2>
+<h2 id="4-bowers-frontier-improvement-layer">4. Bowers Frontier Improvement Layer</h2>
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>Layer</th><th>Features</th></tr></thead>
 <tbody>
@@ -751,9 +752,9 @@ body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
 <tr><td><strong>Backtest</strong></td><td>walk-forward, OOS, no look-ahead, spreads, slippage, regime metrics</td></tr>
 </tbody></table></div>
 <hr/>
-<h2 id="5-architecture-br3n-fx-lab-v1">5. Architecture — BR3N FX Lab v1</h2>
+<h2 id="5-architecture-bowers-frontier-fx-lab-v1">5. Architecture — Bowers Frontier FX Lab v1</h2>
 <pre><code class="">
-BR3N FX Lab v1
+Bowers Frontier FX Lab v1
 ├── Baselines
 │   ├── EUR/USD LSTM
 │   ├── EUR/USD TimeSeriesTransformer
@@ -786,7 +787,7 @@ BR3N FX Lab v1
 </code></pre>
 <hr/>
 <h2 id="6-research-questions">6. Research Questions</h2>
-<ul><li>Do foundation models beat LSTM and Transformer in FX?</li><li>Does carry improve directional accuracy?</li><li>Does news help after central bank events?</li><li>Trend continuation vs mean reversion — which is more predictable?</li><li>Most predictable pair: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, USD/INR?</li><li>Does edge survive transaction costs?</li><li>Can a model know when <strong>not</strong> to trade?</li><li>Can BR3N explain <strong>why</strong> a trade works?</li></ul>
+<ul><li>Do foundation models beat LSTM and Transformer in FX?</li><li>Does carry improve directional accuracy?</li><li>Does news help after central bank events?</li><li>Trend continuation vs mean reversion — which is more predictable?</li><li>Most predictable pair: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, USD/INR?</li><li>Does edge survive transaction costs?</li><li>Can a model know when <strong>not</strong> to trade?</li><li>Can Bowers Frontier explain <strong>why</strong> a trade works?</li></ul>
 <hr/>
 <h2 id="7-benchmarking-standard">7. Benchmarking Standard</h2>
 <p>Same pair · timeframe · train/test split · costs · dates · risk limits · walk-forward method.</p>
@@ -823,17 +824,17 @@ reports/research/    — benchmark standard, research questions
   <div class="meta">LSTM · baseline candidate</div>
   <h4>EUR/USD LSTM Model</h4>
   <p>Classic LSTM time-series model for EUR/USD short-horizon forecasting.</p>
-  <p><span class="label">Use case:</span> Traditional neural-network benchmark under BR3N walk-forward splits.</p>
+  <p><span class="label">Use case:</span> Traditional neural-network benchmark under Bowers Frontier walk-forward splits.</p>
   <p><span class="label">Source:</span> open-source baseline</p>
-  <p><span class="label">BR3N improvements:</span></p><ul><li>add carry features</li><li>add macro features</li><li>add news sentiment</li><li>use transaction-cost-aware labels</li><li>walk-forward validation</li></ul>
+  <p><span class="label">Bowers Frontier improvements:</span></p><ul><li>add carry features</li><li>add macro features</li><li>add news sentiment</li><li>use transaction-cost-aware labels</li><li>walk-forward validation</li></ul>
 </div>
 <div class="os-card">
   <div class="meta">Transformer · baseline candidate</div>
   <h4>EUR/USD TimeSeriesTransformer</h4>
   <p>Transformer-based ML model for EUR/USD short-term forecasting.</p>
-  <p><span class="label">Use case:</span> Modern deep-learning benchmark vs BR3N regime models.</p>
+  <p><span class="label">Use case:</span> Modern deep-learning benchmark vs Bowers Frontier regime models.</p>
   <p><span class="label">Source:</span> open-source baseline</p>
-  <p><span class="label">BR3N improvements:</span></p><ul><li>add macro features, rate differentials, carry</li><li>add news sentiment and volatility regimes</li><li>transaction-cost-aware labels</li><li>compare against LSTM under same splits</li></ul>
+  <p><span class="label">Bowers Frontier improvements:</span></p><ul><li>add macro features, rate differentials, carry</li><li>add news sentiment and volatility regimes</li><li>transaction-cost-aware labels</li><li>compare against LSTM under same splits</li></ul>
 </div>
 <div class="os-card">
   <div class="meta">LSTM collection · baseline candidate</div>
@@ -841,7 +842,7 @@ reports/research/    — benchmark standard, research questions
   <p>Collection of pair-specific LSTM forex models on Hugging Face.</p>
   <p><span class="label">Use case:</span> Test whether pair-specific models beat generalized FX models.</p>
   <p><span class="label">Source:</span> Hugging Face — pair/timeframe-specific LSTMs</p>
-  <p><span class="label">BR3N improvements:</span></p><ul><li>evaluate across major pairs</li><li>retrain with BR3N cleaner feature set</li><li>same cost and walk-forward standard</li></ul>
+  <p><span class="label">Bowers Frontier improvements:</span></p><ul><li>evaluate across major pairs</li><li>retrain with Bowers Frontier cleaner feature set</li><li>same cost and walk-forward standard</li></ul>
 </div>
 </div>
 <h3>Reinforcement Learning Frameworks</h3>
@@ -852,7 +853,7 @@ reports/research/    — benchmark standard, research questions
   <p>Open-source financial RL framework for portfolio and trading decisions.</p>
   <p><span class="label">Use case:</span> Decision layer after forecast models — long/short/flat/sized positions.</p>
   <p><span class="label">Source:</span> AI4Finance</p>
-  <p><span class="label">BR3N improvements:</span></p><ul><li>feed forecast confidence, volatility, carry, spread</li><li>include drawdown and macro regime in state</li><li>optimize risk-adjusted return not raw PnL</li></ul>
+  <p><span class="label">Bowers Frontier improvements:</span></p><ul><li>feed forecast confidence, volatility, carry, spread</li><li>include drawdown and macro regime in state</li><li>optimize risk-adjusted return not raw PnL</li></ul>
 </div>
 <div class="os-card">
   <div class="meta">RL trading framework · future environment candidate</div>
@@ -860,7 +861,7 @@ reports/research/    — benchmark standard, research questions
   <p>Flexible RL framework for custom actions, rewards, and data feeds.</p>
   <p><span class="label">Use case:</span> FX environments with spreads, slippage, and position sizing.</p>
   <p><span class="label">Source:</span> open-source</p>
-  <p><span class="label">BR3N improvements:</span></p><ul><li>build custom FX environment</li><li>add realistic costs</li><li>custom BR3N reward function (Sharpe, drawdown control)</li></ul>
+  <p><span class="label">Bowers Frontier improvements:</span></p><ul><li>build custom FX environment</li><li>add realistic costs</li><li>custom Bowers Frontier reward function (Sharpe, drawdown control)</li></ul>
 </div>
 </div>
 <h3>Time-Series Foundation Models</h3>
@@ -871,7 +872,7 @@ reports/research/    — benchmark standard, research questions
   <p>General-purpose open-source time-series foundation model.</p>
   <p><span class="label">Use case:</span> Zero-shot / fine-tuned benchmark on major FX pairs.</p>
   <p><span class="label">Source:</span> Google Research</p>
-  <p><span class="label">BR3N improvements:</span></p><ul><li>fine-tune on FX + macro + carry</li><li>compare against LSTM and Transformer baselines</li></ul>
+  <p><span class="label">Bowers Frontier improvements:</span></p><ul><li>fine-tune on FX + macro + carry</li><li>compare against LSTM and Transformer baselines</li></ul>
 </div>
 <div class="os-card">
   <div class="meta">probabilistic foundation model · experiment candidate</div>
@@ -879,7 +880,7 @@ reports/research/    — benchmark standard, research questions
   <p>Probabilistic time-series foundation model with uncertainty estimates.</p>
   <p><span class="label">Use case:</span> Confidence intervals and volatility-aware position sizing.</p>
   <p><span class="label">Source:</span> open-source foundation model</p>
-  <p><span class="label">BR3N improvements:</span></p><ul><li>use uncertainty for position sizing</li><li>reduce trades when confidence is low</li></ul>
+  <p><span class="label">Bowers Frontier improvements:</span></p><ul><li>use uncertainty for position sizing</li><li>reduce trades when confidence is low</li></ul>
 </div>
 <div class="os-card">
   <div class="meta">Transformer foundation model · experiment candidate</div>
@@ -887,11 +888,11 @@ reports/research/    — benchmark standard, research questions
   <p>Foundation-model approaches for time-series that may adapt to currency markets.</p>
   <p><span class="label">Use case:</span> Benchmark large pretrained TS models vs smaller FX-specific models.</p>
   <p><span class="label">Source:</span> open-source / Amazon Chronos family</p>
-  <p><span class="label">BR3N improvements:</span></p><ul><li>fine-tune on FX OHLC, rates, macro, news-derived features</li><li>walk-forward OOS with cost drag</li></ul>
+  <p><span class="label">Bowers Frontier improvements:</span></p><ul><li>fine-tune on FX OHLC, rates, macro, news-derived features</li><li>walk-forward OOS with cost drag</li></ul>
 </div>
 </div>
 <h2>Architecture</h2>
-<pre class="arch-tree">BR3N FX Lab v1
+<pre class="arch-tree">Bowers Frontier FX Lab v1
 ├── Baselines
 │   ├── EUR/USD LSTM
 │   ├── EUR/USD TimeSeriesTransformer
@@ -927,19 +928,20 @@ reports/research/    — benchmark standard, research questions
     └── regime performance</pre>
 <hr/>
 <h2>Full Documentation</h2>
-<h1>Open Source FX AI Model Lab</h1>
+<h1>Bowers Frontier Model Lab</h1>
 <p><strong>Borrow. Benchmark. Improve. Explain.</strong></p>
+<p>A model-agnostic AI research environment for testing local and hosted models against FX, treasury, settlement, and corridor-risk tasks.</p>
 <div class="principle-box"><p>Research-only. Not investment advice. No live trading.</p></div>
 <hr/>
 <h2 id="core-thesis">Core Thesis</h2>
-<p>Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. BR3N FX Lab should improve on them by adding carry, macro, volatility regimes, news sentiment, better labels, transaction costs, and proper walk-forward backtesting.</p>
+<p>Most open-source FX AI models are weak because they only predict the next candle from historical OHLC data. Bowers Frontier FX Lab should improve on them by adding carry, macro, volatility regimes, news sentiment, better labels, transaction costs, and proper walk-forward backtesting.</p>
 <div class="principle-box"><p><strong>Warning:</strong> These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.</p></div>
 <div class="principle-box"><p><strong>Conclusion:</strong> The edge is not copying an open-source FX model. The edge is building a disciplined research pipeline that proves when a model works, when it fails, and why.</p></div>
 <hr/>
 <h2 id="1-baseline-fx-forecasting-models">1. Baseline FX Forecasting Models</h2>
 <h3>A. EUR/USD TimeSeriesTransformer</h3>
 <p><strong>Description:</strong> A transformer-based machine learning model for EUR/USD short-term forecasting, useful as a modern deep-learning benchmark.</p>
-<p><strong>Use case:</strong> Benchmark BR3N's own FX models against a direct transformer baseline.</p>
+<p><strong>Use case:</strong> Benchmark Bowers Frontier's own FX models against a direct transformer baseline.</p>
 <p><strong>Improvement idea:</strong> Add macro features, rate differentials, carry, news sentiment, volatility regimes, and transaction-cost-aware labels.</p>
 <h3>B. EUR/USD LSTM Model</h3>
 <p><strong>Description:</strong> A classic deep-learning time-series model for EUR/USD forecasting using LSTM architecture.</p>
@@ -948,7 +950,7 @@ reports/research/    — benchmark standard, research questions
 <h3>C. Rogendo Forex LSTM Models</h3>
 <p><strong>Description:</strong> A Hugging Face collection of multiple pair/timeframe-specific LSTM forex models.</p>
 <p><strong>Use case:</strong> Test whether pair-specific models outperform generalized FX models.</p>
-<p><strong>Improvement idea:</strong> Evaluate model quality across major pairs, then retrain using BR3N's cleaner feature set.</p>
+<p><strong>Improvement idea:</strong> Evaluate model quality across major pairs, then retrain using Bowers Frontier's cleaner feature set.</p>
 <hr/>
 <h2 id="2-reinforcement-learning-trading-frameworks">2. Reinforcement Learning Trading Frameworks</h2>
 <h3>A. FinRL / FinRL-X</h3>
@@ -958,7 +960,7 @@ reports/research/    — benchmark standard, research questions
 <h3>B. TensorTrade</h3>
 <p><strong>Description:</strong> A flexible open-source reinforcement-learning framework for custom trading environments, actions, rewards, and data feeds.</p>
 <p><strong>Use case:</strong> Build custom FX trading environments with realistic spreads, slippage, and position sizing.</p>
-<p><strong>Improvement idea:</strong> Create BR3N-specific reward functions based on risk-adjusted return, drawdown control, Sharpe ratio, and capital preservation.</p>
+<p><strong>Improvement idea:</strong> Create Bowers Frontier-specific reward functions based on risk-adjusted return, drawdown control, Sharpe ratio, and capital preservation.</p>
 <hr/>
 <h2 id="3-time-series-foundation-models">3. Time-Series Foundation Models</h2>
 <h3>A. Google TimesFM</h3>
@@ -974,8 +976,8 @@ reports/research/    — benchmark standard, research questions
 <p><strong>Use case:</strong> Benchmark whether large pretrained time-series models beat smaller FX-specific models.</p>
 <p><strong>Improvement idea:</strong> Fine-tune on FX OHLC, rates, macro, and news-derived features.</p>
 <hr/>
-<h2 id="4-br3n-improvement-layer">4. BR3N Improvement Layer</h2>
-<p>What BR3N FX Lab adds beyond open-source models:</p>
+<h2 id="4-bowers-frontier-improvement-layer">4. Bowers Frontier Improvement Layer</h2>
+<p>What Bowers Frontier FX Lab adds beyond open-source models:</p>
 <h3>A. Carry Features</h3>
 <ul><li>interest-rate differentials</li><li>forward points</li><li>central bank policy rates</li><li>yield spreads</li><li>positive or negative carry</li></ul>
 <h3>B. Macro Features</h3>
@@ -990,9 +992,9 @@ reports/research/    — benchmark standard, research questions
 <h3>F. Better Backtesting</h3>
 <ul><li>walk-forward validation</li><li>out-of-sample testing</li><li>no look-ahead bias</li><li>realistic spreads</li><li>slippage</li><li>max drawdown</li><li>Sharpe ratio</li><li>Sortino ratio</li><li>win rate</li><li>average win/loss</li><li>profit factor</li><li>regime-specific performance</li><li>pair-specific performance</li></ul>
 <hr/>
-<h2 id="5-architecture-br3n-fx-lab-v1">5. Architecture — BR3N FX Lab v1</h2>
+<h2 id="5-architecture-bowers-frontier-fx-lab-v1">5. Architecture — Bowers Frontier FX Lab v1</h2>
 <pre><code class="">
-BR3N FX Lab v1
+Bowers Frontier FX Lab v1
 ├── Baselines
 │   ├── EUR/USD LSTM
 │   ├── EUR/USD TimeSeriesTransformer
@@ -1034,7 +1036,7 @@ BR3N FX Lab v1
 </code></pre>
 <hr/>
 <h2 id="6-research-questions">6. Research Questions</h2>
-<ul><li>Do time-series foundation models outperform traditional LSTM and Transformer models in FX?</li><li>Does adding interest-rate carry improve directional accuracy?</li><li>Does news sentiment improve short-term FX prediction after central bank events?</li><li>Are models better at predicting trend continuation or mean reversion?</li><li>Which pairs are most predictable: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, or USD/INR?</li><li>Does the model still work after transaction costs?</li><li>Can a model know when not to trade?</li><li>Can BR3N FX Lab explain why a trade works instead of only predicting direction?</li></ul>
+<ul><li>Do time-series foundation models outperform traditional LSTM and Transformer models in FX?</li><li>Does adding interest-rate carry improve directional accuracy?</li><li>Does news sentiment improve short-term FX prediction after central bank events?</li><li>Are models better at predicting trend continuation or mean reversion?</li><li>Which pairs are most predictable: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, or USD/INR?</li><li>Does the model still work after transaction costs?</li><li>Can a model know when not to trade?</li><li>Can Bowers Frontier FX Lab explain why a trade works instead of only predicting direction?</li></ul>
 <hr/>
 <h2 id="7-benchmarking-standard">7. Benchmarking Standard</h2>
 <p>Every model must be judged by:</p>
@@ -1052,7 +1054,7 @@ BR3N FX Lab v1
 <tr><td><strong>Phase 5</strong></td><td>Build walk-forward backtesting engine</td></tr>
 <tr><td><strong>Phase 6</strong></td><td>Add model comparison dashboard</td></tr>
 <tr><td><strong>Phase 7</strong></td><td>Add trade explanation engine</td></tr>
-<tr><td><strong>Phase 8</strong></td><td>Publish BR3N FX Lab research notes</td></tr>
+<tr><td><strong>Phase 8</strong></td><td>Publish Bowers Frontier FX Lab research notes</td></tr>
 </tbody></table></div>
 <hr/>
 <h2 id="9-project-folder-structure">9. Project Folder Structure</h2>
@@ -1093,7 +1095,7 @@ src/
 
   </main>
   <footer>
-    <p>BR3N Macro Labs · Prepared by Brendan Bowers · 2026-06-01</p>
+    <p>Bowers Frontier Macro Labs · Prepared by Brendan Bowers · 2026-06-01</p>
     <div class="disclaimer">These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.</div>
   </footer>
 </body>

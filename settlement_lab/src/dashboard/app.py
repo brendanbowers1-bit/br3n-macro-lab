@@ -1,5 +1,5 @@
 """
-BR3N Settlement Economics Lab — Streamlit dashboard.
+Bowers Frontier Settlement Economics Lab — Streamlit dashboard.
 
 Run from settlement_lab/: streamlit run src/dashboard/app.py
 Research and education only. Not financial advice.
@@ -49,7 +49,7 @@ def _banner(ds):
 
 
 def page_mission():
-    st.markdown('<p class="header">BR3N Settlement Economics Lab</p>', unsafe_allow_html=True)
+    st.markdown('<p class="header">Bowers Frontier Settlement Economics Lab</p>', unsafe_allow_html=True)
     st.markdown('<p class="sub">Measuring settlement drag, liquidity burden, finality quality, and payment-network fragility.</p>', unsafe_allow_html=True)
     st.markdown("""
 **Thesis:** Modern economies do not run only on money; they run on **settlement**.

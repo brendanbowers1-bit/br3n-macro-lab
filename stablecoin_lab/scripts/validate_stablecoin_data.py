@@ -14,7 +14,7 @@ from src.quality.validation import validate_all_tables
 
 
 def main() -> None:
-    print("BR3N Stablecoin Settlement Window Lab — validate data")
+    print("Bowers Frontier Stablecoin Settlement Window Lab — validate data")
     ds = build_stablecoin_dataset()
     tables = {k: v for k, v in ds.items() if not k.startswith("_")}
     val = validate_all_tables(tables)

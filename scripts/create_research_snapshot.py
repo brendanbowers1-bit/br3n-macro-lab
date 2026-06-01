@@ -147,7 +147,7 @@ def create_snapshot() -> Path:
 
 **Snapshot date:** {today}  
 **Git commit:** `{commit}`  
-**Project:** BR3N Macro Labs — FX Lab
+**Project:** Bowers Frontier Macro Labs — FX Lab
 
 > Research and risk-framing only. Not investment advice. No live trading.
 

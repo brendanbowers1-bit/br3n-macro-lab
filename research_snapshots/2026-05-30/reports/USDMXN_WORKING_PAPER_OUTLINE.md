@@ -2,7 +2,7 @@
 
 ## Conditional Forecastability in USD/MXN: A Regime-Based Research Framework
 
-**Authors:** Brendan Bowers (BR3N Macro Labs)  
+**Authors:** Brendan Bowers (Bowers Frontier Macro Labs)  
 **Status:** Working paper outline — not peer-reviewed  
 **Data tier:** Document source tier at submission (FRED H.10 / BIS / prototype)
 
@@ -86,7 +86,7 @@ We study whether USD/MXN exchange rate dynamics depart from a random-walk benchm
 
 ## Replication Package
 
-- Repository: BR3N Macro Labs FX Lab
+- Repository: Bowers Frontier Macro Labs FX Lab
 - Scripts: `run_usdmxn_backtest.py`, `run_under_tested_research.py`, `run_data_quality_layer.py`
 - Config: `config.yaml` with tier flags documented
 

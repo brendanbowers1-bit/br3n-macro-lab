@@ -501,7 +501,7 @@ def list_sources_by_use_case(keyword: str) -> List[Dict[str, Any]]:
 def print_data_source_plan() -> None:
     """Print phased data upgrade plan (Tier 1 = best)."""
     plan = """
-BR3N Macro Labs — Data Tier Stack (Tier 1 = highest quality)
+Bowers Frontier Macro Labs — Data Tier Stack (Tier 1 = highest quality)
 ============================================================
 
 Tier 1 — Official / academic-grade (public research)

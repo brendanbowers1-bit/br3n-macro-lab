@@ -1,4 +1,4 @@
-"""BR3N Macro Lab — project-wide audit, snapshot, and quality utilities."""
+"""Bowers Frontier Macro Labs — project-wide audit, snapshot, and quality utilities."""
 
 from src.audit.snapshots import create_snapshot, list_snapshots, restore_snapshot
 from src.audit.metrics import count_project_lines, write_metrics_reports

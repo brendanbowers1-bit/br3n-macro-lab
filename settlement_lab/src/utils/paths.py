@@ -1,4 +1,4 @@
-"""Path constants for BR3N Settlement Economics Lab."""
+"""Path constants for Bowers Frontier Settlement Economics Lab."""
 
 from __future__ import annotations
 

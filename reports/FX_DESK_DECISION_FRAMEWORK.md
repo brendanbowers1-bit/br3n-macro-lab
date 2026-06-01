@@ -1,8 +1,8 @@
 # Cross-Border Payments FX Desk Decision Framework
 
-BR3N Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, financial institution, payment company, trading platform, or data vendor.
+Bowers Frontier Macro Labs is an independent research project. It is not affiliated with, endorsed by, or sponsored by any employer, financial institution, payment company, trading platform, or data vendor.
 
-BR3N Macro Labs studies FX as the real-time nervous system of global money movement.
+Bowers Frontier Macro Labs studies FX as the real-time nervous system of global money movement.
 
 The lab is designed to help analyze how currency regimes, payment corridors, customer flows, hedge costs, liquidity, and operational constraints interact in a cross-border payments environment.
 
@@ -156,7 +156,7 @@ A company can manage FX risk through:
 
 ---
 
-## BR3N Macro Labs Research Translation
+## Bowers Frontier Macro Labs Research Translation
 
 The lab should turn the desk questions into testable research modules:
 

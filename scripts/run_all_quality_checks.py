@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Master quality runner for BR3N Macro Lab."""
+"""Master quality runner for Bowers Frontier Macro Labs."""
 
 from __future__ import annotations
 

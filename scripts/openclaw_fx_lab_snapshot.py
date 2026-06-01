@@ -33,7 +33,7 @@ def _read_csv(name: str):
 
 def build_snapshot() -> dict:
     snap: dict = {
-        "project": "BR3N Macro Labs — FX Lab",
+        "project": "Bowers Frontier Macro Labs — FX Lab",
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "project_root": str(ROOT),
         "disclaimer": "Research only. Not investment advice. No live trading.",
@@ -110,7 +110,7 @@ def main() -> None:
         return
 
     d = snap.get("data", {})
-    print("BR3N Macro Labs — FX Lab snapshot")
+    print("Bowers Frontier Macro Labs — FX Lab snapshot")
     print(f"Generated: {snap['generated_at']}")
     print()
     if "regime" in d:

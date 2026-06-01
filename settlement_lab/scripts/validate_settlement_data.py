@@ -13,7 +13,7 @@ from src.data.build_dataset import build_settlement_dataset
 
 
 def main() -> None:
-    print("BR3N Settlement Economics Lab — validate data")
+    print("Bowers Frontier Settlement Economics Lab — validate data")
     ds = build_settlement_dataset()
     val = ds["_validation"]
     print(val.to_string(index=False))

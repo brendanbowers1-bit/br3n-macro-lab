@@ -15,7 +15,7 @@ from src.utils.paths import OUTPUTS_DIR
 
 
 def main() -> None:
-    print("BR3N Stablecoin Settlement Window Lab — sensitivity")
+    print("Bowers Frontier Stablecoin Settlement Window Lab — sensitivity")
     ds = build_stablecoin_dataset()
     results = run_sensitivity_analysis(ds)
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)

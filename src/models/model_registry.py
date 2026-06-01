@@ -1,5 +1,5 @@
 """
-Central registry of open-source FX AI models and frameworks for BR3N benchmarking.
+Central registry of open-source FX AI models and frameworks for Bowers Frontier benchmarking.
 
 Research-only — not trading systems. Every entry requires OOS validation with costs.
 """
@@ -19,7 +19,7 @@ MODEL_REGISTRY: dict[str, dict[str, Any]] = {
         "task": "EUR/USD forecasting",
         "status": "baseline candidate",
         "description": "Classic LSTM time-series model for EUR/USD short-horizon forecasting.",
-        "use_case": "Traditional neural-network benchmark under BR3N walk-forward splits.",
+        "use_case": "Traditional neural-network benchmark under Bowers Frontier walk-forward splits.",
         "br3n_improvement": [
             "add carry features",
             "add macro features",
@@ -36,7 +36,7 @@ MODEL_REGISTRY: dict[str, dict[str, Any]] = {
         "task": "EUR/USD forecasting",
         "status": "baseline candidate",
         "description": "Transformer-based ML model for EUR/USD short-term forecasting.",
-        "use_case": "Modern deep-learning benchmark vs BR3N regime models.",
+        "use_case": "Modern deep-learning benchmark vs Bowers Frontier regime models.",
         "br3n_improvement": [
             "add macro features, rate differentials, carry",
             "add news sentiment and volatility regimes",
@@ -55,7 +55,7 @@ MODEL_REGISTRY: dict[str, dict[str, Any]] = {
         "use_case": "Test whether pair-specific models beat generalized FX models.",
         "br3n_improvement": [
             "evaluate across major pairs",
-            "retrain with BR3N cleaner feature set",
+            "retrain with Bowers Frontier cleaner feature set",
             "same cost and walk-forward standard",
         ],
     },
@@ -86,7 +86,7 @@ MODEL_REGISTRY: dict[str, dict[str, Any]] = {
         "br3n_improvement": [
             "build custom FX environment",
             "add realistic costs",
-            "custom BR3N reward function (Sharpe, drawdown control)",
+            "custom Bowers Frontier reward function (Sharpe, drawdown control)",
         ],
     },
     "timesfm": {

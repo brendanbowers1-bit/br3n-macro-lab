@@ -6,7 +6,7 @@ Metastable Hydride Superconductor Initiative (MHSI)
 
 ## Parent Lab
 
-BR3N Macro Labs
+Bowers Frontier Macro Labs
 
 ## Mission
 

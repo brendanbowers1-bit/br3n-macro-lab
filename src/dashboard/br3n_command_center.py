@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""BR3N Macro Lab — unified research intelligence command center."""
+"""Bowers Frontier Macro Labs — unified research intelligence command center."""
 
 from __future__ import annotations
 
@@ -55,7 +55,7 @@ def _load_data():
 
 def main() -> None:
     st.set_page_config(
-        page_title="BR3N Command Center",
+        page_title="Bowers Frontier Command Center",
         page_icon="◆",
         layout="wide",
         initial_sidebar_state="expanded",

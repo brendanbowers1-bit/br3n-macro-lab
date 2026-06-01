@@ -15,7 +15,7 @@ from src.utils.paths import OUTPUTS_DIR
 
 
 def main() -> None:
-    print("BR3N Stablecoin Settlement Window Lab — run models")
+    print("Bowers Frontier Stablecoin Settlement Window Lab — run models")
     ds = build_stablecoin_dataset()
     mock = bool(ds["_mock_data_flag"]["mock_data_flag"].iloc[0])
     emp = run_empirical_tests(ds.get("features"), mock_flag=mock)

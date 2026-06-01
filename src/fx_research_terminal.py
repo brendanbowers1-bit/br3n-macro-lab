@@ -1,5 +1,5 @@
 """
-BR3N Macro Labs — FX Research Terminal
+Bowers Frontier Macro Labs — FX Research Terminal
 
 Institutional-grade local-first FX research dashboard.
 Research and education only. Not investment advice. No live trading.
@@ -276,10 +276,10 @@ def page_news_lab() -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="BR3N FX Research Terminal", layout="wide", page_icon="📊")
+    st.set_page_config(page_title="Bowers Frontier FX Research Terminal", layout="wide", page_icon="📊")
     st.markdown(TERMINAL_CSS, unsafe_allow_html=True)
     st.markdown(
-        '<div class="terminal-header"><div class="terminal-title">BR3N FX Research Terminal</div>'
+        '<div class="terminal-header"><div class="terminal-title">Bowers Frontier FX Research Terminal</div>'
         '<div class="terminal-sub">Statistical models · Regime analysis · LLM research layer</div></div>',
         unsafe_allow_html=True,
     )

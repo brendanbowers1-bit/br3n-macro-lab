@@ -1,4 +1,4 @@
-"""Plotly chart builders — BR3N institutional theme."""
+"""Plotly chart builders — Bowers Frontier institutional theme."""
 
 from __future__ import annotations
 

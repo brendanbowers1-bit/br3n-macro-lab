@@ -7,4 +7,4 @@
 - Which pairs are most predictable: EUR/USD, USD/JPY, GBP/USD, AUD/USD, USD/MXN, or USD/INR?
 - Does the model still work after transaction costs?
 - Can a model know when not to trade?
-- Can BR3N FX Lab explain why a trade works instead of only predicting direction?
+- Can Bowers Frontier FX Lab explain why a trade works instead of only predicting direction?

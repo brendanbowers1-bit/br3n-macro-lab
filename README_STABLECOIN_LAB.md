@@ -1,4 +1,4 @@
-# BR3N Stablecoin Settlement Window Lab
+# Bowers Frontier Stablecoin Settlement Window Lab
 
 Research-grade measurement of stablecoin settlement windows, finality quality, liquidity transformation, digital run conditions, dollarization pressure, tokenized-money singleness, compliance drag, and value survival on remittance rails.
 

@@ -13,7 +13,7 @@ from src.data.build_dataset import build_settlement_dataset, save_outputs, save_
 
 
 def main() -> None:
-    print("BR3N Settlement Economics Lab — build dataset")
+    print("Bowers Frontier Settlement Economics Lab — build dataset")
     ds = build_settlement_dataset()
     paths = save_processed(ds)
     save_outputs(ds)

@@ -191,7 +191,7 @@ def main() -> None:
 
     report_path = write_report_md(fred_ok, yf_ok, cmp_row, fred_err, yf_err)
 
-    print("\nBR3N Macro Labs — Data Upgrade Report")
+    print("\nBowers Frontier Macro Labs — Data Upgrade Report")
     print("=" * 50)
     print(f"FRED H.10 loaded:     {fred_ok}")
     print(f"yfinance loaded:      {yf_ok}")

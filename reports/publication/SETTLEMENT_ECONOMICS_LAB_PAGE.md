@@ -1,4 +1,4 @@
-# BR3N Settlement Economics Lab
+# Bowers Frontier Settlement Economics Lab
 
 ## Modern economies run on settlement
 

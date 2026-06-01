@@ -49,7 +49,7 @@ def main() -> None:
     )
     out_path = save_data_quality_report(report)
 
-    print("\nBR3N Macro Labs — Data Quality Report")
+    print("\nBowers Frontier Macro Labs — Data Quality Report")
     print("=" * 50)
     print(f"Source:              {report['source_name']}")
     print(f"Tier:                {report.get('tier_number', '?')} — {report.get('tier_label', report.get('data_tier', 'unknown'))}")

@@ -15,7 +15,7 @@ from src.utils.paths import OUTPUTS_DIR
 
 
 def main() -> None:
-    print("BR3N Settlement Economics Lab — robustness")
+    print("Bowers Frontier Settlement Economics Lab — robustness")
     ds = build_settlement_dataset()
     checks = run_robustness_checks(
         ds["settlement_drag_outputs"],

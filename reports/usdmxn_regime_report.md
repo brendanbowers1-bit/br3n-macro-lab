@@ -148,4 +148,4 @@
 - Walk-forward requires long history; short samples bias results.
 
 ---
-_BR3N Macro Labs_
+_Bowers Frontier Macro Labs_

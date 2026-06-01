@@ -1,9 +1,9 @@
 # Metastable Hydride Superconductor Initiative
 
 **Short name:** MHSI  
-**Parent lab:** BR3N Macro Labs
+**Parent lab:** Bowers Frontier Macro Labs
 
-The Metastable Hydride Superconductor Initiative is a speculative materials-science research project under BR3N Macro Labs.
+The Metastable Hydride Superconductor Initiative is a speculative materials-science research project under Bowers Frontier Macro Labs.
 
 The initiative studies whether metastable hydrogen-rich hydride phases can be explored through non-equilibrium hydrogen insertion, vacancy filling, pressure-quench chemistry, computational screening, and safety-first experimental roadmapping.
 
