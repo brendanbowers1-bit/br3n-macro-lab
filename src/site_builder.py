@@ -463,6 +463,342 @@ body.cover-page header.hero-cover {
 """
 
 
+def _css_home() -> str:
+    """Dark institutional theme for the BR3N Macro Labs homepage."""
+    return (
+        _css()
+        + """
+body.home-page {
+  --bg: #050608;
+  --surface: #0b0f14;
+  --surface-alt: #111827;
+  --border: #1f2937;
+  --border-strong: #374151;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-dim: #7dd3fc;
+  --gold: #d4af37;
+  --good: #22c55e;
+  --warn: #f59e0b;
+  background:
+    linear-gradient(rgba(56, 189, 248, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.025) 1px, transparent 1px),
+    var(--bg);
+  background-size: 48px 48px, 48px 48px, auto;
+}
+body.home-page header.hero-cover {
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(56, 189, 248, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 85% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #0b0f14 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+body.home-page .logo-frame {
+  background: rgba(11, 15, 20, 0.85);
+  border-color: var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+body.home-page .hero-cover .lab-title {
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-size: clamp(1.85rem, 4.5vw, 2.85rem);
+  color: var(--text);
+}
+body.home-page .hero-cover .home-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin: 0.35rem auto 0.75rem;
+  font-weight: 500;
+}
+body.home-page .hero-cover .home-hero-line {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-style: italic;
+  color: var(--muted);
+  max-width: 44rem;
+  margin: 0.75rem auto 0;
+  line-height: 1.55;
+}
+body.home-page .hero-cover .motto { color: var(--muted); opacity: 0.85; }
+body.home-page .hero-cover .author { color: var(--accent); }
+body.home-page .cta-row a.primary {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--accent);
+}
+body.home-page .cta-row a.secondary {
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+body.home-page .cta-row a:hover { opacity: 0.92; text-decoration: none; }
+body.home-page nav.top a {
+  background: rgba(11, 15, 20, 0.7);
+  border-color: var(--border);
+  color: var(--muted);
+}
+body.home-page nav.top a:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  color: var(--accent);
+}
+body.home-page nav.top a.primary {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: var(--accent);
+}
+body.home-page main.cover-main {
+  padding: 2.5rem 1.5rem 3rem;
+  margin: 0 auto;
+}
+body.home-page .home-section {
+  margin: 2.75rem 0;
+}
+body.home-page .home-section h2 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+body.home-page .home-mission {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 52rem;
+  margin: 0;
+}
+body.home-page .flagship-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+body.home-page .flagship-card {
+  display: block;
+  background: linear-gradient(145deg, rgba(11, 15, 20, 0.95) 0%, rgba(17, 24, 39, 0.55) 100%);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.35rem 1.4rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+body.home-page .flagship-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+body.home-page .flagship-card .card-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+body.home-page .flagship-card h3 {
+  margin: 0 0 0.55rem;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+body.home-page .flagship-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+body.home-page .discipline-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body.home-page .discipline-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: rgba(17, 24, 39, 0.55);
+  color: var(--muted);
+}
+body.home-page .discipline-badge.emphasis {
+  border-color: rgba(212, 175, 55, 0.35);
+  color: var(--gold);
+}
+body.home-page .focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body.home-page .focus-grid li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding: 0.55rem 0.75rem;
+  border-left: 2px solid rgba(56, 189, 248, 0.35);
+  background: rgba(11, 15, 20, 0.5);
+}
+body.home-page .questions-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: rq;
+}
+body.home-page .questions-list li {
+  counter-increment: rq;
+  position: relative;
+  padding: 0.85rem 0 0.85rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.45;
+}
+body.home-page .questions-list li:last-child { border-bottom: none; }
+body.home-page .questions-list li::before {
+  content: counter(rq, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+body.home-page .fx-spotlight {
+  background: linear-gradient(135deg, rgba(11, 15, 20, 0.95) 0%, rgba(30, 58, 95, 0.15) 100%);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 1.5rem 1.65rem;
+}
+body.home-page .fx-spotlight h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+body.home-page .fx-spotlight .fx-tagline {
+  font-size: 0.95rem;
+  color: var(--gold);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+body.home-page .fx-spotlight p {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+body.home-page .fx-spotlight a.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--gold);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(212, 175, 55, 0.08);
+}
+body.home-page footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+body.home-page .disclaimer {
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: var(--muted);
+}
+"""
+    )
+
+
+FLAGSHIP_HOME_CARDS: list[tuple[str, str, str, str]] = [
+    (
+        "global-fx-lab.html",
+        "Global FX Lab",
+        "Tests when currency markets become less random by studying trend, volatility, carry, liquidity stress, and payment-flow pressure. Separates forecast accuracy, trading P&L, and hedge-governance usefulness.",
+        "FX · Regimes",
+    ),
+    (
+        "value-survival-index.html",
+        "Value Survival Index",
+        "Measures how much usable purchasing power survives when money crosses borders after fees, FX spreads, transfer timing, volatility, inflation erosion, payout friction, dollar dependency, and currency trust adjustments.",
+        "Remittance · VSI",
+    ),
+    (
+        "settlement-economics-lab.html",
+        "Settlement Economics Lab",
+        "Measures settlement drag, operational liquidity burden, finality quality, and payment-network fragility. Core thesis: the economy is not complete when money is promised; it is complete when value settles.",
+        "Settlement",
+    ),
+    (
+        "stablecoin-settlement-lab.html",
+        "Stablecoin Settlement Window Lab",
+        "Studies what happens when settlement windows collapse toward zero. Core thesis: stablecoins do not eliminate settlement risk; they change its location, speed, and legal form.",
+        "Stablecoin · SWC",
+    ),
+    (
+        "lab-status.html",
+        "Data Lake & Audit Layer",
+        "Preserves raw data, cleaned tables, model outputs, source lineage, file hashes, data quality scores, methodology versions, snapshots, and reproducibility reports.",
+        "Data · Audit",
+    ),
+]
+
+HOME_DISCIPLINE_BADGES: list[tuple[str, bool]] = [
+    ("Research only", True),
+    ("Not investment advice", True),
+    ("No live trading", True),
+    ("Mock data labeled", False),
+    ("Source lineage required", False),
+    ("Data quality scored", False),
+    ("Sensitivity tested", False),
+    ("Replication first", False),
+]
+
+HOME_CURRENT_FOCUS: list[str] = [
+    "Conditional FX forecastability",
+    "Cross-border value survival",
+    "Settlement drag and liquidity burden",
+    "Ledger finality vs economic finality",
+    "Stablecoin risk relocation",
+    "Data quality and reproducibility",
+]
+
+HOME_CORE_QUESTIONS: list[str] = [
+    "When do FX markets become less random?",
+    "When value crosses borders, how much survives?",
+    "How much economic value is lost to settlement delay?",
+    "When money settles instantly, where does trust go?",
+    "Can payment infrastructure become a new form of monetary power?",
+]
+
+
 def _looks_numeric(s: str) -> bool:
     s = s.strip().replace(",", "")
     if s in ("—", "True", "False", "None", "", "nan"):
@@ -1305,13 +1641,67 @@ def _shell(
 </html>"""
 
 
-def _cover_shell(body: str) -> str:
+def _home_body() -> str:
+    cards = "".join(
+        f'<a href="{html.escape(href, quote=True)}" class="flagship-card">'
+        f'<div class="card-tag">{html.escape(tag)}</div>'
+        f"<h3>{html.escape(title)}</h3>"
+        f"<p>{html.escape(desc)}</p>"
+        f"</a>"
+        for href, title, desc, tag in FLAGSHIP_HOME_CARDS
+    )
+    badges = "".join(
+        f'<li class="discipline-badge{" emphasis" if emph else ""}">{html.escape(label)}</li>'
+        for label, emph in HOME_DISCIPLINE_BADGES
+    )
+    focus = "".join(f"<li>{html.escape(item)}</li>" for item in HOME_CURRENT_FOCUS)
+    questions = "".join(f"<li>{html.escape(q)}</li>" for q in HOME_CORE_QUESTIONS)
+    return f"""
+<section class="home-section">
+  <p class="home-mission">BR3N Macro Labs studies how currencies, payment rails, liquidity systems, and settlement windows determine how value survives when it crosses borders. The lab combines FX research, remittance economics, settlement infrastructure, stablecoin finality analysis, and data-quality governance into one research platform.</p>
+</section>
+
+<section class="home-section">
+  <h2>Flagship Research</h2>
+  <div class="flagship-grid">{cards}</div>
+</section>
+
+<section class="home-section">
+  <h2>Flagship Vertical — FX Lab</h2>
+  <div class="fx-spotlight">
+    <h3>FX Lab</h3>
+    <p class="fx-tagline">Testing When Currency Markets Become Less Random</p>
+    <p>FX Lab is a flagship research vertical within BR3N Macro Labs. It studies conditional forecastability in currency markets — whether observable regimes of trend, volatility, carry, liquidity stress, and payment-flow pressure can identify when FX behavior becomes more structured than a random walk. The lab separates forecast accuracy, trading P&amp;L, and hedge-governance usefulness.</p>
+    <a href="fx-lab.html" class="btn">Enter FX Lab</a>
+  </div>
+</section>
+
+<section class="home-section">
+  <h2>Research Discipline</h2>
+  <ul class="discipline-strip">{badges}</ul>
+</section>
+
+<section class="home-section">
+  <h2>Current Focus</h2>
+  <ul class="focus-grid">{focus}</ul>
+</section>
+
+<section class="home-section">
+  <h2>Core Research Questions</h2>
+  <ol class="questions-list">{questions}</ol>
+</section>
+"""
+
+
+def _home_shell(body: str) -> str:
     hero = f"""
 <header class="hero-cover">
   <div class="header-inner">
     <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo"/></div>
+    <h1 class="lab-title">{html.escape(LAB_NAME)}</h1>
+    <p class="home-subtitle">Cross-Border Value Infrastructure Research</p>
     <p class="motto">{html.escape(BRAND_MOTTO)}</p>
-    <p class="tagline">{html.escape(FX_LAB_TAGLINE)}</p>
+    <p class="home-hero-line">FX prices trust. Settlement makes value real. Stablecoins move risk somewhere else.</p>
     <p class="author">Prepared by Brendan Bowers · Independent Research</p>
     <div class="cta-row">
       <a href="fx-lab.html" class="primary">FX Lab Overview</a>
@@ -1322,37 +1712,30 @@ def _cover_shell(body: str) -> str:
     {_nav_fx("home")}
   </div>
 </header>"""
+    foot = (
+        f"{html.escape(LAB_NAME)} · Prepared by Brendan Bowers · "
+        "Research and risk-framing only · Not investment advice · No live trading."
+    )
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="{html.escape(LAB_NAME)} FX Lab — conditional forecastability research"/>
-  <title>{html.escape(LAB_NAME_DISPLAY)} — FX Lab</title>
-  <style>{_css()}</style>
+  <meta name="description" content="{html.escape(LAB_NAME)} — Cross-border value infrastructure research"/>
+  <title>{html.escape(LAB_NAME_DISPLAY)}</title>
+  <style>{_css_home()}</style>
 </head>
-<body class="cover-page">
+<body class="cover-page home-page">
   {hero}
   <main class="cover-main wide">
     {body}
   </main>
   <footer>
-    <p>{html.escape(LAB_NAME)} · FX Lab · Prepared by Brendan Bowers · {datetime.now():%Y-%m-%d}</p>
+    <p>{foot}</p>
     <div class="disclaimer">Research and risk-framing only. Not investment advice. No live trading.</div>
   </footer>
 </body>
 </html>"""
-
-
-def _cover_body_from_md(text: str) -> str:
-    """Convert LAB_COVER.md, skipping title block (rendered in hero)."""
-    lines = text.splitlines()
-    start = 0
-    for i, line in enumerate(lines):
-        if line.startswith("## "):
-            start = i
-            break
-    return _md_to_html("\n".join(lines[start:]), research_links=HOME_RESEARCH_LINKS)
 
 
 def _landing_stats() -> str:
@@ -1448,13 +1831,10 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
 
     one_pager = (out_dir / "ONE_PAGER.md").read_text(encoding="utf-8") if (out_dir / "ONE_PAGER.md").exists() else ""
     memo = (out_dir / "FX_REGIME_RESEARCH_NOTE.md").read_text(encoding="utf-8") if (out_dir / "FX_REGIME_RESEARCH_NOTE.md").exists() else ""
-    cover_md = (out_dir / "LAB_COVER.md").read_text(encoding="utf-8") if (out_dir / "LAB_COVER.md").exists() else ""
 
-    fx_cover = _read_md(out_dir / "FX_LAB_COVER_PAGE.md") or cover_md
-
-    # Home — FX Lab only (no links to other verticals)
+    # Home — BR3N Macro Labs front door (all verticals)
     cover_path = out_dir / "index.html"
-    cover_path.write_text(_cover_shell(_cover_body_from_md(fx_cover)), encoding="utf-8")
+    cover_path.write_text(_home_shell(_home_body()), encoding="utf-8")
 
     fx_lab_path = out_dir / "fx-lab.html"
     fx_lab_md = _read_md(VERTICALS_DIR / "FX_LAB_LANDING.md")
@@ -1484,7 +1864,7 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     <li><a href="hedge-governance.html"><strong>Hedge governance memo</strong></a> — forecast failure, hedge usefulness</li>
     <li><a href="model-zoo.html"><strong>Model zoo</strong></a> — conditional forecastability tests</li>
     <li><a href="lab-status.html"><strong>Lab status</strong></a> — nightly pipeline health snapshot</li>
-    <li><a href="index.html"><strong>FX Lab home</strong></a></li>
+    <li><a href="index.html"><strong>Macro Labs home</strong></a></li>
   </ul>
 </div>
 {_md_to_html(one_pager)}

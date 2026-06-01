@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="BR3N Macro Labs FX Lab — conditional forecastability research"/>
-  <title>BR3N MACRO LABS — FX Lab</title>
+  <meta name="description" content="BR3N Macro Labs — Cross-border value infrastructure research"/>
+  <title>BR3N MACRO LABS</title>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 :root {
@@ -416,15 +416,283 @@ body.cover-page header.hero-cover {
   body { font-size: 16px; }
   .hero-cover .lab-title { letter-spacing: 0.05em; }
 }
+
+body.home-page {
+  --bg: #050608;
+  --surface: #0b0f14;
+  --surface-alt: #111827;
+  --border: #1f2937;
+  --border-strong: #374151;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-dim: #7dd3fc;
+  --gold: #d4af37;
+  --good: #22c55e;
+  --warn: #f59e0b;
+  background:
+    linear-gradient(rgba(56, 189, 248, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.025) 1px, transparent 1px),
+    var(--bg);
+  background-size: 48px 48px, 48px 48px, auto;
+}
+body.home-page header.hero-cover {
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -10%, rgba(56, 189, 248, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 85% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #0b0f14 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+body.home-page .logo-frame {
+  background: rgba(11, 15, 20, 0.85);
+  border-color: var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+body.home-page .hero-cover .lab-title {
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-size: clamp(1.85rem, 4.5vw, 2.85rem);
+  color: var(--text);
+}
+body.home-page .hero-cover .home-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin: 0.35rem auto 0.75rem;
+  font-weight: 500;
+}
+body.home-page .hero-cover .home-hero-line {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-style: italic;
+  color: var(--muted);
+  max-width: 44rem;
+  margin: 0.75rem auto 0;
+  line-height: 1.55;
+}
+body.home-page .hero-cover .motto { color: var(--muted); opacity: 0.85; }
+body.home-page .hero-cover .author { color: var(--accent); }
+body.home-page .cta-row a.primary {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--accent);
+}
+body.home-page .cta-row a.secondary {
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+body.home-page .cta-row a:hover { opacity: 0.92; text-decoration: none; }
+body.home-page nav.top a {
+  background: rgba(11, 15, 20, 0.7);
+  border-color: var(--border);
+  color: var(--muted);
+}
+body.home-page nav.top a:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  color: var(--accent);
+}
+body.home-page nav.top a.primary {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: var(--accent);
+}
+body.home-page main.cover-main {
+  padding: 2.5rem 1.5rem 3rem;
+  margin: 0 auto;
+}
+body.home-page .home-section {
+  margin: 2.75rem 0;
+}
+body.home-page .home-section h2 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+body.home-page .home-mission {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 52rem;
+  margin: 0;
+}
+body.home-page .flagship-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+body.home-page .flagship-card {
+  display: block;
+  background: linear-gradient(145deg, rgba(11, 15, 20, 0.95) 0%, rgba(17, 24, 39, 0.55) 100%);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.35rem 1.4rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+body.home-page .flagship-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+body.home-page .flagship-card .card-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+body.home-page .flagship-card h3 {
+  margin: 0 0 0.55rem;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+body.home-page .flagship-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+body.home-page .discipline-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body.home-page .discipline-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: rgba(17, 24, 39, 0.55);
+  color: var(--muted);
+}
+body.home-page .discipline-badge.emphasis {
+  border-color: rgba(212, 175, 55, 0.35);
+  color: var(--gold);
+}
+body.home-page .focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body.home-page .focus-grid li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding: 0.55rem 0.75rem;
+  border-left: 2px solid rgba(56, 189, 248, 0.35);
+  background: rgba(11, 15, 20, 0.5);
+}
+body.home-page .questions-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: rq;
+}
+body.home-page .questions-list li {
+  counter-increment: rq;
+  position: relative;
+  padding: 0.85rem 0 0.85rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.45;
+}
+body.home-page .questions-list li:last-child { border-bottom: none; }
+body.home-page .questions-list li::before {
+  content: counter(rq, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+body.home-page .fx-spotlight {
+  background: linear-gradient(135deg, rgba(11, 15, 20, 0.95) 0%, rgba(30, 58, 95, 0.15) 100%);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 1.5rem 1.65rem;
+}
+body.home-page .fx-spotlight h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+body.home-page .fx-spotlight .fx-tagline {
+  font-size: 0.95rem;
+  color: var(--gold);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+body.home-page .fx-spotlight p {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+body.home-page .fx-spotlight a.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--gold);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(212, 175, 55, 0.08);
+}
+body.home-page footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+body.home-page .disclaimer {
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: var(--muted);
+}
 </style>
 </head>
-<body class="cover-page">
+<body class="cover-page home-page">
   
 <header class="hero-cover">
   <div class="header-inner">
     <div class="logo-frame"><img src="assets/br3n_macro_labs_logo.png" alt="BR3N MACRO LABS" class="fx-lab-logo"/></div>
+    <h1 class="lab-title">BR3N Macro Labs</h1>
+    <p class="home-subtitle">Cross-Border Value Infrastructure Research</p>
     <p class="motto">Research. Regime. Risk.</p>
-    <p class="tagline">Testing When Currency Markets Become Less Random</p>
+    <p class="home-hero-line">FX prices trust. Settlement makes value real. Stablecoins move risk somewhere else.</p>
     <p class="author">Prepared by Brendan Bowers · Independent Research</p>
     <div class="cta-row">
       <a href="fx-lab.html" class="primary">FX Lab Overview</a>
@@ -455,15 +723,44 @@ body.cover-page header.hero-cover {
   </div>
 </header>
   <main class="cover-main wide">
-    <h2 id="testing-when-currency-markets-become-less-random">Testing When Currency Markets Become Less Random</h2>
-<p>FX Lab is the flagship research vertical of BR3N Macro Labs.</p>
-<p>It studies conditional forecastability in currency markets by testing whether observable regimes of trend, volatility, carry, liquidity stress, and payment-flow pressure can identify when FX behavior becomes more structured than random walk.</p>
-<p>The lab separates forecast accuracy, trading P&L, and hedge-governance usefulness.</p>
-<p>A model may fail to beat random walk as a price forecast but still improve hedge discipline by reducing unnecessary hedge turnover, over-adjustment, and cost-adjusted exposure risk.</p>
-<p>Research and risk-framing only. Not investment advice.</p>
+    
+<section class="home-section">
+  <p class="home-mission">BR3N Macro Labs studies how currencies, payment rails, liquidity systems, and settlement windows determine how value survives when it crosses borders. The lab combines FX research, remittance economics, settlement infrastructure, stablecoin finality analysis, and data-quality governance into one research platform.</p>
+</section>
+
+<section class="home-section">
+  <h2>Flagship Research</h2>
+  <div class="flagship-grid"><a href="global-fx-lab.html" class="flagship-card"><div class="card-tag">FX · Regimes</div><h3>Global FX Lab</h3><p>Tests when currency markets become less random by studying trend, volatility, carry, liquidity stress, and payment-flow pressure. Separates forecast accuracy, trading P&amp;L, and hedge-governance usefulness.</p></a><a href="value-survival-index.html" class="flagship-card"><div class="card-tag">Remittance · VSI</div><h3>Value Survival Index</h3><p>Measures how much usable purchasing power survives when money crosses borders after fees, FX spreads, transfer timing, volatility, inflation erosion, payout friction, dollar dependency, and currency trust adjustments.</p></a><a href="settlement-economics-lab.html" class="flagship-card"><div class="card-tag">Settlement</div><h3>Settlement Economics Lab</h3><p>Measures settlement drag, operational liquidity burden, finality quality, and payment-network fragility. Core thesis: the economy is not complete when money is promised; it is complete when value settles.</p></a><a href="stablecoin-settlement-lab.html" class="flagship-card"><div class="card-tag">Stablecoin · SWC</div><h3>Stablecoin Settlement Window Lab</h3><p>Studies what happens when settlement windows collapse toward zero. Core thesis: stablecoins do not eliminate settlement risk; they change its location, speed, and legal form.</p></a><a href="lab-status.html" class="flagship-card"><div class="card-tag">Data · Audit</div><h3>Data Lake &amp; Audit Layer</h3><p>Preserves raw data, cleaned tables, model outputs, source lineage, file hashes, data quality scores, methodology versions, snapshots, and reproducibility reports.</p></a></div>
+</section>
+
+<section class="home-section">
+  <h2>Flagship Vertical — FX Lab</h2>
+  <div class="fx-spotlight">
+    <h3>FX Lab</h3>
+    <p class="fx-tagline">Testing When Currency Markets Become Less Random</p>
+    <p>FX Lab is a flagship research vertical within BR3N Macro Labs. It studies conditional forecastability in currency markets — whether observable regimes of trend, volatility, carry, liquidity stress, and payment-flow pressure can identify when FX behavior becomes more structured than a random walk. The lab separates forecast accuracy, trading P&amp;L, and hedge-governance usefulness.</p>
+    <a href="fx-lab.html" class="btn">Enter FX Lab</a>
+  </div>
+</section>
+
+<section class="home-section">
+  <h2>Research Discipline</h2>
+  <ul class="discipline-strip"><li class="discipline-badge emphasis">Research only</li><li class="discipline-badge emphasis">Not investment advice</li><li class="discipline-badge emphasis">No live trading</li><li class="discipline-badge">Mock data labeled</li><li class="discipline-badge">Source lineage required</li><li class="discipline-badge">Data quality scored</li><li class="discipline-badge">Sensitivity tested</li><li class="discipline-badge">Replication first</li></ul>
+</section>
+
+<section class="home-section">
+  <h2>Current Focus</h2>
+  <ul class="focus-grid"><li>Conditional FX forecastability</li><li>Cross-border value survival</li><li>Settlement drag and liquidity burden</li><li>Ledger finality vs economic finality</li><li>Stablecoin risk relocation</li><li>Data quality and reproducibility</li></ul>
+</section>
+
+<section class="home-section">
+  <h2>Core Research Questions</h2>
+  <ol class="questions-list"><li>When do FX markets become less random?</li><li>When value crosses borders, how much survives?</li><li>How much economic value is lost to settlement delay?</li><li>When money settles instantly, where does trust go?</li><li>Can payment infrastructure become a new form of monetary power?</li></ol>
+</section>
+
   </main>
   <footer>
-    <p>BR3N Macro Labs · FX Lab · Prepared by Brendan Bowers · 2026-05-31</p>
+    <p>BR3N Macro Labs · Prepared by Brendan Bowers · Research and risk-framing only · Not investment advice · No live trading.</p>
     <div class="disclaimer">Research and risk-framing only. Not investment advice. No live trading.</div>
   </footer>
 </body>
