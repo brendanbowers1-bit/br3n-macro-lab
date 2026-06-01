@@ -304,6 +304,7 @@ body.cover-page header.hero-cover {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  overflow: visible !important;
 }
 .logo img,
 .brand-logo img,
@@ -316,17 +317,21 @@ body.cover-page header.hero-cover {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  object-fit: contain !important;
+  overflow: visible !important;
   display: block;
 }
 .bfi-logo-header-sm,
 .bfi-logo-header-sm-inv {
-  height: 44px;
+  height: 50px;
   width: auto;
+  max-width: min(720px, 52vw);
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .bfi-logo-header-sm,
   .bfi-logo-header-sm-inv {
-    height: 34px;
+    height: 38px;
+    max-width: 70vw;
   }
 }
 .cta-row {
@@ -745,7 +750,7 @@ body.home-page .disclaimer {
   
 <header class="hero-cover">
   <div class="header-inner">
-    <div style="margin-bottom:1rem;"><a href="index.html" class="bfi-logo-link brand-logo logo-wrap"><img src="assets/brand/bfi-logo-horizontal-inverse.svg" alt="Bowers Frontier Institute" class="header-logo"/></a></div>
+    <div style="margin-bottom:1rem;"><a href="index.html" class="bfi-logo-link brand-logo logo-wrap header-logo"><img src="assets/brand/bfi-logo-horizontal-inverse-corrected.svg" alt="Bowers Frontier Institute" class="header-logo"/></a></div>
     <div class="logo-frame" style="background:transparent;border:none;box-shadow:none;padding:0;">
       <img src="assets/br3n_macro_labs_logo.png" alt="BR3N MACRO LABS" class="fx-lab-logo"/>
     </div>

@@ -42,9 +42,9 @@ export function Shell({
                 className="inline-block mb-2 opacity-90 hover:opacity-100 transition-opacity"
               >
                 <img
-                  src={withBasePath("/assets/brand/bfi-logo-horizontal-inverse.svg")}
+                  src={withBasePath("/assets/brand/bfi-logo-horizontal-inverse-corrected.svg")}
                   alt="Bowers Frontier Institute"
-                  className="h-7 w-auto"
+                  className="h-[38px] w-auto max-w-[min(720px,52vw)] object-contain"
                 />
               </a>
               <motion.div

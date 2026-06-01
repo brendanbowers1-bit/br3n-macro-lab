@@ -355,6 +355,7 @@ body.cover-page header.hero-cover {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  overflow: visible !important;
 }
 .logo img,
 .brand-logo img,
@@ -367,17 +368,21 @@ body.cover-page header.hero-cover {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  object-fit: contain !important;
+  overflow: visible !important;
   display: block;
 }
 .bfi-logo-header-sm,
 .bfi-logo-header-sm-inv {
-  height: 44px;
+  height: 50px;
   width: auto;
+  max-width: min(720px, 52vw);
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .bfi-logo-header-sm,
   .bfi-logo-header-sm-inv {
-    height: 34px;
+    height: 38px;
+    max-width: 70vw;
   }
 }
 .cta-row {

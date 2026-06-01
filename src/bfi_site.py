@@ -13,8 +13,9 @@ CORE_LINE = "Markets. Machines. Monetary Systems."
 TAGLINE = "Research for the financial frontier."
 
 BFI_BRAND_DIR = "assets/brand"
-BFI_LOGO_HORIZONTAL = f"{BFI_BRAND_DIR}/bfi-logo-horizontal.svg"
-BFI_LOGO_HORIZONTAL_INVERSE = f"{BFI_BRAND_DIR}/bfi-logo-horizontal-inverse.svg"
+BFI_LOGO_HORIZONTAL = f"{BFI_BRAND_DIR}/bfi-logo-horizontal-corrected.svg"
+BFI_LOGO_HORIZONTAL_INVERSE = f"{BFI_BRAND_DIR}/bfi-logo-horizontal-inverse-corrected.svg"
+BFI_LOGO_STACKED = f"{BFI_BRAND_DIR}/bfi-logo-stacked-corrected.svg"
 BFI_ICON = f"{BFI_BRAND_DIR}/bfi-icon.svg"
 BFI_ICON_TRANSPARENT = f"{BFI_BRAND_DIR}/bfi-icon-transparent.svg"
 
@@ -162,8 +163,8 @@ a:hover { color: #7dd3fc; }
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--border);
-  background: rgba(5, 6, 8, 0.88);
+  border-bottom: 1px solid #d8dce2;
+  background: rgba(247, 246, 242, 0.97);
   backdrop-filter: blur(14px);
 }
 .bfi-header-inner {
@@ -184,6 +185,15 @@ a:hover { color: #7dd3fc; }
   flex-shrink: 0;
 }
 .bfi-logo-link:hover { opacity: 0.92; text-decoration: none; }
+.header-logo,
+.brand-logo {
+  display: flex;
+  align-items: center;
+  overflow: visible !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 .logo,
 .brand-logo,
 .header-logo,
@@ -196,6 +206,7 @@ a:hover { color: #7dd3fc; }
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  overflow: visible !important;
 }
 .logo img,
 .brand-logo img,
@@ -207,16 +218,32 @@ a:hover { color: #7dd3fc; }
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  object-fit: contain !important;
+  overflow: visible !important;
   display: block;
 }
 .header-logo img,
-.bfi-header .header-logo img {
-  height: 44px;
+.bfi-header .header-logo img,
+.bfi-logo-link img {
+  height: 50px;
   width: auto;
+  max-width: min(720px, 52vw);
+}
+.hero-logo {
+  margin: 0 auto 30px;
+  width: min(580px, 86vw);
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.hero-logo img {
+  width: 100%;
+  height: auto;
 }
 .bfi-footer .footer-logo img {
-  height: 36px;
+  height: 50px;
   width: auto;
+  max-width: min(720px, 52vw);
   margin: 0 auto;
 }
 .bfi-footer .footer-logo-wrap {
@@ -243,14 +270,14 @@ a:hover { color: #7dd3fc; }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #46515C;
   border: 1px solid transparent;
 }
-.bfi-nav a:hover { color: var(--text); border-color: var(--border); text-decoration: none; }
+.bfi-nav a:hover { color: #07182D; border-color: #c8cdd2; text-decoration: none; }
 .bfi-nav a.active {
-  color: var(--accent);
-  border-color: rgba(56,189,248,0.35);
-  background: rgba(56,189,248,0.06);
+  color: #1e3a5f;
+  border-color: rgba(30, 58, 95, 0.35);
+  background: rgba(30, 58, 95, 0.06);
 }
 .bfi-hero {
   max-width: var(--wide);
@@ -520,10 +547,20 @@ a:hover { color: #7dd3fc; }
   text-transform: uppercase;
   color: var(--gold);
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .header-logo img,
-  .bfi-header .header-logo img {
-    height: 34px;
+  .brand-logo img,
+  .bfi-header .header-logo img,
+  .bfi-logo-link img {
+    height: 38px;
+    max-width: 70vw;
+  }
+  .hero-logo {
+    width: min(430px, 86vw);
+  }
+  .bfi-footer .footer-logo img {
+    height: 38px;
+    max-width: 70vw;
   }
 }
 @media (max-width: 640px) {
@@ -540,13 +577,21 @@ def bfi_favicon_tags() -> str:
     )
 
 
-def bfi_header_logo(*, inverse: bool = True) -> str:
-    """Transparent horizontal mark; inverse (light ink) on dark institute header."""
+def bfi_header_logo(*, inverse: bool = False) -> str:
+    """Transparent horizontal mark on institute header (dark ink on off-white bar)."""
     src = BFI_LOGO_HORIZONTAL_INVERSE if inverse else BFI_LOGO_HORIZONTAL
     return (
-        f'<a href="index.html" class="bfi-logo-link brand-logo logo-wrap">'
+        f'<a href="index.html" class="bfi-logo-link brand-logo logo-wrap header-logo">'
         f'<img src="{src}" alt="{html.escape(ROOT_BRAND)}" class="header-logo"/>'
         f"</a>"
+    )
+
+
+def bfi_hero_logo() -> str:
+    return (
+        f'<div class="hero-logo logo-wrap">'
+        f'<img src="{BFI_LOGO_STACKED}" alt="{html.escape(ROOT_BRAND)}" class="hero-logo"/>'
+        f"</div>"
     )
 
 
@@ -622,6 +667,7 @@ def bfi_index_body() -> str:
     )
     return f"""
 <section class="bfi-hero">
+  {bfi_hero_logo()}
   <h1>{html.escape(ROOT_BRAND)}</h1>
   <p class="core-line">{html.escape(CORE_LINE)}</p>
   <p class="tagline">{html.escape(TAGLINE)}</p>
