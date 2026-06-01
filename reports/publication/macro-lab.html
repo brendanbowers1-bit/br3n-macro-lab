@@ -293,8 +293,21 @@ body.cover-page header.hero-cover {
   opacity: 0.5;
   user-select: none;
 }
-.bfi-logo-header-sm { height: 32px; width: auto; border-radius: 3px; display: block; }
-.bfi-logo-header-sm-inv { height: 30px; width: auto; border-radius: 3px; display: block; }
+.bfi-logo-header-sm,
+.bfi-logo-header-sm-inv {
+  height: 32px;
+  width: auto;
+  display: block;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.bfi-logo-header-sm-inv { height: 30px; }
+.institute-brand-link img {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
 .cta-row {
   display: flex;
   gap: 0.65rem;

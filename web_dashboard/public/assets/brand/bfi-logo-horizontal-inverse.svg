@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="420" viewBox="0 0 1800 420">
-  <rect width="1800" height="420" fill="#07182D"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="80 60 1380 280" width="1800" height="420">
   <g transform="translate(110,72)">
     <text x="0" y="176" font-family="Georgia, 'Times New Roman', serif" font-size="168" letter-spacing="-8" fill="#F7F6F2">BFI</text>
     <line x1="340" y1="36" x2="340" y2="230" stroke="#C8CDD2" stroke-width="2"/>

@@ -344,8 +344,21 @@ body.cover-page header.hero-cover {
   opacity: 0.5;
   user-select: none;
 }
-.bfi-logo-header-sm { height: 32px; width: auto; border-radius: 3px; display: block; }
-.bfi-logo-header-sm-inv { height: 30px; width: auto; border-radius: 3px; display: block; }
+.bfi-logo-header-sm,
+.bfi-logo-header-sm-inv {
+  height: 32px;
+  width: auto;
+  display: block;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.bfi-logo-header-sm-inv { height: 30px; }
+.institute-brand-link img {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
 .cta-row {
   display: flex;
   gap: 0.65rem;
@@ -525,9 +538,9 @@ body.home-page header.hero-cover {
   border-bottom: 1px solid var(--border);
 }
 body.home-page .logo-frame {
-  background: rgba(11, 15, 20, 0.85);
+  background: transparent;
   border-color: var(--border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  box-shadow: none;
 }
 body.home-page .hero-cover .lab-title {
   letter-spacing: 0.06em;
@@ -1747,7 +1760,9 @@ def _home_shell(body: str) -> str:
 <header class="hero-cover">
   <div class="header-inner">
     <div style="margin-bottom:1rem;">{bfi_header_logo(inverse=True)}</div>
-    <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo"/></div>
+    <div class="logo-frame" style="background:transparent;border:none;box-shadow:none;padding:0;">
+      <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo"/>
+    </div>
     <h1 class="lab-title">{html.escape(LAB_NAME)}</h1>
     <p class="home-subtitle">Cross-Border Value Infrastructure Research</p>
     <p class="motto">{html.escape(BRAND_MOTTO)}</p>

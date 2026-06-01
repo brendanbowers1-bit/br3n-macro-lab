@@ -67,31 +67,42 @@ a:hover { color: #7dd3fc; }
   text-decoration: none;
   line-height: 0;
   flex-shrink: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 .bfi-logo-link:hover { opacity: 0.92; text-decoration: none; }
+.bfi-logo-h,
+.bfi-logo-h-inv,
+.bfi-logo-stacked,
+.bfi-closing-logo,
+.header-logo img,
+.hero-logo img,
+.footer-logo img,
+.bfi-logo-link img {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: block;
+}
 .bfi-logo-h {
   height: 40px;
   width: auto;
-  display: block;
-  border-radius: 3px;
 }
-.bfi-header .bfi-logo-h { height: 36px; }
-.bfi-logo-h-inv { height: 34px; border-radius: 3px; }
+.bfi-header .bfi-logo-h,
+.bfi-header .bfi-logo-h-inv { height: 36px; }
+.bfi-logo-h-inv { height: 34px; }
 .bfi-logo-stacked {
   width: min(300px, 82vw);
   height: auto;
-  display: block;
   margin: 0 auto 1.35rem;
-  border-radius: 4px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
 }
 .bfi-closing-logo {
   width: min(260px, 72vw);
   height: auto;
   margin: 0 auto 1rem;
-  display: block;
-  border-radius: 4px;
 }
+.bfi-hero .hero-logo { margin: 0 auto 1.35rem; }
 .bfi-sr-only {
   position: absolute;
   width: 1px;

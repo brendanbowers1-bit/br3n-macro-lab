@@ -17,6 +17,7 @@ BFI_LOGO_HORIZONTAL = f"{BFI_BRAND_DIR}/bfi-logo-horizontal.svg"
 BFI_LOGO_HORIZONTAL_INVERSE = f"{BFI_BRAND_DIR}/bfi-logo-horizontal-inverse.svg"
 BFI_LOGO_STACKED = f"{BFI_BRAND_DIR}/bfi-logo-stacked.svg"
 BFI_ICON = f"{BFI_BRAND_DIR}/bfi-icon.svg"
+BFI_ICON_TRANSPARENT = f"{BFI_BRAND_DIR}/bfi-icon-transparent.svg"
 
 BFI_NAV = [
     ("index.html", "Home", "home"),
@@ -182,31 +183,42 @@ a:hover { color: #7dd3fc; }
   text-decoration: none;
   line-height: 0;
   flex-shrink: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 .bfi-logo-link:hover { opacity: 0.92; text-decoration: none; }
+.bfi-logo-h,
+.bfi-logo-h-inv,
+.bfi-logo-stacked,
+.bfi-closing-logo,
+.header-logo img,
+.hero-logo img,
+.footer-logo img,
+.bfi-logo-link img {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: block;
+}
 .bfi-logo-h {
   height: 40px;
   width: auto;
-  display: block;
-  border-radius: 3px;
 }
-.bfi-header .bfi-logo-h { height: 36px; }
-.bfi-logo-h-inv { height: 34px; border-radius: 3px; }
+.bfi-header .bfi-logo-h,
+.bfi-header .bfi-logo-h-inv { height: 36px; }
+.bfi-logo-h-inv { height: 34px; }
 .bfi-logo-stacked {
   width: min(300px, 82vw);
   height: auto;
-  display: block;
   margin: 0 auto 1.35rem;
-  border-radius: 4px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
 }
 .bfi-closing-logo {
   width: min(260px, 72vw);
   height: auto;
   margin: 0 auto 1rem;
-  display: block;
-  border-radius: 4px;
 }
+.bfi-hero .hero-logo { margin: 0 auto 1.35rem; }
 .bfi-sr-only {
   position: absolute;
   width: 1px;
@@ -530,17 +542,17 @@ def bfi_favicon_tags() -> str:
     )
 
 
-def bfi_header_logo(*, inverse: bool = False) -> str:
+def bfi_header_logo(*, inverse: bool = True) -> str:
     src = BFI_LOGO_HORIZONTAL_INVERSE if inverse else BFI_LOGO_HORIZONTAL
-    cls = "bfi-logo-h bfi-logo-h-inv" if inverse else "bfi-logo-h"
+    cls = "bfi-logo-h-inv header-logo" if inverse else "bfi-logo-h header-logo"
     return (
-        f'<a href="index.html" class="bfi-logo-link">'
+        f'<a href="index.html" class="bfi-logo-link brand-logo">'
         f'<img src="{src}" alt="{html.escape(ROOT_BRAND)}" class="{cls}"/>'
         f"</a>"
     )
 
 
-def bfi_stacked_logo(*, css_class: str = "bfi-logo-stacked") -> str:
+def bfi_stacked_logo(*, css_class: str = "bfi-logo-stacked hero-logo") -> str:
     return (
         f'<img src="{BFI_LOGO_STACKED}" alt="{html.escape(ROOT_BRAND)}" class="{css_class}"/>'
     )
@@ -549,7 +561,7 @@ def bfi_stacked_logo(*, css_class: str = "bfi-logo-stacked") -> str:
 def bfi_closing_logo() -> str:
     return (
         f'<img src="{BFI_LOGO_HORIZONTAL_INVERSE}" alt="{html.escape(ROOT_BRAND)}" '
-        f'class="bfi-closing-logo"/>'
+        f'class="bfi-closing-logo footer-logo"/>'
     )
 
 

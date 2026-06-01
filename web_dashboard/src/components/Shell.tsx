@@ -44,7 +44,7 @@ export function Shell({
                 <img
                   src={withBasePath("/assets/brand/bfi-logo-horizontal-inverse.svg")}
                   alt="Bowers Frontier Institute"
-                  className="h-7 w-auto rounded-sm"
+                  className="h-7 w-auto"
                 />
               </a>
               <motion.div
