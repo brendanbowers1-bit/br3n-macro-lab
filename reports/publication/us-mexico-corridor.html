@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="Bowers Frontier Institute — Research for the financial frontier."/>
-  <title>Dashboards — Bowers Frontier Institute</title>
+  <title>US/Mexico Corridor Dashboard — Bowers Frontier Institute</title>
   <link rel="icon" href="assets/brand/bfi-icon.svg" type="image/svg+xml"/><link rel="apple-touch-icon" href="assets/brand/bfi-icon.svg"/>
   
   <style>
@@ -861,7 +861,7 @@ body.bfi.bfi-corridor-page .bfi-footer .disc {
 }
 </style>
 </head>
-<body class="bfi">
+<body class="bfi bfi-corridor-page">
   <header class="bfi-header">
     <div class="bfi-header-inner">
       <a class="brand-lockup" href="index.html" aria-label="Bowers Frontier Institute home"><span class="brand-mark">BFI</span><span class="brand-divider"></span><span class="brand-name">BOWERS FRONTIER INSTITUTE</span></a>
@@ -876,14 +876,96 @@ body.bfi.bfi-corridor-page .bfi-footer .disc {
     </div>
   </header>
   
-<section class="bfi-hero" style="padding-bottom:2rem;">
-  <p class="tagline">Analytical Tools</p>
-  <h1>Dashboards</h1>
-  <p class="lead">Interactive research interfaces built by BR3N Studio. Python computes; dashboards visualize. Research only — not investment advice.</p>
-</section>
-<main class="bfi-main">
-  <section class="bfi-section">
-    <div class="bfi-card-grid"><a href="us-mexico-corridor.html" class="bfi-card"><div class="tag">Corridor</div><h3>US/Mexico Corridor</h3><p>Remittance flows, FX context, and corridor-level market structure for the United States → Mexico corridor.</p></a><a href="dashboard/index.html" class="bfi-card"><div class="tag">Primary</div><h3>Command Center</h3><p>Cross-lab KPIs, Sankey flows, value survival, settlement timeline, finality matrix, and data lineage.</p></a><a href="dashboard/value-flow/index.html" class="bfi-card"><div class="tag">Visualization</div><h3>Global Value Flow</h3><p>Geo-arc corridor map with leakage-weighted paths.</p></a><a href="dashboard/value-survival/index.html" class="bfi-card"><div class="tag">VSI</div><h3>Value Survival</h3><p>Interactive Sankey decomposition by corridor.</p></a><a href="dashboard/settlement/index.html" class="bfi-card"><div class="tag">Settlement</div><h3>Settlement Economics</h3><p>SDI rankings and animated finality timeline.</p></a><a href="dashboard/stablecoins/index.html" class="bfi-card"><div class="tag">Stablecoin</div><h3>Stablecoin Finality</h3><p>Ledger vs economic finality matrix.</p></a><a href="dashboard/data-lake/index.html" class="bfi-card"><div class="tag">Infrastructure</div><h3>Data Lake</h3><p>Bronze/silver/gold lineage force graph.</p></a></div>
+<main class="bfi-corridor-page-main">
+  <section class="page-hero light-zone">
+    <div class="bfi-page-inner">
+      <div class="page-eyebrow">CORRIDOR DASHBOARD</div>
+      <h1>United States → Mexico corridor.</h1>
+      <p class="page-subtitle">A simple research dashboard for remittance flows, FX context, and corridor-level market structure.</p>
+      <p class="page-thesis">This dashboard tracks the US/Mexico corridor as a financial system: remittance flows, USD/MXN context, payment friction, timing risk, and macro sensitivity.</p>
+      <p class="page-disclaimer">Research and education only. Not investment advice. No live trading.</p>
+    </div>
+  </section>
+
+  <section class="corridor-dashboard dark-zone">
+    <div class="bfi-page-inner">
+      <div class="dark-kicker">CORRIDOR SNAPSHOT</div>
+      <h2 class="dark-section-title">US/Mexico corridor research dashboard.</h2>
+      <p class="dark-section-intro">Monthly view of remittance flow behavior and corridor context.</p>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Corridor</div>
+          <div class="metric-value">United States → Mexico</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Primary flow</div>
+          <div class="metric-value">Worker remittances to Mexico</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Data frequency</div>
+          <div class="metric-value">Monthly</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Unit</div>
+          <div class="metric-value">Millions of U.S. dollars</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Source</div>
+          <div class="metric-value">Banco de México / Banxico SIE</div>
+        </div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-header">
+          <div>
+            <div class="chart-kicker">BANXICO SIE · MONTHLY · USD MILLIONS · SAMPLE DATA</div>
+            <h3>Monthly Remittances to Mexico</h3>
+          </div>
+          <div class="chart-note">Starter visualization values. Replace with official Banxico SIE export/API values before publication.</div>
+        </div>
+        <div class="chart-canvas-wrap">
+          <canvas id="remittanceChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-header">
+          <div>
+            <div class="chart-kicker">12-MONTH ROLLING · USD MILLIONS · SAMPLE DATA</div>
+            <h3>12-Month Rolling Remittance Flow</h3>
+          </div>
+          <div class="chart-note">Rolling sum computed from starter dataset for layout testing only.</div>
+        </div>
+        <div class="chart-canvas-wrap">
+          <canvas id="rollingChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-header">
+          <div>
+            <div class="chart-kicker">YOY COMPARISON · USD MILLIONS · SAMPLE DATA</div>
+            <h3>Year-over-Year Monthly Comparison</h3>
+          </div>
+          <div class="chart-note">Jan–Nov monthly values: 2024 vs 2025 from starter dataset.</div>
+        </div>
+        <div class="chart-canvas-wrap">
+          <canvas id="yoyChart"></canvas>
+        </div>
+      </div>
+
+      <div class="corridor-methodology">
+        <h4>Sources</h4>
+        <ul>
+          <li>Banco de México SIE, Workers&rsquo; Remittances, monthly flows, millions of USD.</li>
+          <li>World Bank Remittance Prices Worldwide may be added later for transfer-cost analysis.</li>
+          <li>Future versions should ingest official CSV/API data and add USD/MXN, fee, speed, and provider-cost layers.</li>
+        </ul>
+        <h4>Methodology</h4>
+        <p>This page is a corridor research prototype. The starter chart is for layout/testing and should be replaced with official data before external publication.</p>
+      </div>
+    </div>
   </section>
 </main>
 
@@ -893,5 +975,139 @@ body.bfi.bfi-corridor-page .bfi-footer .disc {
     <p class="disc">Independent research institute. Not affiliated with any employer, bank, or payment company unless explicitly stated.</p>
   </footer>
   
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  const monthLabels = [
+    "Jan 2024", "Feb 2024", "Mar 2024", "Apr 2024", "May 2024", "Jun 2024",
+    "Jul 2024", "Aug 2024", "Sep 2024", "Oct 2024", "Nov 2024", "Dec 2024",
+    "Jan 2025", "Feb 2025", "Mar 2025", "Apr 2025", "May 2025", "Jun 2025",
+    "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025"
+  ];
+  const remittances = [
+    4575, 4510, 5120, 5422, 5624, 5578, 5614, 5579, 5360, 5723, 5489, 5228,
+    4761, 4459, 5145, 5130, 5360, 5201, 5330, 5085, 5050, 5070, 5060
+  ];
+
+  const gridColor = "rgba(247, 246, 242, 0.08)";
+  const tickColor = "rgba(247, 246, 242, 0.55)";
+  const titleColor = "rgba(247, 246, 242, 0.5)";
+  const lineColor = "#C8CDD2";
+  const mutedBar = "rgba(247, 246, 242, 0.45)";
+
+  const baseScales = {
+    x: {
+      ticks: { color: tickColor, maxRotation: 45, minRotation: 45, font: { size: 10 } },
+      grid: { color: gridColor },
+      title: { display: true, text: "Month", color: titleColor, font: { size: 11 } }
+    },
+    y: {
+      ticks: { color: tickColor, font: { size: 11 } },
+      grid: { color: gridColor },
+      title: { display: true, text: "USD millions", color: titleColor, font: { size: 11 } }
+    }
+  };
+
+  const basePlugins = {
+    legend: {
+      labels: { color: tickColor, boxWidth: 12, font: { size: 11 } }
+    },
+    tooltip: {
+      backgroundColor: "rgba(5, 7, 10, 0.92)",
+      borderColor: "rgba(247, 246, 242, 0.18)",
+      borderWidth: 1,
+      titleColor: "#F7F6F2",
+      bodyColor: "rgba(247, 246, 242, 0.78)"
+    }
+  };
+
+  new Chart(document.getElementById("remittanceChart"), {
+    type: "line",
+    data: {
+      labels: monthLabels,
+      datasets: [{
+        label: "Monthly remittances (sample)",
+        data: remittances,
+        borderColor: lineColor,
+        backgroundColor: "rgba(200, 205, 210, 0.08)",
+        borderWidth: 2,
+        pointRadius: 2,
+        pointBackgroundColor: lineColor,
+        tension: 0.2,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: basePlugins,
+      scales: baseScales
+    }
+  });
+
+  const rollingLabels = [];
+  const rollingValues = [];
+  for (let i = 11; i < remittances.length; i++) {
+    let sum = 0;
+    for (let j = i - 11; j <= i; j++) sum += remittances[j];
+    rollingLabels.push(monthLabels[i]);
+    rollingValues.push(sum);
+  }
+
+  new Chart(document.getElementById("rollingChart"), {
+    type: "bar",
+    data: {
+      labels: rollingLabels,
+      datasets: [{
+        label: "12-month rolling total (sample)",
+        data: rollingValues,
+        backgroundColor: mutedBar,
+        borderColor: lineColor,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: basePlugins,
+      scales: baseScales
+    }
+  });
+
+  const yoyMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"];
+  const yoy2024 = remittances.slice(0, 11);
+  const yoy2025 = remittances.slice(12, 23);
+
+  new Chart(document.getElementById("yoyChart"), {
+    type: "bar",
+    data: {
+      labels: yoyMonths,
+      datasets: [
+        {
+          label: "2024 (sample)",
+          data: yoy2024,
+          backgroundColor: mutedBar,
+          borderColor: "rgba(247, 246, 242, 0.28)",
+          borderWidth: 1
+        },
+        {
+          label: "2025 (sample)",
+          data: yoy2025,
+          backgroundColor: lineColor,
+          borderColor: lineColor,
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: basePlugins,
+      scales: baseScales
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
