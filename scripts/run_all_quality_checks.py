@@ -68,6 +68,7 @@ def run_all_checks(skip_snapshot: bool = False, include_reproduce: bool = False)
     test_steps = [
         ("pytest_quality", [py, "-m", "pytest", "tests/", "-q", "--tb=no", "-m", "not slow", "--ignore=tests/test_snapshot_system.py"], ROOT),
         ("pytest_settlement", [py, "-m", "pytest", "tests/", "-q", "--tb=no"], ROOT / "settlement_lab"),
+        ("pytest_stablecoin", [py, "-m", "pytest", "tests/", "-q", "--tb=no"], ROOT / "stablecoin_lab"),
     ]
     if run_smoke:
         test_steps.extend([
@@ -87,12 +88,15 @@ def run_all_checks(skip_snapshot: bool = False, include_reproduce: bool = False)
         if step == "pytest_settlement" and not (ROOT / "settlement_lab" / "tests").exists():
             rows.append({"step": step, "status": "SKIPPED", "detail": "no settlement_lab/tests/"})
             continue
+        if step == "pytest_stablecoin" and not (ROOT / "stablecoin_lab" / "tests").exists():
+            rows.append({"step": step, "status": "SKIPPED", "detail": "no stablecoin_lab/tests/"})
+            continue
         env = None
-        if step == "pytest_settlement":
+        if step in ("pytest_settlement", "pytest_stablecoin"):
             import os
             env = os.environ.copy()
             env["PYTHONPATH"] = str(cwd)
-        res = _run(cmd, cwd=cwd, timeout=600, env=env if step == "pytest_settlement" else None)
+        res = _run(cmd, cwd=cwd, timeout=600, env=env if step in ("pytest_settlement", "pytest_stablecoin") else None)
         rows.append({"step": step, "status": res["status"], "detail": res["stderr"] or res["stdout"] or ""})
 
     if include_reproduce:
@@ -106,6 +110,7 @@ def run_all_checks(skip_snapshot: bool = False, include_reproduce: bool = False)
     else:
         rows.append({"step": "reproduce_vsi", "status": "SKIPPED", "detail": "run scripts/reproduce_all.py separately"})
         rows.append({"step": "reproduce_settlement", "status": "SKIPPED", "detail": "run settlement_lab/scripts/reproduce_settlement_lab.py separately"})
+        rows.append({"step": "reproduce_stablecoin", "status": "SKIPPED", "detail": "run stablecoin_lab/scripts/reproduce_stablecoin_lab.py separately"})
 
     summary = {
         "pass": sum(1 for r in rows if r["status"] == "PASS"),

@@ -1,0 +1,214 @@
+data:
+  ticker: "USDMXN=X"
+  history_years: 25
+  interval: "1d"
+  # Data tier: 1=official, 2=professional, 3=proprietary, 4=prototype (default)
+  spot_tier: 1
+  official_spot_series: "DEXMXUS"  # FRED H.10 USD/MXN
+  prefer_tier1_spot: true          # Tier 1 FRED H.10 for USD/MXN; yfinance fallback
+
+# Tier 2 — Bloomberg (requires licensed Terminal or B-PIPE; see docs/BLOOMBERG_SETUP.md)
+bloomberg:
+  enabled: false
+  usdmxn_ticker: "USDMXN Curncy"
+  host: "localhost"
+  port: 8194
+
+# Macro context: DXY, VIX, US–MX rate spread (FRED + Yahoo)
+macro:
+  enabled: true
+  prefer_fred: true
+  yahoo:
+    dxy: "DX-Y.NYB"
+    vix: "^VIX"
+  fred:
+    us_rate: "DFF"
+    mx_rate: "INTGSBMXM193N"
+    dxy_broad: "DTWEXBGS"   # Trade-weighted broad USD index (FRED)
+  bis:
+    enabled: true
+    country: "MX"
+  dxy_trend_window: 20
+  vix_percentile_window: 252
+  vix_stress_percentile: 0.75
+  dxy_stress_percentile: 0.70
+  carry_high_percentile: 0.60
+
+features:
+  ma_short: 20
+  ma_long: 60
+  realized_vol_window: 20
+  vol_percentile_window: 252
+  vol_percentile_threshold: 0.60
+
+regimes:
+  trend_threshold: 0.0025
+  use_absolute_ma_spread: true
+
+backtest:
+  starting_equity: 1.0
+  annualization_days: 252
+  transaction_cost_bps: 2.0
+  execution_lag_days: 1
+  train_years: 5
+  test_years: 1
+  walk_forward_enabled: true
+  random_walk_seed: 42
+  primary_strategy: flat_range
+
+risk:
+  max_position: 1.0
+  allow_short: true
+
+# Level 5 — defaults + per-pair frictions (bps unless noted)
+economic:
+  spread_bps: 3.0
+  slippage_bps: 1.0
+  roll_bps_monthly: 5.0
+  carry_annual_bps: 350
+  max_drawdown_stop: null
+  per_pair:
+    USDMXN=X: { spread_bps: 3.0, carry_annual_bps: 350, roll_bps_monthly: 5.0 }
+    USDBRL=X: { spread_bps: 4.0, carry_annual_bps: 800, roll_bps_monthly: 6.0 }
+    USDCOP=X: { spread_bps: 5.0, carry_annual_bps: 600, roll_bps_monthly: 6.0 }
+    USDJPY=X: { spread_bps: 1.0, carry_annual_bps: -450, roll_bps_monthly: 3.0 }
+    EURUSD=X: { spread_bps: 1.0, carry_annual_bps: 0, roll_bps_monthly: 2.0 }
+    USDINR=X: { spread_bps: 2.0, carry_annual_bps: 250, roll_bps_monthly: 4.0 }
+    USDPHP=X: { spread_bps: 3.0, carry_annual_bps: 150, roll_bps_monthly: 4.0 }
+    USDZAR=X: { spread_bps: 5.0, carry_annual_bps: 400, roll_bps_monthly: 6.0 }
+    USDTRY=X: { spread_bps: 8.0, carry_annual_bps: 1200, roll_bps_monthly: 8.0 }
+    USDCLP=X: { spread_bps: 4.0, carry_annual_bps: 200, roll_bps_monthly: 5.0 }
+    USDPLN=X: { spread_bps: 2.0, carry_annual_bps: 100, roll_bps_monthly: 3.0 }
+    USDKRW=X: { spread_bps: 2.0, carry_annual_bps: -150, roll_bps_monthly: 3.0 }
+    USDTHB=X: { spread_bps: 3.0, carry_annual_bps: 100, roll_bps_monthly: 4.0 }
+    USDMYR=X: { spread_bps: 3.0, carry_annual_bps: 50, roll_bps_monthly: 4.0 }
+    USDIDR=X: { spread_bps: 4.0, carry_annual_bps: 200, roll_bps_monthly: 5.0 }
+    USDPEN=X: { spread_bps: 4.0, carry_annual_bps: 150, roll_bps_monthly: 5.0 }
+    GBPUSD=X: { spread_bps: 1.0, carry_annual_bps: 0, roll_bps_monthly: 2.0 }
+    AUDUSD=X: { spread_bps: 1.5, carry_annual_bps: 50, roll_bps_monthly: 2.5 }
+    USDCHF=X: { spread_bps: 1.5, carry_annual_bps: -300, roll_bps_monthly: 3.0 }
+
+reporting:
+  output_dir: "data/outputs"
+  chart_dir: "reports/charts"
+  report_dir: "reports"
+  ladder_dir: "reports/research_ladder"
+
+research_ladder:
+  level2_splits:
+    - name: split_1
+      train_start: "2010-01-01"
+      train_end: "2018-12-31"
+      test_start: "2019-01-01"
+      test_end: "2021-12-31"
+    - name: split_2
+      train_start: "2010-01-01"
+      train_end: "2021-12-31"
+      test_start: "2022-01-01"
+      test_end: "2024-12-31"
+    - name: split_3
+      train_start: "2010-01-01"
+      train_end: "2024-12-31"
+      test_start: "2025-01-01"
+      test_end: "2026-12-31"
+
+  pairs:
+    - USDMXN=X
+    - USDBRL=X
+    - USDCOP=X
+    - USDJPY=X
+    - EURUSD=X
+    - USDINR=X
+    - USDPHP=X
+    - USDZAR=X
+    - USDTRY=X
+    - USDCLP=X
+    - USDPLN=X
+    - USDKRW=X
+    - USDTHB=X
+    - USDMYR=X
+    - USDIDR=X
+    - USDPEN=X
+    - GBPUSD=X
+    - AUDUSD=X
+    - USDCHF=X
+
+  strategies:
+    - legacy
+    - flat_range
+    - r2_only
+
+  holdout:
+    start: "2025-01-01"
+    end: "2026-12-31"
+
+# Academic research layer
+research:
+  train_ratio: 0.7
+  min_train_rows: 200
+  hedge_transaction_cost_bps: 2.0
+  default_exposure: "us_entity_long_mxn"
+
+# Multi-corridor remittance roadmap
+corridors:
+  enabled: true
+  priority_to_run: 1
+  include_priority_2: false
+  save_individual_outputs: true
+
+flow_proxies:
+  enabled: true
+
+hedge_governance:
+  enabled: true
+  hedge_transaction_cost_bps: 2.0
+  max_daily_hedge_adjustment: 0.10
+
+model_zoo:
+  enabled: true
+  models:
+    - random_walk_model
+    - buy_and_hold_model
+    - always_flat_model
+    - ma_crossover_model
+    - regime_trend_model
+    - r2_only_model
+    - r2_only_vol_scaled_model
+    - r1_risk_off_model
+    - volatility_breakout_model
+    - mean_reversion_range_model
+    - carry_proxy_model
+    - dollar_stress_model
+    - flow_pressure_model
+    - ensemble_vote_model
+    - conservative_hedge_model
+    - no_change_in_range_model
+  breakout_window: 20
+  mean_reversion_z_threshold: 1.0
+  ensemble_min_votes: 2
+  walk_forward_enabled: true
+  r2_vol_scaled_target_vol: 0.10
+  r2_vol_scaled_max_position: 1.0
+
+random_walk_validity:
+  enabled: true
+
+# Self-improvement loop — snapshot runs, score evidence, propose next experiments
+self_improvement:
+  runs_dir: "data/runs"
+  compare_last_n: 10
+  weak_thresholds:
+    sharpe_oos_min: 0.0
+    dm_p_max: 0.05
+    ml_direction_min: 0.53
+  auto_rerun:
+    - backtest
+    - research
+    - under_tested
+    - data_quality
+  never_tune_on_holdout: true
+  # Automatic scheduling (macOS LaunchAgent — see scripts/install_auto_improve_launchd.sh)
+  auto_improve:
+    enabled: true           # set true after running install script
+    schedule: "30 6 * * *"  # 6:30 AM daily (minute hour dom month weekday)
+    rerun_pipelines: true   # --rerun before scoring each scheduled run

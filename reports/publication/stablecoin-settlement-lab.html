@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="BR3N Macro Labs — Open Source FX AI Model Lab"/>
+  <title>BR3N Stablecoin Settlement Window Lab — BR3N Macro Labs</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --surface-alt: #f0ede6;
+  --border: #d4dce8;
+  --border-strong: #b8c4d4;
+  --text: #1a2744;
+  --muted: #5c6578;
+  --accent: #1e3a5f;
+  --accent-dim: #152a45;
+  --good: #1f6b4a;
+  --warn: #9a6700;
+  --font: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --mono: "SF Mono", ui-monospace, Menlo, monospace;
+  --max: 720px;
+  --wide: 960px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-dim); text-decoration: underline; }
+header {
+  border-bottom: 2px solid var(--border-strong);
+  background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
+  padding: 2rem 1.5rem 1.75rem;
+}
+.header-inner { max-width: var(--wide); margin: 0 auto; }
+.brand {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+h1.title {
+  font-family: var(--serif);
+  font-size: 2.15rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.subtitle { color: var(--muted); font-size: 1.02rem; max-width: 42rem; line-height: 1.55; }
+nav.top {
+  max-width: var(--wide);
+  margin: 1.25rem auto 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+nav.top a {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--surface);
+  color: var(--accent);
+}
+nav.top a:hover { background: var(--surface-alt); text-decoration: none; }
+nav.top a.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+main.wide { max-width: var(--wide); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
+}
+.card h3 { margin-top: 0; font-size: 1rem; color: var(--accent); font-family: var(--serif); }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem;
+}
+.stat .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.stat .value { font-family: var(--serif); font-size: 1.45rem; font-weight: 700; margin-top: 0.25rem; color: var(--text); }
+.stat .value.good { color: var(--good); }
+.stat .value.warn { color: var(--warn); }
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.35rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-alt);
+  border-radius: 0 4px 4px 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-style: italic;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin: 2.25rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-strong);
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+p { margin: 0.75rem 0; }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+th { background: var(--surface-alt); color: var(--accent); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+table.data-table th.num,
+table.data-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table { margin: 0; }
+.conclusion-box {
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.claim-discipline {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text);
+}
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+}
+code { padding: 0.15rem 0.4rem; }
+pre { padding: 1rem; overflow-x: auto; }
+pre code { border: none; padding: 0; background: none; }
+footer {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  border-top: 2px solid var(--border-strong);
+  color: var(--muted);
+  font-size: 0.85rem;
+  background: var(--surface-alt);
+}
+.disclaimer {
+  background: #fff8ee;
+  border: 1px solid #e8d5b0;
+  color: #6b5344;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  margin-top: 1rem;
+}
+/* Cover page */
+body.cover-page {
+  background: var(--bg);
+}
+body.cover-page header.hero-cover {
+  border-bottom: 2px solid var(--border-strong);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(30, 58, 95, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+}
+.hero-cover .lab-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+  line-height: 1.1;
+  color: var(--text);
+}
+.hero-cover .tagline {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  max-width: 40rem;
+  margin: 0 auto 0.5rem;
+  line-height: 1.55;
+}
+.hero-cover .motto {
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0.75rem auto 1.5rem;
+  font-weight: 600;
+}
+.hero-cover .author {
+  color: var(--accent);
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.5rem;
+}
+.logo-frame {
+  display: inline-block;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 24px rgba(26, 39, 68, 0.08);
+}
+.fx-lab-logo {
+  display: block;
+  max-width: min(340px, 88vw);
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.fx-lab-logo-sm {
+  display: block;
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+}
+.cta-row {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+.cta-row a {
+  padding: 0.6rem 1.15rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.cta-row a.primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+.cta-row a.secondary {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--accent);
+}
+.principle-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  font-size: 1.02rem;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
+}
+.principle-box p { margin: 0.5rem 0; color: var(--text); }
+.cover-main { max-width: var(--wide); }
+.cover-main h2:first-child { margin-top: 0; }
+.vertical-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.vertical-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
+}
+.vertical-card:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(26, 39, 68, 0.08); }
+.vertical-card .tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.vertical-card h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.vertical-card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+}
+.vertical-card a.btn {
+  display: inline-block;
+  padding: 0.5rem 0.95rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent);
+}
+.vertical-card a.btn:hover { text-decoration: none; opacity: 0.92; }
+.research-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+.research-link-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.35rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(26, 39, 68, 0.04);
+}
+.research-link-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(26, 39, 68, 0.08);
+}
+.research-link-card .tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+  font-weight: 600;
+}
+.research-link-card h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  color: var(--text);
+  border: none;
+  padding: 0;
+}
+.research-link-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  h1.title { font-size: 1.55rem; }
+  body { font-size: 16px; }
+  .hero-cover .lab-title { letter-spacing: 0.05em; }
+}
+
+body.os-lab-page {
+  --bg: #0a0e14;
+  --surface: #121a28;
+  --surface-alt: #1a2436;
+  --surface2: #1a2436;
+  --border: #2a3548;
+  --border-strong: #3d4f66;
+  --text: #e8edf4;
+  --muted: #94a3b8;
+  --text2: #94a3b8;
+  --accent: #5b9fd4;
+  --accent-dim: #7eb8e0;
+  --accent2: #3d9970;
+  --good: #3d9970;
+  --warn: #ca8a04;
+  --warn-bg: #1a2436;
+  --warn-border: #5b9fd4;
+}
+body.os-lab-page {
+  background: var(--bg);
+  background-image:
+    linear-gradient(rgba(91, 159, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 159, 212, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--text);
+}
+body.os-lab-page header {
+  background: linear-gradient(180deg, #0d1219 0%, #121a28 100%);
+  border-bottom: 1px solid var(--border);
+}
+body.os-lab-page header .brand,
+body.os-lab-page header .title { color: var(--text); }
+body.os-lab-page header .subtitle { color: var(--text2); }
+body.os-lab-page footer {
+  background: #0d1219;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+}
+body.os-lab-page h2, body.os-lab-page h3 { color: var(--text); border-color: var(--border); }
+body.os-lab-page a { color: var(--accent); }
+body.os-lab-page .principle-box,
+body.os-lab-page .warning-box {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 4px;
+  color: var(--text);
+}
+body.os-lab-page .principle-box p,
+body.os-lab-page .warning-box p,
+body.os-lab-page .conclusion-box p {
+  color: var(--text);
+  margin: 0.35rem 0;
+}
+body.os-lab-page .conclusion-box {
+  background: var(--surface2);
+  border: 1px solid var(--accent2);
+  border-left: 4px solid var(--accent2);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 4px;
+  color: var(--text);
+}
+body.os-lab-page h1 { color: var(--text); }
+body.os-lab-page p,
+body.os-lab-page li,
+body.os-lab-page td,
+body.os-lab-page th {
+  color: var(--text);
+}
+body.os-lab-page blockquote {
+  background: var(--surface-alt);
+  border-left: 3px solid var(--accent);
+  color: var(--text2);
+}
+body.os-lab-page code,
+body.os-lab-page pre {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+body.os-lab-page pre code {
+  background: transparent;
+  color: var(--text);
+}
+body.os-lab-page .data-table th,
+body.os-lab-page .table-wrap th {
+  background: var(--surface2);
+  color: var(--accent);
+}
+body.os-lab-page .data-table td,
+body.os-lab-page .table-wrap td {
+  background: var(--surface);
+  color: var(--text2);
+}
+body.os-lab-page .disclaimer {
+  background: #1a2436;
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
+body.os-lab-page .meta {
+  color: var(--text2);
+  font-size: 0.85rem;
+}
+body.os-lab-page nav.top a {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+body.os-lab-page nav.top a:hover {
+  background: var(--surface-alt);
+  color: var(--accent);
+}
+body.os-lab-page nav.top a.primary {
+  background: var(--accent);
+  color: #0a0e14;
+}
+body.os-lab-page hr {
+  border-color: var(--border);
+}
+body.os-lab-page .os-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+body.os-lab-page .os-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+}
+body.os-lab-page .os-card h4 {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 1rem;
+}
+body.os-lab-page .os-card .meta {
+  font-size: 0.78rem;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+body.os-lab-page .os-card p { margin: 0.35rem 0; font-size: 0.92rem; color: var(--text2); }
+body.os-lab-page .os-card .label { color: var(--text); font-weight: 600; font-size: 0.85rem; }
+body.os-lab-page pre.arch-tree {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--accent);
+}
+body.os-lab-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.88rem;
+}
+body.os-lab-page th, body.os-lab-page td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+body.os-lab-page th { background: var(--surface2); color: var(--accent); }
+body.os-lab-page td { color: var(--text2); }
+body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
+</style>
+</head>
+<body class="os-lab-page">
+  <header>
+    <div class="header-inner">
+      <div class="logo-frame"><img src="assets/br3n_macro_labs_logo.png" alt="BR3N MACRO LABS" class="fx-lab-logo-sm"/></div>
+      <div class="brand">BR3N MACRO LABS · FX LAB</div>
+      <h1 class="title">BR3N Stablecoin Settlement Window Lab</h1>
+      <p class="subtitle">Finality quality, settlement window compression, liquidity transformation, and digital run conditions. · Research only · Not investment advice</p>
+      <nav class="top">
+  <a href="index.html">Home</a>
+  <a href="fx-lab.html">FX Lab</a>
+  <a href="research.html">Research</a>
+  <a href="corridor.html">Corridor</a>
+  <a href="fx_desk.html">FX Desk</a>
+  <a href="memo.html">Memo</a>
+  <a href="ladder.html">Ladder</a>
+  <a href="hedge-governance.html">Hedge Gov</a>
+  <a href="model-zoo.html">Model Zoo</a>
+  <a href="lab-status.html">Lab Status</a>
+  <a href="unanswered-fx.html">Unanswered FX</a>
+  <a href="history.html">History</a>
+  <a href="open-source-ai.html">OSS AI Lab</a>
+  <a href="global-fx-lab.html">Global FX</a>
+  <a href="value-survival-index.html">VSI</a>
+  <a href="settlement-economics-lab.html">Settlement</a>
+  <a href="stablecoin-settlement-lab.html" class="primary">Stablecoin</a>
+</nav>
+    </div>
+  </header>
+  <main class="wide">
+    
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="warning-box">
+  <p><strong>Research only.</strong> Not financial advice. Mixed-mode data: DeFiLlama supply/prices, issuer attestations, World Bank RPW baselines, BIS/Fed references. Off-ramp tables remain Tier 4 manual until exchange data is added.</p>
+</div>
+<div class="conclusion-box">
+  <p><strong>Core thesis:</strong> Stablecoins do not eliminate settlement risk; they change its location, speed, and legal form.</p>
+</div>
+<h1>BR3N Stablecoin Settlement Window Lab</h1>
+<h2 id="when-settlement-windows-collapse-risk-relocates">When settlement windows collapse, risk relocates</h2>
+<p>Stablecoins compress ledger settlement toward seconds, but <strong>economic finality</strong> — usable value in local currency — still depends on reserves, off-ramps, compliance, and issuer liquidity. This lab measures that redistribution.</p>
+<div class="principle-box"><p>Research and education only. Not financial advice. Not investment recommendation. Not operational guidance for live treasury or payment systems.</p></div>
+<hr/>
+<h2 id="master-question">Master question</h2>
+<p>When settlement windows collapse toward zero, where does risk go?</p>
+<hr/>
+<h2 id="flagship-models">Flagship models</h2>
+<div class="table-wrap"><table class="data-table">
+<thead><tr><th>Model</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>SFQI</strong></td><td>Stablecoin Finality Quality — ledger vs economic finality</td></tr>
+<tr><td><strong>SWC</strong></td><td>Settlement Window Compression — net benefit vs risk redistribution</td></tr>
+<tr><td><strong>SLT</strong></td><td>Stablecoin Liquidity Transformation — user benefit vs reserve burden</td></tr>
+<tr><td><strong>DRV</strong></td><td>Digital Run Velocity — run-conditions composite (not run prediction)</td></tr>
+<tr><td><strong>SDI</strong></td><td>Stablecoin Dollarization Index — retail digital dollar dependence</td></tr>
+<tr><td><strong>TMS</strong></td><td>Tokenized Money Singleness — parity across tokenized dollars</td></tr>
+<tr><td><strong>CSD</strong></td><td>Compliance Settlement Drag — compliance as the real settlement window</td></tr>
+<tr><td><strong>SVSI</strong></td><td>Stablecoin Value Survival Index — usable value on remittance rails</td></tr>
+</tbody></table></div>
+<hr/>
+<h2 id="working-paper">Working paper</h2>
+<p><strong>When Settlement Windows Collapse: Stablecoins, Finality, and the Redistribution of Payment Risk</strong></p>
+<p>Built from an institutional treasury perspective — prefunding, cutoffs, FX exposure during settlement windows, reserve liquidity, and off-ramp friction.</p>
+<hr/>
+<h2 id="run-locally">Run locally</h2>
+<pre><code class="bash">
+cd stablecoin_lab
+source ../.venv/bin/activate
+export PYTHONPATH=.
+python scripts/fetch_stablecoin_data.py
+python scripts/reproduce_stablecoin_lab.py
+streamlit run src/dashboard/app.py
+</code></pre>
+<p>See <a href="https://github.com/brendanbowers1-bit/br3n-macro-lab/blob/main/README_STABLECOIN_LAB.md">README_STABLECOIN_LAB.md</a> and <a href="https://github.com/brendanbowers1-bit/br3n-macro-lab/blob/main/stablecoin_lab/METHODOLOGY_STABLECOIN_SETTLEMENT.md">METHODOLOGY_STABLECOIN_SETTLEMENT.md</a>.</p>
+<hr/>
+<h2 id="data-governance">Data governance</h2>
+<p><code>NO_UNLABELED_DATA = True</code> — every output requires source lineage and quality metadata.</p>
+<p><strong>Mixed mode (Stage 1):</strong> DeFiLlama supply/prices, Circle/Tether reserve attestations, World Bank RPW remittance baselines, BIS CPMI bridge, Fed/BIS research references, and curated regulatory events load from official fetchers. Off-ramp characteristics remain Tier 4 manual assumptions until exchange/partner data is added.</p>
+<p>Fetch official sources:</p>
+<pre><code class="bash">
+make stablecoin-fetch
+# or: cd stablecoin_lab &amp;&amp; PYTHONPATH=. python scripts/fetch_stablecoin_data.py
+</code></pre>
+<h2>Flagship Models</h2>
+<div class="os-card-grid"><div class="os-card"><h4>Stablecoin Finality Quality (SFQI)</h4><p>Ledger vs economic finality</p></div><div class="os-card"><h4>Settlement Window Compression (SWC)</h4><p>Net benefit vs risk redistribution</p></div><div class="os-card"><h4>Stablecoin Liquidity Transformation (SLT)</h4><p>User benefit vs reserve burden</p></div><div class="os-card"><h4>Digital Run Velocity (DRV)</h4><p>Run-conditions composite — not run prediction</p></div><div class="os-card"><h4>Stablecoin Value Survival (SVSI)</h4><p>Usable value on remittance rails</p></div></div>
+
+<h2>Settlement Window Compression Rankings (live pipeline)</h2>
+<table>
+<thead><tr><th>Corridor</th><th>SWC</th><th>Risk-adj.</th><th>Interpretation</th></tr></thead>
+<tbody><tr><td>United States→Colombia</td><td class="num">68.9</td><td class="num">81.0</td><td>Net settlement compression benefit (estimated)</td></tr><tr><td>United States→Brazil</td><td class="num">61.9</td><td class="num">74.0</td><td>Net settlement compression benefit (estimated)</td></tr><tr><td>United States→Mexico</td><td class="num">51.4</td><td class="num">63.5</td><td>Mixed compression — risk redistributed (estimated)</td></tr><tr><td>United States→Philippines</td><td class="num">51.4</td><td class="num">63.5</td><td>Mixed compression — risk redistributed (estimated)</td></tr><tr><td>Germany→Nigeria</td><td class="num">9.4</td><td class="num">21.5</td><td>Compression increases fragility under this spec (estimated)</td></tr><tr><td>United Arab Emirates→Pakistan</td><td class="num">9.4</td><td class="num">21.5</td><td>Compression increases fragility under this spec (estimated)</td></tr><tr><td>United States→Dominican Republic</td><td class="num">9.4</td><td class="num">21.5</td><td>Compression increases fragility under this spec (estimated)</td></tr><tr><td>United States→El Salvador</td><td class="num">9.4</td><td class="num">21.5</td><td>Compression increases fragility under this spec (estimated)</td></tr><tr><td>United States→Guatemala</td><td class="num">9.4</td><td class="num">21.5</td><td>Compression increases fragility under this spec (estimated)</td></tr><tr><td>United States→India</td><td class="num">9.4</td><td class="num">21.5</td><td>Compression increases fragility under this spec (estimated)</td></tr></tbody>
+</table>
+
+<p><em>Interactive dashboard: <code>cd stablecoin_lab && streamlit run src/dashboard/app.py</code></em></p>
+
+  </main>
+  <footer>
+    <p>BR3N Macro Labs · Prepared by Brendan Bowers · 2026-05-31</p>
+    <div class="disclaimer">These models are not trading systems by themselves. They are research baselines. Every model must be tested out-of-sample with realistic transaction costs, drawdown controls, and no look-ahead bias before any trading use.</div>
+  </footer>
+</body>
+</html>

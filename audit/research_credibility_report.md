@@ -1,13 +1,13 @@
 # Research Credibility Report
 
-**Generated:** 2026-05-31T21:01:06.148383+00:00
+**Generated:** 2026-06-01T02:46:02.547480+00:00
 
 ## Quality run summary
 
-- PASS: 4
+- PASS: 5
 - FAIL: 2
 - WARNING: 0
-- SKIPPED: 5
+- SKIPPED: 6
 
 ## Publication-grade checklist
 

@@ -35,6 +35,7 @@ HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
     ("global-fx-lab.html", "Global FX Research Lab", "Who bears the cost when value crosses borders?", "Research"),
     ("value-survival-index.html", "Value Survival Index", "How much value survives when money crosses borders?", "Flagship"),
     ("settlement-economics-lab.html", "Settlement Economics Lab", "Settlement drag, liquidity burden, and finality", "Flagship"),
+    ("stablecoin-settlement-lab.html", "Stablecoin Settlement Lab", "Finality, window compression, and digital run conditions", "Flagship"),
     ("ladder.html", "Evidence Ladder", "Eight-level evidence framework", "Methods"),
     ("memo.html", "Full Research Note", "Methods, tables, limitations", "Deep dive"),
     ("corridor.html", "Corridor Roadmap", "Multi-corridor payment research", "Corridors"),
@@ -923,6 +924,76 @@ def _settlement_lab_body(out_dir: Path) -> str:
 """
 
 
+def _stablecoin_swc_table_html() -> str:
+    import pandas as pd
+
+    path = ROOT / "stablecoin_lab" / "data" / "outputs" / "settlement_window_compression_outputs.csv"
+    if not path.exists():
+        return "<p><em>Run <code>cd stablecoin_lab && python scripts/reproduce_stablecoin_lab.py</code> to generate SWC rankings.</em></p>"
+    try:
+        df = pd.read_csv(path)
+        summary = (
+            df.groupby("entity", as_index=False)
+            .agg(
+                swc=("swc_core", "mean"),
+                risk_adj=("swc_risk_adjusted", "mean"),
+                interpretation=("interpretation", "first"),
+                mock=("mock_data_flag", "first"),
+            )
+            .sort_values("swc", ascending=False)
+            .head(15)
+        )
+        rows = []
+        for _, r in summary.iterrows():
+            badge = ' <span class="tag">demo</span>' if r.get("mock") else ""
+            rows.append(
+                f"<tr><td>{html.escape(str(r['entity']))}{badge}</td>"
+                f'<td class="num">{r["swc"]:.1f}</td>'
+                f'<td class="num">{r["risk_adj"]:.1f}</td>'
+                f"<td>{html.escape(str(r['interpretation']))}</td></tr>"
+            )
+        return f"""
+<h2>Settlement Window Compression Rankings (live pipeline)</h2>
+<table>
+<thead><tr><th>Corridor</th><th>SWC</th><th>Risk-adj.</th><th>Interpretation</th></tr></thead>
+<tbody>{"".join(rows)}</tbody>
+</table>
+"""
+    except Exception as exc:
+        return f"<p><em>Could not load SWC table: {html.escape(str(exc))}</em></p>"
+
+
+def _stablecoin_lab_body(out_dir: Path) -> str:
+    page_md = _read_md(out_dir / "STABLECOIN_SETTLEMENT_LAB_PAGE.md") or _read_md(
+        ROOT / "reports/publication/STABLECOIN_SETTLEMENT_LAB_PAGE.md"
+    )
+    models = [
+        ("Stablecoin Finality Quality (SFQI)", "Ledger vs economic finality"),
+        ("Settlement Window Compression (SWC)", "Net benefit vs risk redistribution"),
+        ("Stablecoin Liquidity Transformation (SLT)", "User benefit vs reserve burden"),
+        ("Digital Run Velocity (DRV)", "Run-conditions composite — not run prediction"),
+        ("Stablecoin Value Survival (SVSI)", "Usable value on remittance rails"),
+    ]
+    cards = "".join(
+        f'<div class="os-card"><h4>{html.escape(t)}</h4><p>{html.escape(d)}</p></div>'
+        for t, d in models
+    )
+    return f"""
+<p class="back-link"><a href="fx-lab.html">← Back to FX Lab</a></p>
+<div class="warning-box">
+  <p><strong>Research only.</strong> Not financial advice. Mixed-mode data: DeFiLlama supply/prices, issuer attestations, World Bank RPW baselines, BIS/Fed references. Off-ramp tables remain Tier 4 manual until exchange data is added.</p>
+</div>
+<div class="conclusion-box">
+  <p><strong>Core thesis:</strong> Stablecoins do not eliminate settlement risk; they change its location, speed, and legal form.</p>
+</div>
+{_md_to_html(page_md) if page_md else ""}
+<h2>Flagship Models</h2>
+<div class="os-card-grid">{cards}</div>
+{_stablecoin_swc_table_html()}
+<p><em>Interactive dashboard: <code>cd stablecoin_lab && streamlit run src/dashboard/app.py</code></em></p>
+"""
+
+
 def _css_os_lab() -> str:
     """Dark institutional theme for the Open Source FX AI Model Lab page."""
     return (
@@ -1168,6 +1239,7 @@ def _nav_fx(active: str = "home") -> str:
         ("global-fx-lab.html", "Global FX", "global_fx_lab"),
         ("value-survival-index.html", "VSI", "value_survival_index"),
         ("settlement-economics-lab.html", "Settlement", "settlement_lab"),
+        ("stablecoin-settlement-lab.html", "Stablecoin", "stablecoin_lab"),
     ]
     parts = ['<nav class="top">']
     for href, label, key in links:
@@ -1662,6 +1734,17 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         encoding="utf-8",
     )
 
+    stablecoin_path = out_dir / "stablecoin-settlement-lab.html"
+    stablecoin_path.write_text(
+        _shell_os_lab(
+            "BR3N Stablecoin Settlement Window Lab",
+            _stablecoin_lab_body(out_dir),
+            nav_html=_nav_fx("stablecoin_lab"),
+            subtitle="Finality quality, settlement window compression, liquidity transformation, and digital run conditions.",
+        ),
+        encoding="utf-8",
+    )
+
     return {
         "index": cover_path,
         "fx_lab": fx_lab_path,
@@ -1679,4 +1762,5 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
         "global_fx_lab": global_fx_path,
         "value_survival_index": vsi_path,
         "settlement_economics_lab": settlement_path,
+        "stablecoin_settlement_lab": stablecoin_path,
     }

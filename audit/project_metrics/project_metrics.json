@@ -1,54 +1,54 @@
 {
-  "timestamp": "2026-05-31T21:00:18.181776+00:00",
+  "timestamp": "2026-06-01T02:45:15.762209+00:00",
   "totals": {
-    "files": 522,
-    "total_lines": 102971,
-    "code_lines": 93368,
-    "comment_lines": 356,
-    "blank_lines": 9247
+    "files": 655,
+    "total_lines": 111086,
+    "code_lines": 100452,
+    "comment_lines": 370,
+    "blank_lines": 10264
   },
   "by_category": {
     "documentation": {
-      "files": 114,
-      "lines": 10125,
-      "code": 6950,
+      "files": 130,
+      "lines": 10906,
+      "code": 7496,
       "comments": 0,
-      "blank": 3175
+      "blank": 3410
     },
     "config": {
-      "files": 11,
-      "lines": 5791,
-      "code": 5758,
+      "files": 13,
+      "lines": 6048,
+      "code": 6015,
       "comments": 0,
       "blank": 33
     },
     "other": {
-      "files": 51,
-      "lines": 40710,
-      "code": 40251,
+      "files": 99,
+      "lines": 42104,
+      "code": 41624,
       "comments": 0,
-      "blank": 459
+      "blank": 480
     },
     "code": {
-      "files": 249,
-      "lines": 33103,
-      "code": 27712,
-      "comments": 337,
-      "blank": 5054
+      "files": 290,
+      "lines": 37603,
+      "code": 31557,
+      "comments": 350,
+      "blank": 5696
     },
     "test_code": {
-      "files": 43,
-      "lines": 2449,
-      "code": 1939,
-      "comments": 19,
-      "blank": 491
+      "files": 56,
+      "lines": 2839,
+      "code": 2214,
+      "comments": 20,
+      "blank": 605
     },
     "generated_report": {
-      "files": 43,
-      "lines": 10622,
-      "code": 10587,
+      "files": 56,
+      "lines": 11415,
+      "code": 11375,
       "comments": 0,
-      "blank": 35
+      "blank": 40
     },
     "notebook": {
       "files": 11,
@@ -58,7 +58,7 @@
       "blank": 0
     }
   },
-  "test_to_code_ratio": 0.0208,
+  "test_to_code_ratio": 0.022,
   "largest_files": [
     {
       "path": "data/features/terminal_feature_table.csv",
@@ -91,8 +91,8 @@
       "path": "audit/project_metrics/project_metrics.json",
       "category": "config",
       "extension": ".json",
-      "total_lines": 4976,
-      "code_lines": 4976,
+      "total_lines": 5003,
+      "code_lines": 5003,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -145,10 +145,10 @@
       "path": "src/site_builder.py",
       "category": "code",
       "extension": ".py",
-      "total_lines": 1682,
-      "code_lines": 1569,
+      "total_lines": 1766,
+      "code_lines": 1647,
       "comment_lines": 3,
-      "blank_lines": 110
+      "blank_lines": 116
     },
     {
       "path": "reports/research_ladder/level8_hedge_oos_comparison.csv",
@@ -163,8 +163,8 @@
       "path": "reports/publication/open-source-ai.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 1022,
-      "code_lines": 1019,
+      "total_lines": 1023,
+      "code_lines": 1020,
       "comment_lines": 0,
       "blank_lines": 3
     },
@@ -172,8 +172,8 @@
       "path": "reports/publication/history.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 882,
-      "code_lines": 880,
+      "total_lines": 883,
+      "code_lines": 881,
       "comment_lines": 0,
       "blank_lines": 2
     },
@@ -181,8 +181,8 @@
       "path": "reports/publication/ladder.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 770,
-      "code_lines": 770,
+      "total_lines": 771,
+      "code_lines": 771,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -190,10 +190,19 @@
       "path": "reports/publication/unanswered-fx.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 737,
-      "code_lines": 735,
+      "total_lines": 738,
+      "code_lines": 736,
       "comment_lines": 0,
       "blank_lines": 2
+    },
+    {
+      "path": "README.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 721,
+      "code_lines": 521,
+      "comment_lines": 0,
+      "blank_lines": 200
     },
     {
       "path": "reports/FX_HISTORY_AND_ACADEMIC_FOUNDATIONS.md",
@@ -205,20 +214,20 @@
       "blank_lines": 322
     },
     {
-      "path": "README.md",
-      "category": "documentation",
-      "extension": ".md",
-      "total_lines": 697,
-      "code_lines": 505,
-      "comment_lines": 0,
-      "blank_lines": 192
-    },
-    {
       "path": "reports/publication/value-survival-index.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 697,
-      "code_lines": 692,
+      "total_lines": 698,
+      "code_lines": 693,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
+      "path": "reports/publication/stablecoin-settlement-lab.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 693,
+      "code_lines": 688,
       "comment_lines": 0,
       "blank_lines": 5
     },
@@ -226,8 +235,8 @@
       "path": "reports/publication/settlement-economics-lab.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 689,
-      "code_lines": 684,
+      "total_lines": 690,
+      "code_lines": 685,
       "comment_lines": 0,
       "blank_lines": 5
     },
@@ -235,8 +244,8 @@
       "path": "reports/publication/global-fx-lab.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 675,
-      "code_lines": 672,
+      "total_lines": 676,
+      "code_lines": 673,
       "comment_lines": 0,
       "blank_lines": 3
     },
@@ -244,8 +253,8 @@
       "path": "reports/publication/hedge-governance.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 642,
-      "code_lines": 638,
+      "total_lines": 643,
+      "code_lines": 639,
       "comment_lines": 0,
       "blank_lines": 4
     },
@@ -253,8 +262,8 @@
       "path": "reports/publication/memo.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 636,
-      "code_lines": 636,
+      "total_lines": 637,
+      "code_lines": 637,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -271,19 +280,10 @@
       "path": "reports/publication/model-zoo.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 629,
-      "code_lines": 625,
+      "total_lines": 630,
+      "code_lines": 626,
       "comment_lines": 0,
       "blank_lines": 4
-    },
-    {
-      "path": "reports/publication/corridor.html",
-      "category": "generated_report",
-      "extension": ".html",
-      "total_lines": 578,
-      "code_lines": 578,
-      "comment_lines": 0,
-      "blank_lines": 0
     }
   ],
   "per_file": [
@@ -345,10 +345,10 @@
       "path": "Makefile",
       "category": "other",
       "extension": "",
-      "total_lines": 34,
-      "code_lines": 23,
+      "total_lines": 69,
+      "code_lines": 47,
       "comment_lines": 0,
-      "blank_lines": 11
+      "blank_lines": 22
     },
     {
       "path": "METHODOLOGY.md",
@@ -381,17 +381,17 @@
       "path": "README.md",
       "category": "documentation",
       "extension": ".md",
-      "total_lines": 697,
-      "code_lines": 505,
+      "total_lines": 721,
+      "code_lines": 521,
       "comment_lines": 0,
-      "blank_lines": 192
+      "blank_lines": 200
     },
     {
       "path": ".gitignore",
       "category": "other",
       "extension": "",
-      "total_lines": 21,
-      "code_lines": 21,
+      "total_lines": 23,
+      "code_lines": 23,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -403,6 +403,15 @@
       "code_lines": 58,
       "comment_lines": 0,
       "blank_lines": 52
+    },
+    {
+      "path": "README_STABLECOIN_LAB.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 70,
+      "code_lines": 46,
+      "comment_lines": 0,
+      "blank_lines": 24
     },
     {
       "path": ".snapshotignore",
@@ -417,10 +426,10 @@
       "path": "CHANGELOG_RESEARCH.md",
       "category": "documentation",
       "extension": ".md",
-      "total_lines": 7,
-      "code_lines": 4,
+      "total_lines": 9,
+      "code_lines": 5,
       "comment_lines": 0,
-      "blank_lines": 3
+      "blank_lines": 4
     },
     {
       "path": "LOCAL_LLM_SETUP.md",
@@ -430,6 +439,1068 @@
       "code_lines": 72,
       "comment_lines": 0,
       "blank_lines": 25
+    },
+    {
+      "path": "stablecoin_lab/pytest.ini",
+      "category": "config",
+      "extension": ".ini",
+      "total_lines": 4,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/REPLICATION_STABLECOIN_LAB.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 74,
+      "code_lines": 59,
+      "comment_lines": 0,
+      "blank_lines": 15
+    },
+    {
+      "path": "stablecoin_lab/STABLECOIN_RESEARCH_DISCIPLINE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 77,
+      "code_lines": 53,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": "stablecoin_lab/DATA_SOURCES_STABLECOIN.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 116,
+      "code_lines": 93,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "stablecoin_lab/METHODOLOGY_STABLECOIN_SETTLEMENT.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 82,
+      "code_lines": 48,
+      "comment_lines": 0,
+      "blank_lines": 34
+    },
+    {
+      "path": "stablecoin_lab/tests/test_singleness_index.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 18,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/tests/conftest.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 10,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "stablecoin_lab/tests/test_data_quality.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 28,
+      "code_lines": 18,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "stablecoin_lab/tests/test_stablecoin_vsi.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 19,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/tests/test_compliance_drag.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 18,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/tests/test_finality_quality.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 19,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/tests/test_dollarization_index.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 11,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "stablecoin_lab/tests/test_digital_run_velocity.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 18,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/tests/test_mock_data_flags.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 28,
+      "code_lines": 18,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "stablecoin_lab/tests/test_liquidity_transformation.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 19,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/tests/test_settlement_window_compression.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 18,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/scripts/validate_stablecoin_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 26,
+      "code_lines": 17,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "stablecoin_lab/scripts/run_stablecoin_models.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 31,
+      "code_lines": 22,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "stablecoin_lab/scripts/fetch_stablecoin_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 82,
+      "code_lines": 60,
+      "comment_lines": 1,
+      "blank_lines": 21
+    },
+    {
+      "path": "stablecoin_lab/scripts/smoke_test_stablecoin_lab.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 95,
+      "code_lines": 68,
+      "comment_lines": 1,
+      "blank_lines": 26
+    },
+    {
+      "path": "stablecoin_lab/scripts/run_stablecoin_robustness.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 35,
+      "code_lines": 26,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "stablecoin_lab/scripts/build_stablecoin_dataset.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 28,
+      "code_lines": 19,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "stablecoin_lab/scripts/run_stablecoin_sensitivity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 27,
+      "code_lines": 18,
+      "comment_lines": 1,
+      "blank_lines": 8
+    },
+    {
+      "path": "stablecoin_lab/scripts/run_stablecoin_indices.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 42,
+      "code_lines": 32,
+      "comment_lines": 1,
+      "blank_lines": 9
+    },
+    {
+      "path": "stablecoin_lab/scripts/make_stablecoin_visuals.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 115,
+      "code_lines": 90,
+      "comment_lines": 1,
+      "blank_lines": 24
+    },
+    {
+      "path": "stablecoin_lab/scripts/reproduce_stablecoin_lab.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 39,
+      "code_lines": 31,
+      "comment_lines": 1,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/data/processed/off_ramp_characteristics.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 55,
+      "code_lines": 55,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/processed/remittance_comparison.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 11,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/processed/blockchain_settlement_characteristics.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/processed/stablecoin_redemption_characteristics.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/processed/stablecoin_supply.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 39,
+      "code_lines": 39,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/processed/stablecoin_price_peg.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 8,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/processed/stablecoin_reserves.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/processed/regulatory_events.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 5,
+      "code_lines": 5,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/digital_run_velocity_outputs.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 8,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/stablecoin_finality_quality_outputs.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 8,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/stablecoin_value_survival_outputs.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 11,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/stablecoin_dollarization_outputs.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 49,
+      "code_lines": 49,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/provenance_summary.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 2,
+      "code_lines": 2,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/compliance_settlement_drag_outputs.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 55,
+      "code_lines": 55,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/liquidity_transformation_outputs.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 8,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/settlement_window_compression_outputs.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 11,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/validation_summary.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 17,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/stablecoin_robustness_results.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 13,
+      "code_lines": 13,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/features.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 49,
+      "code_lines": 49,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/empirical_tests.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 2,
+      "code_lines": 2,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/tokenized_money_singleness_outputs.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 8,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/outputs/stablecoin_sensitivity_results.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 307,
+      "code_lines": 307,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/metadata/file_checksums.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 13,
+      "code_lines": 13,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/metadata/validation_summary.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 17,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/metadata/source_registry.json",
+      "category": "config",
+      "extension": ".json",
+      "total_lines": 226,
+      "code_lines": 226,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/issuer_attestations/reserve_attestations.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/stablecoin_reserves/reserve_attestations.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/remittance_costs/rpw_remittance_comparison.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 11,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/stablecoin_supply/defillama_supply.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 39,
+      "code_lines": 39,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/chain_fees/chain_settlement_reference.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/manual/bis_cpmi_bridge.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 501,
+      "code_lines": 501,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/manual/bis_tokenization_references.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 4,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/manual/fed_stablecoin_research.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 4,
+      "code_lines": 4,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/manual/redemption_from_attestations.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 3,
+      "code_lines": 3,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/stablecoin_prices/defillama_prices.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 8,
+      "code_lines": 8,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/chain_finality/chain_settlement_reference.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/data/raw/regulatory_events/official_regulatory_events.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 5,
+      "code_lines": 5,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/known_failures.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 42,
+      "code_lines": 29,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/data_quality_heatmap.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/ledger_vs_economic_finality.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/digital_run_velocity_scores.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/compliance_drag_breakdown.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/settlement_window_compression.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/robustness_rank_stability.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/stablecoin_dollarization_scores.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/depeg_risk_vs_reserve_liquidity.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/finality_quality_by_stablecoin.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/stablecoin_vsi_vs_traditional_vsi.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/liquidity_transformation_components.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/figures/tokenized_money_singleness.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 7,
+      "code_lines": 7,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/model_results.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 28,
+      "code_lines": 18,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/theory.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 23,
+      "code_lines": 14,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/next_steps.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 12,
+      "code_lines": 11,
+      "comment_lines": 0,
+      "blank_lines": 1
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/limitations.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 25,
+      "code_lines": 18,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/methodology.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 27,
+      "code_lines": 17,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/data.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 30,
+      "code_lines": 20,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/introduction.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 22,
+      "code_lines": 15,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/literature_map.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 14,
+      "code_lines": 12,
+      "comment_lines": 0,
+      "blank_lines": 2
+    },
+    {
+      "path": "stablecoin_lab/reports/working_paper/abstract.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 9,
+      "code_lines": 5,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "stablecoin_lab/src/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/src/research/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/src/research/hypotheses.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 107,
+      "code_lines": 98,
+      "comment_lines": 0,
+      "blank_lines": 9
+    },
+    {
+      "path": "stablecoin_lab/src/indices/compliance_settlement_drag.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 119,
+      "code_lines": 101,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "stablecoin_lab/src/indices/stablecoin_dollarization.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 106,
+      "code_lines": 90,
+      "comment_lines": 0,
+      "blank_lines": 16
+    },
+    {
+      "path": "stablecoin_lab/src/indices/stablecoin_finality_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 204,
+      "code_lines": 175,
+      "comment_lines": 0,
+      "blank_lines": 29
+    },
+    {
+      "path": "stablecoin_lab/src/indices/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/src/indices/tokenized_money_singleness.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 126,
+      "code_lines": 108,
+      "comment_lines": 0,
+      "blank_lines": 18
+    },
+    {
+      "path": "stablecoin_lab/src/indices/stablecoin_value_survival.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 123,
+      "code_lines": 104,
+      "comment_lines": 0,
+      "blank_lines": 19
+    },
+    {
+      "path": "stablecoin_lab/src/quality/lineage.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 87,
+      "code_lines": 75,
+      "comment_lines": 0,
+      "blank_lines": 12
+    },
+    {
+      "path": "stablecoin_lab/src/quality/data_quality.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 112,
+      "code_lines": 89,
+      "comment_lines": 0,
+      "blank_lines": 23
+    },
+    {
+      "path": "stablecoin_lab/src/quality/validation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 121,
+      "code_lines": 104,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "stablecoin_lab/src/config/research_settings.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 70,
+      "code_lines": 55,
+      "comment_lines": 0,
+      "blank_lines": 15
+    },
+    {
+      "path": "stablecoin_lab/src/config/data_sources.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 260,
+      "code_lines": 246,
+      "comment_lines": 0,
+      "blank_lines": 14
+    },
+    {
+      "path": "stablecoin_lab/src/features/build_features.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 172,
+      "code_lines": 151,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "stablecoin_lab/src/features/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/src/utils/paths.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 32,
+      "code_lines": 28,
+      "comment_lines": 0,
+      "blank_lines": 4
+    },
+    {
+      "path": "stablecoin_lab/src/models/stablecoin_liquidity_transformation.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 134,
+      "code_lines": 117,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "stablecoin_lab/src/models/digital_run_velocity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 145,
+      "code_lines": 119,
+      "comment_lines": 0,
+      "blank_lines": 26
+    },
+    {
+      "path": "stablecoin_lab/src/models/__init__.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 1,
+      "code_lines": 1,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "stablecoin_lab/src/models/settlement_window_compression.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 149,
+      "code_lines": 128,
+      "comment_lines": 0,
+      "blank_lines": 21
+    },
+    {
+      "path": "stablecoin_lab/src/models/sensitivity.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 125,
+      "code_lines": 106,
+      "comment_lines": 0,
+      "blank_lines": 19
+    },
+    {
+      "path": "stablecoin_lab/src/models/robustness.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 179,
+      "code_lines": 155,
+      "comment_lines": 0,
+      "blank_lines": 24
+    },
+    {
+      "path": "stablecoin_lab/src/models/empirical_tests.py",
+      "category": "test_code",
+      "extension": ".py",
+      "total_lines": 89,
+      "code_lines": 76,
+      "comment_lines": 0,
+      "blank_lines": 13
+    },
+    {
+      "path": "stablecoin_lab/src/dashboard/app.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 270,
+      "code_lines": 220,
+      "comment_lines": 0,
+      "blank_lines": 50
+    },
+    {
+      "path": "stablecoin_lab/src/data/file_discovery.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 25,
+      "code_lines": 18,
+      "comment_lines": 0,
+      "blank_lines": 7
+    },
+    {
+      "path": "stablecoin_lab/src/data/curated_bridge.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 99,
+      "code_lines": 89,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "stablecoin_lab/src/data/loaders.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 204,
+      "code_lines": 163,
+      "comment_lines": 0,
+      "blank_lines": 41
+    },
+    {
+      "path": "stablecoin_lab/src/data/official_fetchers.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 376,
+      "code_lines": 334,
+      "comment_lines": 4,
+      "blank_lines": 38
+    },
+    {
+      "path": "stablecoin_lab/src/data/mock_data.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 302,
+      "code_lines": 274,
+      "comment_lines": 0,
+      "blank_lines": 28
+    },
+    {
+      "path": "stablecoin_lab/src/data/cleaners.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 73,
+      "code_lines": 63,
+      "comment_lines": 0,
+      "blank_lines": 10
+    },
+    {
+      "path": "stablecoin_lab/src/data/build_dataset.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 169,
+      "code_lines": 152,
+      "comment_lines": 0,
+      "blank_lines": 17
+    },
+    {
+      "path": "stablecoin_lab/src/data/schema.py",
+      "category": "code",
+      "extension": ".py",
+      "total_lines": 92,
+      "code_lines": 80,
+      "comment_lines": 0,
+      "blank_lines": 12
     },
     {
       "path": "openclaw/skills/fx-lab/SKILL.md",
@@ -1569,8 +2640,8 @@
       "path": "audit/research_credibility_report.md",
       "category": "documentation",
       "extension": ".md",
-      "total_lines": 36,
-      "code_lines": 29,
+      "total_lines": 32,
+      "code_lines": 25,
       "comment_lines": 0,
       "blank_lines": 7
     },
@@ -1614,8 +2685,8 @@
       "path": "audit/project_metrics/project_metrics.json",
       "category": "config",
       "extension": ".json",
-      "total_lines": 4976,
-      "code_lines": 4976,
+      "total_lines": 5003,
+      "code_lines": 5003,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -1623,8 +2694,8 @@
       "path": "audit/project_metrics/time_log.csv",
       "category": "other",
       "extension": ".csv",
-      "total_lines": 28,
-      "code_lines": 28,
+      "total_lines": 30,
+      "code_lines": 30,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -1632,8 +2703,8 @@
       "path": "audit/project_metrics/line_count_report.csv",
       "category": "other",
       "extension": ".csv",
-      "total_lines": 521,
-      "code_lines": 521,
+      "total_lines": 524,
+      "code_lines": 524,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -1647,11 +2718,20 @@
       "blank_lines": 7
     },
     {
+      "path": "audit/change_logs/change_log.csv",
+      "category": "other",
+      "extension": ".csv",
+      "total_lines": 2,
+      "code_lines": 2,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
       "path": "audit/change_logs/snapshot_log.csv",
       "category": "other",
       "extension": ".csv",
-      "total_lines": 66,
-      "code_lines": 66,
+      "total_lines": 70,
+      "code_lines": 70,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -1668,19 +2748,19 @@
       "path": "audit/test_reports/full_quality_report.md",
       "category": "documentation",
       "extension": ".md",
-      "total_lines": 40,
-      "code_lines": 35,
+      "total_lines": 82,
+      "code_lines": 67,
       "comment_lines": 0,
-      "blank_lines": 5
+      "blank_lines": 15
     },
     {
       "path": "audit/test_reports/full_quality_report.csv",
       "category": "other",
       "extension": ".csv",
-      "total_lines": 21,
-      "code_lines": 21,
+      "total_lines": 63,
+      "code_lines": 53,
       "comment_lines": 0,
-      "blank_lines": 0
+      "blank_lines": 10
     },
     {
       "path": "audit/test_reports/known_failures.md",
@@ -1884,8 +2964,8 @@
       "path": "scripts/run_all_quality_checks.py",
       "category": "code",
       "extension": ".py",
-      "total_lines": 181,
-      "code_lines": 147,
+      "total_lines": 186,
+      "code_lines": 152,
       "comment_lines": 4,
       "blank_lines": 30
     },
@@ -2412,6 +3492,105 @@
       "blank_lines": 0
     },
     {
+      "path": "data_lake/bronze_raw/stablecoins/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/gold_research/settlement_window_compression/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/gold_research/stablecoin_value_survival/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/gold_research/stablecoin_finality_quality/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/gold_research/digital_run_velocity/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/gold_research/tokenized_money_singleness/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/silver_cleaned/stablecoin_reserves/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/silver_cleaned/blockchain_settlement_characteristics/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/silver_cleaned/stablecoin_supply/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/silver_cleaned/off_ramp_characteristics/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
+      "path": "data_lake/silver_cleaned/stablecoin_price_peg/.gitkeep",
+      "category": "other",
+      "extension": "",
+      "total_lines": 0,
+      "code_lines": 0,
+      "comment_lines": 0,
+      "blank_lines": 0
+    },
+    {
       "path": "reports/OPEN_SOURCE_FX_AI_MODEL_LAB.md",
       "category": "documentation",
       "extension": ".md",
@@ -2703,8 +3882,8 @@
       "path": "reports/publication/hedge-governance.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 642,
-      "code_lines": 638,
+      "total_lines": 643,
+      "code_lines": 639,
       "comment_lines": 0,
       "blank_lines": 4
     },
@@ -2712,8 +3891,8 @@
       "path": "reports/publication/corridor.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 578,
-      "code_lines": 578,
+      "total_lines": 579,
+      "code_lines": 579,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -2730,8 +3909,8 @@
       "path": "reports/publication/model-zoo.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 629,
-      "code_lines": 625,
+      "total_lines": 630,
+      "code_lines": 626,
       "comment_lines": 0,
       "blank_lines": 4
     },
@@ -2739,8 +3918,8 @@
       "path": "reports/publication/index.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 468,
-      "code_lines": 467,
+      "total_lines": 469,
+      "code_lines": 468,
       "comment_lines": 0,
       "blank_lines": 1
     },
@@ -2754,11 +3933,20 @@
       "blank_lines": 41
     },
     {
+      "path": "reports/publication/stablecoin-settlement-lab.html",
+      "category": "generated_report",
+      "extension": ".html",
+      "total_lines": 693,
+      "code_lines": 688,
+      "comment_lines": 0,
+      "blank_lines": 5
+    },
+    {
       "path": "reports/publication/unanswered-fx.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 737,
-      "code_lines": 735,
+      "total_lines": 738,
+      "code_lines": 736,
       "comment_lines": 0,
       "blank_lines": 2
     },
@@ -2766,8 +3954,8 @@
       "path": "reports/publication/lab-status.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 513,
-      "code_lines": 511,
+      "total_lines": 514,
+      "code_lines": 512,
       "comment_lines": 0,
       "blank_lines": 2
     },
@@ -2784,8 +3972,8 @@
       "path": "reports/publication/settlement-economics-lab.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 689,
-      "code_lines": 684,
+      "total_lines": 690,
+      "code_lines": 685,
       "comment_lines": 0,
       "blank_lines": 5
     },
@@ -2793,8 +3981,8 @@
       "path": "reports/publication/open-source-ai.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 1022,
-      "code_lines": 1019,
+      "total_lines": 1023,
+      "code_lines": 1020,
       "comment_lines": 0,
       "blank_lines": 3
     },
@@ -2802,8 +3990,8 @@
       "path": "reports/publication/research.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 502,
-      "code_lines": 498,
+      "total_lines": 503,
+      "code_lines": 499,
       "comment_lines": 0,
       "blank_lines": 4
     },
@@ -2811,8 +3999,8 @@
       "path": "reports/publication/fx-lab.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 480,
-      "code_lines": 480,
+      "total_lines": 481,
+      "code_lines": 481,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -2829,8 +4017,8 @@
       "path": "reports/publication/global-fx-lab.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 675,
-      "code_lines": 672,
+      "total_lines": 676,
+      "code_lines": 673,
       "comment_lines": 0,
       "blank_lines": 3
     },
@@ -2838,8 +4026,8 @@
       "path": "reports/publication/fx_desk.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 513,
-      "code_lines": 513,
+      "total_lines": 514,
+      "code_lines": 514,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -2847,8 +4035,8 @@
       "path": "reports/publication/ladder.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 770,
-      "code_lines": 770,
+      "total_lines": 771,
+      "code_lines": 771,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -2874,8 +4062,8 @@
       "path": "reports/publication/history.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 882,
-      "code_lines": 880,
+      "total_lines": 883,
+      "code_lines": 881,
       "comment_lines": 0,
       "blank_lines": 2
     },
@@ -2919,17 +4107,26 @@
       "path": "reports/publication/value-survival-index.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 697,
-      "code_lines": 692,
+      "total_lines": 698,
+      "code_lines": 693,
       "comment_lines": 0,
       "blank_lines": 5
+    },
+    {
+      "path": "reports/publication/STABLECOIN_SETTLEMENT_LAB_PAGE.md",
+      "category": "documentation",
+      "extension": ".md",
+      "total_lines": 66,
+      "code_lines": 43,
+      "comment_lines": 0,
+      "blank_lines": 23
     },
     {
       "path": "reports/publication/memo.html",
       "category": "generated_report",
       "extension": ".html",
-      "total_lines": 636,
-      "code_lines": 636,
+      "total_lines": 637,
+      "code_lines": 637,
       "comment_lines": 0,
       "blank_lines": 0
     },
@@ -3720,10 +4917,10 @@
       "path": "src/site_builder.py",
       "category": "code",
       "extension": ".py",
-      "total_lines": 1682,
-      "code_lines": 1569,
+      "total_lines": 1766,
+      "code_lines": 1647,
       "comment_lines": 3,
-      "blank_lines": 110
+      "blank_lines": 116
     },
     {
       "path": "src/bloomberg_loader.py",
@@ -4987,8 +6184,8 @@
     }
   ],
   "git_diff_since_head": {
-    "lines_added": 2254,
-    "lines_removed": 579,
-    "files_changed": 53
+    "lines_added": 240,
+    "lines_removed": 63,
+    "files_changed": 24
   }
 }

@@ -1,0 +1,2 @@
+hypothesis_id,x,y,spearman_rho,expected_sign,n,interpretation,causal_claim
+H3,reserve_liquidity_score,peg_deviation_bps,-1.0,negative,25,associated with,False

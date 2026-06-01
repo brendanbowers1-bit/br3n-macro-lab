@@ -1,0 +1,28 @@
+{
+  "updated_at": "2026-06-01T03:16:48.800800+00:00",
+  "db_path": "data_lake/br3n_lake.duckdb",
+  "views": [
+    "silver.defillama_supply",
+    "silver.rpw_historical_panel",
+    "silver.defillama_prices",
+    "gold.settlement_window_compression_outputs",
+    "gold.settlement_drag_outputs",
+    "gold.stablecoin_value_survival_outputs",
+    "gold.value_survival_outputs",
+    "gold.stablecoin_finality_quality_outputs",
+    "gold.finality_quality_outputs"
+  ],
+  "gold_tables": [
+    "gold.settlement_window_compression_outputs",
+    "gold.settlement_drag_outputs",
+    "gold.stablecoin_value_survival_outputs",
+    "gold.value_survival_outputs",
+    "gold.stablecoin_finality_quality_outputs",
+    "gold.finality_quality_outputs"
+  ],
+  "silver_tables": [
+    "silver.defillama_supply",
+    "silver.rpw_historical_panel",
+    "silver.defillama_prices"
+  ]
+}

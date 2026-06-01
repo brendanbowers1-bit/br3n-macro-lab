@@ -1,0 +1,7 @@
+date,blockchain_network,average_transaction_fee_usd,median_transaction_fee_usd,average_confirmation_time_seconds,probabilistic_finality_seconds,economic_finality_assumption_seconds,outage_flag,congestion_score,source_id
+2026-06-01,Ethereum,2.5,2.125,12.0,384.0,780.0,False,15.0,chain_data
+2026-06-01,Solana,0.001,0.00085,0.4,2.0,2.0,False,25.0,chain_data
+2026-06-01,Tron,0.05,0.0425,3.0,15.0,60.0,False,10.0,chain_data
+2026-06-01,Base,0.02,0.017,2.0,10.0,120.0,False,12.0,chain_data
+2026-06-01,Polygon,0.01,0.0085,2.0,10.0,180.0,False,18.0,chain_data
+2026-06-01,Arbitrum,0.05,0.0425,0.25,1.25,900.0,False,14.0,chain_data

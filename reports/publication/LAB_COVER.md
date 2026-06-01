@@ -28,6 +28,8 @@ A model may fail to beat random walk as a price forecast but still improve hedge
 
 **[Settlement Economics Lab](settlement-economics-lab.html)** — settlement drag, liquidity burden, finality quality, and payment-network fragility.
 
+**[Stablecoin Settlement Window Lab](stablecoin-settlement-lab.html)** — finality quality, settlement window compression, liquidity transformation, and digital run conditions.
+
 ---
 
 ## Explore FX Lab Research

@@ -1,0 +1,2 @@
+mock_data_flag,mixed_mode,methodology_version,limitations
+False,False,stablecoin-lab-credible-1.0,"Measurement framework only — studies stablecoin settlement windows, finality, and payment-infrastructure risk under stated assumptions. Does not prove causal effects without identification. Not financial advice, not investment recommendation, not a recommendation to buy, sell, or hold any stablecoin or crypto asset, and not operational guidance for live treasury or payment systems."

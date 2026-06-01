@@ -1,0 +1,17 @@
+table,valid,n_rows,errors,warnings
+stablecoin_supply,True,38,,
+stablecoin_price_peg,True,7,,
+stablecoin_reserves,True,2,,
+blockchain_settlement_characteristics,True,6,,
+stablecoin_redemption_characteristics,True,2,,
+off_ramp_characteristics,True,54,,off_ramp_characteristics: mock_data_flag=True — demo data present
+remittance_comparison,True,10,,
+regulatory_events,True,4,,
+stablecoin_finality_quality_outputs,True,7,,
+settlement_window_compression_outputs,True,10,,
+liquidity_transformation_outputs,True,7,,
+digital_run_velocity_outputs,True,7,,
+stablecoin_dollarization_outputs,True,48,,
+tokenized_money_singleness_outputs,True,7,,
+compliance_settlement_drag_outputs,True,54,,compliance_settlement_drag_outputs: mock_data_flag=True — demo data present
+stablecoin_value_survival_outputs,True,10,,

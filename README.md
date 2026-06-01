@@ -74,6 +74,33 @@ streamlit run src/dashboard/app.py
 
 ---
 
+## BR3N Stablecoin Settlement Window Lab
+
+**Core thesis:** Stablecoins do not eliminate settlement risk; they change its location, speed, and legal form.
+
+**Master question:** When settlement windows collapse toward zero, where does risk go?
+
+Research-only. Not investment advice. Not a crypto trading bot.
+
+### Quick start
+
+```bash
+cd ~/fx_regime_lab/stablecoin_lab
+source ../.venv/bin/activate
+export PYTHONPATH=.
+python scripts/fetch_stablecoin_data.py
+python scripts/smoke_test_stablecoin_lab.py
+python scripts/reproduce_stablecoin_lab.py
+streamlit run src/dashboard/app.py
+```
+
+Or from repo root: `make stablecoin-fetch` · `make stablecoin-reproduce`
+
+- [README_STABLECOIN_LAB.md](README_STABLECOIN_LAB.md)
+- [METHODOLOGY_STABLECOIN_SETTLEMENT.md](stablecoin_lab/METHODOLOGY_STABLECOIN_SETTLEMENT.md)
+
+---
+
 ## Research Quality, Testing, and Audit Trail
 
 Project-wide quality infrastructure covers **both** the Value Survival Index and Settlement Economics Lab.
@@ -128,6 +155,26 @@ make quality                               # Makefile wrapper
 ```
 
 Dashboard **Quality Command Center** page: `streamlit run src/dashboard/app.py`
+
+### BR3N Command Center (unified lab dashboard)
+
+Premium institutional dashboard across **VSI · Settlement · Stablecoin · Data Lake · Audit**.
+
+```bash
+make command-center
+make dashboard-all          # sync DuckDB + export JSON + visuals + smoke
+
+streamlit run src/dashboard/br3n_command_center.py
+```
+
+**Premium React dashboard:**
+
+```bash
+make dashboard-export
+cd web_dashboard && npm install && npm run dev   # http://localhost:3000
+```
+
+10 Streamlit pages + 7 Next.js routes. See `web_dashboard/README.md`.
 
 ---
 

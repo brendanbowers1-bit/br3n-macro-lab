@@ -1,0 +1,3 @@
+date,stablecoin,issuer,total_reserves_usd,cash_usd,bank_deposits_usd,treasury_bills_usd,repo_usd,commercial_paper_usd,other_assets_usd,reserve_liquidity_score,attestation_provider,attestation_date,source_url,source_id
+2024-11-30,USDC,Circle,36200000000,8500000000,4200000000,22800000000,500000000,0,200000000,88,Deloitte,2024-11-30,https://www.circle.com/en/transparency,circle_attestation
+2024-09-30,USDT,Tether,125000000000,5000000000,8000000000,98000000000,6000000000,0,8000000000,82,BDO Italia,2024-09-30,https://tether.to/en/transparency,tether_attestation
