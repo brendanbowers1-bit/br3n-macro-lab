@@ -15,7 +15,6 @@ TAGLINE = "Research for the financial frontier."
 BFI_BRAND_DIR = "assets/brand"
 BFI_LOGO_HORIZONTAL = f"{BFI_BRAND_DIR}/bfi-logo-horizontal.svg"
 BFI_LOGO_HORIZONTAL_INVERSE = f"{BFI_BRAND_DIR}/bfi-logo-horizontal-inverse.svg"
-BFI_LOGO_STACKED = f"{BFI_BRAND_DIR}/bfi-logo-stacked.svg"
 BFI_ICON = f"{BFI_BRAND_DIR}/bfi-icon.svg"
 BFI_ICON_TRANSPARENT = f"{BFI_BRAND_DIR}/bfi-icon-transparent.svg"
 
@@ -183,52 +182,45 @@ a:hover { color: #7dd3fc; }
   text-decoration: none;
   line-height: 0;
   flex-shrink: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
 }
 .bfi-logo-link:hover { opacity: 0.92; text-decoration: none; }
-.bfi-logo-h,
-.bfi-logo-h-inv,
-.bfi-logo-stacked,
-.bfi-closing-logo,
+.logo,
+.brand-logo,
+.header-logo,
+.hero-logo,
+.footer-logo,
+.logo-wrap,
+.brand-wrap,
+.bfi-logo-link,
+.bfi-footer .footer-logo-wrap {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.logo img,
+.brand-logo img,
 .header-logo img,
 .hero-logo img,
 .footer-logo img,
-.bfi-logo-link img {
-  background: transparent;
-  border: none;
-  box-shadow: none;
+.bfi-logo-link img,
+.bfi-footer .footer-logo img {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   display: block;
 }
-.bfi-logo-h {
-  height: 40px;
+.header-logo img,
+.bfi-header .header-logo img {
+  height: 44px;
   width: auto;
 }
-.bfi-header .bfi-logo-h,
-.bfi-header .bfi-logo-h-inv { height: 36px; }
-.bfi-logo-h-inv { height: 34px; }
-.bfi-logo-stacked {
-  width: min(300px, 82vw);
-  height: auto;
-  margin: 0 auto 1.35rem;
+.bfi-footer .footer-logo img {
+  height: 36px;
+  width: auto;
+  margin: 0 auto;
 }
-.bfi-closing-logo {
-  width: min(260px, 72vw);
-  height: auto;
-  margin: 0 auto 1rem;
-}
-.bfi-hero .hero-logo { margin: 0 auto 1.35rem; }
-.bfi-sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.bfi-footer .footer-logo-wrap {
+  margin-bottom: 1rem;
 }
 .bfi-wordmark {
   font-family: var(--serif);
@@ -528,6 +520,12 @@ a:hover { color: #7dd3fc; }
   text-transform: uppercase;
   color: var(--gold);
 }
+@media (max-width: 768px) {
+  .header-logo img,
+  .bfi-header .header-logo img {
+    height: 34px;
+  }
+}
 @media (max-width: 640px) {
   .bfi-hero { padding-top: 3rem; }
   .bfi-card-grid { grid-template-columns: 1fr; }
@@ -543,25 +541,21 @@ def bfi_favicon_tags() -> str:
 
 
 def bfi_header_logo(*, inverse: bool = True) -> str:
+    """Transparent horizontal mark; inverse (light ink) on dark institute header."""
     src = BFI_LOGO_HORIZONTAL_INVERSE if inverse else BFI_LOGO_HORIZONTAL
-    cls = "bfi-logo-h-inv header-logo" if inverse else "bfi-logo-h header-logo"
     return (
-        f'<a href="index.html" class="bfi-logo-link brand-logo">'
-        f'<img src="{src}" alt="{html.escape(ROOT_BRAND)}" class="{cls}"/>'
+        f'<a href="index.html" class="bfi-logo-link brand-logo logo-wrap">'
+        f'<img src="{src}" alt="{html.escape(ROOT_BRAND)}" class="header-logo"/>'
         f"</a>"
     )
 
 
-def bfi_stacked_logo(*, css_class: str = "bfi-logo-stacked hero-logo") -> str:
+def bfi_footer_logo() -> str:
     return (
-        f'<img src="{BFI_LOGO_STACKED}" alt="{html.escape(ROOT_BRAND)}" class="{css_class}"/>'
-    )
-
-
-def bfi_closing_logo() -> str:
-    return (
+        f'<div class="footer-logo-wrap brand-wrap">'
         f'<img src="{BFI_LOGO_HORIZONTAL_INVERSE}" alt="{html.escape(ROOT_BRAND)}" '
-        f'class="bfi-closing-logo footer-logo"/>'
+        f'class="footer-logo"/>'
+        f"</div>"
     )
 
 
@@ -599,6 +593,7 @@ def _bfi_shell(body: str, *, active: str = "home", title: str | None = None) -> 
   </header>
   {body}
   <footer class="bfi-footer">
+    {bfi_footer_logo()}
     <p>{foot}</p>
     <p class="disc">Independent research institute. Not affiliated with any employer, bank, or payment company unless explicitly stated.</p>
   </footer>
@@ -627,8 +622,7 @@ def bfi_index_body() -> str:
     )
     return f"""
 <section class="bfi-hero">
-  <h1 class="bfi-sr-only">{html.escape(ROOT_BRAND)}</h1>
-  {bfi_stacked_logo()}
+  <h1>{html.escape(ROOT_BRAND)}</h1>
   <p class="core-line">{html.escape(CORE_LINE)}</p>
   <p class="tagline">{html.escape(TAGLINE)}</p>
   <p class="lead">The world&rsquo;s financial systems move faster than the institutions built to understand them.</p>
@@ -706,7 +700,7 @@ def bfi_index_body() -> str:
   </section>
 
   <div class="bfi-closing">
-    {bfi_closing_logo()}
+    <p class="brand">{html.escape(ROOT_BRAND)}</p>
     <p class="core">{html.escape(CORE_LINE)}</p>
     <p class="tag">{html.escape(TAGLINE)}</p>
   </div>

@@ -67,52 +67,45 @@ a:hover { color: #7dd3fc; }
   text-decoration: none;
   line-height: 0;
   flex-shrink: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
 }
 .bfi-logo-link:hover { opacity: 0.92; text-decoration: none; }
-.bfi-logo-h,
-.bfi-logo-h-inv,
-.bfi-logo-stacked,
-.bfi-closing-logo,
+.logo,
+.brand-logo,
+.header-logo,
+.hero-logo,
+.footer-logo,
+.logo-wrap,
+.brand-wrap,
+.bfi-logo-link,
+.bfi-footer .footer-logo-wrap {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.logo img,
+.brand-logo img,
 .header-logo img,
 .hero-logo img,
 .footer-logo img,
-.bfi-logo-link img {
-  background: transparent;
-  border: none;
-  box-shadow: none;
+.bfi-logo-link img,
+.bfi-footer .footer-logo img {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   display: block;
 }
-.bfi-logo-h {
-  height: 40px;
+.header-logo img,
+.bfi-header .header-logo img {
+  height: 44px;
   width: auto;
 }
-.bfi-header .bfi-logo-h,
-.bfi-header .bfi-logo-h-inv { height: 36px; }
-.bfi-logo-h-inv { height: 34px; }
-.bfi-logo-stacked {
-  width: min(300px, 82vw);
-  height: auto;
-  margin: 0 auto 1.35rem;
+.bfi-footer .footer-logo img {
+  height: 36px;
+  width: auto;
+  margin: 0 auto;
 }
-.bfi-closing-logo {
-  width: min(260px, 72vw);
-  height: auto;
-  margin: 0 auto 1rem;
-}
-.bfi-hero .hero-logo { margin: 0 auto 1.35rem; }
-.bfi-sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.bfi-footer .footer-logo-wrap {
+  margin-bottom: 1rem;
 }
 .bfi-wordmark {
   font-family: var(--serif);
@@ -412,6 +405,12 @@ a:hover { color: #7dd3fc; }
   text-transform: uppercase;
   color: var(--gold);
 }
+@media (max-width: 768px) {
+  .header-logo img,
+  .bfi-header .header-logo img {
+    height: 34px;
+  }
+}
 @media (max-width: 640px) {
   .bfi-hero { padding-top: 3rem; }
   .bfi-card-grid { grid-template-columns: 1fr; }
@@ -421,7 +420,7 @@ a:hover { color: #7dd3fc; }
 <body class="bfi">
   <header class="bfi-header">
     <div class="bfi-header-inner">
-      <a href="index.html" class="bfi-logo-link brand-logo"><img src="assets/brand/bfi-logo-horizontal-inverse.svg" alt="Bowers Frontier Institute" class="bfi-logo-h-inv header-logo"/></a>
+      <a href="index.html" class="bfi-logo-link brand-logo logo-wrap"><img src="assets/brand/bfi-logo-horizontal-inverse.svg" alt="Bowers Frontier Institute" class="header-logo"/></a>
       <nav class="bfi-nav">
 <a href="index.html">Home</a>
 <a href="research.html">Research</a>
@@ -456,6 +455,7 @@ a:hover { color: #7dd3fc; }
 </main>
 
   <footer class="bfi-footer">
+    <div class="footer-logo-wrap brand-wrap"><img src="assets/brand/bfi-logo-horizontal-inverse.svg" alt="Bowers Frontier Institute" class="footer-logo"/></div>
     <p>Bowers Frontier Institute · Prepared by Brendan Bowers · Research and risk-framing only · Not investment advice · No live trading.</p>
     <p class="disc">Independent research institute. Not affiliated with any employer, bank, or payment company unless explicitly stated.</p>
   </footer>

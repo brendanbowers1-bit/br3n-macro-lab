@@ -293,20 +293,41 @@ body.cover-page header.hero-cover {
   opacity: 0.5;
   user-select: none;
 }
+.logo,
+.brand-logo,
+.header-logo,
+.hero-logo,
+.footer-logo,
+.logo-wrap,
+.brand-wrap,
+.institute-brand-link {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.logo img,
+.brand-logo img,
+.header-logo img,
+.hero-logo img,
+.footer-logo img,
+.institute-brand-link img,
 .bfi-logo-header-sm,
 .bfi-logo-header-sm-inv {
-  height: 32px;
-  width: auto;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   display: block;
-  background: transparent;
-  border: none;
-  box-shadow: none;
 }
-.bfi-logo-header-sm-inv { height: 30px; }
-.institute-brand-link img {
-  background: transparent;
-  border: none;
-  box-shadow: none;
+.bfi-logo-header-sm,
+.bfi-logo-header-sm-inv {
+  height: 44px;
+  width: auto;
+}
+@media (max-width: 768px) {
+  .bfi-logo-header-sm,
+  .bfi-logo-header-sm-inv {
+    height: 34px;
+  }
 }
 .cta-row {
   display: flex;
