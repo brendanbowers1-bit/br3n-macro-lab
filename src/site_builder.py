@@ -12,9 +12,9 @@ from typing import Dict
 
 from . import LAB_NAME, LAB_NAME_DISPLAY
 from .bfi_site import (
-    BFI_LOGO_HORIZONTAL,
-    BFI_LOGO_HORIZONTAL_INVERSE,
     ROOT_BRAND,
+    bfi_brand_lockup,
+    bfi_brand_lockup_css,
     bfi_favicon_tags,
     bfi_header_logo,
     build_bfi_pages,
@@ -57,7 +57,7 @@ FX_LAB_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
 
 
 def _css() -> str:
-    return """
+    base = """
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 :root {
   --bg: #f7f5f0;
@@ -344,47 +344,18 @@ body.cover-page header.hero-cover {
   opacity: 0.5;
   user-select: none;
 }
-.logo,
-.brand-logo,
-.header-logo,
-.hero-logo,
-.footer-logo,
-.logo-wrap,
-.brand-wrap,
-.institute-brand-link {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  overflow: visible !important;
+.division-mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
 }
-.logo img,
-.brand-logo img,
-.header-logo img,
-.hero-logo img,
-.footer-logo img,
-.institute-brand-link img,
-.bfi-logo-header-sm,
-.bfi-logo-header-sm-inv {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  object-fit: contain !important;
-  overflow: visible !important;
-  display: block;
-}
-.bfi-logo-header-sm,
-.bfi-logo-header-sm-inv {
-  height: 50px;
-  width: auto;
-  max-width: min(720px, 52vw);
-}
-@media (max-width: 850px) {
-  .bfi-logo-header-sm,
-  .bfi-logo-header-sm-inv {
-    height: 38px;
-    max-width: 70vw;
-  }
-}
+.division-mark:hover { opacity: 0.85; text-decoration: none; }
+"""
+    tail = """
 .cta-row {
   display: flex;
   gap: 0.65rem;
@@ -530,6 +501,7 @@ body.cover-page header.hero-cover {
   .hero-cover .lab-title { letter-spacing: 0.05em; }
 }
 """
+    return base + bfi_brand_lockup_css() + tail
 
 
 def _css_home() -> str:
@@ -1629,18 +1601,12 @@ def _shell_os_lab(
 
 
 def _division_header_row(*, dark: bool = False) -> str:
-    """Parent BFI logo + BR3N Macro Lab division mark."""
-    bfi_src = BFI_LOGO_HORIZONTAL_INVERSE if dark else BFI_LOGO_HORIZONTAL
-    bfi_cls = "bfi-logo-header-sm-inv" if dark else "bfi-logo-header-sm"
+    """Parent BFI text lockup + BR3N Macro Lab division mark."""
     return f"""
 <div class="institute-brand-row">
-  <a href="index.html" class="institute-brand-link" title="{html.escape(ROOT_BRAND)}">
-    <img src="{bfi_src}" alt="{html.escape(ROOT_BRAND)}" class="{bfi_cls}"/>
-  </a>
+  {bfi_brand_lockup(inverse=dark)}
   <span class="institute-brand-sep" aria-hidden="true">/</span>
-  <a href="macro-lab.html" class="institute-brand-link" title="{html.escape(LAB_NAME)}">
-    <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo-sm" style="max-width:140px;margin:0"/>
-  </a>
+  <a href="macro-lab.html" class="division-mark" title="{html.escape(LAB_NAME)}">{html.escape(LAB_NAME_DISPLAY)}</a>
 </div>"""
 
 
@@ -1785,7 +1751,7 @@ def _home_shell(body: str) -> str:
     hero = f"""
 <header class="hero-cover">
   <div class="header-inner">
-    <div style="margin-bottom:1rem;">{bfi_header_logo(inverse=True)}</div>
+    <div style="margin-bottom:1rem;">{bfi_brand_lockup(inverse=True)}</div>
     <div class="logo-frame" style="background:transparent;border:none;box-shadow:none;padding:0;">
       <img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo"/>
     </div>

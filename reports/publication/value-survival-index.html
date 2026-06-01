@@ -293,47 +293,55 @@ body.cover-page header.hero-cover {
   opacity: 0.5;
   user-select: none;
 }
-.logo,
-.brand-logo,
-.header-logo,
-.hero-logo,
-.footer-logo,
-.logo-wrap,
-.brand-wrap,
-.institute-brand-link {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  overflow: visible !important;
+.division-mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
 }
-.logo img,
-.brand-logo img,
-.header-logo img,
-.hero-logo img,
-.footer-logo img,
-.institute-brand-link img,
-.bfi-logo-header-sm,
-.bfi-logo-header-sm-inv {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  object-fit: contain !important;
-  overflow: visible !important;
-  display: block;
+.division-mark:hover { opacity: 0.85; text-decoration: none; }
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: #07182D;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.bfi-logo-header-sm,
-.bfi-logo-header-sm-inv {
-  height: 50px;
-  width: auto;
-  max-width: min(720px, 52vw);
+.brand-lockup:hover { opacity: 0.92; text-decoration: none; }
+.brand-mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  letter-spacing: -1.5px;
+  font-weight: 500;
+  line-height: 1;
 }
-@media (max-width: 850px) {
-  .bfi-logo-header-sm,
-  .bfi-logo-header-sm-inv {
-    height: 38px;
-    max-width: 70vw;
-  }
+.brand-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(7, 24, 45, 0.35);
+  display: inline-block;
 }
+.brand-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.brand-lockup--inverse { color: #F7F6F2; }
+.brand-lockup--inverse .brand-divider { background: rgba(247, 246, 242, 0.35); }
+@media (max-width: 720px) {
+  .brand-name { display: none; }
+  .brand-divider { display: none; }
+  .brand-mark { font-size: 32px; }
+}
+
 .cta-row {
   display: flex;
   gap: 0.65rem;
@@ -658,13 +666,9 @@ body.os-lab-page .roadmap-phase { color: var(--accent2); font-weight: 600; }
     <div class="header-inner">
       
 <div class="institute-brand-row">
-  <a href="index.html" class="institute-brand-link" title="Bowers Frontier Institute">
-    <img src="assets/brand/bfi-logo-horizontal-corrected.svg" alt="Bowers Frontier Institute" class="bfi-logo-header-sm"/>
-  </a>
+  <a class="brand-lockup" href="index.html" aria-label="Bowers Frontier Institute home"><span class="brand-mark">BFI</span><span class="brand-divider"></span><span class="brand-name">BOWERS FRONTIER INSTITUTE</span></a>
   <span class="institute-brand-sep" aria-hidden="true">/</span>
-  <a href="macro-lab.html" class="institute-brand-link" title="BR3N Macro Labs">
-    <img src="assets/br3n_macro_labs_logo.png" alt="BR3N MACRO LABS" class="fx-lab-logo-sm" style="max-width:140px;margin:0"/>
-  </a>
+  <a href="macro-lab.html" class="division-mark" title="BR3N Macro Labs">BR3N MACRO LABS</a>
 </div>
       <div class="brand">BR3N MACRO LABS · Division of Bowers Frontier Institute</div>
       <h1 class="title">BR3N Value Survival Index</h1>
