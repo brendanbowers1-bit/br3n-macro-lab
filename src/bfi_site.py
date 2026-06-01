@@ -133,6 +133,7 @@ def _css_bfi() -> str:
   --text: #f4f4f5;
   --muted: #94a3b8;
   --navy: #07182D;
+  --paper: #F7F6F2;
   --accent: #38bdf8;
   --gold: #c9a962;
   --silver: #9ca3af;
@@ -584,8 +585,8 @@ a:hover { color: #7dd3fc; }
 }
 .bfi-hub-list a { font-weight: 500; }
 .bfi-hub-list .meta { font-size: 0.82rem; color: var(--muted); }
-.bfi-page-light {
-  background: #F7F6F2;
+.light-zone {
+  background: var(--paper);
   color: var(--navy);
 }
 .bfi-page-inner {
@@ -596,6 +597,9 @@ a:hover { color: #7dd3fc; }
 .page-hero {
   padding: 96px 0 72px;
   border-bottom: 1px solid rgba(7, 24, 45, 0.12);
+}
+.research-standards {
+  padding: 78px 0 96px;
 }
 .page-eyebrow {
   font-size: 12px;
@@ -631,15 +635,7 @@ a:hover { color: #7dd3fc; }
   margin-top: 24px;
   margin-bottom: 0;
 }
-.bfi-page-main .section {
-  padding: 78px 0;
-  border-bottom: 1px solid rgba(7, 24, 45, 0.10);
-}
-.bfi-page-main .section:last-child {
-  border-bottom: none;
-  padding-bottom: 96px;
-}
-.section-kicker {
+.research-standards .section-kicker {
   font-size: 12px;
   letter-spacing: 3.5px;
   text-transform: uppercase;
@@ -662,31 +658,12 @@ a:hover { color: #7dd3fc; }
   color: rgba(7, 24, 45, 0.68);
   margin: 0;
 }
-.principle-grid,
-.research-grid {
+.principle-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
   margin-top: 36px;
 }
-.research-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-.research-domain {
-  margin-top: 56px;
-}
-.research-domain:first-of-type {
-  margin-top: 40px;
-}
-.domain-title {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 30px;
-  color: var(--navy);
-  margin: 0 0 18px;
-  font-weight: 500;
-  letter-spacing: -0.5px;
-}
-.research-card,
 .principle-card {
   border: 1px solid rgba(7, 24, 45, 0.14);
   background: rgba(255, 255, 255, 0.26);
@@ -695,14 +672,6 @@ a:hover { color: #7dd3fc; }
   display: flex;
   flex-direction: column;
 }
-.card-label {
-  font-size: 11px;
-  letter-spacing: 2.4px;
-  text-transform: uppercase;
-  color: rgba(7, 24, 45, 0.55);
-  margin-bottom: 18px;
-}
-.research-card h3,
 .principle-card h3 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 24px;
@@ -711,7 +680,6 @@ a:hover { color: #7dd3fc; }
   margin: 0 0 14px;
   font-weight: 500;
 }
-.research-card p,
 .principle-card p {
   font-size: 15px;
   line-height: 1.6;
@@ -719,22 +687,122 @@ a:hover { color: #7dd3fc; }
   margin: 0;
   flex: 1;
 }
-.research-card-link {
+.research-index-dark {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(120, 145, 180, 0.12), transparent 34%),
+    linear-gradient(180deg, #07182D 0%, #05070A 100%);
+  color: var(--paper);
+  padding: 96px 0 110px;
+  border-top: 1px solid rgba(7, 24, 45, 0.18);
+}
+.dark-kicker {
+  font-size: 12px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(247, 246, 242, 0.58);
+  margin-bottom: 18px;
+}
+.dark-section-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -2px;
+  color: var(--paper);
+  max-width: 980px;
+  margin: 0 0 22px;
+  font-weight: 500;
+}
+.dark-section-intro {
+  max-width: 760px;
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(247, 246, 242, 0.68);
+  margin: 0 0 66px;
+}
+.research-index-dark .research-domain {
+  margin-top: 64px;
+}
+.research-index-dark .research-domain:first-of-type {
+  margin-top: 0;
+}
+.dark-domain-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  color: var(--paper);
+  letter-spacing: -0.6px;
+  margin: 0 0 22px;
+  font-weight: 500;
+}
+.dark-research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.dark-research-card {
+  border: 1px solid rgba(247, 246, 242, 0.14);
+  background: rgba(247, 246, 242, 0.035);
+  padding: 26px;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.dark-research-card:hover {
+  border-color: rgba(247, 246, 242, 0.34);
+  background: rgba(247, 246, 242, 0.055);
+}
+.dark-card-label {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(247, 246, 242, 0.46);
+  margin-bottom: 18px;
+}
+.dark-research-card h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  line-height: 1.14;
+  color: var(--paper);
+  margin: 0 0 14px;
+  font-weight: 500;
+}
+.dark-research-card p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(247, 246, 242, 0.66);
+  margin: 0;
+  flex: 1;
+}
+.dark-research-card a {
   display: inline-block;
-  margin-top: 18px;
+  margin-top: 24px;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--paper);
   text-decoration: none;
-  border-bottom: 1px solid rgba(7, 24, 45, 0.4);
-  padding-bottom: 4px;
-  align-self: flex-start;
+  border-bottom: 1px solid rgba(247, 246, 242, 0.42);
+  padding-bottom: 5px;
+  width: fit-content;
 }
-.research-card-link:hover {
-  color: #0a2540;
-  border-bottom-color: rgba(7, 24, 45, 0.65);
+.dark-research-card a:hover {
+  color: var(--paper);
+  border-bottom-color: var(--paper);
   text-decoration: none;
+}
+body.bfi.bfi-research-page .bfi-footer {
+  background: #05070A;
+  color: rgba(247, 246, 242, 0.72);
+  border-top: 1px solid rgba(247, 246, 242, 0.12);
+}
+body.bfi.bfi-research-page .footer-brand-mark,
+body.bfi.bfi-research-page .footer-brand-name {
+  color: rgba(247, 246, 242, 0.88);
+}
+body.bfi.bfi-research-page .footer-brand-tagline,
+body.bfi.bfi-research-page .bfi-footer .disc {
+  color: rgba(247, 246, 242, 0.52);
 }
 .bfi-parent-link {
   display: inline-block;
@@ -746,7 +814,7 @@ a:hover { color: #7dd3fc; }
 }
 @media (max-width: 980px) {
   .principle-grid,
-  .research-grid {
+  .dark-research-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -754,15 +822,18 @@ a:hover { color: #7dd3fc; }
   .page-hero {
     padding: 72px 0 52px;
   }
-  .bfi-page-main .section {
-    padding: 52px 0;
+  .research-standards {
+    padding: 52px 0 64px;
+  }
+  .research-index-dark {
+    padding: 72px 0 84px;
   }
   .principle-grid,
-  .research-grid {
+  .dark-research-grid {
     grid-template-columns: 1fr;
   }
-  .research-card,
-  .principle-card {
+  .principle-card,
+  .dark-research-card {
     min-height: auto;
   }
   .bfi-hero { padding-top: 3rem; }
@@ -857,8 +928,15 @@ def _nav_bfi(active: str) -> str:
     return "\n".join(parts)
 
 
-def _bfi_shell(body: str, *, active: str = "home", title: str | None = None) -> str:
+def _bfi_shell(
+    body: str,
+    *,
+    active: str = "home",
+    title: str | None = None,
+    page_class: str = "",
+) -> str:
     page_title = title or ROOT_BRAND
+    body_cls = "bfi" + (f" {page_class}" if page_class else "")
     foot = (
         f"{html.escape(ROOT_BRAND)} · Prepared by Brendan Bowers · "
         "Research and risk-framing only · Not investment advice · No live trading."
@@ -873,7 +951,7 @@ def _bfi_shell(body: str, *, active: str = "home", title: str | None = None) -> 
   {bfi_favicon_tags()}
   <style>{_css_bfi()}</style>
 </head>
-<body class="bfi">
+<body class="{body_cls}">
   <header class="bfi-header">
     <div class="bfi-header-inner">
       {bfi_header_logo()}
@@ -1017,23 +1095,23 @@ def _principle_grid(items: list[tuple[str, str]]) -> str:
     return f'<div class="principle-grid">{cards}</div>'
 
 
-def _research_card(href: str, title: str, label: str, desc: str) -> str:
+def _dark_research_card(href: str, title: str, label: str, desc: str) -> str:
     return (
-        f'<article class="research-card">'
-        f'<div class="card-label">{html.escape(label)}</div>'
+        f'<article class="dark-research-card">'
+        f'<div class="dark-card-label">{html.escape(label)}</div>'
         f"<h3>{html.escape(title)}</h3>"
         f"<p>{html.escape(desc)}</p>"
-        f'<a class="research-card-link" href="{html.escape(href, quote=True)}">View Research</a>'
+        f'<a href="{html.escape(href, quote=True)}">View Research</a>'
         f"</article>"
     )
 
 
-def _research_domain(domain_title: str, cards: list[tuple[str, str, str, str]]) -> str:
-    grid = "".join(_research_card(h, t, lbl, d) for h, t, lbl, d in cards)
+def _dark_research_domain(domain_title: str, cards: list[tuple[str, str, str, str]]) -> str:
+    grid = "".join(_dark_research_card(h, t, lbl, d) for h, t, lbl, d in cards)
     return (
         f'<div class="research-domain">'
-        f'<h3 class="domain-title">{html.escape(domain_title)}</h3>'
-        f'<div class="research-grid">{grid}</div>'
+        f'<h3 class="dark-domain-title">{html.escape(domain_title)}</h3>'
+        f'<div class="dark-research-grid">{grid}</div>'
         f"</div>"
     )
 
@@ -1151,34 +1229,36 @@ def bfi_research_hub_body() -> str:
             ],
         ),
     ]
-    domain_html = "".join(_research_domain(title, cards) for title, cards in domains)
+    domain_html = "".join(_dark_research_domain(title, cards) for title, cards in domains)
     return f"""
-<div class="bfi-page-light">
-<section class="page-hero">
-  <div class="bfi-page-inner">
-    <div class="page-eyebrow">RESEARCH LIBRARY</div>
-    <h1>Open research on markets, machines, and monetary systems.</h1>
-    <p class="page-subtitle">Published memos, model notes, technical briefs, dashboards, and frontier questions from {html.escape(ROOT_BRAND)} labs.</p>
-    <p class="page-thesis">The library organizes BFI research across foreign exchange, settlement infrastructure, AI market intelligence, model validation, and the future architecture of global financial systems.</p>
-  </div>
-</section>
-<main class="bfi-page-main">
-  <div class="bfi-page-inner">
-    <section class="section" id="research-standards">
+<main class="bfi-research-page">
+  <section class="page-hero research-hero light-zone">
+    <div class="bfi-page-inner">
+      <div class="page-eyebrow">RESEARCH LIBRARY</div>
+      <h1>Open research on markets, machines, and monetary systems.</h1>
+      <p class="page-subtitle">Published memos, model notes, technical briefs, dashboards, and frontier questions from {html.escape(ROOT_BRAND)} labs.</p>
+      <p class="page-thesis">The library organizes BFI research across foreign exchange, settlement infrastructure, AI market intelligence, model validation, and the future architecture of global financial systems.</p>
+    </div>
+  </section>
+
+  <section class="section research-standards light-zone" id="research-standards">
+    <div class="bfi-page-inner">
       <div class="section-kicker">Institute Standards</div>
       <h2 class="section-title">Research Standards</h2>
       <p class="section-intro">{html.escape(ROOT_BRAND)} treats research as infrastructure: documented, reproducible, clearly scoped, and open to challenge. Each memo, model output, and dashboard should make its assumptions visible, separate signal from speculation, and state its limitations.</p>
       {_principle_grid(principles)}
-    </section>
-    <section class="section" id="research-index">
-      <div class="section-kicker">Working Index</div>
-      <h2 class="section-title">Research Index</h2>
-      <p class="section-intro">A working index of BFI research pages, labs, models, and technical notes.</p>
+    </div>
+  </section>
+
+  <section class="research-index-dark dark-zone" id="research">
+    <div class="bfi-page-inner">
+      <div class="dark-kicker">RESEARCH INDEX</div>
+      <h2 class="dark-section-title">Working papers, labs, models, and technical notes.</h2>
+      <p class="dark-section-intro">A structured index of BFI research across macro systems, market structure, intelligence, and monetary infrastructure.</p>
       {domain_html}
-    </section>
-  </div>
+    </div>
+  </section>
 </main>
-</div>
 """
 
 
@@ -1299,7 +1379,12 @@ def build_bfi_pages(out_dir) -> Dict[str, Path]:
     }
     pages["index"].write_text(_bfi_shell(bfi_index_body(), active="home"), encoding="utf-8")
     pages["research"].write_text(
-        _bfi_shell(bfi_research_hub_body(), active="research", title=f"Research — {ROOT_BRAND}"),
+        _bfi_shell(
+            bfi_research_hub_body(),
+            active="research",
+            title=f"Research — {ROOT_BRAND}",
+            page_class="bfi-research-page",
+        ),
         encoding="utf-8",
     )
     pages["labs"].write_text(
