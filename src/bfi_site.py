@@ -829,6 +829,170 @@ body.bfi.bfi-corridor-page .bfi-footer .disc {
 .corridor-dashboard .dark-section-intro {
   margin-bottom: 0;
 }
+body.bfi-corridor-page {
+  --paper: #F7F4EC;
+  --ink: #05070A;
+  --slate: #7C8794;
+  --silver: #CBD3DD;
+  --cyan: #6EE7F9;
+  --teal: #2DD4BF;
+  --green: #7DDC8A;
+  --amber: #F2C14E;
+  --rose: #FF6B6B;
+  --blue: #7AA7FF;
+  --violet: #A78BFA;
+}
+.corridor-dashboard {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(110, 231, 249, 0.07), transparent 32%),
+    radial-gradient(circle at 82% 12%, rgba(167, 139, 250, 0.06), transparent 28%),
+    radial-gradient(circle at 20% 0%, rgba(120, 145, 180, 0.12), transparent 34%),
+    linear-gradient(180deg, #07182D 0%, #05070A 100%);
+}
+.insight-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 48px 0 28px;
+}
+.insight-card {
+  border: 1px solid rgba(247, 244, 236, 0.14);
+  background: linear-gradient(155deg, rgba(247, 244, 236, 0.055) 0%, rgba(247, 244, 236, 0.02) 100%);
+  padding: 24px 22px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease, border-color 0.25s ease;
+}
+.insight-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.insight-card:nth-child(2) { transition-delay: 0.08s; }
+.insight-card:nth-child(3) { transition-delay: 0.16s; }
+.insight-card:nth-child(4) { transition-delay: 0.24s; }
+.insight-card:hover {
+  border-color: rgba(247, 244, 236, 0.28);
+}
+.insight-label {
+  font-size: 11px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: rgba(247, 244, 236, 0.48);
+  margin-bottom: 14px;
+}
+.insight-value {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.05;
+  color: var(--paper);
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+.insight-value.positive { color: var(--teal); }
+.insight-value.negative { color: var(--rose); }
+.insight-value.neutral { color: var(--silver); }
+.insight-value.peak { color: var(--green); }
+.insight-delta {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.insight-delta.positive { color: var(--green); }
+.insight-delta.negative { color: var(--rose); }
+.insight-delta.neutral { color: var(--slate); }
+.insight-sub {
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(247, 244, 236, 0.46);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.story-panel {
+  border: 1px solid rgba(110, 231, 249, 0.18);
+  background: rgba(110, 231, 249, 0.04);
+  padding: 22px 26px;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+}
+.story-panel.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.story-kicker {
+  font-size: 10px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+.story-panel p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(247, 244, 236, 0.82);
+  max-width: 920px;
+}
+.story-panel strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+.meta-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 36px 0 8px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(247, 244, 236, 0.1);
+}
+.meta-chip {
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(247, 244, 236, 0.42);
+  letter-spacing: 0.04em;
+}
+.meta-chip span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(247, 244, 236, 0.32);
+  margin-bottom: 6px;
+}
+.chart-panel.featured {
+  border-color: rgba(110, 231, 249, 0.22);
+  background: linear-gradient(180deg, rgba(247, 244, 236, 0.045) 0%, rgba(247, 244, 236, 0.02) 100%);
+}
+.chart-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 16px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247, 244, 236, 0.48);
+}
+.chart-legend-row span::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: -1px;
+}
+.legend-up::before { background: var(--green); }
+.legend-down::before { background: var(--rose); }
+.legend-line::before { background: var(--cyan); border-radius: 2px; width: 14px; height: 2px; }
+.legend-gap::before { background: var(--blue); border-radius: 2px; width: 14px; height: 2px; }
+.chart-grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 18px;
+}
 .metric-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -892,6 +1056,9 @@ body.bfi.bfi-corridor-page .bfi-footer .disc {
   height: 380px;
   width: 100%;
 }
+.chart-canvas-wrap.chart-canvas-tall {
+  height: 420px;
+}
 .chart-canvas-wrap canvas {
   width: 100% !important;
   max-height: 420px;
@@ -952,6 +1119,15 @@ body.bfi.bfi-corridor-page .bfi-footer .disc {
   .metric-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .insight-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .chart-grid-two {
+    grid-template-columns: 1fr;
+  }
+  .meta-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .chart-header {
     flex-direction: column;
   }
@@ -968,6 +1144,12 @@ body.bfi.bfi-corridor-page .bfi-footer .disc {
     min-height: auto;
   }
   .metric-grid {
+    grid-template-columns: 1fr;
+  }
+  .insight-strip {
+    grid-template-columns: 1fr;
+  }
+  .meta-strip {
     grid-template-columns: 1fr;
   }
   .bfi-hero { padding-top: 3rem; }
@@ -1480,78 +1662,113 @@ def bfi_us_mexico_corridor_body() -> str:
     <div class="bfi-page-inner">
       <div class="page-eyebrow">CORRIDOR DASHBOARD</div>
       <h1>United States → Mexico corridor.</h1>
-      <p class="page-subtitle">A simple research dashboard for remittance flows, FX context, and corridor-level market structure.</p>
-      <p class="page-thesis">This dashboard tracks the US/Mexico corridor as a financial system: remittance flows, USD/MXN context, payment friction, timing risk, and macro sensitivity.</p>
+      <p class="page-subtitle">A live-style research dashboard for remittance flows, FX context, and corridor-level financial structure.</p>
+      <p class="page-thesis">The US/Mexico corridor is more than a remittance channel. It is a monetary system connecting household income, labor markets, exchange rates, settlement rails, liquidity timing, and cross-border financial infrastructure.</p>
       <p class="page-disclaimer">Research and education only. Not investment advice. No live trading.</p>
     </div>
   </section>
 
   <section class="corridor-dashboard dark-zone">
     <div class="bfi-page-inner">
-      <div class="dark-kicker">CORRIDOR SNAPSHOT</div>
-      <h2 class="dark-section-title">US/Mexico corridor research dashboard.</h2>
-      <p class="dark-section-intro">Monthly view of remittance flow behavior and corridor context.</p>
+      <div class="dark-kicker">CORRIDOR INTELLIGENCE</div>
+      <h2 class="dark-section-title">Flow, pressure, and change in the US/Mexico corridor.</h2>
+      <p class="dark-section-intro">This prototype focuses on one simple question: is the corridor accelerating, slowing, or structurally changing?</p>
 
-      <div class="metric-grid">
-        <div class="metric-card">
-          <div class="metric-label">Corridor</div>
-          <div class="metric-value">United States → Mexico</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Primary flow</div>
-          <div class="metric-value">Worker remittances to Mexico</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Data frequency</div>
-          <div class="metric-value">Monthly</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Unit</div>
-          <div class="metric-value">Millions of U.S. dollars</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">Source</div>
-          <div class="metric-value">Banco de México / Banxico SIE</div>
-        </div>
+      <div class="insight-strip" id="insightStrip">
+        <article class="insight-card" data-animate>
+          <div class="insight-label">Latest monthly flow</div>
+          <div class="insight-value neutral" id="insightLatest" data-count="5060" data-suffix="">0</div>
+          <div class="insight-sub">Nov 2025 · USD millions · starter data</div>
+        </article>
+        <article class="insight-card" data-animate>
+          <div class="insight-label">Latest YoY change</div>
+          <div class="insight-value negative" id="insightYoyPct" data-count="-7.8" data-decimals="1" data-suffix="%">0</div>
+          <div class="insight-delta negative" id="insightYoyAbs">−429M vs Nov 2024</div>
+          <div class="insight-sub">Nov 2025 vs Nov 2024 · starter data</div>
+        </article>
+        <article class="insight-card" data-animate>
+          <div class="insight-label">2025 YTD flow</div>
+          <div class="insight-value neutral" id="insightYtd" data-count="55651" data-suffix="">0</div>
+          <div class="insight-sub">Jan–Nov 2025 · USD millions · starter data</div>
+        </article>
+        <article class="insight-card" data-animate>
+          <div class="insight-label">Peak month</div>
+          <div class="insight-value peak" id="insightPeak" data-count="5723" data-suffix="">0</div>
+          <div class="insight-sub">Oct 2024 · dataset high · starter data</div>
+        </article>
       </div>
 
-      <div class="chart-panel">
+      <div class="story-panel" id="storyPanel" data-animate>
+        <div class="story-kicker">Corridor read · starter data</div>
+        <p id="corridorStory">Loading corridor narrative…</p>
+      </div>
+
+      <div class="chart-panel featured">
         <div class="chart-header">
           <div>
-            <div class="chart-kicker">BANXICO SIE · MONTHLY · USD MILLIONS · SAMPLE DATA</div>
-            <h3>Monthly Remittances to Mexico</h3>
+            <div class="chart-kicker">PRIMARY FLOW · BANXICO SIE · SAMPLE DATA</div>
+            <h3>Monthly remittances to Mexico</h3>
           </div>
-          <div class="chart-note">Starter visualization values. Replace with official Banxico SIE export/API values before publication.</div>
+          <div class="chart-note">Point color = month-over-month direction. Annotations mark peak and trough in starter series.</div>
         </div>
-        <div class="chart-canvas-wrap">
+        <div class="chart-canvas-wrap chart-canvas-tall">
           <canvas id="remittanceChart"></canvas>
         </div>
+        <div class="chart-legend-row">
+          <span class="legend-up">MoM increase</span>
+          <span class="legend-down">MoM decrease</span>
+          <span class="legend-line">Monthly flow</span>
+        </div>
+      </div>
+
+      <div class="chart-grid-two">
+        <div class="chart-panel">
+          <div class="chart-header">
+            <div>
+              <div class="chart-kicker">MOM CHANGE · USD MILLIONS</div>
+              <h3>Month-over-month delta</h3>
+            </div>
+          </div>
+          <div class="chart-canvas-wrap">
+            <canvas id="momChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-panel">
+          <div class="chart-header">
+            <div>
+              <div class="chart-kicker">YOY GAP · USD MILLIONS</div>
+              <h3>Year-over-year monthly gap</h3>
+            </div>
+          </div>
+          <div class="chart-canvas-wrap">
+            <canvas id="yoyGapChart"></canvas>
+          </div>
+          <div class="chart-legend-row">
+            <span class="legend-up">Above prior year</span>
+            <span class="legend-down">Below prior year</span>
+          </div>
+        </div>
       </div>
 
       <div class="chart-panel">
         <div class="chart-header">
           <div>
-            <div class="chart-kicker">12-MONTH ROLLING · USD MILLIONS · SAMPLE DATA</div>
-            <h3>12-Month Rolling Remittance Flow</h3>
+            <div class="chart-kicker">12-MONTH ROLLING · USD MILLIONS</div>
+            <h3>Trailing twelve-month corridor flow</h3>
           </div>
-          <div class="chart-note">Rolling sum computed from starter dataset for layout testing only.</div>
+          <div class="chart-note">Rolling sum from starter dataset · structural pace indicator</div>
         </div>
         <div class="chart-canvas-wrap">
           <canvas id="rollingChart"></canvas>
         </div>
       </div>
 
-      <div class="chart-panel">
-        <div class="chart-header">
-          <div>
-            <div class="chart-kicker">YOY COMPARISON · USD MILLIONS · SAMPLE DATA</div>
-            <h3>Year-over-Year Monthly Comparison</h3>
-          </div>
-          <div class="chart-note">Jan–Nov monthly values: 2024 vs 2025 from starter dataset.</div>
-        </div>
-        <div class="chart-canvas-wrap">
-          <canvas id="yoyChart"></canvas>
-        </div>
+      <div class="meta-strip">
+        <div class="meta-chip"><span>Corridor</span>United States → Mexico</div>
+        <div class="meta-chip"><span>Primary flow</span>Worker remittances</div>
+        <div class="meta-chip"><span>Frequency</span>Monthly</div>
+        <div class="meta-chip"><span>Unit</span>USD millions</div>
+        <div class="meta-chip"><span>Source</span>Banco de México / Banxico SIE</div>
       </div>
 
       <div class="corridor-methodology">
@@ -1562,7 +1779,7 @@ def bfi_us_mexico_corridor_body() -> str:
           <li>Future versions should ingest official CSV/API data and add USD/MXN, fee, speed, and provider-cost layers.</li>
         </ul>
         <h4>Methodology</h4>
-        <p>This page is a corridor research prototype. The starter chart is for layout/testing and should be replaced with official data before external publication.</p>
+        <p>This page is a corridor research prototype. Starter visualization values must be replaced with official Banxico SIE export/API data before external publication. Animations and color cues are for research communication only — not trading signals.</p>
       </div>
     </div>
   </section>
@@ -1571,10 +1788,22 @@ def bfi_us_mexico_corridor_body() -> str:
 
 
 def bfi_us_mexico_corridor_scripts() -> str:
-    return """
+    return r"""
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 (function () {
+  const C = {
+    paper: "#F7F4EC",
+    green: "#7DDC8A",
+    rose: "#FF6B6B",
+    teal: "#2DD4BF",
+    cyan: "#6EE7F9",
+    blue: "#7AA7FF",
+    silver: "#CBD3DD",
+    slate: "rgba(247, 244, 236, 0.55)",
+    grid: "rgba(247, 244, 236, 0.08)"
+  };
+
   const monthLabels = [
     "Jan 2024", "Feb 2024", "Mar 2024", "Apr 2024", "May 2024", "Jun 2024",
     "Jul 2024", "Aug 2024", "Sep 2024", "Oct 2024", "Nov 2024", "Dec 2024",
@@ -1586,59 +1815,242 @@ def bfi_us_mexico_corridor_scripts() -> str:
     4761, 4459, 5145, 5130, 5360, 5201, 5330, 5085, 5050, 5070, 5060
   ];
 
-  const gridColor = "rgba(247, 246, 242, 0.08)";
-  const tickColor = "rgba(247, 246, 242, 0.55)";
-  const titleColor = "rgba(247, 246, 242, 0.5)";
-  const lineColor = "#C8CDD2";
-  const mutedBar = "rgba(247, 246, 242, 0.45)";
+  const n = remittances.length - 1;
+  const latest = remittances[n];
+  const prev = remittances[n - 1];
+  const nov2024 = remittances[10];
+  const yoyAbs = latest - nov2024;
+  const yoyPct = (yoyAbs / nov2024) * 100;
+  const momAbs = latest - prev;
+  const momPct = (momAbs / prev) * 100;
+  const ytd2025 = remittances.slice(12, 23).reduce((a, b) => a + b, 0);
+  const peakVal = Math.max(...remittances);
+  const troughVal = Math.min(...remittances);
+  const peakIdx = remittances.indexOf(peakVal);
+  const troughIdx = remittances.indexOf(troughVal);
+
+  const momDeltas = remittances.map((v, i) => (i === 0 ? null : v - remittances[i - 1]));
+  const momLabels = monthLabels.slice(1);
+  const momValues = momDeltas.slice(1);
+  const momColors = momValues.map(v => v > 0 ? "rgba(125, 220, 138, 0.72)" : v < 0 ? "rgba(255, 107, 107, 0.72)" : "rgba(203, 211, 221, 0.45)");
+
+  const yoyGapLabels = monthLabels.slice(12, 23);
+  const yoyGapValues = yoyGapLabels.map((_, i) => remittances[12 + i] - remittances[i]);
+  const yoyGapColors = yoyGapValues.map(v => v >= 0 ? "rgba(125, 220, 138, 0.65)" : "rgba(255, 107, 107, 0.65)");
+
+  const pointColors = remittances.map((v, i) => {
+    if (i === peakIdx) return C.green;
+    if (i === troughIdx) return C.rose;
+    if (i === 0) return C.cyan;
+    const d = v - remittances[i - 1];
+    if (d > 0) return C.teal;
+    if (d < 0) return C.rose;
+    return C.silver;
+  });
+  const pointRadii = remittances.map((_, i) => (i === peakIdx || i === troughIdx || i === n ? 6 : 3));
+
+  function fmt(n, dec) {
+    return n.toLocaleString("en-US", { maximumFractionDigits: dec || 0, minimumFractionDigits: dec || 0 });
+  }
+
+  function countUp(el, target, duration, decimals, prefix, suffix) {
+    const start = performance.now();
+    const from = 0;
+    function frame(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      const val = from + (target - from) * ease;
+      el.textContent = (prefix || "") + fmt(val, decimals) + (suffix || "");
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function animateInsights() {
+    document.querySelectorAll("[data-count]").forEach(el => {
+      const target = parseFloat(el.getAttribute("data-count"));
+      const decimals = parseInt(el.getAttribute("data-decimals") || "0", 10);
+      const suffix = el.getAttribute("data-suffix") || "";
+      const prefix = target > 0 && el.id === "insightYoyPct" ? "+" : (target < 0 && el.id === "insightYoyPct" ? "" : "");
+      countUp(el, target, 1400, decimals, prefix, suffix);
+    });
+    const yoyAbsEl = document.getElementById("insightYoyAbs");
+    if (yoyAbsEl) {
+      const sign = yoyAbs >= 0 ? "+" : "−";
+      yoyAbsEl.textContent = sign + fmt(Math.abs(yoyAbs)) + "M vs Nov 2024";
+      yoyAbsEl.className = "insight-delta " + (yoyAbs >= 0 ? "positive" : "negative");
+    }
+  }
+
+  function buildStory() {
+    const momWord = Math.abs(momPct) < 0.5 ? "flat" : (momPct > 0 ? "accelerating" : "easing");
+    const yoyWord = yoyPct >= 0 ? "above" : "below";
+    const pace = latest < peakVal * 0.92 ? "cooled from 2024 highs" : "holding elevated levels";
+    return (
+      "Corridor flows peaked at <strong>" + fmt(peakVal) + "M</strong> in " + monthLabels[peakIdx] +
+      ". The latest reading (<strong>" + fmt(latest) + "M</strong>, " + monthLabels[n] + ") sits <strong>" +
+      Math.abs(yoyPct).toFixed(1) + "% " + yoyWord + "</strong> the same month last year and looks <strong>" +
+      momWord + "</strong> month-over-month (" + (momAbs >= 0 ? "+" : "") + fmt(momAbs) + "M). " +
+      "2025 YTD (Jan–Nov) totals <strong>" + fmt(ytd2025) + "M</strong>, suggesting the corridor has <strong>" +
+      pace + "</strong> while remaining structurally large. Trough in starter series: <strong>" +
+      fmt(troughVal) + "M</strong> (" + monthLabels[troughIdx] + ")."
+    );
+  }
+
+  const storyEl = document.getElementById("corridorStory");
+  if (storyEl) storyEl.innerHTML = buildStory();
+
+  let insightsAnimated = false;
+  function triggerInsights() {
+    if (insightsAnimated) return;
+    insightsAnimated = true;
+    animateInsights();
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      if (entry.target.id === "insightStrip" || entry.target.classList.contains("insight-card")) {
+        triggerInsights();
+      }
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll("[data-animate]").forEach(el => io.observe(el));
+  io.observe(document.getElementById("insightStrip"));
+
+  const peakTroughPlugin = {
+    id: "peakTroughLabels",
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      const meta = chart.getDatasetMeta(0);
+      [peakIdx, troughIdx, n].forEach(i => {
+        const pt = meta.data[i];
+        if (!pt) return;
+        const label = i === peakIdx ? "PEAK" : (i === troughIdx ? "TROUGH" : "LATEST");
+        const color = i === peakIdx ? C.green : (i === troughIdx ? C.rose : C.cyan);
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.font = "600 10px Inter, Helvetica, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(label, pt.x, pt.y - 14);
+        ctx.restore();
+      });
+    }
+  };
 
   const baseScales = {
     x: {
-      ticks: { color: tickColor, maxRotation: 45, minRotation: 45, font: { size: 10 } },
-      grid: { color: gridColor },
-      title: { display: true, text: "Month", color: titleColor, font: { size: 11 } }
+      ticks: { color: C.slate, maxRotation: 45, minRotation: 45, font: { size: 10 } },
+      grid: { color: C.grid },
+      title: { display: true, text: "Month", color: "rgba(247,244,236,0.45)", font: { size: 11 } }
     },
     y: {
-      ticks: { color: tickColor, font: { size: 11 } },
-      grid: { color: gridColor },
-      title: { display: true, text: "USD millions", color: titleColor, font: { size: 11 } }
+      ticks: { color: C.slate, font: { size: 11 } },
+      grid: { color: C.grid },
+      title: { display: true, text: "USD millions", color: "rgba(247,244,236,0.45)", font: { size: 11 } }
     }
   };
 
   const basePlugins = {
-    legend: {
-      labels: { color: tickColor, boxWidth: 12, font: { size: 11 } }
-    },
+    legend: { display: false },
     tooltip: {
-      backgroundColor: "rgba(5, 7, 10, 0.92)",
-      borderColor: "rgba(247, 246, 242, 0.18)",
+      backgroundColor: "rgba(5, 7, 10, 0.94)",
+      borderColor: "rgba(247, 244, 236, 0.18)",
       borderWidth: 1,
-      titleColor: "#F7F6F2",
-      bodyColor: "rgba(247, 246, 242, 0.78)"
+      titleColor: C.paper,
+      bodyColor: "rgba(247, 244, 236, 0.78)",
+      callbacks: {
+        label(ctx) {
+          let line = ctx.dataset.label + ": " + fmt(ctx.parsed.y) + "M";
+          if (ctx.chart.canvas.id === "momChart") return "MoM: " + (ctx.parsed.y >= 0 ? "+" : "") + fmt(ctx.parsed.y) + "M";
+          if (ctx.chart.canvas.id === "yoyGapChart") return "YoY gap: " + (ctx.parsed.y >= 0 ? "+" : "") + fmt(ctx.parsed.y) + "M";
+          return line;
+        }
+      }
     }
   };
+
+  const anim = { duration: 1400, easing: "easeOutQuart" };
 
   new Chart(document.getElementById("remittanceChart"), {
     type: "line",
     data: {
       labels: monthLabels,
       datasets: [{
-        label: "Monthly remittances (sample)",
+        label: "Monthly remittances",
         data: remittances,
-        borderColor: lineColor,
-        backgroundColor: "rgba(200, 205, 210, 0.08)",
-        borderWidth: 2,
-        pointRadius: 2,
-        pointBackgroundColor: lineColor,
-        tension: 0.2,
+        borderColor: C.cyan,
+        backgroundColor: "rgba(110, 231, 249, 0.06)",
+        borderWidth: 2.5,
+        pointRadius: pointRadii,
+        pointHoverRadius: 8,
+        pointBackgroundColor: pointColors,
+        pointBorderColor: "rgba(5, 7, 10, 0.85)",
+        pointBorderWidth: 1.5,
+        tension: 0.28,
         fill: true
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: anim,
       plugins: basePlugins,
       scales: baseScales
+    },
+    plugins: [peakTroughPlugin]
+  });
+
+  new Chart(document.getElementById("momChart"), {
+    type: "bar",
+    data: {
+      labels: momLabels,
+      datasets: [{
+        label: "MoM change",
+        data: momValues,
+        backgroundColor: momColors,
+        borderColor: momColors.map(c => c.replace("0.72", "1").replace("0.45", "0.8")),
+        borderWidth: 1,
+        borderRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: anim,
+      plugins: basePlugins,
+      scales: {
+        ...baseScales,
+        y: { ...baseScales.y, title: { ...baseScales.y.title, text: "USD millions change" } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById("yoyGapChart"), {
+    type: "bar",
+    data: {
+      labels: yoyGapLabels,
+      datasets: [{
+        label: "YoY gap",
+        data: yoyGapValues,
+        backgroundColor: yoyGapColors,
+        borderColor: yoyGapColors.map(c => c.replace("0.65", "1")),
+        borderWidth: 1,
+        borderRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: anim,
+      plugins: basePlugins,
+      scales: {
+        ...baseScales,
+        y: { ...baseScales.y, title: { ...baseScales.y.title, text: "2025 minus 2024 (USD millions)" } }
+      }
     }
   });
 
@@ -1652,53 +2064,25 @@ def bfi_us_mexico_corridor_scripts() -> str:
   }
 
   new Chart(document.getElementById("rollingChart"), {
-    type: "bar",
+    type: "line",
     data: {
       labels: rollingLabels,
       datasets: [{
-        label: "12-month rolling total (sample)",
+        label: "12-month rolling total",
         data: rollingValues,
-        backgroundColor: mutedBar,
-        borderColor: lineColor,
-        borderWidth: 1
+        borderColor: C.blue,
+        backgroundColor: "rgba(122, 167, 255, 0.08)",
+        borderWidth: 2,
+        pointRadius: 2,
+        pointBackgroundColor: C.blue,
+        tension: 0.25,
+        fill: true
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: basePlugins,
-      scales: baseScales
-    }
-  });
-
-  const yoyMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"];
-  const yoy2024 = remittances.slice(0, 11);
-  const yoy2025 = remittances.slice(12, 23);
-
-  new Chart(document.getElementById("yoyChart"), {
-    type: "bar",
-    data: {
-      labels: yoyMonths,
-      datasets: [
-        {
-          label: "2024 (sample)",
-          data: yoy2024,
-          backgroundColor: mutedBar,
-          borderColor: "rgba(247, 246, 242, 0.28)",
-          borderWidth: 1
-        },
-        {
-          label: "2025 (sample)",
-          data: yoy2025,
-          backgroundColor: lineColor,
-          borderColor: lineColor,
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      animation: anim,
       plugins: basePlugins,
       scales: baseScales
     }
