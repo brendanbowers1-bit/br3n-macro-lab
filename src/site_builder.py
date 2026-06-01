@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Dict
 
 from . import LAB_NAME, LAB_NAME_DISPLAY
+from .bfi_site import ROOT_BRAND, build_bfi_pages
 
 ROOT = Path(__file__).resolve().parents[1]
 PUB_DIR = ROOT / "reports" / "publication"
@@ -25,7 +26,7 @@ BRAND_MOTTO = "Research. Regime. Risk."
 # (href, title, description, tag)
 HOME_RESEARCH_LINKS: list[tuple[str, str, str, str]] = [
     ("fx-lab.html", "FX Lab Overview", "Mission, modules, and research outputs", "Start here"),
-    ("research.html", "USD/MXN Regime Research", "2-minute summary and key stats", "Research"),
+    ("usdmxn-research.html", "USD/MXN Regime Research", "2-minute summary and key stats", "Research"),
     ("hedge-governance.html", "Hedge Governance Memo", "Forecast failure, hedge usefulness", "Flagship"),
     ("model-zoo.html", "Model Zoo", "Conditional forecastability tests", "Models"),
     ("lab-status.html", "Lab Status", "Nightly health snapshot and pipeline gaps", "Ops"),
@@ -1541,7 +1542,7 @@ def _shell_os_lab(
   <header>
     <div class="header-inner">
       <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo-sm"/></div>
-      <div class="brand">{html.escape(LAB_NAME_DISPLAY)} · FX LAB</div>
+      <div class="brand">{html.escape(ROOT_BRAND)} · {html.escape(LAB_NAME_DISPLAY)}</div>
       <h1 class="title">{html.escape(title)}</h1>
       <p class="subtitle">{html.escape(subtitle)} · Research only · Not investment advice</p>
       {nav}
@@ -1560,9 +1561,10 @@ def _shell_os_lab(
 
 def _nav_fx(active: str = "home") -> str:
     links = [
-        ("index.html", "Home", "home"),
+        ("index.html", "Institute", "institute"),
+        ("macro-lab.html", "Macro Lab", "home"),
         ("fx-lab.html", "FX Lab", "fx"),
-        ("research.html", "Research", "research"),
+        ("usdmxn-research.html", "USD/MXN", "research"),
         ("corridor.html", "Corridor", "corridor"),
         ("fx_desk.html", "FX Desk", "fx_desk"),
         ("memo.html", "Memo", "memo"),
@@ -1624,7 +1626,7 @@ def _shell(
   <header>
     <div class="header-inner">
       <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo-sm"/></div>
-      <div class="brand">{html.escape(LAB_NAME_DISPLAY)} · FX LAB</div>
+      <div class="brand">{html.escape(ROOT_BRAND)} · {html.escape(LAB_NAME_DISPLAY)}</div>
       <h1 class="title">{html.escape(title)}</h1>
       <p class="subtitle">{html.escape(subtitle)}</p>
       {nav}
@@ -1697,23 +1699,24 @@ def _home_shell(body: str) -> str:
     hero = f"""
 <header class="hero-cover">
   <div class="header-inner">
+    <a href="index.html" class="bfi-parent-link" style="display:inline-block;margin-bottom:1rem;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:#d4af37;text-decoration:none;">← {html.escape(ROOT_BRAND)}</a>
     <div class="logo-frame"><img src="{FX_LAB_LOGO}" alt="{html.escape(LAB_NAME_DISPLAY)}" class="fx-lab-logo"/></div>
     <h1 class="lab-title">{html.escape(LAB_NAME)}</h1>
     <p class="home-subtitle">Cross-Border Value Infrastructure Research</p>
     <p class="motto">{html.escape(BRAND_MOTTO)}</p>
     <p class="home-hero-line">FX prices trust. Settlement makes value real. Stablecoins move risk somewhere else.</p>
-    <p class="author">Prepared by Brendan Bowers · Independent Research</p>
+    <p class="author">A division of {html.escape(ROOT_BRAND)} · Prepared by Brendan Bowers</p>
     <div class="cta-row">
       <a href="fx-lab.html" class="primary">FX Lab Overview</a>
-      <a href="research.html" class="secondary">USD/MXN Research</a>
+      <a href="usdmxn-research.html" class="secondary">USD/MXN Research</a>
       <a href="corridor.html" class="secondary">Corridor Roadmap</a>
-      <a href="fx_desk.html" class="secondary">FX Desk Framework</a>
+      <a href="dashboard/index.html" class="secondary">Dashboards</a>
     </div>
     {_nav_fx("home")}
   </div>
 </header>"""
     foot = (
-        f"{html.escape(LAB_NAME)} · Prepared by Brendan Bowers · "
+        f"{html.escape(LAB_NAME)} · {html.escape(ROOT_BRAND)} · Prepared by Brendan Bowers · "
         "Research and risk-framing only · Not investment advice · No live trading."
     )
     return f"""<!DOCTYPE html>
@@ -1721,8 +1724,8 @@ def _home_shell(body: str) -> str:
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="{html.escape(LAB_NAME)} — Cross-border value infrastructure research"/>
-  <title>{html.escape(LAB_NAME_DISPLAY)}</title>
+  <meta name="description" content="{html.escape(LAB_NAME)} — division of {html.escape(ROOT_BRAND)}"/>
+  <title>{html.escape(LAB_NAME)} — {html.escape(ROOT_BRAND)}</title>
   <style>{_css_home()}</style>
 </head>
 <body class="cover-page home-page">
@@ -1832,9 +1835,12 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     one_pager = (out_dir / "ONE_PAGER.md").read_text(encoding="utf-8") if (out_dir / "ONE_PAGER.md").exists() else ""
     memo = (out_dir / "FX_REGIME_RESEARCH_NOTE.md").read_text(encoding="utf-8") if (out_dir / "FX_REGIME_RESEARCH_NOTE.md").exists() else ""
 
-    # Home — BR3N Macro Labs front door (all verticals)
-    cover_path = out_dir / "index.html"
-    cover_path.write_text(_home_shell(_home_body()), encoding="utf-8")
+    # Bowers Frontier Institute — parent brand homepage + hub pages
+    bfi_paths = build_bfi_pages(out_dir)
+
+    # BR3N Macro Lab division home (formerly site index)
+    macro_lab_path = out_dir / "macro-lab.html"
+    macro_lab_path.write_text(_home_shell(_home_body()), encoding="utf-8")
 
     fx_lab_path = out_dir / "fx-lab.html"
     fx_lab_md = _read_md(VERTICALS_DIR / "FX_LAB_LANDING.md")
@@ -1864,13 +1870,14 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     <li><a href="hedge-governance.html"><strong>Hedge governance memo</strong></a> — forecast failure, hedge usefulness</li>
     <li><a href="model-zoo.html"><strong>Model zoo</strong></a> — conditional forecastability tests</li>
     <li><a href="lab-status.html"><strong>Lab status</strong></a> — nightly pipeline health snapshot</li>
-    <li><a href="index.html"><strong>Macro Labs home</strong></a></li>
+    <li><a href="macro-lab.html"><strong>Macro Lab home</strong></a></li>
+    <li><a href="index.html"><strong>{html.escape(ROOT_BRAND)}</strong></a></li>
   </ul>
 </div>
 {_md_to_html(one_pager)}
 """
-    research_path = out_dir / "research.html"
-    research_path.write_text(
+    usdmxn_path = out_dir / "usdmxn-research.html"
+    usdmxn_path.write_text(
         _shell(
             "USD/MXN Regime Research",
             research_body,
@@ -2128,9 +2135,15 @@ def build_site(out_dir: Path | None = None) -> Dict[str, Path]:
     )
 
     return {
-        "index": cover_path,
+        "index": bfi_paths["index"],
+        "macro_lab": macro_lab_path,
+        "research": bfi_paths["research"],
+        "labs": bfi_paths["labs"],
+        "methodology": bfi_paths["methodology"],
+        "dashboards": bfi_paths["dashboards"],
+        "about": bfi_paths["about"],
+        "usdmxn_research": usdmxn_path,
         "fx_lab": fx_lab_path,
-        "research": research_path,
         "memo": memo_path,
         "ladder": ladder_path,
         "hedge_governance": hedge_path,
