@@ -6,6 +6,7 @@
   <meta name="description" content="Bowers Frontier Institute — Research for the financial frontier."/>
   <title>Research — Bowers Frontier Institute</title>
   <link rel="icon" href="assets/brand/bfi-icon.svg" type="image/svg+xml"/><link rel="apple-touch-icon" href="assets/brand/bfi-icon.svg"/>
+  
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 :root {
@@ -571,13 +572,18 @@ a:hover { color: #7dd3fc; }
   margin: 0;
   flex: 1;
 }
-.research-index-dark {
+.research-index-dark,
+.dark-zone,
+.corridor-dashboard {
   background:
     radial-gradient(circle at 20% 0%, rgba(120, 145, 180, 0.12), transparent 34%),
     linear-gradient(180deg, #07182D 0%, #05070A 100%);
   color: var(--paper);
   padding: 96px 0 110px;
   border-top: 1px solid rgba(7, 24, 45, 0.18);
+}
+.research-index-dark {
+  padding: 96px 0 110px;
 }
 .dark-kicker {
   font-size: 12px;
@@ -675,18 +681,298 @@ a:hover { color: #7dd3fc; }
   border-bottom-color: var(--paper);
   text-decoration: none;
 }
-body.bfi.bfi-research-page .bfi-footer {
+body.bfi.bfi-research-page .bfi-footer,
+body.bfi.bfi-corridor-page .bfi-footer {
   background: #05070A;
   color: rgba(247, 246, 242, 0.72);
   border-top: 1px solid rgba(247, 246, 242, 0.12);
 }
 body.bfi.bfi-research-page .footer-brand-mark,
-body.bfi.bfi-research-page .footer-brand-name {
+body.bfi.bfi-research-page .footer-brand-name,
+body.bfi.bfi-corridor-page .footer-brand-mark,
+body.bfi.bfi-corridor-page .footer-brand-name {
   color: rgba(247, 246, 242, 0.88);
 }
 body.bfi.bfi-research-page .footer-brand-tagline,
-body.bfi.bfi-research-page .bfi-footer .disc {
+body.bfi.bfi-research-page .bfi-footer .disc,
+body.bfi.bfi-corridor-page .footer-brand-tagline,
+body.bfi.bfi-corridor-page .bfi-footer .disc {
   color: rgba(247, 246, 242, 0.52);
+}
+.page-disclaimer {
+  margin-top: 22px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(7, 24, 45, 0.55);
+  max-width: 640px;
+}
+.corridor-dashboard .dark-section-title {
+  font-size: clamp(32px, 4vw, 52px);
+  margin-bottom: 14px;
+}
+.corridor-dashboard .dark-section-intro {
+  margin-bottom: 0;
+}
+body.bfi-corridor-page {
+  --paper: #F7F4EC;
+  --ink: #05070A;
+  --slate: #7C8794;
+  --silver: #CBD3DD;
+  --cyan: #6EE7F9;
+  --teal: #2DD4BF;
+  --green: #7DDC8A;
+  --amber: #F2C14E;
+  --rose: #FF6B6B;
+  --blue: #7AA7FF;
+  --violet: #A78BFA;
+}
+.corridor-dashboard {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(110, 231, 249, 0.07), transparent 32%),
+    radial-gradient(circle at 82% 12%, rgba(167, 139, 250, 0.06), transparent 28%),
+    radial-gradient(circle at 20% 0%, rgba(120, 145, 180, 0.12), transparent 34%),
+    linear-gradient(180deg, #07182D 0%, #05070A 100%);
+}
+.insight-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 48px 0 28px;
+}
+.insight-card {
+  border: 1px solid rgba(247, 244, 236, 0.14);
+  background: linear-gradient(155deg, rgba(247, 244, 236, 0.055) 0%, rgba(247, 244, 236, 0.02) 100%);
+  padding: 24px 22px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease, border-color 0.25s ease;
+}
+.insight-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.insight-card:nth-child(2) { transition-delay: 0.08s; }
+.insight-card:nth-child(3) { transition-delay: 0.16s; }
+.insight-card:nth-child(4) { transition-delay: 0.24s; }
+.insight-card:hover {
+  border-color: rgba(247, 244, 236, 0.28);
+}
+.insight-label {
+  font-size: 11px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: rgba(247, 244, 236, 0.48);
+  margin-bottom: 14px;
+}
+.insight-value {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.05;
+  color: var(--paper);
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+.insight-value.positive { color: var(--teal); }
+.insight-value.negative { color: var(--rose); }
+.insight-value.neutral { color: var(--silver); }
+.insight-value.peak { color: var(--green); }
+.insight-delta {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.insight-delta.positive { color: var(--green); }
+.insight-delta.negative { color: var(--rose); }
+.insight-delta.neutral { color: var(--slate); }
+.insight-sub {
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(247, 244, 236, 0.46);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.story-panel {
+  border: 1px solid rgba(110, 231, 249, 0.18);
+  background: rgba(110, 231, 249, 0.04);
+  padding: 22px 26px;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+}
+.story-panel.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.story-kicker {
+  font-size: 10px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+.story-panel p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(247, 244, 236, 0.82);
+  max-width: 920px;
+}
+.story-panel strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+.meta-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 36px 0 8px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(247, 244, 236, 0.1);
+}
+.meta-chip {
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(247, 244, 236, 0.42);
+  letter-spacing: 0.04em;
+}
+.meta-chip span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(247, 244, 236, 0.32);
+  margin-bottom: 6px;
+}
+.chart-panel.featured {
+  border-color: rgba(110, 231, 249, 0.22);
+  background: linear-gradient(180deg, rgba(247, 244, 236, 0.045) 0%, rgba(247, 244, 236, 0.02) 100%);
+}
+.chart-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 16px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247, 244, 236, 0.48);
+}
+.chart-legend-row span::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: -1px;
+}
+.legend-up::before { background: var(--green); }
+.legend-down::before { background: var(--rose); }
+.legend-line::before { background: var(--cyan); border-radius: 2px; width: 14px; height: 2px; }
+.legend-gap::before { background: var(--blue); border-radius: 2px; width: 14px; height: 2px; }
+.chart-grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 18px;
+}
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin: 44px 0;
+}
+.metric-card {
+  border: 1px solid rgba(247, 246, 242, 0.14);
+  background: rgba(247, 246, 242, 0.035);
+  padding: 22px;
+}
+.metric-label {
+  font-size: 11px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: rgba(247, 246, 242, 0.48);
+  margin-bottom: 12px;
+}
+.metric-value {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  color: var(--paper);
+  line-height: 1.15;
+}
+.chart-panel {
+  border: 1px solid rgba(247, 246, 242, 0.14);
+  background: rgba(247, 246, 242, 0.035);
+  padding: 28px;
+  margin-top: 28px;
+}
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 26px;
+}
+.chart-kicker {
+  font-size: 11px;
+  letter-spacing: 2.3px;
+  text-transform: uppercase;
+  color: rgba(247, 246, 242, 0.46);
+  margin-bottom: 10px;
+}
+.chart-header h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  color: var(--paper);
+  margin: 0;
+  font-weight: 500;
+}
+.chart-note {
+  max-width: 260px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(247, 246, 242, 0.52);
+  text-align: right;
+}
+.chart-canvas-wrap {
+  position: relative;
+  height: 380px;
+  width: 100%;
+}
+.chart-canvas-wrap.chart-canvas-tall {
+  height: 420px;
+}
+.chart-canvas-wrap canvas {
+  width: 100% !important;
+  max-height: 420px;
+}
+.corridor-methodology {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(247, 246, 242, 0.12);
+  max-width: 820px;
+}
+.corridor-methodology h4 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  color: rgba(247, 246, 242, 0.88);
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+.corridor-methodology h4:not(:first-child) {
+  margin-top: 28px;
+}
+.corridor-methodology p,
+.corridor-methodology li {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(247, 246, 242, 0.62);
+}
+.corridor-methodology ul {
+  margin: 0;
+  padding-left: 1.15rem;
 }
 .bfi-parent-link {
   display: inline-block;
@@ -712,6 +998,28 @@ body.bfi.bfi-research-page .bfi-footer .disc {
   .research-index-dark {
     padding: 72px 0 84px;
   }
+  .corridor-dashboard {
+    padding: 72px 0 84px;
+  }
+  .metric-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .insight-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .chart-grid-two {
+    grid-template-columns: 1fr;
+  }
+  .meta-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .chart-header {
+    flex-direction: column;
+  }
+  .chart-note {
+    text-align: left;
+    max-width: 100%;
+  }
   .principle-grid,
   .dark-research-grid {
     grid-template-columns: 1fr;
@@ -719,6 +1027,15 @@ body.bfi.bfi-research-page .bfi-footer .disc {
   .principle-card,
   .dark-research-card {
     min-height: auto;
+  }
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+  .insight-strip {
+    grid-template-columns: 1fr;
+  }
+  .meta-strip {
+    grid-template-columns: 1fr;
   }
   .bfi-hero { padding-top: 3rem; }
   .bfi-card-grid { grid-template-columns: 1fr; }
@@ -775,5 +1092,6 @@ body.bfi.bfi-research-page .bfi-footer .disc {
     <p>Bowers Frontier Institute · Prepared by Brendan Bowers · Research and risk-framing only · Not investment advice · No live trading.</p>
     <p class="disc">Independent research institute. Not affiliated with any employer, bank, or payment company unless explicitly stated.</p>
   </footer>
+  
 </body>
 </html>
