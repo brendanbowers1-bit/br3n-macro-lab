@@ -1,6 +1,6 @@
 # USD/MXN Regime Research — One Page
 
-**2026-05-31** · Research only · Not investment advice
+**2026-06-01** · Research only · Not investment advice
 
 ## Question
 Should hedge timing depend on market regime — specifically, should you **go flat when USD/MXN is range-bound**?
