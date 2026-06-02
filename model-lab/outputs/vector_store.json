@@ -1,0 +1,31 @@
+{
+  "version": "1",
+  "engine": "keyword_bm25_baseline",
+  "chunks": [
+    {
+      "chunk_id": "README.md#0",
+      "source": "README.md",
+      "text": "# Reference corpus for Model Lab RAG (local keyword baseline)\n\nPlace `.md`, `.txt`, or `.json` summaries here. RAG provides research context — it does not create market facts.\n\nRun: `npm run model:ingest`"
+    },
+    {
+      "chunk_id": "corridor_risk_notes.md#0",
+      "source": "corridor_risk_notes.md",
+      "text": "# Corridor risk notes\n\nCorridor risk scores should be transparent, component-based, and labeled as research indicators.\n\nThey are not trading signals and not financial advice.\n\nKey dimensions: volatility, spread/liquidity proxies, macro events, settlement/holiday friction, and anomaly detection on validated datasets."
+    },
+    {
+      "chunk_id": "fx_basics.md#0",
+      "source": "fx_basics.md",
+      "text": "# FX basics (research reference)\n\nUSD/MXN expresses how many Mexican pesos trade for one US dollar. Spot moves reflect macro, policy, liquidity, and flow conditions.\n\nThis document supports RAG context only. It is not live market data.\n\nCorridor intelligence combines FX, rates, volatility, settlement calendars, and remittance cost proxies under explicit data quality standards."
+    },
+    {
+      "chunk_id": "settlement_risk_notes.md#0",
+      "source": "settlement_risk_notes.md",
+      "text": "# Settlement risk notes\n\nCross-border settlement involves banking calendars, cut-off times, and liquidity windows.\n\nHoliday flags are research markers — not operational settlement instructions.\n\nStablecoin rails introduce different finality and off-ramp friction profiles that must be studied separately from traditional bank rails."
+    },
+    {
+      "chunk_id": "stablecoin_settlement_notes.md#0",
+      "source": "stablecoin_settlement_notes.md",
+      "text": "# Stablecoin settlement notes (non-hype)\n\nStablecoins may compress settlement time on-chain but introduce issuer, peg, banking partner, and off-ramp risks.\n\nResearch must disclose data mode and avoid claiming stablecoins are universally cheaper or safer than bank rails without evidence.\n\nThis lab studies infrastructure intelligence — not investment recommendations."
+    }
+  ]
+}

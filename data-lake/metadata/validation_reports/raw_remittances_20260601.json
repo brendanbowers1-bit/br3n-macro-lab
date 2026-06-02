@@ -1,0 +1,43 @@
+{
+  "report_id": "raw_remittances_20260601",
+  "generated_at": "2026-06-02T03:00:58.897269+00:00",
+  "target": "data-lake/raw/remittances/us_mx_banxico_monthly.csv",
+  "layer": "raw",
+  "passed": true,
+  "summary": {
+    "errors": 0,
+    "warnings": 1
+  },
+  "checks": [
+    {
+      "check_id": "required_columns",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "valid_dates",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "duplicate_dates",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "monotonic_date_ordering",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "numeric_fields",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "stale_source_warning",
+      "status": "warn",
+      "message": "research_starter \u2014 not live Banxico feed"
+    }
+  ]
+}

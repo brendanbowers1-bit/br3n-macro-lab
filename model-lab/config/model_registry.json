@@ -1,0 +1,33 @@
+{
+  "registry_version": "1.0.0",
+  "lab": "Bowers Frontier Macro Labs",
+  "default_provider": "ollama",
+  "providers": {
+    "ollama": {
+      "type": "local",
+      "default_model": "qwen2.5-coder:7b",
+      "models": ["qwen2.5-coder:7b", "llama3.1:8b", "mistral"],
+      "notes": "Local via Ollama — http://localhost:11434"
+    },
+    "lmstudio": {
+      "type": "local",
+      "default_model": "local-model",
+      "models": ["local-model"],
+      "notes": "OpenAI-compatible local server — http://localhost:1234/v1"
+    },
+    "openai": {
+      "type": "hosted",
+      "default_model": "gpt-4o-mini",
+      "models": ["gpt-4o-mini", "gpt-4o"],
+      "requires_env": ["OPENAI_API_KEY"],
+      "notes": "Hosted OpenAI API only"
+    },
+    "anthropic": {
+      "type": "hosted",
+      "default_model": "claude-sonnet-4-20250514",
+      "models": ["claude-sonnet-4-20250514", "claude-3-5-haiku-20241022"],
+      "requires_env": ["ANTHROPIC_API_KEY"],
+      "notes": "Anthropic Claude — hosted API only; cannot download locally"
+    }
+  }
+}

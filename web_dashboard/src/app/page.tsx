@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Database, Globe2, LineChart, Shield, Coins, Sparkles } from "lucide-react";
+import { ArrowRight, Database, Globe2, LineChart, Shield, Coins, Sparkles, Cpu, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 const modules = [
+  { icon: Cpu, label: "Model Lab", href: "/model-lab", tag: "MLAB" },
+  { icon: BookOpen, label: "USD/MXN Methodology", href: "/methodology", tag: "METH" },
   { icon: LineChart, label: "Value Survival Index", href: "/value-survival", tag: "VSI" },
   { icon: Globe2, label: "Global Value Flow", href: "/value-flow", tag: "MAP" },
   { icon: Database, label: "Settlement Economics", href: "/settlement", tag: "SEL" },
@@ -37,8 +39,8 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="mt-5 text-textSecondary text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Research systems combining market data, macro signals, corridor analytics, model evaluation,
-            and AI-assisted reporting. Value Survival · Settlement Economics · Stablecoin Finality · Data Lineage.
+            We build research systems that combine market data, macro signals, corridor analytics, model evaluation,
+            and AI-assisted reporting to study global financial flows with institutional discipline.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <Button asChild variant="gold" size="lg">
@@ -56,7 +58,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mt-16 max-w-5xl w-full"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-16 max-w-5xl w-full"
         >
           {modules.map(({ icon: Icon, label, href, tag }, i) => (
             <motion.div

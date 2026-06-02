@@ -1,0 +1,61 @@
+{
+  "backlog_version": "1.0.0",
+  "lab": "Bowers Frontier Macro Labs",
+  "last_updated": "2026-06-02",
+  "connectors": [
+    {
+      "connector_id": "fx_usd_mxn_spot",
+      "priority": 1,
+      "status": "active",
+      "owner": "data-engineering",
+      "estimated_complexity": "medium",
+      "depends_on": [],
+      "notes": "scripts/ingest_banxico_fx.py — FRED DEXMXUS fallback"
+    },
+    {
+      "connector_id": "rates_fed_policy",
+      "priority": 1,
+      "status": "active",
+      "owner": "data-engineering",
+      "estimated_complexity": "low",
+      "depends_on": [],
+      "notes": "scripts/ingest_fred_policy_rate.py"
+    },
+    {
+      "connector_id": "rates_banxico_policy",
+      "priority": 1,
+      "status": "active_mixed",
+      "owner": "data-engineering",
+      "estimated_complexity": "medium",
+      "depends_on": ["BANXICO_SIE_TOKEN"],
+      "notes": "FRED OECD proxy when token unset"
+    },
+    {
+      "connector_id": "corridor_holiday_calendar",
+      "priority": 1,
+      "status": "research_starter",
+      "owner": "research",
+      "estimated_complexity": "low",
+      "depends_on": [],
+      "notes": "Curated CSV 2024-2026"
+    },
+    {
+      "connector_id": "macro_us_cpi",
+      "priority": 2,
+      "status": "planned",
+      "owner": "data-engineering",
+      "estimated_complexity": "medium",
+      "depends_on": ["FRED_API_KEY"],
+      "notes": "FRED CPIAUCSL"
+    },
+    {
+      "connector_id": "corridor_remittance_cost_proxy",
+      "priority": 3,
+      "status": "active",
+      "owner": "research",
+      "estimated_complexity": "medium",
+      "depends_on": ["world_bank_rpw_panel"],
+      "notes": "Quarterly RPW-derived proxy"
+    }
+  ]
+}

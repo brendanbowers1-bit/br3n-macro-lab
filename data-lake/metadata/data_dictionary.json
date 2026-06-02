@@ -1,0 +1,125 @@
+{
+  "dictionary_version": "1.0.0",
+  "schema_id": "usd_mxn_daily_v1",
+  "lab": "Bowers Frontier Macro Labs",
+  "last_updated": "2026-06-01",
+  "fields": {
+    "date": {
+      "type": "date",
+      "format": "YYYY-MM-DD",
+      "required": true,
+      "description": "Observation date (UTC calendar date for daily series; month-end for monthly-only joins).",
+      "source_lineage_required": true
+    },
+    "usd_mxn_spot": {
+      "type": "float",
+      "unit": "MXN per USD",
+      "required": false,
+      "description": "USD/MXN spot or official fix.",
+      "typical_source_ids": ["fx_usd_mxn_spot"]
+    },
+    "usd_return_1d": {
+      "type": "float",
+      "unit": "decimal",
+      "required": false,
+      "description": "One-day log or simple return of USD/MXN.",
+      "derived_from": ["usd_mxn_spot"]
+    },
+    "usd_return_5d": {
+      "type": "float",
+      "unit": "decimal",
+      "required": false,
+      "description": "Five-day return of USD/MXN.",
+      "derived_from": ["usd_mxn_spot"]
+    },
+    "us_policy_rate": {
+      "type": "float",
+      "unit": "percent",
+      "required": false,
+      "description": "US policy rate (upper bound or effective).",
+      "typical_source_ids": ["rates_fed_policy"]
+    },
+    "mx_policy_rate": {
+      "type": "float",
+      "unit": "percent",
+      "required": false,
+      "description": "Banxico policy rate.",
+      "typical_source_ids": ["rates_banxico_policy"]
+    },
+    "rate_differential": {
+      "type": "float",
+      "unit": "percent",
+      "required": false,
+      "description": "mx_policy_rate minus us_policy_rate (sign convention documented in methodology).",
+      "derived_from": ["us_policy_rate", "mx_policy_rate"]
+    },
+    "carry_proxy": {
+      "type": "float",
+      "unit": "basis_points_or_percent",
+      "required": false,
+      "description": "Research carry proxy from rate differential and/or forward points — not executable carry.",
+      "derived_from": ["rate_differential", "fx_usd_mxn_forward_points"]
+    },
+    "volatility_20d": {
+      "type": "float",
+      "unit": "decimal",
+      "required": false,
+      "description": "20-day realized volatility of USD/MXN returns.",
+      "derived_from": ["usd_return_1d"]
+    },
+    "volatility_regime": {
+      "type": "string",
+      "enum": ["low", "normal", "elevated", "unknown"],
+      "required": false,
+      "description": "Discrete regime label from volatility_20d thresholds (methodology-defined)."
+    },
+    "spread_proxy_bps": {
+      "type": "float",
+      "unit": "basis_points",
+      "required": false,
+      "description": "Bid/ask or corridor spread proxy — not executable quote.",
+      "typical_source_ids": ["fx_usd_mxn_spread_proxy", "corridor_remittance_cost_proxy"]
+    },
+    "event_flag": {
+      "type": "boolean",
+      "required": false,
+      "description": "True on central bank, macro release, or compliance event dates.",
+      "typical_source_ids": ["macro_central_bank_dates", "corridor_sanctions_compliance"]
+    },
+    "holiday_flag": {
+      "type": "boolean",
+      "required": false,
+      "description": "True on US or Mexico market holiday affecting settlement.",
+      "typical_source_ids": ["corridor_holiday_calendar"]
+    },
+    "liquidity_proxy": {
+      "type": "float",
+      "unit": "index_0_100",
+      "required": false,
+      "description": "Research liquidity index — higher = better liquidity (methodology TBD).",
+      "typical_source_ids": ["corridor_liquidity_proxy"]
+    },
+    "remittance_cost_proxy": {
+      "type": "float",
+      "unit": "percent",
+      "required": false,
+      "description": "Total remittance cost proxy (fee + FX margin) for US→MX corridor.",
+      "typical_source_ids": ["corridor_remittance_cost_proxy"]
+    },
+    "corridor_risk_score": {
+      "type": "float",
+      "unit": "score_0_100",
+      "required": false,
+      "description": "Transparent structural corridor stress score — not an FX forecast. See model-lab/docs/corridor_intelligence_framework.md.",
+      "derived_from": ["corridor_us_mx_remittances_banxico"],
+      "disclaimer": "Research only. Not investment advice."
+    }
+  },
+  "lineage_columns_required_on_processed": [
+    "source_id",
+    "retrieval_date",
+    "data_mode",
+    "synthetic_flag",
+    "methodology_version"
+  ]
+}

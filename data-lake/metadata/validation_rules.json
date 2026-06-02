@@ -1,0 +1,106 @@
+{
+  "rules_version": "1.0.0",
+  "schema_id": "usd_mxn_daily_v1",
+  "lab": "Bowers Frontier Macro Labs",
+  "last_updated": "2026-06-01",
+  "report_output_dir": "data-lake/metadata/validation_reports/",
+  "checks": [
+    {
+      "check_id": "required_columns",
+      "severity": "error",
+      "description": "All required columns per usd_mxn_schema.json must be present.",
+      "applies_to": ["processed", "model_ready"]
+    },
+    {
+      "check_id": "valid_dates",
+      "severity": "error",
+      "description": "date column must parse as ISO dates with no invalid strings.",
+      "column": "date"
+    },
+    {
+      "check_id": "numeric_fields",
+      "severity": "error",
+      "description": "Numeric columns must be finite or null; no string contamination.",
+      "columns": [
+        "usd_mxn_spot",
+        "usd_return_1d",
+        "usd_return_5d",
+        "us_policy_rate",
+        "mx_policy_rate",
+        "rate_differential",
+        "carry_proxy",
+        "volatility_20d",
+        "spread_proxy_bps",
+        "liquidity_proxy",
+        "remittance_cost_proxy",
+        "corridor_risk_score",
+        "remittance_usd_millions"
+      ]
+    },
+    {
+      "check_id": "missing_values",
+      "severity": "warning",
+      "description": "Report null rates per column; fail if required columns exceed max_null_rate.",
+      "max_null_rate_required": 0.0,
+      "max_null_rate_optional": 0.95
+    },
+    {
+      "check_id": "duplicate_dates",
+      "severity": "error",
+      "description": "No duplicate values in primary key date.",
+      "column": "date"
+    },
+    {
+      "check_id": "stale_source_warning",
+      "severity": "warning",
+      "description": "Warn if retrieval_date is older than stale_days_threshold from run date.",
+      "stale_days_threshold": 30,
+      "columns": ["retrieval_date"]
+    },
+    {
+      "check_id": "suspicious_extreme_one_day_change",
+      "severity": "warning",
+      "description": "Flag |usd_return_1d| > extreme_return_threshold for manual review.",
+      "column": "usd_return_1d",
+      "extreme_return_threshold": 0.05,
+      "notes": "5% daily move threshold for MXN — adjust with methodology."
+    },
+    {
+      "check_id": "monotonic_date_ordering",
+      "severity": "error",
+      "description": "Dates must be strictly increasing after sort.",
+      "column": "date"
+    },
+    {
+      "check_id": "synthetic_live_data_flag",
+      "severity": "error",
+      "description": "synthetic_flag must be true when data_mode is synthetic; false for live/research_starter unless explicitly documented.",
+      "columns": ["synthetic_flag", "data_mode"]
+    },
+    {
+      "check_id": "source_lineage_present",
+      "severity": "error",
+      "description": "Processed and model_ready tables must include source_id, retrieval_date, data_mode, synthetic_flag, methodology_version.",
+      "required_lineage_columns": [
+        "source_id",
+        "retrieval_date",
+        "data_mode",
+        "synthetic_flag",
+        "methodology_version"
+      ],
+      "applies_to": ["processed", "model_ready"]
+    }
+  ],
+  "raw_layer_checks": [
+    {
+      "check_id": "raw_immutable",
+      "severity": "policy",
+      "description": "Raw files under data-lake/raw/ must never be edited in place; append new versioned files instead."
+    },
+    {
+      "check_id": "raw_sidecar_metadata",
+      "severity": "warning",
+      "description": "Each raw ingest should have catalog entry in data_catalog.json and source_registry.json."
+    }
+  ]
+}

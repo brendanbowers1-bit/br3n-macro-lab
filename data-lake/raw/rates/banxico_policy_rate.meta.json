@@ -1,0 +1,14 @@
+{
+  "source_id": "rates_banxico_policy",
+  "source_name": "Banxico policy rate",
+  "banxico_series": "SF61745",
+  "fred_series": "IRSTCI01MXM156N",
+  "retrieval_date": "2026-06-01",
+  "retrieval_method": "fred_public_graph_csv",
+  "data_mode": "mixed",
+  "synthetic_flag": false,
+  "license_terms_note": "Banxico SIE target rate or FRED OECD overnight proxy \u2014 research only.",
+  "raw_dated_file": "banxico_policy_rate_20260601.csv",
+  "min_date_filter": "2024-01-01",
+  "ingested_at": "2026-06-02T03:00:56.568855+00:00"
+}

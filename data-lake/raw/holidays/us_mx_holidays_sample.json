@@ -1,0 +1,29 @@
+{
+  "holidays": [
+    {
+      "date": "2024-01-01",
+      "country": "US/MX",
+      "description": "New Year (sample)",
+      "data_mode": "synthetic"
+    },
+    {
+      "date": "2024-07-04",
+      "country": "US",
+      "description": "US Independence Day (sample)",
+      "data_mode": "synthetic"
+    },
+    {
+      "date": "2024-09-16",
+      "country": "MX",
+      "description": "Mexico Independence Day (sample)",
+      "data_mode": "synthetic"
+    },
+    {
+      "date": "2024-12-25",
+      "country": "US/MX",
+      "description": "Christmas (sample)",
+      "data_mode": "synthetic"
+    }
+  ],
+  "data_mode": "synthetic"
+}

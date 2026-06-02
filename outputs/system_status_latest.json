@@ -1,0 +1,58 @@
+{
+  "lab": "Bowers Frontier Macro Labs",
+  "generated_at": "2026-06-02T04:09:59.406Z",
+  "environment": {
+    "node": "v25.9.0",
+    "model_provider": "ollama"
+  },
+  "data_mode": "synthetic",
+  "pipeline_results": [
+    {
+      "step": "dataset_build",
+      "status": "pass"
+    },
+    {
+      "step": "validation",
+      "status": "pass"
+    },
+    {
+      "step": "model_run",
+      "status": "pass"
+    },
+    {
+      "step": "rag_ingest",
+      "status": "pass"
+    },
+    {
+      "step": "brief_generation",
+      "status": "pass"
+    },
+    {
+      "step": "eval_suite",
+      "status": "pass"
+    }
+  ],
+  "key_outputs": {
+    "canonical_dataset": true,
+    "validation_report": true,
+    "model_run": true,
+    "brief_md": true,
+    "brief_json": true,
+    "eval_report": true,
+    "vector_store": true
+  },
+  "dashboard_output_check": "pass",
+  "validation_status": "Warning",
+  "corridor_risk_score": 40.2,
+  "corridor_risk_regime": "Moderate",
+  "warnings": [
+    "Validation completed with warnings (expected for synthetic data)",
+    "LLM brief supplement unavailable: fetch failed"
+  ],
+  "next_required_work": [
+    "Set BANXICO_SIE_TOKEN for official Banxico SIE series",
+    "Replace synthetic sample with validated live lake outputs where appropriate",
+    "Run model:smoke when Ollama/LM Studio available",
+    "Expand eval live runs to full 25-question battery"
+  ]
+}

@@ -1,0 +1,5 @@
+date,remittance_cost_proxy,fee_pct,fx_margin_pct,data_mode
+2024-01-01,0.048,0.012,0.028,synthetic
+2024-04-01,0.045,0.011,0.026,synthetic
+2024-07-01,0.043,0.010,0.025,synthetic
+2024-10-01,0.041,0.009,0.024,synthetic

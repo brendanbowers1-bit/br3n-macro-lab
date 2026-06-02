@@ -4,9 +4,13 @@
   "private": true,
   "description": "Model-agnostic corridor intelligence scripts for Bowers Frontier Macro Labs",
   "scripts": {
-    "model:smoke": "python scripts/smoke_test_corridor.py",
-    "model:brief": "python scripts/generate_corridor_brief.py",
-    "model:eval": "python scripts/eval_corridor_score.py",
-    "model:test": "python scripts/test_corridor_pipeline.py"
+    "model:smoke": "node scripts/smoke_test.js",
+    "model:ingest": "node scripts/ingest_documents.js",
+    "model:brief": "node scripts/run_corridor_brief.js",
+    "model:eval": "node scripts/run_evals.js",
+    "model:brief:py": "python scripts/generate_corridor_brief.py",
+    "model:smoke:py": "python scripts/smoke_test_corridor.py",
+    "model:test": "python scripts/test_corridor_pipeline.py",
+    "model:eval:py": "python scripts/eval_corridor_score.py"
   }
 }

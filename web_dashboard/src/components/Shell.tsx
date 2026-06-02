@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { Activity, Database, Globe2, LayoutDashboard, LineChart, Shield, Coins } from "lucide-react";
+import { Activity, Database, Globe2, LayoutDashboard, LineChart, Shield, Coins, Cpu, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { withBasePath } from "@/lib/base-path";
 
@@ -16,6 +16,8 @@ const NAV = [
   { href: "/settlement", label: "Settlement", icon: Database },
   { href: "/stablecoins", label: "Stablecoins", icon: Coins },
   { href: "/data-lake", label: "Data Lake", icon: Database },
+  { href: "/model-lab", label: "Model Lab", icon: Cpu },
+  { href: "/methodology", label: "Methodology", icon: BookOpen },
   { href: "/audit", label: "Audit", icon: Shield },
 ];
 

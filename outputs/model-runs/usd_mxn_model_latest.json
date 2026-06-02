@@ -1,0 +1,66 @@
+{
+  "lab": "Bowers Frontier Macro Labs",
+  "corridor": "USD/MXN",
+  "as_of": "2024-07-01",
+  "data_mode": "synthetic",
+  "dataset": "/Users/brendanbowers/fx_regime_lab/data-lake/processed/corridors/usd_mxn_canonical_sample.csv",
+  "validation_status": "Warning",
+  "carry_signal": {
+    "signal": "positive",
+    "confidence": 0.65,
+    "explanation": "Rate differential 5.50% with recent spot trend -0.22% under normal vol regime. Research indicator only.",
+    "not_financial_advice": true
+  },
+  "volatility_regime": {
+    "regime": "low",
+    "threshold_used": {
+      "low": 0.08,
+      "normal": 0.14,
+      "elevated": 0.22
+    },
+    "input_volatility_20d": 0.016457,
+    "explanation": "20-day annualized vol 0.0165 mapped to low using fixed research thresholds."
+  },
+  "anomaly_detector": {
+    "anomaly_score": 100,
+    "triggered_fields": [
+      {
+        "field": "spread_proxy_bps",
+        "robust_z": "6745000.00"
+      }
+    ],
+    "explanation": "Robust z-score exceeded threshold on: spread_proxy_bps."
+  },
+  "corridor_risk_score": {
+    "score": 40.2,
+    "regime": "Moderate",
+    "component_breakdown": {
+      "volatility": 3.29,
+      "spread_liquidity": 100,
+      "rate_diff_change": 0,
+      "event_risk": 15,
+      "settlement_holiday": 10,
+      "anomaly": 100
+    },
+    "weights": {
+      "volatility": 0.22,
+      "spread_liquidity": 0.18,
+      "rate_diff_change": 0.15,
+      "event_risk": 0.15,
+      "settlement_holiday": 0.12,
+      "anomaly": 0.18
+    },
+    "explanation": "Explainable research score from volatility, spread/liquidity proxies, rate differential change, macro events, settlement/holiday flags, and anomaly detector. Not a FX forecast.",
+    "limitations": "Uses synthetic/sample proxies where live connectors are unavailable. Spread and liquidity are research proxies, not executable market depth.",
+    "not_financial_advice": true
+  },
+  "latest_snapshot": {
+    "usd_mxn_spot": "17.2618",
+    "rate_differential": "5.50",
+    "volatility_regime": "normal",
+    "event_flag": "false",
+    "holiday_flag": "false"
+  },
+  "generated_at": "2026-06-02T04:09:59.138Z",
+  "disclaimer": "Research and decision support only. Not investment advice. Not a trading signal."
+}

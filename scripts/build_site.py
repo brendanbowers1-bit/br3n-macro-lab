@@ -21,11 +21,16 @@ def main() -> None:
 
     build_publication()
     try:
+        from src.lake.ingest_fred import ingest_fred_policy_rate
+        from src.lake.paths import FED_POLICY_CSV
         from scripts.run_corridor_intelligence import run as run_corridor
 
+        if not FED_POLICY_CSV.exists():
+            print("==> Ingesting FRED DFEDTARU (first run)...")
+            ingest_fred_policy_rate(min_date="2024-01-01")
         run_corridor()
     except Exception as exc:
-        print(f"Warning: corridor intelligence pipeline skipped: {exc}")
+        print(f"Warning: corridor / data-lake pipeline skipped: {exc}")
     paths = build_site()
 
     # Static Next.js dashboard → reports/publication/dashboard/

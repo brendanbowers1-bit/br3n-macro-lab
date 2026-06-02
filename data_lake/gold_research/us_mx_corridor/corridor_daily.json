@@ -1,9 +1,10 @@
 {
   "meta": {
-    "generated_at": "2026-06-01T23:01:28.167484+00:00",
+    "generated_at": "2026-06-02T03:01:13.936804+00:00",
     "lab": "Bowers Frontier Macro Labs",
     "product": "USD/MXN Corridor Intelligence System",
-    "methodology_version": "us_mx_corridor_v1"
+    "methodology_version": "us_mx_corridor_v1",
+    "raw_path": "data-lake/raw/remittances/us_mx_banxico_monthly.csv"
   },
   "validation": {
     "passed": true,

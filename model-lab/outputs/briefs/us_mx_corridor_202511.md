@@ -3,7 +3,7 @@
 **Corridor:** United States→Mexico (USD/MXN)  
 **As of:** Nov 2025 (2025-11)  
 **Corridor Risk Score:** 36.8/100 (Moderate)  
-**Generated:** 2026-06-01 23:01 UTC
+**Generated:** 2026-06-02 03:01 UTC
 
 > Corridor Risk Score measures structural flow stress from validated remittance data. Research only. Not investment advice. Not a price or FX prediction.
 

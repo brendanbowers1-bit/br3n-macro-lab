@@ -1,0 +1,186 @@
+{
+  "catalog_version": "1.2.0",
+  "product": "USD/MXN Corridor Intelligence System",
+  "last_updated": "2026-06-02",
+  "data_lake_root": "data-lake/",
+  "dataset_count": 10,
+  "active_dataset_count": 10,
+  "datasets_by_layer": {
+    "raw": 7,
+    "processed": 3
+  },
+  "datasets": [
+    {
+      "dataset_id": "us_mx_remittances_monthly_v1",
+      "name": "US to Mexico monthly remittances (starter)",
+      "layer": "raw",
+      "path": "data-lake/raw/remittances/us_mx_banxico_monthly.csv",
+      "source_id": "corridor_us_mx_remittances_banxico",
+      "schema_id": "usd_mxn_corridor_daily_v1",
+      "frequency": "monthly",
+      "data_mode": "research_starter",
+      "synthetic_flag": false,
+      "status": "active",
+      "downstream": [
+        "data-lake/processed/corridors/us_mx_corridor_daily.json",
+        "data-lake/processed/corridors/usd_mxn_daily.parquet"
+      ]
+    },
+    {
+      "dataset_id": "fed_policy_rate_dfedtaru_v1",
+      "name": "Federal Reserve policy rate upper bound (DFEDTARU)",
+      "layer": "raw",
+      "path": "data-lake/raw/rates/fed_policy_rate_dfedtaru.csv",
+      "source_id": "rates_fed_policy",
+      "frequency": "daily",
+      "data_mode": "live",
+      "synthetic_flag": false,
+      "status": "active",
+      "sidecar": "data-lake/raw/rates/fed_policy_rate_dfedtaru.meta.json"
+    },
+    {
+      "dataset_id": "banxico_policy_rate_v1",
+      "name": "Banxico policy rate (SIE SF61745 or FRED proxy)",
+      "layer": "raw",
+      "path": "data-lake/raw/rates/banxico_policy_rate.csv",
+      "source_id": "rates_banxico_policy",
+      "frequency": "daily",
+      "data_mode": "mixed",
+      "synthetic_flag": false,
+      "status": "active",
+      "sidecar": "data-lake/raw/rates/banxico_policy_rate.meta.json"
+    },
+    {
+      "dataset_id": "usd_mxn_spot_v1",
+      "name": "USD/MXN spot (Banxico FIX or FRED DEXMXUS)",
+      "layer": "raw",
+      "path": "data-lake/raw/fx/usd_mxn_spot.csv",
+      "source_id": "fx_usd_mxn_spot",
+      "frequency": "daily",
+      "data_mode": "live",
+      "synthetic_flag": false,
+      "status": "active",
+      "sidecar": "data-lake/raw/fx/usd_mxn_spot.meta.json"
+    },
+    {
+      "dataset_id": "us_mx_rpw_cost_quarterly_v1",
+      "name": "US\u2192Mexico remittance cost proxy (RPW)",
+      "layer": "raw",
+      "path": "data-lake/raw/remittances/us_mx_rpw_cost_quarterly.csv",
+      "source_id": "corridor_remittance_cost_proxy",
+      "frequency": "quarterly",
+      "data_mode": "live",
+      "synthetic_flag": false,
+      "status": "active",
+      "sidecar": "data-lake/raw/remittances/us_mx_rpw_cost_quarterly.meta.json"
+    },
+    {
+      "dataset_id": "us_mx_holidays_v1",
+      "name": "US / Mexico holiday calendar",
+      "layer": "raw",
+      "path": "data-lake/raw/holidays/us_mx_holidays.csv",
+      "source_id": "corridor_holiday_calendar",
+      "frequency": "annual",
+      "data_mode": "research_starter",
+      "synthetic_flag": false,
+      "status": "active"
+    },
+    {
+      "dataset_id": "central_bank_decisions_v1",
+      "name": "Fed FOMC and Banxico decision dates",
+      "layer": "raw",
+      "path": "data-lake/raw/events/central_bank_decisions.csv",
+      "source_id": "macro_central_bank_dates",
+      "frequency": "event",
+      "data_mode": "research_starter",
+      "synthetic_flag": false,
+      "status": "active"
+    },
+    {
+      "dataset_id": "usd_mxn_canonical_daily_v1",
+      "name": "USD/MXN canonical daily corridor table",
+      "layer": "processed",
+      "path": "data-lake/processed/corridors/usd_mxn_daily.parquet",
+      "source_id": "usd_mxn_canonical_v1",
+      "schema_id": "usd_mxn_daily_v1",
+      "frequency": "daily",
+      "data_mode": "mixed",
+      "synthetic_flag": false,
+      "status": "active"
+    },
+    {
+      "dataset_id": "usd_mxn_features_v1",
+      "name": "USD/MXN feature store slice",
+      "layer": "processed",
+      "path": "data-lake/processed/features/usd_mxn_features.parquet",
+      "schema_id": "usd_mxn_daily_v1",
+      "frequency": "daily",
+      "data_mode": "mixed",
+      "status": "active"
+    },
+    {
+      "dataset_id": "usd_mxn_model_ready_v1",
+      "name": "Model-ready USD/MXN research table",
+      "layer": "processed",
+      "path": "data-lake/processed/model_ready/usd_mxn_model_ready.parquet",
+      "schema_id": "usd_mxn_daily_v1",
+      "frequency": "daily",
+      "data_mode": "mixed",
+      "status": "active"
+    }
+  ],
+  "pipelines": [
+    {
+      "pipeline_id": "data_lake_full_v1",
+      "script": "scripts/run_data_lake_pipeline.py",
+      "steps": [
+        "ingest_fred",
+        "ingest_banxico_fx",
+        "ingest_banxico_policy",
+        "ingest_rpw",
+        "validate",
+        "corridor_intelligence",
+        "build_canonical",
+        "validate"
+      ]
+    },
+    {
+      "pipeline_id": "corridor_intelligence_v1",
+      "script": "scripts/run_corridor_intelligence.py",
+      "inputs": [
+        "data-lake/raw/remittances/us_mx_banxico_monthly.csv",
+        "data-lake/raw/rates/fed_policy_rate_dfedtaru.csv",
+        "data-lake/raw/rates/banxico_policy_rate.csv",
+        "data-lake/raw/fx/usd_mxn_spot.csv",
+        "data-lake/raw/remittances/us_mx_rpw_cost_quarterly.csv"
+      ],
+      "outputs": [
+        "data-lake/processed/corridors/us_mx_corridor_daily.json",
+        "data-lake/processed/corridors/usd_mxn_daily.parquet",
+        "model-lab/outputs/briefs/"
+      ],
+      "validation_rules": "data-lake/metadata/validation_rules.json"
+    }
+  ],
+  "source_registry": {
+    "registry_version": "1.0.0",
+    "last_updated": "2026-06-01",
+    "source_count": 22,
+    "active_count": 7,
+    "by_data_mode": {
+      "live": 3,
+      "planned": 6,
+      "placeholder": 9,
+      "mixed": 1,
+      "research_starter": 3
+    }
+  },
+  "file_counts": {
+    "raw": 21,
+    "processed": 5,
+    "metadata": 6,
+    "validation_reports": 8
+  },
+  "latest_validation_report": "usd_mxn_validation_latest.json",
+  "exported_at": "2026-06-02T04:10:18.273968+00:00"
+}

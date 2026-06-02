@@ -1,0 +1,46 @@
+{
+  "lab": "Bowers Frontier Macro Labs",
+  "corridor": "USD/MXN",
+  "as_of": "2024-07-01",
+  "data_mode": "synthetic",
+  "provider": "deterministic_fallback",
+  "model": "transparent_models_v1",
+  "validation_status": "Warning",
+  "corridor_risk_score": {
+    "score": 40.2,
+    "regime": "Moderate",
+    "component_breakdown": {
+      "volatility": 3.29,
+      "spread_liquidity": 100,
+      "rate_diff_change": 0,
+      "event_risk": 15,
+      "settlement_holiday": 10,
+      "anomaly": 100
+    },
+    "weights": {
+      "volatility": 0.22,
+      "spread_liquidity": 0.18,
+      "rate_diff_change": 0.15,
+      "event_risk": 0.15,
+      "settlement_holiday": 0.12,
+      "anomaly": 0.18
+    },
+    "explanation": "Explainable research score from volatility, spread/liquidity proxies, rate differential change, macro events, settlement/holiday flags, and anomaly detector. Not a FX forecast.",
+    "limitations": "Uses synthetic/sample proxies where live connectors are unavailable. Spread and liquidity are research proxies, not executable market depth.",
+    "not_financial_advice": true
+  },
+  "carry_signal": {
+    "signal": "positive",
+    "confidence": 0.65,
+    "explanation": "Rate differential 5.50% with recent spot trend -0.22% under normal vol regime. Research indicator only.",
+    "not_financial_advice": true
+  },
+  "llm_error": "fetch failed",
+  "rag_sources": [
+    "corridor_risk_notes.md",
+    "fx_basics.md",
+    "settlement_risk_notes.md"
+  ],
+  "generated_at": "2026-06-02T04:09:59.311Z",
+  "disclaimer": "Research only. Not financial advice."
+}

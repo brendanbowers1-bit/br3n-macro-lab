@@ -166,6 +166,12 @@ def load_data_lake_catalog() -> dict[str, Any]:
     checksum = ROOT / "stablecoin_lab" / "data" / "metadata" / "file_checksums.csv"
     if checksum.exists():
         layers["catalog_updated"] = str(checksum.stat().st_mtime)
+    try:
+        from src.lake.catalog_export import build_canonical_catalog_payload
+
+        layers["canonical_catalog"] = build_canonical_catalog_payload()
+    except Exception:
+        pass
     return layers
 
 

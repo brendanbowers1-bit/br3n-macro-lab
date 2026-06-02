@@ -1,0 +1,14 @@
+{
+  "source_id": "rates_fed_policy",
+  "source_name": "Federal Reserve policy rate (upper bound)",
+  "fred_series": "DFEDTARU",
+  "url_or_reference": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU",
+  "retrieval_date": "2026-06-01",
+  "retrieval_method": "fred_public_graph_csv",
+  "data_mode": "live",
+  "synthetic_flag": false,
+  "license_terms_note": "FRED / St. Louis Fed \u2014 research use; verify terms for production.",
+  "raw_dated_file": "fed_policy_rate_dfedtaru_20260601.csv",
+  "min_date_filter": "2024-01-01",
+  "ingested_at": "2026-06-02T03:00:49.419836+00:00"
+}

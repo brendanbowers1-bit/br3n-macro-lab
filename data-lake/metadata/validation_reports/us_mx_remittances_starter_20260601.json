@@ -1,0 +1,26 @@
+{
+  "report_id": "validation_us_mx_remittances_starter_20260601",
+  "generated_at": "2026-06-01",
+  "dataset": "data-lake/raw/remittances/us_mx_banxico_monthly.csv",
+  "source_id": "corridor_us_mx_remittances_banxico",
+  "schema_id": "usd_mxn_corridor_monthly_v1",
+  "passed": true,
+  "summary": {
+    "errors": 0,
+    "warnings": 1
+  },
+  "checks": [
+    { "check_id": "valid_dates", "status": "pass" },
+    { "check_id": "numeric_fields", "status": "pass" },
+    { "check_id": "duplicate_dates", "status": "pass" },
+    { "check_id": "monotonic_date_ordering", "status": "pass" },
+    { "check_id": "source_lineage_present", "status": "pass", "note": "Via source_registry + catalog" },
+    {
+      "check_id": "stale_source_warning",
+      "status": "warn",
+      "message": "research_starter series; not live Banxico feed"
+    }
+  ],
+  "data_mode": "research_starter",
+  "synthetic_flag": false
+}

@@ -7,7 +7,9 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_CSV = ROOT / "data" / "raw" / "corridor" / "us_mx_banxico_remittances.csv"
+DATA_LAKE_CSV = ROOT / "data-lake" / "raw" / "remittances" / "us_mx_banxico_monthly.csv"
+LEGACY_CSV = ROOT / "data" / "raw" / "corridor" / "us_mx_banxico_remittances.csv"
+DEFAULT_CSV = DATA_LAKE_CSV if DATA_LAKE_CSV.exists() else LEGACY_CSV
 
 
 def load_us_mx_remittances(path: Path | None = None) -> pd.DataFrame:

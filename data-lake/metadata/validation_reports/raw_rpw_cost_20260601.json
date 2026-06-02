@@ -1,0 +1,23 @@
+{
+  "report_id": "raw_rpw_cost_20260601",
+  "generated_at": "2026-06-02T03:00:58.898564+00:00",
+  "target": "data-lake/raw/remittances/us_mx_rpw_cost_quarterly.csv",
+  "layer": "raw",
+  "passed": true,
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "checks": [
+    {
+      "check_id": "required_columns",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "numeric_fields",
+      "status": "pass",
+      "message": ""
+    }
+  ]
+}

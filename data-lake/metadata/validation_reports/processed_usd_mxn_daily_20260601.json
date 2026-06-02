@@ -1,0 +1,48 @@
+{
+  "report_id": "processed_usd_mxn_daily_20260601",
+  "generated_at": "2026-06-02T03:00:58.898880+00:00",
+  "target": "data-lake/processed/corridors/usd_mxn_daily.parquet",
+  "layer": "processed",
+  "passed": true,
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "checks": [
+    {
+      "check_id": "source_lineage_present",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "required_columns",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "valid_dates",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "duplicate_dates",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "monotonic_date_ordering",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "numeric_fields",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "synthetic_live_data_flag",
+      "status": "pass",
+      "message": ""
+    }
+  ]
+}

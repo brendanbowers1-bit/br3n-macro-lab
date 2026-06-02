@@ -1,0 +1,14 @@
+{
+  "source_id": "fx_usd_mxn_spot",
+  "source_name": "USD/MXN spot rate",
+  "banxico_series": "SF43718",
+  "fred_series": "DEXMXUS",
+  "retrieval_date": "2026-06-01",
+  "retrieval_method": "fred_public_graph_csv",
+  "data_mode": "live",
+  "synthetic_flag": false,
+  "license_terms_note": "Banxico SIE or FRED DEXMXUS \u2014 research use; verify terms for production.",
+  "raw_dated_file": "usd_mxn_spot_20260601.csv",
+  "min_date_filter": "2024-01-01",
+  "ingested_at": "2026-06-02T03:00:55.018826+00:00"
+}

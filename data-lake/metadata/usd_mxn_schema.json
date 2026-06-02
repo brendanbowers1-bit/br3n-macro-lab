@@ -1,0 +1,50 @@
+{
+  "schema_id": "usd_mxn_daily_v1",
+  "schema_version": "1.0.0",
+  "name": "USD/MXN Canonical Daily Corridor Dataset",
+  "lab": "Bowers Frontier Macro Labs",
+  "product": "USD/MXN Corridor Intelligence System",
+  "last_updated": "2026-06-01",
+  "granularity": "daily",
+  "primary_key": ["date"],
+  "status": "active",
+  "description": "Canonical merged table for USD/MXN corridor intelligence. Daily spine with FX, rates, macro, corridor, and derived research fields. Monthly sources forward-filled or joined on month-end with explicit join rules in methodology.",
+  "output_paths": {
+    "processed_parquet": "data-lake/processed/corridors/usd_mxn_daily.parquet",
+    "features_parquet": "data-lake/processed/features/usd_mxn_features.parquet",
+    "model_ready_parquet": "data-lake/processed/model_ready/usd_mxn_model_ready.parquet"
+  },
+  "columns": [
+    { "name": "date", "type": "date", "required": true },
+    { "name": "usd_mxn_spot", "type": "float", "required": false, "source_id": "fx_usd_mxn_spot" },
+    { "name": "usd_return_1d", "type": "float", "required": false, "derived": true },
+    { "name": "usd_return_5d", "type": "float", "required": false, "derived": true },
+    { "name": "us_policy_rate", "type": "float", "required": false, "source_id": "rates_fed_policy" },
+    { "name": "mx_policy_rate", "type": "float", "required": false, "source_id": "rates_banxico_policy" },
+    { "name": "rate_differential", "type": "float", "required": false, "derived": true },
+    { "name": "carry_proxy", "type": "float", "required": false, "derived": true },
+    { "name": "volatility_20d", "type": "float", "required": false, "derived": true },
+    { "name": "volatility_regime", "type": "string", "required": false, "derived": true },
+    { "name": "spread_proxy_bps", "type": "float", "required": false, "source_id": "fx_usd_mxn_spread_proxy" },
+    { "name": "event_flag", "type": "boolean", "required": false, "source_id": "macro_central_bank_dates" },
+    { "name": "holiday_flag", "type": "boolean", "required": false, "source_id": "corridor_holiday_calendar" },
+    { "name": "liquidity_proxy", "type": "float", "required": false, "source_id": "corridor_liquidity_proxy" },
+    { "name": "remittance_cost_proxy", "type": "float", "required": false, "source_id": "corridor_remittance_cost_proxy" },
+    { "name": "remittance_usd_millions", "type": "float", "required": false, "source_id": "corridor_us_mx_remittances_banxico", "frequency": "monthly" },
+    { "name": "corridor_risk_score", "type": "float", "required": false, "derived": true },
+    { "name": "source_id", "type": "string", "required": true, "lineage": true },
+    { "name": "retrieval_date", "type": "date", "required": true, "lineage": true },
+    { "name": "data_mode", "type": "string", "required": true, "lineage": true, "enum": ["live", "research_starter", "mixed", "synthetic", "planned", "placeholder"] },
+    { "name": "synthetic_flag", "type": "boolean", "required": true, "lineage": true },
+    { "name": "methodology_version", "type": "string", "required": true, "lineage": true }
+  ],
+  "join_rules": {
+    "monthly_to_daily": "Month-end alignment unless methodology specifies business-day lag; document in validation report.",
+    "missing_policy": "Forward-fill official rates until next decision; flag stale_source in validation."
+  },
+  "validation": {
+    "rules_file": "data-lake/metadata/validation_rules.json",
+    "report_dir": "data-lake/metadata/validation_reports/"
+  },
+  "disclaimer": "Research dataset for corridor intelligence. Not investment advice. Not a trading signal. Not operational treasury or compliance guidance."
+}

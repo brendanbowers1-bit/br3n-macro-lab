@@ -16,14 +16,15 @@ from src.corridor_intelligence.brief import generate_corridor_brief, write_corri
 from src.corridor_intelligence.dataset import load_us_mx_remittances
 from src.corridor_intelligence.risk_score import compute_corridor_risk_score
 from src.corridor_intelligence.validate import validate_us_mx_dataset
+from src.lake.paths import CORRIDOR_DAILY_JSON, PROCESSED_CORRIDORS, REMITTANCES_CSV
 
 OUT_DIR = ROOT / "data" / "outputs"
 GOLD_DIR = ROOT / "data_lake" / "gold_research" / "us_mx_corridor"
 BRIEF_DIR = ROOT / "model-lab" / "outputs" / "briefs"
 
 
-def run() -> dict:
-    df = load_us_mx_remittances()
+def run(*, build_canonical: bool = True) -> dict:
+    df = load_us_mx_remittances(REMITTANCES_CSV)
     validation = validate_us_mx_dataset(df)
     if not validation.passed:
         raise SystemExit(f"Corridor validation failed: {validation.errors}")
@@ -38,6 +39,7 @@ def run() -> dict:
             "lab": "Bowers Frontier Macro Labs",
             "product": "USD/MXN Corridor Intelligence System",
             "methodology_version": score.methodology_version,
+            "raw_path": str(REMITTANCES_CSV.relative_to(ROOT)),
         },
         "validation": validation.to_dict(),
         "risk_score": score.to_dict(),
@@ -60,6 +62,9 @@ def run() -> dict:
     json_path = OUT_DIR / "us_mx_corridor_daily.json"
     json_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
+    PROCESSED_CORRIDORS.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(json_path, CORRIDOR_DAILY_JSON)
+
     GOLD_DIR.mkdir(parents=True, exist_ok=True)
     shutil.copy2(json_path, GOLD_DIR / "corridor_daily.json")
     df.to_csv(GOLD_DIR / "remittances_validated.csv", index=False)
@@ -72,9 +77,15 @@ def run() -> dict:
     pub_brief.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(brief_path, pub_brief)
 
+    if build_canonical:
+        from src.lake.usd_mxn_canonical import build_usd_mxn_canonical
+
+        build_usd_mxn_canonical(corridor_json_src=json_path)
+
     print(f"Validation: PASS (quality={validation.data_quality_score:.0f})")
     print(f"Corridor Risk Score: {score.score}/100 ({score.band})")
     print(f"JSON: {json_path}")
+    print(f"Data-lake JSON: {CORRIDOR_DAILY_JSON}")
     print(f"Brief: {brief_path}")
     return payload
 

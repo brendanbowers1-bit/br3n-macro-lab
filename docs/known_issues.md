@@ -18,19 +18,38 @@
 
 | Item | Notes |
 |------|-------|
-| Live Banxico API/CSV feed | Starter CSV in `data/raw/corridor/`; replace when official feed is licensed |
+| Ollama / LM Studio local LLM | Not running — brief uses deterministic fallback; `npm run model:smoke` exits gracefully |
+| Node sample vs Python live lake | Sample CSV is **synthetic**; live/mixed parquet via `npm run lake:run` |
+| Banxico SIE (official) | Set `BANXICO_SIE_TOKEN`; FRED fallback active for FX/MX rate |
+| Official Banxico remittance feed | Starter CSV still in use |
 | Repo path `br3n-macro-lab` | Preserved for GitHub Pages until coordinated rename |
-| npm audit (dev deps) | 2 advisories in `web_dashboard`; non-blocking for static build |
+| npm audit (dev deps) | Non-blocking for static build |
 
-## Commands
+## Model Lab commands
 
 ```bash
-python scripts/run_corridor_intelligence.py
+npm run system:run
+npm run data:build:usd-mxn
+npm run data:validate:usd-mxn
+npm run model:run:usd-mxn
+npm run model:ingest
+npm run brief:usd-mxn
+npm run model:eval
 npm run model:smoke
-npm run model:brief
-cd web_dashboard && npm install && npm run build
+```
+
+## Data lake commands
+
+```bash
+npm run lake:run
+npm run lake:validate
+npm run corridor:run
+npm run model:smoke
+npm run build
 ```
 
 ## Build status
 
-Last verified: **Pass** — corridor pipeline, model scripts, Next.js build.
+Last verified: **Pass** — `npm run system:run`, `npm run lake:run`, Next.js build (13 routes including `/model-lab`, `/methodology`).
+
+See `docs/implementation_report.md` for full milestone checklist.

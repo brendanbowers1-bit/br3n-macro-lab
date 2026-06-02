@@ -23,10 +23,12 @@ from src.dashboard.data_loader import (
     official_coverage_pct,
 )
 from src.data_lake.catalog import get_lake_status, query_gold
+from src.lake.catalog_export import export_catalog_json
 from src.visuals.vsi_charts import corridor_summary
 
 OUT_DIR = ROOT / "web_dashboard" / "public" / "api"
 OUT_FILE = OUT_DIR / "dashboard.json"
+CATALOG_FILE = OUT_DIR / "data_catalog.json"
 
 COUNTRY_COORDS: dict[str, tuple[float, float]] = {
     "United States": [-98.0, 39.5],
@@ -316,7 +318,9 @@ def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     payload = build_export()
     OUT_FILE.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+    export_catalog_json(CATALOG_FILE)
     print(f"Exported: {OUT_FILE.relative_to(ROOT)}")
+    print(f"Exported: {CATALOG_FILE.relative_to(ROOT)}")
     print(f"  VSI corridors: {len(payload['vsi']['corridor_summary'])}")
     print(f"  Settlement tables: {len(payload['settlement'])}")
     print(f"  Stablecoin tables: {len(payload['stablecoin'])}")

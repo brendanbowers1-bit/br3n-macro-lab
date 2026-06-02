@@ -1,0 +1,33 @@
+{
+  "report_id": "raw_fed_policy_20260601",
+  "generated_at": "2026-06-02T03:00:58.897731+00:00",
+  "target": "data-lake/raw/rates/fed_policy_rate_dfedtaru.csv",
+  "layer": "raw",
+  "passed": true,
+  "summary": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "checks": [
+    {
+      "check_id": "numeric_fields",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "valid_dates",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "duplicate_dates",
+      "status": "pass",
+      "message": ""
+    },
+    {
+      "check_id": "monotonic_date_ordering",
+      "status": "pass",
+      "message": ""
+    }
+  ]
+}

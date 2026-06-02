@@ -1,0 +1,75 @@
+{
+  "status": "Warning",
+  "rows": 130,
+  "date_min": "2024-01-02",
+  "date_max": "2024-07-01",
+  "data_mode": "synthetic",
+  "checks": [
+    {
+      "id": "file_exists",
+      "status": "pass"
+    },
+    {
+      "id": "required_columns",
+      "status": "pass"
+    },
+    {
+      "id": "valid_dates",
+      "status": "pass"
+    },
+    {
+      "id": "duplicate_dates",
+      "status": "pass"
+    },
+    {
+      "id": "monotonic_date_ordering",
+      "status": "pass"
+    },
+    {
+      "id": "missing_values",
+      "status": "pass",
+      "message": {
+        "usd_mxn_spot": 0,
+        "us_policy_rate": 0,
+        "mx_policy_rate": 0
+      }
+    },
+    {
+      "id": "suspicious_extreme_one_day_change",
+      "status": "pass"
+    },
+    {
+      "id": "volatility_regime",
+      "status": "pass"
+    },
+    {
+      "id": "data_mode",
+      "status": "pass",
+      "message": "synthetic"
+    },
+    {
+      "id": "synthetic_disclosure",
+      "status": "warn",
+      "message": "Dataset is synthetic/sample — not live market data"
+    },
+    {
+      "id": "source_lineage",
+      "status": "pass"
+    },
+    {
+      "id": "stale_source_warning",
+      "status": "warn",
+      "message": "Latest date 2024-07-01 is 700 days old"
+    },
+    {
+      "id": "event_descriptions",
+      "status": "pass"
+    },
+    {
+      "id": "holiday_descriptions",
+      "status": "pass"
+    }
+  ],
+  "generated_at": "2026-06-02T04:09:59.080Z",
+  "dataset_path": "/Users/brendanbowers/fx_regime_lab/data-lake/processed/corridors/usd_mxn_canonical_sample.csv"
+}

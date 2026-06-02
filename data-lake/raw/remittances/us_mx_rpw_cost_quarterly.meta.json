@@ -1,0 +1,17 @@
+{
+  "source_id": "corridor_remittance_cost_proxy",
+  "source_name": "US to Mexico remittance cost proxy (RPW)",
+  "url_or_reference": "https://remittanceprices.worldbank.org/",
+  "upstream_files": [
+    "data/raw/world_bank_rpw/rpw_historical_panel.csv",
+    "data/raw/world_bank_rpw/rpw_corridors_curated.csv"
+  ],
+  "retrieval_date": "2026-06-01",
+  "retrieval_method": "derived_from_rpw_panel",
+  "data_mode": "live",
+  "synthetic_flag": false,
+  "license_terms_note": "World Bank RPW \u2014 attribution required; verify commercial terms.",
+  "raw_dated_file": "us_mx_rpw_cost_quarterly_20260601.csv",
+  "quarters": 12,
+  "ingested_at": "2026-06-02T03:00:56.885531+00:00"
+}
